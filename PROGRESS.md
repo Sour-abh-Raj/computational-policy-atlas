@@ -1,0 +1,63 @@
+# Program Tracker — The Atlas of Computational Policy Simulation
+
+Program-director view of scope, status, and the definition of done. Updated every
+work iteration. (Site-facing status also lives at `docs/status.md`.)
+
+## Definition of Done
+
+The loop completes when **all** of the following hold:
+
+- [ ] **D1 — Content depth.** Every model page promoted from *stub* to at least
+      **Bronze** (all 18 dossier sections filled, concise but real). Flagships reach
+      **Gold** (DICE-level rigor).
+- [ ] **D2 — Synergy artifacts.** All 10 comparison matrices written as real chapters;
+      the 15 architecture patterns detailed; the knowledge graph built as data
+      (`graph.json`) + rendered views.
+- [ ] **D3 — Build health.** `mkdocs build --strict` stays green (0 warnings) at every commit.
+- [ ] **D4 — Deploy pipeline.** GitHub Actions workflow in place; site builds
+      deploy-ready. ✅ (pipeline ready — see below)
+- [ ] **D5 — Published.** Site live on GitHub Pages. ⛔ **Human gate**: requires the
+      owner to rotate the leaked token, `gh auth login`, create the repo, and push.
+      I cannot and will not do this with a pasted credential.
+
+## Maturity ladder (per page)
+
+| Level | Bar |
+|-------|-----|
+| Stub | Positioning card + facts + TODO sections |
+| **Bronze** | All 18 sections filled, concise, ≥3 primary citations |
+| **Silver** | Equations/architecture diagrams, criticisms with citations |
+| **Gold** | DICE-level: full math, Mermaid architecture, ecosystem, simulator lesson |
+
+## Status board
+
+| Family | Pages | Stub | Bronze+ | Gold |
+|--------|------:|-----:|--------:|-----:|
+| Climate IAM | 9 | 8 | 0 | 1 (DICE) |
+| Energy | 5 | 4 | 0 | 1 (OSeMOSYS →) |
+| Economics | 7 | 7 | 0 | 0 |
+| Transport | 4 | 4 | 0 | 0 |
+| Urban | 3 | 3 | 0 | 0 |
+| Agriculture | 4 | 4 | 0 | 0 |
+| Water | 3 | 3 | 0 | 0 |
+| Health | 3 | 3 | 0 | 0 |
+| Frameworks | 7 | 7 | 0 | 0 |
+| Methods/Algorithms | 8 | 8 | 0 | 0 |
+| **Synergy** | matrices 0/10 · patterns 0/15 · graph 0/1 | | | |
+
+## Iteration log
+
+- **Iter 0** — Scaffold + DICE (Gold) + 52 stubs; strict build green (64 pages).
+- **Iter 1** — Deploy pipeline (GitHub Actions), program tracker, OSeMOSYS → Gold
+  (the bottom-up LP contrast to DICE).
+
+## Working order (program-director priority)
+
+1. **Contrast pair**: OSeMOSYS + TIMES (bottom-up energy) vs DICE → unlocks the
+   *IAM vs Energy* and *Optimization vs Simulation* matrices with real referents.
+2. Equilibrium spine: CGE + DSGE + Input–Output → *ABM vs CGE*, *Equilibrium vs
+   Disequilibrium* matrices.
+3. Simulation spine: one ABM (MATSim/Covasim) + system dynamics → *ABM vs SD*.
+4. Fill remaining stubs to Bronze, family by family.
+5. Synergy layer: complete all matrices, detail all patterns, build the knowledge graph.
+6. Signal D5 (publish) to the owner.

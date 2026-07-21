@@ -1,0 +1,37 @@
+name: Deploy Atlas to GitHub Pages
+
+# Publishes the MkDocs Material site to the gh-pages branch on every push to main.
+# One-time setup by the repo owner (credential-gated — never automated here):
+#   1. Rotate any leaked token; authenticate with `gh auth login`.
+#   2. Create the repo and push:  gh repo create <name> --public --source=. --push
+#   3. In the repo Settings → Pages, set Source = "Deploy from a branch", branch = gh-pages.
+# After that, this workflow keeps the site in sync automatically.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          key: mkdocs-material-${{ hashFiles('requirements.txt') }}
+          path: ~/.cache/pip
+      - run: pip install -r requirements.txt
+      - name: Build (strict) and deploy
+        run: |
+          mkdocs build --strict   # fail the deploy on any broken link / warning
+          mkdocs gh-deploy --force --no-history
