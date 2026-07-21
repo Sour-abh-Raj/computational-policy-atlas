@@ -37,7 +37,7 @@ The loop completes when **all** of the following hold:
 |--------|------:|-----:|--------:|-----:|
 | Climate IAM | 9 | 8 | 0 | 1 (DICE) |
 | Energy | 5 | 3 | 0 | 2 (OSeMOSYS, TIMES) |
-| Economics | 7 | 6 | 0 | 1 (CGE) |
+| Economics | 7 | 5 | 0 | 2 (CGE, DSGE) |
 | Transport | 4 | 4 | 0 | 0 |
 | Urban | 3 | 3 | 0 | 0 |
 | Agriculture | 4 | 4 | 0 | 0 |
@@ -45,7 +45,7 @@ The loop completes when **all** of the following hold:
 | Health | 3 | 3 | 0 | 0 |
 | Frameworks | 7 | 7 | 0 | 0 |
 | Methods/Algorithms | 8 | 8 | 0 | 0 |
-| **Synergy** | matrices 2/10 · patterns 0/15 · graph 0/1 | | | |
+| **Synergy** | matrices 3/10 · patterns 0/15 · graph 0/1 | | | |
 
 ## Iteration log
 
@@ -59,6 +59,9 @@ The loop completes when **all** of the following hold:
   Matrices 1/10. Pushed → auto-redeploys live.
 - **Iter 3** — CGE → Gold (economics/equilibrium spine, Market Engine pattern); second
   matrix **Top-Down vs Bottom-Up** (energy-economy gap, hybrid synthesis). Matrices 2/10.
+- **Iter 4** — DSGE → Gold (completes equilibrium trio; Lucas critique, NK 3-equation
+  model, HANK); third matrix **Equilibrium vs Disequilibrium** (the coordination
+  assumption; CGE/DSGE vs E3ME/ABM). Matrices 3/10.
 
 ## Working order (program-director priority)
 

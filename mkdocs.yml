@@ -146,6 +146,7 @@ nav:
       - comparative/index.md
       - Optimization vs Simulation: comparative/optimization-vs-simulation.md
       - Top-Down vs Bottom-Up: comparative/top-down-vs-bottom-up.md
+      - Equilibrium vs Disequilibrium: comparative/equilibrium-vs-disequilibrium.md
   - Architecture Patterns:
       - patterns/index.md
   - Knowledge Graph:

@@ -37,7 +37,7 @@ Legend: ✅ complete · 🟡 in progress · ⬜ planned
 | Model | Type | Status |
 |-------|------|--------|
 | [**CGE**](economics/cge.md) (static & dynamic) | Computable General Equilibrium | ✅ Gold |
-| DSGE | Dynamic Stochastic General Equilibrium | ⬜ |
+| [**DSGE**](economics/dsge.md) | Dynamic Stochastic General Equilibrium | ✅ Gold |
 | Input–Output / Leontief | Structural | ⬜ |
 | GTAP | Global trade CGE (Purdue) | ⬜ |
 | GEM-E3 / ENVISAGE | Energy-economy CGE | ⬜ |
