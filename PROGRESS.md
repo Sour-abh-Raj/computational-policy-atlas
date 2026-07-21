@@ -16,9 +16,11 @@ The loop completes when **all** of the following hold:
 - [ ] **D3 — Build health.** `mkdocs build --strict` stays green (0 warnings) at every commit.
 - [ ] **D4 — Deploy pipeline.** GitHub Actions workflow in place; site builds
       deploy-ready. ✅ (pipeline ready — see below)
-- [ ] **D5 — Published.** Site live on GitHub Pages. ⛔ **Human gate**: requires the
-      owner to rotate the leaked token, `gh auth login`, create the repo, and push.
-      I cannot and will not do this with a pasted credential.
+- [x] **D5 — Published.** ✅ **LIVE** at
+      <https://sour-abh-raj.github.io/computational-policy-atlas/> — repo
+      `Sour-abh-Raj/computational-policy-atlas` (public). Owner authenticated gh once
+      (`gh auth login --with-token`); the deploy workflow now auto-redeploys on push
+      to `main`. **Owner reminder: rotate the token whenever you choose.**
 
 ## Maturity ladder (per page)
 
@@ -50,6 +52,8 @@ The loop completes when **all** of the following hold:
 - **Iter 0** — Scaffold + DICE (Gold) + 52 stubs; strict build green (64 pages).
 - **Iter 1** — Deploy pipeline (GitHub Actions), program tracker, OSeMOSYS → Gold
   (the bottom-up LP contrast to DICE).
+- **Publish** — Repo created (public) and **site went live on GitHub Pages**:
+  <https://sour-abh-raj.github.io/computational-policy-atlas/>. D5 cleared.
 
 ## Working order (program-director priority)
 
