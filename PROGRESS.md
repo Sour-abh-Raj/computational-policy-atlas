@@ -36,7 +36,7 @@ The loop completes when **all** of the following hold:
 | Family | Pages | Stub | Bronze+ | Gold |
 |--------|------:|-----:|--------:|-----:|
 | Climate IAM | 9 | 8 | 0 | 1 (DICE) |
-| Energy | 5 | 4 | 0 | 1 (OSeMOSYS →) |
+| Energy | 5 | 3 | 0 | 2 (OSeMOSYS, TIMES) |
 | Economics | 7 | 7 | 0 | 0 |
 | Transport | 4 | 4 | 0 | 0 |
 | Urban | 3 | 3 | 0 | 0 |
@@ -45,7 +45,7 @@ The loop completes when **all** of the following hold:
 | Health | 3 | 3 | 0 | 0 |
 | Frameworks | 7 | 7 | 0 | 0 |
 | Methods/Algorithms | 8 | 8 | 0 | 0 |
-| **Synergy** | matrices 0/10 · patterns 0/15 · graph 0/1 | | | |
+| **Synergy** | matrices 1/10 · patterns 0/15 · graph 0/1 | | | |
 
 ## Iteration log
 
@@ -54,6 +54,9 @@ The loop completes when **all** of the following hold:
   (the bottom-up LP contrast to DICE).
 - **Publish** — Repo created (public) and **site went live on GitHub Pages**:
   <https://sour-abh-raj.github.io/computational-policy-atlas/>. D5 cleared.
+- **Iter 2** — TIMES → Gold (completes DICE↔OSeMOSYS↔TIMES optimization triangle);
+  first synergy chapter **Optimization vs Simulation** (full comparative essay + matrix).
+  Matrices 1/10. Pushed → auto-redeploys live.
 
 ## Working order (program-director priority)
 

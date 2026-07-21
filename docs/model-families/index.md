@@ -27,7 +27,7 @@ Legend: ✅ complete · 🟡 in progress · ⬜ planned
 | Model | Institution | Status |
 |-------|-------------|--------|
 | [**OSeMOSYS**](energy/osemosys.md) — Open Source energy MOdelling SYStem | KTH / open community | ✅ Gold |
-| TIMES / MARKAL | IEA-ETSAP | ⬜ |
+| [**TIMES**](energy/times.md) — The Integrated MARKAL-EFOM System | IEA-ETSAP | ✅ Gold |
 | PyPSA | TU Berlin / open | ⬜ |
 | Calliope | ETH / open | ⬜ |
 | EnergyPLAN | Aalborg University | ⬜ |

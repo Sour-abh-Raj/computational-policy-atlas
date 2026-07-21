@@ -144,6 +144,7 @@ nav:
           - Digital Twins: paradigms/algorithms/digital-twins.md
   - Comparative Analyses:
       - comparative/index.md
+      - Optimization vs Simulation: comparative/optimization-vs-simulation.md
   - Architecture Patterns:
       - patterns/index.md
   - Knowledge Graph:

@@ -4,9 +4,9 @@ Head-to-head matrices along the axes defined in the
 [Taxonomy](../foundations/taxonomy.md). Each planned matrix compares two paradigms on
 assumptions, appropriate regime, failure modes, data needs, and computational cost.
 
-## Planned matrices
+## Matrices
 
-- Optimization vs Simulation
+- ✅ **[Optimization vs Simulation](optimization-vs-simulation.md)** — the deepest divide (full chapter)
 - ABM vs CGE
 - IAM vs Energy-System models
 - System Dynamics vs Agent-Based
