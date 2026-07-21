@@ -74,13 +74,74 @@ nav:
       - foundations/index.md
       - Taxonomy of Policy Models: foundations/taxonomy.md
       - The Three-Track Method: foundations/three-track-method.md
-      - How to Read a Dossier: templates/dossier-template.md
+      - How to Read a Dossier: foundations/dossier-template.md
   - Model Families:
       - model-families/index.md
       - Climate — Integrated Assessment:
           - DICE: model-families/climate-iam/dice.md
+          - FUND: model-families/climate-iam/fund.md
+          - PAGE: model-families/climate-iam/page.md
+          - GCAM: model-families/climate-iam/gcam.md
+          - MESSAGEix: model-families/climate-iam/messageix.md
+          - IMAGE: model-families/climate-iam/image.md
+          - REMIND: model-families/climate-iam/remind.md
+          - WITCH: model-families/climate-iam/witch.md
+          - AIM: model-families/climate-iam/aim.md
+      - Energy Systems:
+          - TIMES: model-families/energy/times.md
+          - OSeMOSYS: model-families/energy/osemosys.md
+          - PyPSA: model-families/energy/pypsa.md
+          - Calliope: model-families/energy/calliope.md
+          - EnergyPLAN: model-families/energy/energyplan.md
+      - Economics — Equilibrium & Macro:
+          - CGE: model-families/economics/cge.md
+          - DSGE: model-families/economics/dsge.md
+          - Input–Output (Leontief): model-families/economics/input-output.md
+          - GTAP: model-families/economics/gtap.md
+          - GEM-E3: model-families/economics/gem-e3.md
+          - ENVISAGE: model-families/economics/envisage.md
+          - E3ME: model-families/economics/e3me.md
+      - Transportation:
+          - MATSim: model-families/transport/matsim.md
+          - SUMO: model-families/transport/sumo.md
+          - TRANSIMS: model-families/transport/transims.md
+          - ActivitySim: model-families/transport/activitysim.md
+      - Urban:
+          - UrbanSim: model-families/urban/urbansim.md
+          - CityScope: model-families/urban/cityscope.md
+          - SILO: model-families/urban/silo.md
+      - Agriculture & Land:
+          - GLOBIOM: model-families/agriculture/globiom.md
+          - MAgPIE: model-families/agriculture/magpie.md
+          - DSSAT: model-families/agriculture/dssat.md
+          - EPIC: model-families/agriculture/epic.md
+      - Water:
+          - WEAP: model-families/water/weap.md
+          - SWAT: model-families/water/swat.md
+          - MODFLOW: model-families/water/modflow.md
+      - Health / Epidemiology:
+          - Covasim: model-families/health/covasim.md
+          - GLEAM: model-families/health/gleam.md
+          - OpenABM-Covid19: model-families/health/openabm.md
+      - Frameworks & Environments:
+          - Mesa: model-families/frameworks/mesa.md
+          - Repast: model-families/frameworks/repast.md
+          - NetLogo: model-families/frameworks/netlogo.md
+          - GAMA: model-families/frameworks/gama.md
+          - Vensim: model-families/frameworks/vensim.md
+          - Stella: model-families/frameworks/stella.md
+          - AnyLogic: model-families/frameworks/anylogic.md
   - Paradigms:
       - paradigms/index.md
+      - Methods & Algorithms:
+          - Linear Programming (LP): paradigms/algorithms/lp.md
+          - Mixed-Integer LP (MILP): paradigms/algorithms/milp.md
+          - Dynamic Programming (DP): paradigms/algorithms/dp.md
+          - Optimal Control: paradigms/algorithms/optimal-control.md
+          - Multi-Objective Optimization: paradigms/algorithms/multiobjective.md
+          - Reinforcement Learning: paradigms/algorithms/reinforcement-learning.md
+          - Bayesian Decision Models: paradigms/algorithms/bayesian-decision.md
+          - Digital Twins: paradigms/algorithms/digital-twins.md
   - Comparative Analyses:
       - comparative/index.md
   - Architecture Patterns:

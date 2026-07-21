@@ -64,7 +64,7 @@ See **[The Three-Track Method](foundations/three-track-method.md)**.
 
 - New to the field → **[Taxonomy of Policy Models](foundations/taxonomy.md)**
 - Want to see the quality bar → the flagship dossier: **[DICE](model-families/climate-iam/dice.md)**
-- Want to contribute a dossier → **[How to Read (and Write) a Dossier](templates/dossier-template.md)**
+- Want to contribute a dossier → **[How to Read (and Write) a Dossier](foundations/dossier-template.md)**
 
 !!! note "Method discipline"
     When modeling philosophies disagree, this atlas **documents every viewpoint**

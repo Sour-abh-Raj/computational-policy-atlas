@@ -46,4 +46,4 @@ block; this page is the rolled-up master list. Prefer these over citing the atla
 !!! note "Growing document"
     This bibliography expands with every dossier. Entries are primary sources
     (peer-reviewed papers, official model documentation, IPCC/OECD/World Bank/UN and
-    national-laboratory reports), per the atlas's [sourcing discipline](templates/dossier-template.md).
+    national-laboratory reports), per the atlas's [sourcing discipline](foundations/dossier-template.md).

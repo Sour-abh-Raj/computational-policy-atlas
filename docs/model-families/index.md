@@ -1,7 +1,7 @@
 # Model Families
 
 The dossiers. Each follows the canonical
-[dossier structure](../templates/dossier-template.md) and opens with a taxonomy
+[dossier structure](../foundations/dossier-template.md) and opens with a taxonomy
 positioning card. This index is also the **production roadmap** — depth-first: one
 flagship per family reaches publishable quality, then breadth fills in against the
 proven pattern.
