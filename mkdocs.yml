@@ -1,0 +1,90 @@
+site_name: The Atlas of Computational Policy Simulation
+site_description: >-
+  A comprehensive, textbook-quality reconnaissance of policy simulation models
+  across every scientific discipline — climate, energy, economics, transport,
+  urban, agriculture, water, health, and the paradigms and algorithms beneath them.
+site_author: International Computational Policy Research Institute (working title)
+copyright: >-
+  Knowledge base assembled as design foundation for a next-generation integrated
+  policy simulator. Cite primary sources, not this atlas.
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: teal
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: teal
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.tabs.link
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - tables
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+extra_javascript:
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+
+plugins:
+  - search
+
+nav:
+  - Home: index.md
+  - Foundations:
+      - foundations/index.md
+      - Taxonomy of Policy Models: foundations/taxonomy.md
+      - The Three-Track Method: foundations/three-track-method.md
+      - How to Read a Dossier: templates/dossier-template.md
+  - Model Families:
+      - model-families/index.md
+      - Climate — Integrated Assessment:
+          - DICE: model-families/climate-iam/dice.md
+  - Paradigms:
+      - paradigms/index.md
+  - Comparative Analyses:
+      - comparative/index.md
+  - Architecture Patterns:
+      - patterns/index.md
+  - Knowledge Graph:
+      - graph/index.md
+  - Bibliography: bibliography.md

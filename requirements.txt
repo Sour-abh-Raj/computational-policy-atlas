@@ -1,0 +1,4 @@
+# Build/serve the Atlas locally:  pip install -r requirements.txt && mkdocs serve
+mkdocs-material>=9.5
+pymdown-extensions>=10.7
+mkdocs-material[imaging]

@@ -1,0 +1,11 @@
+site/
+.venv/
+venv/
+__pycache__/
+*.pyc
+.DS_Store
+.cache/
+.env
+# Never commit credentials of any kind
+*.token
+secrets.*
