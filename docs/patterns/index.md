@@ -36,10 +36,10 @@ Legend: ✅ detailed page · ⬜ cataloged, page pending
 | **[Integration Engine](integration-engine.md)** | Stock-flow / ODE accumulation & feedback | Vensim/SD, DICE climate boxes | ✅ |
 | **[Sensitivity Engine](sensitivity-engine.md)** | Response to parameter perturbation | Morris, Sobol, Monte-Carlo | ✅ |
 | **[Calibration Engine](calibration-engine.md)** | Fit parameters to data | SAM, Bayesian, ABC, emulators | ✅ |
+| **[Climate Engine](climate-engine.md)** | Emissions → concentration → temperature | DICE carbon/temp boxes, FAIR, MAGICC | ✅ |
+| **[Energy Dispatch Engine](energy-dispatch-engine.md)** | Least-cost dispatch under network constraints | OSeMOSYS, TIMES, PyPSA | ✅ |
 | **Technology Adoption Engine** | Diffusion / vintage turnover | GCAM, energy models | ⬜ |
-| **Climate Engine** | Emissions → concentration → temperature | DICE carbon/temp boxes, FAIR, MAGICC | ⬜ |
 | **Land Engine** | Land-use allocation & competition | GLOBIOM, MAgPIE | ⬜ |
-| **Energy Dispatch Engine** | Least-cost dispatch under network constraints | PyPSA, TIMES | ⬜ |
 | **Spatial Engine** | Gridded / networked space | SWAT, MODFLOW, SUMO | ⬜ |
 | **Validation Engine** | Test against reality / benchmarks | backcasting, module emulation | ⬜ |
 | **Policy Engine** | Encode instruments (taxes, standards, caps) | carbon-price modules | ⬜ |
@@ -56,8 +56,9 @@ this pattern applies — versus a Behavior/Market-Engine simulation — is a cen
 of the atlas.
 
 !!! note "Status"
-    Patterns are extracted *from* dossiers as they are written. **7 of 15** now have
+    Patterns are extracted *from* dossiers as they are written. **9 of 15** now have
     detailed pages — the core computational engines (Scenario, Optimization, Market,
-    Behavior, Integration) plus the two cross-cutting UQ engines (Sensitivity,
-    Calibration). The remaining domain-specific engines (Climate, Energy Dispatch, Land,
-    Spatial, …) are cataloged and will be detailed as their model families reach Gold.
+    Behavior, Integration), the two cross-cutting UQ engines (Sensitivity, Calibration),
+    and two domain engines with Gold referents (Climate, Energy Dispatch). The remaining
+    engines (Technology-Adoption, Land, Spatial, Validation, Policy, Visualization,
+    Data-Pipeline) are cataloged and will be detailed as their model families reach Gold.

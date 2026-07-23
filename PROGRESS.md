@@ -45,7 +45,7 @@ The loop completes when **all** of the following hold:
 | Health | 3 | 2 | 0 | 1 (Covasim) |
 | Frameworks | 7 | 6 | 0 | 1 (Vensim/SD) |
 | Methods/Algorithms | 8 | 8 | 0 | 0 |
-| **Synergy** | matrices 5/10 · patterns 7/15 · graph 0/1 | | | |
+| **Synergy** | matrices 5/10 · patterns 9/15 · graph 0/1 | | | |
 
 ## Iteration log
 
@@ -74,6 +74,9 @@ The loop completes when **all** of the following hold:
   (Scenario, Optimization, Market, Behavior, Integration/stock-flow, Sensitivity,
   Calibration), each with intent/forces/structure/interface/exemplars/simulator-lesson and
   cross-linked to the Gold dossiers that exhibit them. Patterns 7/15.
+- **Iter 8** — Two domain-engine pattern pages with Gold referents: **Climate Engine**
+  (reduced-order emulator; DICE boxes, FAIR/MAGICC) and **Energy Dispatch Engine**
+  (least-cost RES/model-generator; OSeMOSYS/TIMES/PyPSA). Patterns 9/15.
 
 ## Working order (program-director priority)
 
