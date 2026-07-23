@@ -163,6 +163,7 @@ nav:
       - Integration Engine (Stock-Flow): patterns/integration-engine.md
       - Climate Engine: patterns/climate-engine.md
       - Energy Dispatch Engine: patterns/energy-dispatch-engine.md
+      - Spatial Engine: patterns/spatial-engine.md
       - Sensitivity Engine: patterns/sensitivity-engine.md
       - Calibration Engine: patterns/calibration-engine.md
   - Knowledge Graph:

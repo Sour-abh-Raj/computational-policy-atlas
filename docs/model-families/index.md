@@ -45,7 +45,12 @@ Legend: ✅ complete · 🟡 in progress · ⬜ planned
 
 ## Transportation
 
-MATSim · SUMO · TRANSIMS · ActivitySim — ⬜
+| Model | Institution | Status |
+|-------|-------------|--------|
+| [**MATSim**](transport/matsim.md) — Multi-Agent Transport Simulation | ETH Zürich / TU Berlin | ✅ Gold |
+| SUMO | DLR | ⬜ |
+| TRANSIMS | LANL | ⬜ |
+| ActivitySim | consortium | ⬜ |
 
 ## Urban
 

@@ -41,7 +41,7 @@
     {"id": "gtap", "type": "model", "label": "GTAP", "maturity": "stub"},
     {"id": "e3me", "type": "model", "label": "E3ME", "maturity": "stub"},
     {"id": "input-output", "type": "model", "label": "Input-Output (Leontief)", "maturity": "stub"},
-    {"id": "matsim", "type": "model", "label": "MATSim", "maturity": "stub"},
+    {"id": "matsim", "type": "model", "label": "MATSim", "maturity": "gold", "page": "model-families/transport/matsim.md"},
     {"id": "world3", "type": "model", "label": "World3", "maturity": "referenced"},
     {"id": "markal", "type": "model", "label": "MARKAL / EFOM", "maturity": "referenced"},
 
@@ -55,6 +55,7 @@
     {"id": "tu-berlin", "type": "institution", "label": "TU Berlin"},
     {"id": "purdue", "type": "institution", "label": "Purdue (GTAP)"},
     {"id": "cambridge-econ", "type": "institution", "label": "Cambridge Econometrics"},
+    {"id": "eth-tub", "type": "institution", "label": "ETH Zürich / TU Berlin"},
 
     {"id": "nordhaus", "type": "researcher", "label": "William Nordhaus"},
     {"id": "forrester", "type": "researcher", "label": "Jay Forrester"},
@@ -83,6 +84,7 @@
     {"id": "p-integration", "type": "pattern", "label": "Integration Engine", "page": "patterns/integration-engine.md"},
     {"id": "p-climate", "type": "pattern", "label": "Climate Engine", "page": "patterns/climate-engine.md"},
     {"id": "p-dispatch", "type": "pattern", "label": "Energy Dispatch Engine", "page": "patterns/energy-dispatch-engine.md"},
+    {"id": "p-spatial", "type": "pattern", "label": "Spatial Engine", "page": "patterns/spatial-engine.md"},
     {"id": "p-sensitivity", "type": "pattern", "label": "Sensitivity Engine", "page": "patterns/sensitivity-engine.md"},
     {"id": "p-calibration", "type": "pattern", "label": "Calibration Engine", "page": "patterns/calibration-engine.md"},
 
@@ -184,6 +186,11 @@
 
     {"s": "matsim", "r": "belongs_to", "t": "d-transport"},
     {"s": "matsim", "r": "exhibits_pattern", "t": "p-behavior"},
+    {"s": "matsim", "r": "exhibits_pattern", "t": "p-spatial"},
+    {"s": "matsim", "r": "developed_at", "t": "eth-tub"},
+    {"s": "matsim", "r": "solves_with", "t": "monte-carlo"},
+    {"s": "matsim", "r": "contrasts_with", "t": "cge"},
+    {"s": "p-spatial", "r": "grounded_in", "t": "monte-carlo"},
     {"s": "pypsa", "r": "developed_at", "t": "tu-berlin"},
     {"s": "pypsa", "r": "belongs_to", "t": "d-energy"},
     {"s": "pypsa", "r": "exhibits_pattern", "t": "p-dispatch"},

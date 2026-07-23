@@ -38,9 +38,9 @@ Legend: ✅ detailed page · ⬜ cataloged, page pending
 | **[Calibration Engine](calibration-engine.md)** | Fit parameters to data | SAM, Bayesian, ABC, emulators | ✅ |
 | **[Climate Engine](climate-engine.md)** | Emissions → concentration → temperature | DICE carbon/temp boxes, FAIR, MAGICC | ✅ |
 | **[Energy Dispatch Engine](energy-dispatch-engine.md)** | Least-cost dispatch under network constraints | OSeMOSYS, TIMES, PyPSA | ✅ |
+| **[Spatial Engine](spatial-engine.md)** | Gridded / networked space | MATSim, SWAT, MODFLOW, SUMO | ✅ |
 | **Technology Adoption Engine** | Diffusion / vintage turnover | GCAM, energy models | ⬜ |
 | **Land Engine** | Land-use allocation & competition | GLOBIOM, MAgPIE | ⬜ |
-| **Spatial Engine** | Gridded / networked space | SWAT, MODFLOW, SUMO | ⬜ |
 | **Validation Engine** | Test against reality / benchmarks | backcasting, module emulation | ⬜ |
 | **Policy Engine** | Encode instruments (taxes, standards, caps) | carbon-price modules | ⬜ |
 | **Visualization Engine** | Communicate results | dashboards, scenario explorers | ⬜ |
@@ -56,9 +56,9 @@ this pattern applies — versus a Behavior/Market-Engine simulation — is a cen
 of the atlas.
 
 !!! note "Status"
-    Patterns are extracted *from* dossiers as they are written. **9 of 15** now have
+    Patterns are extracted *from* dossiers as they are written. **10 of 15** now have
     detailed pages — the core computational engines (Scenario, Optimization, Market,
     Behavior, Integration), the two cross-cutting UQ engines (Sensitivity, Calibration),
-    and two domain engines with Gold referents (Climate, Energy Dispatch). The remaining
-    engines (Technology-Adoption, Land, Spatial, Validation, Policy, Visualization,
+    and three domain engines with Gold referents (Climate, Energy Dispatch, Spatial). The
+    remaining engines (Technology-Adoption, Land, Validation, Policy, Visualization,
     Data-Pipeline) are cataloged and will be detailed as their model families reach Gold.

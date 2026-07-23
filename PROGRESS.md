@@ -39,14 +39,14 @@ The loop completes when **all** of the following hold:
 | Climate IAM | 9 | 8 | 0 | 1 (DICE) |
 | Energy | 5 | 3 | 0 | 2 (OSeMOSYS, TIMES) |
 | Economics | 7 | 5 | 0 | 2 (CGE, DSGE) |
-| Transport | 4 | 4 | 0 | 0 |
+| Transport | 4 | 3 | 0 | 1 (MATSim) |
 | Urban | 3 | 3 | 0 | 0 |
 | Agriculture | 4 | 4 | 0 | 0 |
 | Water | 3 | 3 | 0 | 0 |
 | Health | 3 | 2 | 0 | 1 (Covasim) |
 | Frameworks | 7 | 6 | 0 | 1 (Vensim/SD) |
 | Methods/Algorithms | 8 | 6 | 2 (LP, MILP) | 0 |
-| **Synergy** | matrices **10/10** ✅ · patterns 9/15 · graph **1/1** ✅ | | | |
+| **Synergy** | matrices **10/10** ✅ · patterns 10/15 · graph **1/1** ✅ | | | |
 
 ## Iteration log
 
@@ -97,6 +97,11 @@ The loop completes when **all** of the following hold:
   DSGE/Covasim) + tenth matrix **Continuous vs Discrete** (Axis 6; ODE densities vs countable
   agents/events; epidemic extinction; mean-field limit; Vensim vs Covasim). Rebuilt the
   comparative hub as a 10-row index with the "recurring lesson." **Matrices 10/10 ✅.**
+- **Iter 14** — Opened the **transport domain**: **MATSim** → Gold (co-evolutionary user
+  equilibrium — "equilibrium by learning, not assumption"; queue MobSim; Charypar–Nagel
+  scoring; event-stream architecture) **+** wrote the **Spatial Engine** pattern it grounds
+  (grid vs network geometry; MATSim/SWAT/MODFLOW referents). Patterns 10/15; graph grown to
+  82 nodes / 111 edges (MATSim + Spatial Engine wired in).
 
 ## Working order (program-director priority)
 
