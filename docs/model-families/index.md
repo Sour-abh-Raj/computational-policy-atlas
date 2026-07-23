@@ -69,9 +69,10 @@ WEAP · SWAT · MODFLOW — ⬜
 
 ## Cross-cutting method families (documented under [Paradigms](../paradigms/index.md))
 
-Agent-Based (Mesa, Repast, NetLogo, GAMA) · System Dynamics (Vensim, Stella,
-AnyLogic) · Optimization (LP, MILP, DP, optimal control, multi-objective) ·
-ML-based policy (RL, Bayesian decision models, digital twins).
+Agent-Based (Mesa, Repast, NetLogo, GAMA) · System Dynamics
+([**Vensim** ✅ Gold](frameworks/vensim.md), Stella, AnyLogic) · Optimization (LP, MILP,
+DP, optimal control, multi-objective) · ML-based policy (RL, Bayesian decision models,
+digital twins).
 
 ---
 

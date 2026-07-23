@@ -43,9 +43,9 @@ The loop completes when **all** of the following hold:
 | Agriculture | 4 | 4 | 0 | 0 |
 | Water | 3 | 3 | 0 | 0 |
 | Health | 3 | 2 | 0 | 1 (Covasim) |
-| Frameworks | 7 | 7 | 0 | 0 |
+| Frameworks | 7 | 6 | 0 | 1 (Vensim/SD) |
 | Methods/Algorithms | 8 | 8 | 0 | 0 |
-| **Synergy** | matrices 4/10 · patterns 0/15 · graph 0/1 | | | |
+| **Synergy** | matrices 5/10 · patterns 0/15 · graph 0/1 | | | |
 
 ## Iteration log
 
@@ -66,6 +66,10 @@ The loop completes when **all** of the following hold:
   structure-of-arrays agents, contact-layer transmission, intervention objects, ensemble
   outputs); fourth matrix **ABM vs CGE** (emergence vs equilibrium — now with a Gold ABM
   and Gold CGE as referents). Matrices 4/10.
+- **Iter 6** — Vensim/**System Dynamics** → Gold (stock-flow-feedback paradigm; World3/
+  Limits-to-Growth lineage; ODE integration; sensitivity/calibration engines); fifth
+  matrix **System Dynamics vs Agent-Based** (aggregate feedback vs individual interaction;
+  Vensim vs Covasim). Completes the simulation-paradigm spine. Matrices 5/10.
 
 ## Working order (program-director priority)
 

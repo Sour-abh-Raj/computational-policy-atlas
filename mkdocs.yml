@@ -148,6 +148,7 @@ nav:
       - Top-Down vs Bottom-Up: comparative/top-down-vs-bottom-up.md
       - Equilibrium vs Disequilibrium: comparative/equilibrium-vs-disequilibrium.md
       - ABM vs CGE: comparative/abm-vs-cge.md
+      - System Dynamics vs Agent-Based: comparative/system-dynamics-vs-abm.md
   - Architecture Patterns:
       - patterns/index.md
   - Knowledge Graph:
