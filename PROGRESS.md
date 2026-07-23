@@ -45,7 +45,7 @@ The loop completes when **all** of the following hold:
 | Health | 3 | 2 | 0 | 1 (Covasim) |
 | Frameworks | 7 | 6 | 0 | 1 (Vensim/SD) |
 | Methods/Algorithms | 8 | 6 | 2 (LP, MILP) | 0 |
-| **Synergy** | matrices 7/10 · patterns 9/15 · graph **1/1** ✅ | | | |
+| **Synergy** | matrices 8/10 · patterns 9/15 · graph **1/1** ✅ | | | |
 
 ## Iteration log
 
@@ -88,6 +88,9 @@ The loop completes when **all** of the following hold:
   convexity/duality lost with integrality; why OSeMOSYS/TIMES stay LP) **+** promoted the
   **LP** and **MILP** algorithm pages from stub → Silver method dossiers (same material).
   Matrices 7/10; first 2 algorithm stubs cleared (D1 breadth begins).
+- **Iter 12** — Eighth matrix **Recursive-Dynamic vs Perfect Foresight** (Taxonomy Axis 4;
+  clairvoyant intertemporal optimum vs myopic period-by-period stepping; lock-in & stranded
+  assets; DICE/TIMES vs recursive CGE/GCAM; foresight-as-a-dial). Matrices 8/10.
 
 ## Working order (program-director priority)
 

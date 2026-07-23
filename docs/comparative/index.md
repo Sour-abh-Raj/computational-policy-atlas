@@ -13,7 +13,7 @@ assumptions, appropriate regime, failure modes, data needs, and computational co
 - ✅ **[System Dynamics vs Agent-Based](system-dynamics-vs-abm.md)** — aggregate feedback vs individual interaction (full chapter)
 - ✅ **[IAM vs Energy-System Models](iam-vs-energy.md)** — the same climate problem at two scales (full chapter)
 - ✅ **[LP vs MILP](lp-vs-milp.md)** — the price of an integer (full chapter)
-- Recursive-Dynamic vs Perfect Foresight
+- ✅ **[Recursive-Dynamic vs Perfect Foresight](recursive-vs-perfect-foresight.md)** — how much the model knows about its own future (full chapter)
 - Deterministic vs Stochastic
 - Continuous vs Discrete
 
