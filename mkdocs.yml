@@ -151,6 +151,13 @@ nav:
       - System Dynamics vs Agent-Based: comparative/system-dynamics-vs-abm.md
   - Architecture Patterns:
       - patterns/index.md
+      - Scenario Engine: patterns/scenario-engine.md
+      - Optimization Engine: patterns/optimization-engine.md
+      - Market Engine: patterns/market-engine.md
+      - Behavior Engine: patterns/behavior-engine.md
+      - Integration Engine (Stock-Flow): patterns/integration-engine.md
+      - Sensitivity Engine: patterns/sensitivity-engine.md
+      - Calibration Engine: patterns/calibration-engine.md
   - Knowledge Graph:
       - graph/index.md
   - Bibliography: bibliography.md

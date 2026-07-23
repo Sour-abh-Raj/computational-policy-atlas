@@ -45,7 +45,7 @@ The loop completes when **all** of the following hold:
 | Health | 3 | 2 | 0 | 1 (Covasim) |
 | Frameworks | 7 | 6 | 0 | 1 (Vensim/SD) |
 | Methods/Algorithms | 8 | 8 | 0 | 0 |
-| **Synergy** | matrices 5/10 · patterns 0/15 · graph 0/1 | | | |
+| **Synergy** | matrices 5/10 · patterns 7/15 · graph 0/1 | | | |
 
 ## Iteration log
 
@@ -70,6 +70,10 @@ The loop completes when **all** of the following hold:
   Limits-to-Growth lineage; ODE integration; sensitivity/calibration engines); fifth
   matrix **System Dynamics vs Agent-Based** (aggregate feedback vs individual interaction;
   Vensim vs Covasim). Completes the simulation-paradigm spine. Matrices 5/10.
+- **Iter 7** — Opened the **Architecture Patterns** layer: 7 detailed engine pages
+  (Scenario, Optimization, Market, Behavior, Integration/stock-flow, Sensitivity,
+  Calibration), each with intent/forces/structure/interface/exemplars/simulator-lesson and
+  cross-linked to the Gold dossiers that exhibit them. Patterns 7/15.
 
 ## Working order (program-director priority)
 
