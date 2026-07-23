@@ -166,6 +166,8 @@ nav:
       - Spatial Engine: patterns/spatial-engine.md
       - Sensitivity Engine: patterns/sensitivity-engine.md
       - Calibration Engine: patterns/calibration-engine.md
+      - Policy Engine: patterns/policy-engine.md
+      - Validation Engine: patterns/validation-engine.md
   - Knowledge Graph:
       - graph/index.md
   - Bibliography: bibliography.md

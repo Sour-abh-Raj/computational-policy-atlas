@@ -39,10 +39,10 @@ Legend: ✅ detailed page · ⬜ cataloged, page pending
 | **[Climate Engine](climate-engine.md)** | Emissions → concentration → temperature | DICE carbon/temp boxes, FAIR, MAGICC | ✅ |
 | **[Energy Dispatch Engine](energy-dispatch-engine.md)** | Least-cost dispatch under network constraints | OSeMOSYS, TIMES, PyPSA | ✅ |
 | **[Spatial Engine](spatial-engine.md)** | Gridded / networked space | MATSim, SWAT, MODFLOW, SUMO | ✅ |
+| **[Policy Engine](policy-engine.md)** | Encode instruments (taxes, standards, caps, interventions) | DICE/TIMES carbon price, Covasim interventions | ✅ |
+| **[Validation Engine](validation-engine.md)** | Test against reality / benchmarks | backcasting, extreme-condition, cross-model | ✅ |
 | **Technology Adoption Engine** | Diffusion / vintage turnover | GCAM, energy models | ⬜ |
 | **Land Engine** | Land-use allocation & competition | GLOBIOM, MAgPIE | ⬜ |
-| **Validation Engine** | Test against reality / benchmarks | backcasting, module emulation | ⬜ |
-| **Policy Engine** | Encode instruments (taxes, standards, caps) | carbon-price modules | ⬜ |
 | **Visualization Engine** | Communicate results | dashboards, scenario explorers | ⬜ |
 | **Data Pipeline** | Ingest, clean, harmonize inputs | ETL front-ends | ⬜ |
 
@@ -56,9 +56,10 @@ this pattern applies — versus a Behavior/Market-Engine simulation — is a cen
 of the atlas.
 
 !!! note "Status"
-    Patterns are extracted *from* dossiers as they are written. **10 of 15** now have
+    Patterns are extracted *from* dossiers as they are written. **12 of 16** now have
     detailed pages — the core computational engines (Scenario, Optimization, Market,
     Behavior, Integration), the two cross-cutting UQ engines (Sensitivity, Calibration),
-    and three domain engines with Gold referents (Climate, Energy Dispatch, Spatial). The
-    remaining engines (Technology-Adoption, Land, Validation, Policy, Visualization,
-    Data-Pipeline) are cataloged and will be detailed as their model families reach Gold.
+    three domain engines with Gold referents (Climate, Energy Dispatch, Spatial), and the
+    two policy/quality engines (Policy, Validation). The remaining four
+    (Technology-Adoption, Land, Visualization, Data-Pipeline) are cataloged and will be
+    detailed as their model families reach Gold.

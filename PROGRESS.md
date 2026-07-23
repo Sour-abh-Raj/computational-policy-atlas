@@ -46,7 +46,7 @@ The loop completes when **all** of the following hold:
 | Health | 3 | 2 | 0 | 1 (Covasim) |
 | Frameworks | 7 | 6 | 0 | 1 (Vensim/SD) |
 | Methods/Algorithms | 8 | 6 | 2 (LP, MILP) | 0 |
-| **Synergy** | matrices **10/10** ✅ · patterns 10/15 · graph **1/1** ✅ | | | |
+| **Synergy** | matrices **10/10** ✅ · patterns 12/16 · graph **1/1** ✅ | | | |
 
 ## Iteration log
 
@@ -102,6 +102,12 @@ The loop completes when **all** of the following hold:
   scoring; event-stream architecture) **+** wrote the **Spatial Engine** pattern it grounds
   (grid vs network geometry; MATSim/SWAT/MODFLOW referents). Patterns 10/15; graph grown to
   82 nodes / 111 edges (MATSim + Spatial Engine wired in).
+- **Iter 15** — Two **cross-cutting patterns** (no new dossier; grounded across the 8 Gold
+  models): **Policy Engine** (instruments as composable objects — price/quantity/standard/
+  behavioral injection points) and **Validation Engine** (fit≠validity; backcasting,
+  extreme-condition, cross-model battery). Patterns 12/16; graph 84 nodes / 117 edges.
+  *(Note: pattern catalog is 16, not 15 — the Integration/Stock-Flow engine was added as a
+  distinct core engine during Iter 7.)*
 
 ## Working order (program-director priority)
 
