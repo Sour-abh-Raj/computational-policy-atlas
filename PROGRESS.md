@@ -10,9 +10,10 @@ The loop completes when **all** of the following hold:
 - [ ] **D1 — Content depth.** Every model page promoted from *stub* to at least
       **Bronze** (all 18 dossier sections filled, concise but real). Flagships reach
       **Gold** (DICE-level rigor).
-- [ ] **D2 — Synergy artifacts.** All 10 comparison matrices written as real chapters;
-      the 15 architecture patterns detailed; the knowledge graph built as data
-      (`graph.json`) + rendered views.
+- [ ] **D2 — Synergy artifacts.** All 10 comparison matrices written as real chapters
+      **(✅ 10/10 done)**; the 15 architecture patterns detailed (9/15 — remainder gated on
+      their model families reaching Gold); the knowledge graph built as data (`graph.json`)
+      + rendered views **(✅ done)**.
 - [ ] **D3 — Build health.** `mkdocs build --strict` stays green (0 warnings) at every commit.
 - [ ] **D4 — Deploy pipeline.** GitHub Actions workflow in place; site builds
       deploy-ready. ✅ (pipeline ready — see below)
@@ -45,7 +46,7 @@ The loop completes when **all** of the following hold:
 | Health | 3 | 2 | 0 | 1 (Covasim) |
 | Frameworks | 7 | 6 | 0 | 1 (Vensim/SD) |
 | Methods/Algorithms | 8 | 6 | 2 (LP, MILP) | 0 |
-| **Synergy** | matrices 8/10 · patterns 9/15 · graph **1/1** ✅ | | | |
+| **Synergy** | matrices **10/10** ✅ · patterns 9/15 · graph **1/1** ✅ | | | |
 
 ## Iteration log
 
@@ -91,6 +92,11 @@ The loop completes when **all** of the following hold:
 - **Iter 12** — Eighth matrix **Recursive-Dynamic vs Perfect Foresight** (Taxonomy Axis 4;
   clairvoyant intertemporal optimum vs myopic period-by-period stepping; lock-in & stranded
   assets; DICE/TIMES vs recursive CGE/GCAM; foresight-as-a-dial). Matrices 8/10.
+- **Iter 13** — **Completed the comparative layer**: ninth matrix **Deterministic vs
+  Stochastic** (Axis 5; expected path vs distribution; tails/Weitzman; DICE/CGE vs
+  DSGE/Covasim) + tenth matrix **Continuous vs Discrete** (Axis 6; ODE densities vs countable
+  agents/events; epidemic extinction; mean-field limit; Vensim vs Covasim). Rebuilt the
+  comparative hub as a 10-row index with the "recurring lesson." **Matrices 10/10 ✅.**
 
 ## Working order (program-director priority)
 
