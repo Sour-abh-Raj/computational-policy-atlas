@@ -16,9 +16,9 @@ Legend: ✅ complete · 🟡 in progress · ⬜ planned
 | [**GCAM**](climate-iam/gcam.md) — Global Change Analysis Model | PNNL / JGCRI | ✅ Gold |
 | [**FUND**](climate-iam/fund.md) — sector-disaggregated damages | Tol & Anthoff | ✅ Bronze |
 | [**PAGE**](climate-iam/page.md) — uncertainty-first (Stern Review) | Hope (Cambridge) | ✅ Bronze |
-| MESSAGEix | IIASA | ⬜ |
+| [**MESSAGEix**](climate-iam/messageix.md) — energy-system optimization IAM | IIASA | ✅ Bronze |
+| [**REMIND**](climate-iam/remind.md) — Ramsey-growth macro+energy IAM | PIK Potsdam | ✅ Bronze |
 | IMAGE | PBL Netherlands | ⬜ |
-| REMIND | PIK Potsdam | ⬜ |
 | WITCH | RFF-CMCC / EIEE | ⬜ |
 | AIM | NIES Japan | ⬜ |
 

@@ -36,7 +36,7 @@ The loop completes when **all** of the following hold:
 
 | Family | Pages | Stub | Bronze+ | Gold |
 |--------|------:|-----:|--------:|-----:|
-| Climate IAM | 9 | 5 | 2 (FUND, PAGE) | 2 (DICE, GCAM) |
+| Climate IAM | 9 | 3 | 4 (FUND, PAGE, MESSAGEix, REMIND) | 2 (DICE, GCAM) |
 | Energy | 5 | 3 | 0 | 2 (OSeMOSYS, TIMES) |
 | Economics | 7 | 5 | 0 | 2 (CGE, DSGE) |
 | Transport | 4 | 3 | 0 | 1 (MATSim) |
@@ -129,6 +129,10 @@ The loop completes when **all** of the following hold:
   completing the **cost-benefit IAM trio** with DICE: FUND = sector-disaggregated damages;
   PAGE = uncertainty-first (Stern Review), Sensitivity-Engine-at-the-core + catastrophe term.
   Climate-IAM family now 2 Gold + 2 Bronze. Graph 93 nodes / 151 edges.
+- **Iter 20** — **MESSAGEix** and **REMIND** → Bronze (the perfect-foresight optimizing IAMs):
+  MESSAGEix = IIASA energy-system LP on ixmp + MACRO, coupled to GLOBIOM; REMIND = PIK
+  Ramsey-growth macro+energy NLP with Negishi/Nash trade, coupled to MAgPIE. Climate-IAM now
+  2 Gold + 4 Bronze (3 stubs left: IMAGE, WITCH, AIM). Graph 94 nodes / 163 edges.
 
 ## Working order (program-director priority)
 

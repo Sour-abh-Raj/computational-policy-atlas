@@ -7,8 +7,8 @@ between modeling traditions queryable, which is exactly what an integrated simul
 designer needs.
 
 !!! success "The graph is now a data artifact"
-    The source of truth is **[`graph.json`](graph.json)** — **93 typed nodes** and
-    **151 typed edges** curated from the Gold dossiers, comparative chapters, and pattern
+    The source of truth is **[`graph.json`](graph.json)** — **94 typed nodes** and
+    **163 typed edges** curated from the Gold dossiers, comparative chapters, and pattern
     pages. The views below are rendered *from* that data. As dossiers are promoted, their
     entities and edges are added to the JSON and these views grow with them.
 
@@ -137,15 +137,15 @@ The graph is built to answer relational questions. A few, resolved from `graph.j
 
 | Node type | Count | Edge type | Count |
 |-----------|------:|-----------|------:|
-| model | 27 | exhibits_pattern | 39 |
-| pattern | 16 | realized_by | 16 |
-| institution | 12 | developed_at | 14 |
-| algorithm | 10 | belongs_to | 13 |
-| researcher | 9 | solves_with | 11 |
-| paradigm | 8 | grounded_in | 12 |
-| domain | 6 | positions | 10 |
-| axis | 5 | alternative_to | 11 |
-| **Total nodes** | **93** | **Total edges** | **151** |
+| model | 27 | exhibits_pattern | 43 |
+| pattern | 16 | realized_by | 18 |
+| institution | 13 | developed_at | 16 |
+| algorithm | 10 | belongs_to | 15 |
+| researcher | 9 | solves_with | 13 |
+| paradigm | 8 | alternative_to | 13 |
+| domain | 6 | grounded_in | 12 |
+| axis | 5 | positions | 10 |
+| **Total nodes** | **94** | **Total edges** | **163** |
 
 ## Roadmap
 
