@@ -5,6 +5,15 @@ catalogs them as reusable patterns — the raw material for a future integrated
 simulator. Each pattern names its intent, the models that exemplify it, its interface,
 and its trade-offs.
 
+!!! success "All 16 engines detailed"
+    Every pattern in the catalog now has a full page — intent, forces, structure diagram,
+    interface, exemplars, trade-offs, and a *lesson for the integrated simulator*. Together
+    they form a **reference architecture**: the front-end (Scenario), the three solve
+    paradigms (Optimization, Market, Behavior) over a shared Integration/Stock-Flow
+    substrate, the domain engines (Climate, Energy Dispatch, Spatial, Land,
+    Technology-Adoption), the UQ pair (Sensitivity, Calibration), the policy/quality pair
+    (Policy, Validation), and the infrastructure pair (Visualization, Data Pipeline).
+
 ## The engine catalog
 
 ```mermaid
@@ -44,7 +53,7 @@ Legend: ✅ detailed page · ⬜ cataloged, page pending
 | **[Visualization Engine](visualization-engine.md)** | Communicate results | scenario explorers, En-ROADS dashboards | ✅ |
 | **[Data Pipeline](data-pipeline.md)** | Ingest, clean, harmonize, **balance** inputs | SAM build, RES data, synthetic population | ✅ |
 | **[Land Engine](land-engine.md)** | Land-use allocation & competition | GLOBIOM, MAgPIE, IMPACT | ✅ |
-| **Technology Adoption Engine** | Diffusion / vintage turnover | GCAM, energy models | ⬜ |
+| **[Technology-Adoption Engine](technology-adoption-engine.md)** | Diffusion / logit share / vintage turnover | GCAM, IMAGE, energy models | ✅ |
 
 ## The recurring meta-pattern
 
@@ -56,7 +65,9 @@ this pattern applies — versus a Behavior/Market-Engine simulation — is a cen
 of the atlas.
 
 !!! note "Status"
-    Patterns are extracted *from* dossiers as they are written. **15 of 16** now have
-    detailed pages — every engine except **Technology-Adoption** (awaiting a Gold GCAM). The
-    Land Engine was unlocked by promoting [GLOBIOM](../model-families/agriculture/globiom.md)
-    to Gold. One pattern to go to complete the catalog.
+    Patterns are extracted *from* dossiers as they are written — and the catalog is now
+    **complete: 16 of 16**. The last two were unlocked by promoting
+    [GLOBIOM](../model-families/agriculture/globiom.md) (→ Land Engine) and
+    [GCAM](../model-families/climate-iam/gcam.md) (→ Technology-Adoption Engine) to Gold. As
+    more dossiers reach Gold, existing pattern pages gain referents and cross-links, but the
+    architecture is fully laid out.

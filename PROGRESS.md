@@ -10,10 +10,10 @@ The loop completes when **all** of the following hold:
 - [ ] **D1 — Content depth.** Every model page promoted from *stub* to at least
       **Bronze** (all 18 dossier sections filled, concise but real). Flagships reach
       **Gold** (DICE-level rigor).
-- [ ] **D2 — Synergy artifacts.** All 10 comparison matrices written as real chapters
-      **(✅ 10/10 done)**; the 15 architecture patterns detailed (9/15 — remainder gated on
-      their model families reaching Gold); the knowledge graph built as data (`graph.json`)
-      + rendered views **(✅ done)**.
+- [x] **D2 — Synergy artifacts. ✅ COMPLETE.** All 10 comparison matrices written as real
+      chapters **(✅ 10/10)**; all architecture patterns detailed **(✅ 16/16)**; the
+      knowledge graph built as data (`graph.json`, 93 nodes / 142 edges) + rendered views
+      **(✅ done)**.
 - [ ] **D3 — Build health.** `mkdocs build --strict` stays green (0 warnings) at every commit.
 - [ ] **D4 — Deploy pipeline.** GitHub Actions workflow in place; site builds
       deploy-ready. ✅ (pipeline ready — see below)
@@ -36,7 +36,7 @@ The loop completes when **all** of the following hold:
 
 | Family | Pages | Stub | Bronze+ | Gold |
 |--------|------:|-----:|--------:|-----:|
-| Climate IAM | 9 | 8 | 0 | 1 (DICE) |
+| Climate IAM | 9 | 7 | 0 | 2 (DICE, GCAM) |
 | Energy | 5 | 3 | 0 | 2 (OSeMOSYS, TIMES) |
 | Economics | 7 | 5 | 0 | 2 (CGE, DSGE) |
 | Transport | 4 | 3 | 0 | 1 (MATSim) |
@@ -46,7 +46,7 @@ The loop completes when **all** of the following hold:
 | Health | 3 | 2 | 0 | 1 (Covasim) |
 | Frameworks | 7 | 6 | 0 | 1 (Vensim/SD) |
 | Methods/Algorithms | 8 | 6 | 2 (LP, MILP) | 0 |
-| **Synergy** | matrices **10/10** ✅ · patterns 15/16 · graph **1/1** ✅ | | | |
+| **Synergy** | matrices **10/10** ✅ · patterns **16/16** ✅ · graph **1/1** ✅ — **D2 DONE** | | | |
 
 ## Iteration log
 
@@ -119,6 +119,12 @@ The loop completes when **all** of the following hold:
   biophysical–economic coupling via EPIC/G4M; LUC emissions → climate) **+** the **Land
   Engine** pattern it grounds (finite land as a shared contested account). Patterns 15/16 —
   only Technology-Adoption (← Gold GCAM) remains. Graph 90 nodes / 131 edges.
+- **Iter 18 — 🎉 D2 COMPLETE.** **GCAM** → Gold (process-based IAM; partial-equilibrium
+  price search; **nested-logit market share**; Hector climate; recursive-dynamic; the
+  detailed-IAM synthesis of cost-benefit + bottom-up) **+** the final **Technology-Adoption
+  Engine** pattern (logit share vs knife-edge least cost; vintage turnover; β dial).
+  **Patterns 16/16 ✅.** With matrices 10/10 and the graph done, the entire **synergy layer
+  (D2) is finished**. Graph 93 nodes / 142 edges. Loop now pivots to D1 breadth.
 
 ## Working order (program-director priority)
 
