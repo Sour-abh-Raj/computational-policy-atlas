@@ -8,7 +8,7 @@ designer needs.
 
 !!! success "The graph is now a data artifact"
     The source of truth is **[`graph.json`](graph.json)** — **93 typed nodes** and
-    **142 typed edges** curated from the Gold dossiers, comparative chapters, and pattern
+    **151 typed edges** curated from the Gold dossiers, comparative chapters, and pattern
     pages. The views below are rendered *from* that data. As dossiers are promoted, their
     entities and edges are added to the JSON and these views grow with them.
 
@@ -144,8 +144,8 @@ The graph is built to answer relational questions. A few, resolved from `graph.j
 | researcher | 9 | solves_with | 11 |
 | paradigm | 8 | grounded_in | 12 |
 | domain | 6 | positions | 10 |
-| axis | 5 | alternative_to | 8 |
-| **Total nodes** | **93** | **Total edges** | **142** |
+| axis | 5 | alternative_to | 11 |
+| **Total nodes** | **93** | **Total edges** | **151** |
 
 ## Roadmap
 

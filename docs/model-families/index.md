@@ -14,8 +14,8 @@ Legend: ✅ complete · 🟡 in progress · ⬜ planned
 |-------|-------------|--------|
 | [**DICE**](climate-iam/dice.md) — Dynamic Integrated Climate–Economy | Yale (Nordhaus) | ✅ Gold (flagship) |
 | [**GCAM**](climate-iam/gcam.md) — Global Change Analysis Model | PNNL / JGCRI | ✅ Gold |
-| FUND | Tol / others | ⬜ |
-| PAGE | Hope (Cambridge) | ⬜ |
+| [**FUND**](climate-iam/fund.md) — sector-disaggregated damages | Tol & Anthoff | ✅ Bronze |
+| [**PAGE**](climate-iam/page.md) — uncertainty-first (Stern Review) | Hope (Cambridge) | ✅ Bronze |
 | MESSAGEix | IIASA | ⬜ |
 | IMAGE | PBL Netherlands | ⬜ |
 | REMIND | PIK Potsdam | ⬜ |

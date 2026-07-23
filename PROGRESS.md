@@ -36,7 +36,7 @@ The loop completes when **all** of the following hold:
 
 | Family | Pages | Stub | Bronze+ | Gold |
 |--------|------:|-----:|--------:|-----:|
-| Climate IAM | 9 | 7 | 0 | 2 (DICE, GCAM) |
+| Climate IAM | 9 | 5 | 2 (FUND, PAGE) | 2 (DICE, GCAM) |
 | Energy | 5 | 3 | 0 | 2 (OSeMOSYS, TIMES) |
 | Economics | 7 | 5 | 0 | 2 (CGE, DSGE) |
 | Transport | 4 | 3 | 0 | 1 (MATSim) |
@@ -125,6 +125,10 @@ The loop completes when **all** of the following hold:
   Engine** pattern (logit share vs knife-edge least cost; vintage turnover; β dial).
   **Patterns 16/16 ✅.** With matrices 10/10 and the graph done, the entire **synergy layer
   (D2) is finished**. Graph 93 nodes / 142 edges. Loop now pivots to D1 breadth.
+- **Iter 19 — D1 breadth begins.** **FUND** and **PAGE** → Bronze (all 18 sections filled),
+  completing the **cost-benefit IAM trio** with DICE: FUND = sector-disaggregated damages;
+  PAGE = uncertainty-first (Stern Review), Sensitivity-Engine-at-the-core + catastrophe term.
+  Climate-IAM family now 2 Gold + 2 Bronze. Graph 93 nodes / 151 edges.
 
 ## Working order (program-director priority)
 
