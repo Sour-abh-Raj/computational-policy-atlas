@@ -1,14 +1,25 @@
 # Knowledge Graph
 
-A semantic graph linking every entity in the atlas — **paradigms, algorithms, models,
-institutions, researchers, domains, mathematics, and software** — with edges for
-*successor-of*, *depends-on*, *shares-assumption-with*, and *alternative-to*.
+A semantic graph linking every entity in the atlas — **paradigms, models, institutions,
+researchers, algorithms, architecture patterns, domains, and comparative axes** — with
+typed edges. The graph is the payoff of the whole atlas: it makes the *relationships*
+between modeling traditions queryable, which is exactly what an integrated simulator's
+designer needs.
 
-The graph is the payoff of the whole atlas: it makes the *relationships* between
-modeling traditions queryable, which is exactly what an integrated simulator's designer
-needs.
+!!! success "The graph is now a data artifact"
+    The source of truth is **[`graph.json`](graph.json)** — **80 typed nodes** and
+    **106 typed edges** curated from the Gold dossiers, comparative chapters, and pattern
+    pages. The views below are rendered *from* that data. As dossiers are promoted, their
+    entities and edges are added to the JSON and these views grow with them.
 
 ## Schema
+
+**Node types** (8): `paradigm` · `model` · `institution` · `researcher` · `algorithm` ·
+`pattern` · `domain` · `axis`.
+
+**Edge types** (12): `realized_by` · `developed_at` · `led_by` · `solves_with` ·
+`belongs_to` · `exhibits_pattern` · `contrasts_with` · `succeeds` · `alternative_to` ·
+`critiques` · `grounded_in` · `positions`.
 
 ```mermaid
 graph LR
@@ -17,56 +28,139 @@ graph LR
     Model -->|led_by| Researcher
     Model -->|solves_with| Algorithm
     Model -->|belongs_to| Domain
-    Model -->|implemented_in| Software
-    Model -->|successor_of| Model2[Model]
-    Model -->|alternative_to| Model2
-    Model -->|shares_assumption| Model2
-    Algorithm -->|grounded_in| Mathematics
+    Model -->|exhibits_pattern| Pattern
+    Model -->|succeeds / alternative_to / contrasts_with| Model2[Model]
+    Researcher -->|critiques| Model
+    Pattern -->|grounded_in| Algorithm
+    Axis -->|positions| Paradigm
 ```
 
-## Seed graph (from the DICE dossier)
+## View 1 — Paradigms realized by the Gold models
+
+The backbone: which modeling **paradigm** each flagship embodies, and the **axis** that
+contrasts them.
 
 ```mermaid
 graph TD
-    OPT[Paradigm: Optimization]
-    RAMSEY[Math: Ramsey optimal growth]
-    NLP[Algorithm: NLP / CONOPT]
-    DICE[Model: DICE]
-    RICE[Model: RICE]
-    DSICE[Model: DSICE]
-    GIVE[Model: GIVE]
-    FUND[Model: FUND]
-    PAGE[Model: PAGE]
-    YALE[Institution: Yale]
-    NORD[Researcher: W. Nordhaus]
-    CLIM[Domain: Climate IAM]
-    GAMS[Software: GAMS / Pyomo / Mimi]
-
-    OPT --> DICE
-    RAMSEY --> DICE
-    NLP --> DICE
-    DICE -->|developed_at| YALE
-    DICE -->|led_by| NORD
-    DICE -->|belongs_to| CLIM
-    DICE -->|implemented_in| GAMS
-    DICE -->|regional_sibling| RICE
-    DICE -->|stochastic_successor| DSICE
-    DICE -->|modern_successor| GIVE
-    DICE -->|alternative_to| FUND
-    DICE -->|alternative_to| PAGE
+    subgraph Optimization / Bottom-up
+        OPT[Optimization] --> DICE[DICE ⭐]
+        OPT --> TIMES[TIMES ⭐]
+        OPT --> OSE[OSeMOSYS ⭐]
+    end
+    subgraph Equilibrium / Top-down
+        EQ[Equilibrium] --> CGE[CGE ⭐]
+        EQ --> DSGE[DSGE ⭐]
+    end
+    subgraph Simulation / Emergent
+        SD[System Dynamics] --> VEN[Vensim ⭐]
+        ABM[Agent-Based] --> COV[Covasim ⭐]
+    end
+    AX1{{Optimization vs Simulation}} -.positions.-> OPT
+    AX1 -.positions.-> ABM
+    AX2{{Equilibrium vs Disequilibrium}} -.positions.-> EQ
+    AX3{{SD vs ABM}} -.positions.-> SD
+    AX3 -.positions.-> ABM
 ```
 
-## Planned representation
+⭐ = Gold dossier.
 
-- **Source of truth**: a `graph.json` (nodes + typed edges) generated from dossier
-  front-matter, so the graph stays consistent with the prose.
-- **Rendering**: Mermaid for embedded views here; an interactive HTML view for the
-  full graph.
-- **Queries** the graph should answer: *"what depends on LP?"*, *"what are the
-  perfect-foresight IAMs?"*, *"which models share the equilibrium assumption?"*,
-  *"what succeeded MARKAL?"*
+## View 2 — Models → patterns (the reuse map)
 
-!!! tip "Tie-in"
+The **`exhibits_pattern`** edges (21 of them) are the heart of the "design foundation"
+mission: they show the *same engines* recurring across unrelated models.
+
+```mermaid
+graph LR
+    DICE[DICE] --> POPT[Optimization Engine]
+    DICE --> PCLIM[Climate Engine]
+    DICE --> PINT[Integration Engine]
+    TIMES[TIMES] --> POPT
+    TIMES --> PDISP[Energy Dispatch Engine]
+    OSE[OSeMOSYS] --> PDISP
+    OSE --> POPT
+    CGE[CGE] --> PMKT[Market Engine]
+    DSGE[DSGE] --> PMKT
+    COV[Covasim] --> PBEH[Behavior Engine]
+    VEN[Vensim] --> PINT
+    CGE --> PCAL[Calibration Engine]
+    DSGE --> PCAL
+    COV --> PCAL
+    VEN --> PSENS[Sensitivity Engine]
+    DICE --> PSENS
+```
+
+**Reading it:** the *Optimization Engine* is shared by DICE, TIMES, and OSeMOSYS; the
+*Market Engine* by CGE and DSGE; the *Calibration Engine* by three models that calibrate in
+completely different ways (SAM, Bayesian, black-box) — precisely the plurality the
+[Calibration Engine](../patterns/calibration-engine.md) page argues for.
+
+## View 3 — Algorithms grounding the patterns
+
+```mermaid
+graph TD
+    LP[Linear Programming] --> POPT[Optimization Engine]
+    LP --> PDISP[Energy Dispatch Engine]
+    MILP[Mixed-Integer LP] --> PDISP
+    OC[Optimal Control] --> POPT
+    MCP[Complementarity / MCP] --> PMKT[Market Engine]
+    MC[Monte-Carlo] --> PBEH[Behavior Engine]
+    ODE[ODE Integration] --> PINT[Integration Engine]
+    ODE --> PCLIM[Climate Engine]
+    BAY[Bayesian / MCMC] --> PCAL[Calibration Engine]
+```
+
+## Worked queries
+
+The graph is built to answer relational questions. A few, resolved from `graph.json`:
+
+=== "What solves with LP?"
+    Follow `solves_with → lp` and `grounded_in → lp`:
+    **OSeMOSYS**, **TIMES** (models), and the **Optimization** & **Energy-Dispatch**
+    engines. → the bottom-up least-cost family.
+
+=== "Which models share the equilibrium assumption?"
+    Follow `realized_by` from **Equilibrium**: **CGE**, **DSGE**, **GTAP** — and note the
+    `alternative_to` edge to **E3ME** (disequilibrium), the contrast drawn in
+    [Equilibrium vs Disequilibrium](../comparative/equilibrium-vs-disequilibrium.md).
+
+=== "What contrasts with Covasim?"
+    Follow `contrasts_with`: **DICE**, **CGE**, **Vensim** — the optimizing, equilibrium,
+    and aggregate-simulation flagships, i.e. every *other* corner of the paradigm space.
+    These are exactly the [ABM vs CGE](../comparative/abm-vs-cge.md) and
+    [SD vs ABM](../comparative/system-dynamics-vs-abm.md) matrices.
+
+=== "What succeeded MARKAL?"
+    Follow `succeeds`: **TIMES** succeeds **MARKAL/EFOM**; **RICE** succeeds **DICE**;
+    **GTAP** succeeds **CGE**.
+
+## Graph statistics
+
+| Node type | Count | Edge type | Count |
+|-----------|------:|-----------|------:|
+| model | 25 | exhibits_pattern | 21 |
+| algorithm | 10 | realized_by | 14 |
+| institution | 10 | developed_at | 11 |
+| pattern | 9 | belongs_to | 10 |
+| paradigm | 8 | positions | 10 |
+| researcher | 8 | solves_with | 9 |
+| domain | 5 | grounded_in | 9 |
+| axis | 5 | alternative_to | 6 |
+| **Total nodes** | **80** | **Total edges** | **106** |
+
+## Roadmap
+
+- **Generation from front-matter** — the next step is to emit `graph.json` *automatically*
+  from a `graph:` block in each dossier's front-matter, so prose and graph never drift.
+- **Interactive view** — a self-contained HTML force-directed view (no external CDN) for
+  the full 80-node graph, complementing the curated Mermaid slices above.
+- **Growth** — every newly promoted dossier contributes its nodes/edges; the graph is the
+  running integral of the atlas.
+
+!!! tip "Tie-in with `/graphify`"
     This dovetails with the local **`/graphify`** workflow (input → knowledge graph →
-    clustered communities). Each completed dossier contributes its entities and edges
-    to the growing atlas graph.
+    clustered communities). The atlas graph is the domain-specific instance of exactly that
+    idea.
+
+## See also
+- Data: **[graph.json](graph.json)** · Positioning: [Taxonomy](../foundations/taxonomy.md)
+- [Architecture Patterns](../patterns/index.md) · [Comparative hub](../comparative/index.md)

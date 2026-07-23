@@ -45,7 +45,7 @@ The loop completes when **all** of the following hold:
 | Health | 3 | 2 | 0 | 1 (Covasim) |
 | Frameworks | 7 | 6 | 0 | 1 (Vensim/SD) |
 | Methods/Algorithms | 8 | 8 | 0 | 0 |
-| **Synergy** | matrices 5/10 · patterns 9/15 · graph 0/1 | | | |
+| **Synergy** | matrices 5/10 · patterns 9/15 · graph **1/1** ✅ | | | |
 
 ## Iteration log
 
@@ -77,6 +77,10 @@ The loop completes when **all** of the following hold:
 - **Iter 8** — Two domain-engine pattern pages with Gold referents: **Climate Engine**
   (reduced-order emulator; DICE boxes, FAIR/MAGICC) and **Energy Dispatch Engine**
   (least-cost RES/model-generator; OSeMOSYS/TIMES/PyPSA). Patterns 9/15.
+- **Iter 9** — Built the **knowledge graph** as a data artifact: `docs/graph/graph.json`
+  (80 typed nodes, 106 typed edges, 0 dangling refs — validated) + rewrote `graph/index.md`
+  with rendered views (paradigms→models, models→patterns, algorithms→patterns), four worked
+  relational queries, and live stats. **Graph 1/1 ✅** — last empty D2 slot cleared.
 
 ## Working order (program-director priority)
 
