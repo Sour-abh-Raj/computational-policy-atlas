@@ -44,8 +44,8 @@ The loop completes when **all** of the following hold:
 | Water | 3 | 3 | 0 | 0 |
 | Health | 3 | 2 | 0 | 1 (Covasim) |
 | Frameworks | 7 | 6 | 0 | 1 (Vensim/SD) |
-| Methods/Algorithms | 8 | 8 | 0 | 0 |
-| **Synergy** | matrices 6/10 · patterns 9/15 · graph **1/1** ✅ | | | |
+| Methods/Algorithms | 8 | 6 | 2 (LP, MILP) | 0 |
+| **Synergy** | matrices 7/10 · patterns 9/15 · graph **1/1** ✅ | | | |
 
 ## Iteration log
 
@@ -84,6 +84,10 @@ The loop completes when **all** of the following hold:
 - **Iter 10** — Sixth matrix **IAM vs Energy-System Models** (the same climate problem at
   two scales; cost-benefit DICE vs bottom-up TIMES/OSeMOSYS — all-Gold referents; SCC↔target
   and cost-curve↔MAC handshake; process-based IAMs as the synthesis). Matrices 6/10.
+- **Iter 11** — Double-leverage: seventh matrix **LP vs MILP** (the price of an integer —
+  convexity/duality lost with integrality; why OSeMOSYS/TIMES stay LP) **+** promoted the
+  **LP** and **MILP** algorithm pages from stub → Silver method dossiers (same material).
+  Matrices 7/10; first 2 algorithm stubs cleared (D1 breadth begins).
 
 ## Working order (program-director priority)
 
