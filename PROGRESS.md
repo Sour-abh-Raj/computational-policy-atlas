@@ -46,7 +46,7 @@ The loop completes when **all** of the following hold:
 | Health | 3 | 2 | 0 | 1 (Covasim) |
 | Frameworks | 7 | 6 | 0 | 1 (Vensim/SD) |
 | Methods/Algorithms | 8 | 6 | 2 (LP, MILP) | 0 |
-| **Synergy** | matrices **10/10** ✅ · patterns 12/16 · graph **1/1** ✅ | | | |
+| **Synergy** | matrices **10/10** ✅ · patterns 14/16 · graph **1/1** ✅ | | | |
 
 ## Iteration log
 
@@ -108,6 +108,12 @@ The loop completes when **all** of the following hold:
   extreme-condition, cross-model battery). Patterns 12/16; graph 84 nodes / 117 edges.
   *(Note: pattern catalog is 16, not 15 — the Integration/Stock-Flow engine was added as a
   distinct core engine during Iter 7.)*
+- **Iter 16** — Two **infrastructure patterns** (cross-cutting, no new dossier):
+  **Visualization Engine** (comparison + uncertainty as defaults; En-ROADS live loop) and
+  **Data Pipeline** (ingest→clean→**balance**→build; SAM/RES/synthetic-population; shared
+  harmonized substrate for multi-domain coupling). Patterns 14/16 — only the two
+  domain-gated engines (Technology-Adoption ← GCAM, Land ← GLOBIOM/MAgPIE) remain. Graph 86
+  nodes / 121 edges.
 
 ## Working order (program-director priority)
 

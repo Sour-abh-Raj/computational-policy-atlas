@@ -168,6 +168,8 @@ nav:
       - Calibration Engine: patterns/calibration-engine.md
       - Policy Engine: patterns/policy-engine.md
       - Validation Engine: patterns/validation-engine.md
+      - Visualization Engine: patterns/visualization-engine.md
+      - Data Pipeline: patterns/data-pipeline.md
   - Knowledge Graph:
       - graph/index.md
   - Bibliography: bibliography.md
