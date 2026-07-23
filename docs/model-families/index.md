@@ -61,7 +61,11 @@ WEAP · SWAT · MODFLOW — ⬜
 
 ## Health / Epidemiology
 
-Covasim · GLEAM · OpenABM — ⬜
+| Model | Institution | Status |
+|-------|-------------|--------|
+| [**Covasim**](health/covasim.md) — COVID-19 Agent-based Simulator | IDM / Gates Foundation | ✅ Gold |
+| GLEAM | Northeastern / ISI | ⬜ |
+| OpenABM-Covid19 | Oxford | ⬜ |
 
 ## Cross-cutting method families (documented under [Paradigms](../paradigms/index.md))
 

@@ -9,13 +9,11 @@ assumptions, appropriate regime, failure modes, data needs, and computational co
 - ✅ **[Optimization vs Simulation](optimization-vs-simulation.md)** — the deepest divide (full chapter)
 - ✅ **[Top-Down vs Bottom-Up](top-down-vs-bottom-up.md)** — the energy-economy gap (full chapter)
 - ✅ **[Equilibrium vs Disequilibrium](equilibrium-vs-disequilibrium.md)** — how coordination happens (full chapter)
-- ABM vs CGE
+- ✅ **[ABM vs CGE](abm-vs-cge.md)** — emergence vs equilibrium, the two ways to build an economy (full chapter)
 - IAM vs Energy-System models
 - System Dynamics vs Agent-Based
 - Recursive-Dynamic vs Perfect Foresight
 - LP vs MILP
-- Top-Down vs Bottom-Up
-- Equilibrium vs Disequilibrium
 - Deterministic vs Stochastic
 - Continuous vs Discrete
 

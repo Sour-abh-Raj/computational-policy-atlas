@@ -42,10 +42,10 @@ The loop completes when **all** of the following hold:
 | Urban | 3 | 3 | 0 | 0 |
 | Agriculture | 4 | 4 | 0 | 0 |
 | Water | 3 | 3 | 0 | 0 |
-| Health | 3 | 3 | 0 | 0 |
+| Health | 3 | 2 | 0 | 1 (Covasim) |
 | Frameworks | 7 | 7 | 0 | 0 |
 | Methods/Algorithms | 8 | 8 | 0 | 0 |
-| **Synergy** | matrices 3/10 · patterns 0/15 · graph 0/1 | | | |
+| **Synergy** | matrices 4/10 · patterns 0/15 · graph 0/1 | | | |
 
 ## Iteration log
 
@@ -62,6 +62,10 @@ The loop completes when **all** of the following hold:
 - **Iter 4** — DSGE → Gold (completes equilibrium trio; Lucas critique, NK 3-equation
   model, HANK); third matrix **Equilibrium vs Disequilibrium** (the coordination
   assumption; CGE/DSGE vs E3ME/ABM). Matrices 3/10.
+- **Iter 5** — Pivot to the **simulation hemisphere**: Covasim → Gold (first Gold ABM;
+  structure-of-arrays agents, contact-layer transmission, intervention objects, ensemble
+  outputs); fourth matrix **ABM vs CGE** (emergence vs equilibrium — now with a Gold ABM
+  and Gold CGE as referents). Matrices 4/10.
 
 ## Working order (program-director priority)
 
