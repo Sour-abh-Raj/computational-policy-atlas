@@ -41,12 +41,12 @@ The loop completes when **all** of the following hold:
 | Economics | 7 | 5 | 0 | 2 (CGE, DSGE) |
 | Transport | 4 | 3 | 0 | 1 (MATSim) |
 | Urban | 3 | 3 | 0 | 0 |
-| Agriculture | 4 | 4 | 0 | 0 |
+| Agriculture | 4 | 3 | 0 | 1 (GLOBIOM) |
 | Water | 3 | 3 | 0 | 0 |
 | Health | 3 | 2 | 0 | 1 (Covasim) |
 | Frameworks | 7 | 6 | 0 | 1 (Vensim/SD) |
 | Methods/Algorithms | 8 | 6 | 2 (LP, MILP) | 0 |
-| **Synergy** | matrices **10/10** ✅ · patterns 14/16 · graph **1/1** ✅ | | | |
+| **Synergy** | matrices **10/10** ✅ · patterns 15/16 · graph **1/1** ✅ | | | |
 
 ## Iteration log
 
@@ -114,6 +114,11 @@ The loop completes when **all** of the following hold:
   harmonized substrate for multi-domain coupling). Patterns 14/16 — only the two
   domain-gated engines (Technology-Adoption ← GCAM, Land ← GLOBIOM/MAgPIE) remain. Graph 86
   nodes / 121 edges.
+- **Iter 17** — Opened the **agriculture & land domain**: **GLOBIOM** → Gold (spatial
+  partial-equilibrium land-use; STJ surplus-max = market equilibrium; Simulation Units;
+  biophysical–economic coupling via EPIC/G4M; LUC emissions → climate) **+** the **Land
+  Engine** pattern it grounds (finite land as a shared contested account). Patterns 15/16 —
+  only Technology-Adoption (← Gold GCAM) remains. Graph 90 nodes / 131 edges.
 
 ## Working order (program-director priority)
 

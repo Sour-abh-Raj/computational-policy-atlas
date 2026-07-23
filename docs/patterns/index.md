@@ -43,8 +43,8 @@ Legend: ✅ detailed page · ⬜ cataloged, page pending
 | **[Validation Engine](validation-engine.md)** | Test against reality / benchmarks | backcasting, extreme-condition, cross-model | ✅ |
 | **[Visualization Engine](visualization-engine.md)** | Communicate results | scenario explorers, En-ROADS dashboards | ✅ |
 | **[Data Pipeline](data-pipeline.md)** | Ingest, clean, harmonize, **balance** inputs | SAM build, RES data, synthetic population | ✅ |
+| **[Land Engine](land-engine.md)** | Land-use allocation & competition | GLOBIOM, MAgPIE, IMPACT | ✅ |
 | **Technology Adoption Engine** | Diffusion / vintage turnover | GCAM, energy models | ⬜ |
-| **Land Engine** | Land-use allocation & competition | GLOBIOM, MAgPIE | ⬜ |
 
 ## The recurring meta-pattern
 
@@ -56,10 +56,7 @@ this pattern applies — versus a Behavior/Market-Engine simulation — is a cen
 of the atlas.
 
 !!! note "Status"
-    Patterns are extracted *from* dossiers as they are written. **14 of 16** now have
-    detailed pages — the core computational engines (Scenario, Optimization, Market,
-    Behavior, Integration), the two UQ engines (Sensitivity, Calibration), three domain
-    engines (Climate, Energy Dispatch, Spatial), the two policy/quality engines (Policy,
-    Validation), and the two infrastructure engines (Visualization, Data Pipeline). Only
-    two remain — **Technology-Adoption** (awaiting a Gold GCAM) and **Land** (awaiting a
-    Gold GLOBIOM/MAgPIE) — each gated on its model family reaching Gold.
+    Patterns are extracted *from* dossiers as they are written. **15 of 16** now have
+    detailed pages — every engine except **Technology-Adoption** (awaiting a Gold GCAM). The
+    Land Engine was unlocked by promoting [GLOBIOM](../model-families/agriculture/globiom.md)
+    to Gold. One pattern to go to complete the catalog.

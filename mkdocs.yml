@@ -164,6 +164,7 @@ nav:
       - Climate Engine: patterns/climate-engine.md
       - Energy Dispatch Engine: patterns/energy-dispatch-engine.md
       - Spatial Engine: patterns/spatial-engine.md
+      - Land Engine: patterns/land-engine.md
       - Sensitivity Engine: patterns/sensitivity-engine.md
       - Calibration Engine: patterns/calibration-engine.md
       - Policy Engine: patterns/policy-engine.md

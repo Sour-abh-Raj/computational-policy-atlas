@@ -58,7 +58,12 @@ UrbanSim · CityScope · SILO — ⬜
 
 ## Agriculture & Land
 
-GLOBIOM · MAgPIE · DSSAT · EPIC — ⬜
+| Model | Institution | Status |
+|-------|-------------|--------|
+| [**GLOBIOM**](agriculture/globiom.md) — Global Biosphere Management Model | IIASA | ✅ Gold |
+| MAgPIE | PIK Potsdam | ⬜ |
+| DSSAT | crop-model consortium | ⬜ |
+| EPIC | Texas A&M / IIASA | ⬜ |
 
 ## Water
 
