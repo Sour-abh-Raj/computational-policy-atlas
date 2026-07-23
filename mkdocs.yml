@@ -149,6 +149,7 @@ nav:
       - Equilibrium vs Disequilibrium: comparative/equilibrium-vs-disequilibrium.md
       - ABM vs CGE: comparative/abm-vs-cge.md
       - System Dynamics vs Agent-Based: comparative/system-dynamics-vs-abm.md
+      - IAM vs Energy-System Models: comparative/iam-vs-energy.md
   - Architecture Patterns:
       - patterns/index.md
       - Scenario Engine: patterns/scenario-engine.md

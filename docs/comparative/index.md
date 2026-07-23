@@ -11,7 +11,7 @@ assumptions, appropriate regime, failure modes, data needs, and computational co
 - ✅ **[Equilibrium vs Disequilibrium](equilibrium-vs-disequilibrium.md)** — how coordination happens (full chapter)
 - ✅ **[ABM vs CGE](abm-vs-cge.md)** — emergence vs equilibrium, the two ways to build an economy (full chapter)
 - ✅ **[System Dynamics vs Agent-Based](system-dynamics-vs-abm.md)** — aggregate feedback vs individual interaction (full chapter)
-- IAM vs Energy-System models
+- ✅ **[IAM vs Energy-System Models](iam-vs-energy.md)** — the same climate problem at two scales (full chapter)
 - Recursive-Dynamic vs Perfect Foresight
 - LP vs MILP
 - Deterministic vs Stochastic

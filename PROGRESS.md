@@ -45,7 +45,7 @@ The loop completes when **all** of the following hold:
 | Health | 3 | 2 | 0 | 1 (Covasim) |
 | Frameworks | 7 | 6 | 0 | 1 (Vensim/SD) |
 | Methods/Algorithms | 8 | 8 | 0 | 0 |
-| **Synergy** | matrices 5/10 · patterns 9/15 · graph **1/1** ✅ | | | |
+| **Synergy** | matrices 6/10 · patterns 9/15 · graph **1/1** ✅ | | | |
 
 ## Iteration log
 
@@ -81,6 +81,9 @@ The loop completes when **all** of the following hold:
   (80 typed nodes, 106 typed edges, 0 dangling refs — validated) + rewrote `graph/index.md`
   with rendered views (paradigms→models, models→patterns, algorithms→patterns), four worked
   relational queries, and live stats. **Graph 1/1 ✅** — last empty D2 slot cleared.
+- **Iter 10** — Sixth matrix **IAM vs Energy-System Models** (the same climate problem at
+  two scales; cost-benefit DICE vs bottom-up TIMES/OSeMOSYS — all-Gold referents; SCC↔target
+  and cost-curve↔MAC handshake; process-based IAMs as the synthesis). Matrices 6/10.
 
 ## Working order (program-director priority)
 
