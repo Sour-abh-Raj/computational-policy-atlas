@@ -177,6 +177,7 @@ nav:
   - Polyphony:
       - polyphony/index.md
       - 00 — Inventory: polyphony/00-inventory.md
+      - 01 — Blueprint & Wireframes: polyphony/01-blueprint.md
       - Related Work & Positioning: polyphony/related-work.md
       - Leaderboard: polyphony/leaderboard.md
       - PROGRESS (iteration log): polyphony/PROGRESS.md
@@ -185,4 +186,6 @@ nav:
       - ADR template: decisions/adr-template.md
       - "ADR-0001 — Positioning": decisions/0001-positioning-paradigm-plural-not-world-model.md
       - "ADR-0002 — Repo layout & flow": decisions/0002-repo-layout-and-trunk-based-flow.md
+      - "ADR-0003 — Tech stack": decisions/0003-tech-stack.md
+      - "ADR-0004 — Disagreement vs BMA": decisions/0004-disagreement-preservation-vs-bma.md
   - Bibliography: bibliography.md

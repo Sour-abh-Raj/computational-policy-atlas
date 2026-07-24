@@ -14,6 +14,8 @@ Format: [Michael Nygard's ADR style](https://github.com/joelparkerhenderson/arch
 |---|-------|--------|
 | [0001](0001-positioning-paradigm-plural-not-world-model.md) | Positioning: a paradigm-plural ensemble, **not** a world model | Accepted |
 | [0002](0002-repo-layout-and-trunk-based-flow.md) | Repo layout, docs surface, and the autonomous-loop trunk-based flow | Accepted |
+| [0003](0003-tech-stack.md) | Tech stack for the Polyphony package | Accepted |
+| [0004](0004-disagreement-preservation-vs-bma.md) | Disagreement-preservation as default combiner; BMA as a challenger | Accepted |
 
 !!! note "Why ADRs matter here"
     Polyphony selects by **adversarial competition**, extends the atlas freely, and makes
