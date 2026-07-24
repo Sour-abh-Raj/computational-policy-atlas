@@ -55,7 +55,11 @@ Legend: ✅ complete · 🟡 in progress · ⬜ planned
 
 ## Urban
 
-UrbanSim · CityScope · SILO — ⬜
+| Model | Institution | Status |
+|-------|-------------|--------|
+| [**UrbanSim**](urban/urbansim.md) — land-use/transport microsimulation | Waddell / UC Berkeley | ✅ Bronze |
+| SILO — LUTI microsimulation | TU Munich / partners | ⬜ |
+| CityScope — tangible interactive urban modeling | MIT Media Lab | ⬜ |
 
 ## Agriculture & Land
 
@@ -71,8 +75,8 @@ UrbanSim · CityScope · SILO — ⬜
 | Model | Institution | Status |
 |-------|-------------|--------|
 | [**SWAT**](water/swat.md) — watershed hydrology & water quality | USDA-ARS / Texas A&M | ✅ Bronze |
-| MODFLOW — groundwater flow (finite-difference) | USGS | ⬜ |
-| WEAP — water allocation & planning | SEI | ⬜ |
+| [**MODFLOW**](water/modflow.md) — 3-D groundwater-flow PDE (finite-difference) | USGS | ✅ Bronze |
+| [**WEAP**](water/weap.md) — water allocation & planning (LP + scenarios) | SEI | ✅ Bronze |
 
 ## Health / Epidemiology
 

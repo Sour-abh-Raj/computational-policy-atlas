@@ -40,9 +40,9 @@ The loop completes when **all** of the following hold:
 | Energy | 5 | 0 | 3 (PyPSA, Calliope, EnergyPLAN) | 2 (OSeMOSYS, TIMES) ✅ **family complete** |
 | Economics | 7 | 0 | 5 (Input-Output, GTAP, E3ME, GEM-E3, ENVISAGE) | 2 (CGE, DSGE) ✅ **family complete** |
 | Transport | 4 | 0 | 3 (SUMO, TRANSIMS, ActivitySim) | 1 (MATSim) ✅ **family complete** |
-| Urban | 3 | 3 | 0 | 0 |
+| Urban | 3 | 2 | 1 (UrbanSim) | 0 |
 | Agriculture | 4 | 0 | 3 (MAgPIE, DSSAT, EPIC) | 1 (GLOBIOM) ✅ **family complete** |
-| Water | 3 | 2 | 1 (SWAT) | 0 |
+| Water | 3 | 0 | 3 (SWAT, MODFLOW, WEAP) | 0 ✅ **family complete** |
 | Health | 3 | 0 | 2 (GLEAM, OpenABM) | 1 (Covasim) ✅ **family complete** |
 | Frameworks | 7 | 0 | 6 (Mesa, Repast, NetLogo, GAMA, Stella, AnyLogic) | 1 (Vensim/SD) ✅ **family complete** |
 | Methods/Algorithms | 8 | 6 | 2 (LP, MILP) | 0 |
@@ -205,6 +205,15 @@ The loop completes when **all** of the following hold:
   atlas lesson in **reusable components migrating across scales**. Graph 141 nodes / 379 edges; new
   **d-water domain** node (domains now 7); U. Florida, USDA/Texas A&M, Williams, Arnold added.
   **Seven families complete: + Agriculture.**
+- **Iter 30 — 🎉 Water domain COMPLETE + urban opened.** **MODFLOW**, **WEAP** → Bronze (water now
+  **3 Bronze, 0 stubs** — no Gold yet), plus **UrbanSim** → Bronze (opens urban): the water triad now
+  spans the domain by *question* — **SWAT** (surface process hydrology), **MODFLOW** (3-D groundwater
+  **PDE physics**; finite-difference; the atlas's cleanest continuous-field engine + modular-package &
+  public-domain lessons), **WEAP** (rule/priority **allocation** LP inside a simulation — the "management
+  ≠ physics" hybrid). **UrbanSim** opens urban: LUTI microsimulation (discrete-choice location + land-use
+  ↔ transport feedback; the discrete-choice kernel recurring again). Graph 149 nodes / **412 edges**;
+  new **d-urban** domain (domains now 8); USGS, SEI, UC Berkeley, Waddell added. **Eight families with
+  Bronze+ coverage; only urban (SILO, CityScope) + a few method-pages remain for full D1 breadth.**
 
 ## Working order (program-director priority)
 
