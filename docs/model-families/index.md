@@ -62,7 +62,7 @@ UrbanSim · CityScope · SILO — ⬜
 | Model | Institution | Status |
 |-------|-------------|--------|
 | [**GLOBIOM**](agriculture/globiom.md) — Global Biosphere Management Model | IIASA | ✅ Gold |
-| MAgPIE | PIK Potsdam | ⬜ |
+| [**MAgPIE**](agriculture/magpie.md) — land-use cost-minimization (REMIND's land module) | PIK Potsdam | ✅ Bronze |
 | DSSAT | crop-model consortium | ⬜ |
 | EPIC | Texas A&M / IIASA | ⬜ |
 
@@ -82,7 +82,8 @@ WEAP · SWAT · MODFLOW — ⬜
 
 Agent-Based ([**Mesa** ✅ Bronze](frameworks/mesa.md), [**Repast** ✅ Bronze](frameworks/repast.md),
 [**NetLogo** ✅ Bronze](frameworks/netlogo.md), [**GAMA** ✅ Bronze](frameworks/gama.md)) ·
-System Dynamics ([**Vensim** ✅ Gold](frameworks/vensim.md), Stella, AnyLogic) ·
+System Dynamics ([**Vensim** ✅ Gold](frameworks/vensim.md),
+[**Stella** ✅ Bronze](frameworks/stella.md), [**AnyLogic** ✅ Bronze](frameworks/anylogic.md) — multi-method) ·
 Optimization (LP, MILP, DP, optimal control, multi-objective) · ML-based policy (RL,
 Bayesian decision models, digital twins).
 

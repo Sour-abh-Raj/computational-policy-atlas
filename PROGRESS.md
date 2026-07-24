@@ -41,10 +41,10 @@ The loop completes when **all** of the following hold:
 | Economics | 7 | 0 | 5 (Input-Output, GTAP, E3ME, GEM-E3, ENVISAGE) | 2 (CGE, DSGE) ✅ **family complete** |
 | Transport | 4 | 0 | 3 (SUMO, TRANSIMS, ActivitySim) | 1 (MATSim) ✅ **family complete** |
 | Urban | 3 | 3 | 0 | 0 |
-| Agriculture | 4 | 3 | 0 | 1 (GLOBIOM) |
+| Agriculture | 4 | 2 | 1 (MAgPIE) | 1 (GLOBIOM) |
 | Water | 3 | 3 | 0 | 0 |
 | Health | 3 | 0 | 2 (GLEAM, OpenABM) | 1 (Covasim) ✅ **family complete** |
-| Frameworks | 7 | 2 | 4 (Mesa, Repast, NetLogo, GAMA) | 1 (Vensim/SD) |
+| Frameworks | 7 | 0 | 6 (Mesa, Repast, NetLogo, GAMA, Stella, AnyLogic) | 1 (Vensim/SD) ✅ **family complete** |
 | Methods/Algorithms | 8 | 6 | 2 (LP, MILP) | 0 |
 | **Synergy** | matrices **10/10** ✅ · patterns **16/16** ✅ · graph **1/1** ✅ — **D2 DONE** | | | |
 
@@ -187,6 +187,15 @@ The loop completes when **all** of the following hold:
   (geography as a first-class spatial engine via GAML). Frameworks now 1 Gold + 4 Bronze (2 stubs
   left: Stella, AnyLogic — both System-Dynamics-side). Graph 127 nodes / 324 edges (Argonne,
   Northwestern, IRD/UMMISCO, Wilensky added).
+- **Iter 28 — 🎉 Frameworks family COMPLETE + agriculture breadth.** **Stella**, **AnyLogic** →
+  Bronze (frameworks now **1 Gold + 6 Bronze, 0 stubs**) + **MAgPIE** → Bronze (agriculture):
+  **Stella** = the visual SD tool that made stock-flow authoring accessible (diagram-as-model;
+  XMILE); **AnyLogic** = the **multi-method** platform (SD+ABM+DES under one clock — the atlas's
+  engine-composition thesis already shipping in a product); **MAgPIE** = PIK's land-use
+  cost-minimization (REMIND's land module; the cost-min counterpart to GLOBIOM's market
+  surplus-max, coupled via the madrat pipeline). Graph 133 nodes / 351 edges (isee, AnyLogic Co.,
+  Richmond, Borshchev added). **Six families complete: Climate IAM, Energy, Economics, Transport,
+  Health, Frameworks.**
 
 ## Working order (program-director priority)
 
