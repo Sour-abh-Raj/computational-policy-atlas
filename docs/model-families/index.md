@@ -49,9 +49,9 @@ Legend: ✅ complete · 🟡 in progress · ⬜ planned
 | Model | Institution | Status |
 |-------|-------------|--------|
 | [**MATSim**](transport/matsim.md) — Multi-Agent Transport Simulation | ETH Zürich / TU Berlin | ✅ Gold |
-| SUMO | DLR | ⬜ |
-| TRANSIMS | LANL | ⬜ |
-| ActivitySim | consortium | ⬜ |
+| [**SUMO**](transport/sumo.md) — microscopic vehicle-level traffic sim | DLR | ✅ Bronze |
+| [**TRANSIMS**](transport/transims.md) — CA-based regional ABM (the ancestor) | LANL | ✅ Bronze |
+| [**ActivitySim**](transport/activitysim.md) — activity-based demand (nested logit) | consortium | ✅ Bronze |
 
 ## Urban
 

@@ -39,7 +39,7 @@ The loop completes when **all** of the following hold:
 | Climate IAM | 9 | 0 | 7 (FUND, PAGE, MESSAGEix, REMIND, IMAGE, WITCH, AIM) | 2 (DICE, GCAM) ✅ **family complete** |
 | Energy | 5 | 0 | 3 (PyPSA, Calliope, EnergyPLAN) | 2 (OSeMOSYS, TIMES) ✅ **family complete** |
 | Economics | 7 | 0 | 5 (Input-Output, GTAP, E3ME, GEM-E3, ENVISAGE) | 2 (CGE, DSGE) ✅ **family complete** |
-| Transport | 4 | 3 | 0 | 1 (MATSim) |
+| Transport | 4 | 0 | 3 (SUMO, TRANSIMS, ActivitySim) | 1 (MATSim) ✅ **family complete** |
 | Urban | 3 | 3 | 0 | 0 |
 | Agriculture | 4 | 3 | 0 | 1 (GLOBIOM) |
 | Water | 3 | 3 | 0 | 0 |
@@ -163,6 +163,14 @@ The loop completes when **all** of the following hold:
   embedded in a CGE; PRIMES's partner); **ENVISAGE** = the World Bank global CGE with an integrated
   climate module and distributional accounts (a compact CGE-based IAM). Graph 105 nodes / 248 edges
   (NTUA, World Bank added). **Three full families now complete: Climate IAM, Energy, Economics.**
+- **Iter 25 — 🎉 Transport family COMPLETE.** **SUMO**, **TRANSIMS**, **ActivitySim** → Bronze
+  (family now **1 Gold + 3 Bronze, 0 stubs**), spanning the whole transport stack by resolution:
+  **SUMO** = microscopic vehicle physics (Krauss car-following; the TraCI live-control API as an
+  RL/optimization testbed); **TRANSIMS** = the LANL cellular-automata regional ABM ancestor
+  (Nagel–Schreckenberg; synthetic population + activity→route→sim→feedback pipeline that MATSim
+  generalized); **ActivitySim** = consortium-maintained activity-based demand (nested-logit choice
+  pipeline; the shared-open-infrastructure lesson in transport). Graph 112 nodes / 274 edges
+  (DLR, LANL, ActivitySim consortium, Kai Nagel added). **Four families complete.**
 
 ## Working order (program-director priority)
 
