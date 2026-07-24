@@ -43,8 +43,12 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
     ensemble/meta, welfare-equity); **`related-work.md`** (positioning vs DestinE, IAMs, ML/LLM
     world models; the 4-part gap Polyphony fills); **`leaderboard.md`** + this **`PROGRESS.md`**.
   - **mkdocs nav:** added *Polyphony* and *Decisions* sections; strict build green.
-  - **Next (Iter 02, finish Phase 0 → open Phase 1):** open GitHub gap issues from
-    [00-inventory §6](00-inventory.md); then Phase 1 blueprint — the **common model interface**
+  - **GitHub gap issues opened (#1–#8):** 4 new-engine gaps — **#1** data-assimilation, **#2**
+    surrogate/emulator, **#3** ensemble/meta (BMA vs disagreement), **#4** welfare/equity engine;
+    4 synergy hypotheses — **#5** Energy⇄Economy⇄Climate (the first vertical slice), **#6**
+    Land⇄Climate⇄Water⇄Food, **#7** Urban⇄Transport⇄Energy⇄Health, **#8** Macro⇄Health. Labels
+    created (synergy/gap/engine/research/phase-\*/needs-evidence). **Phase 0 deliverables complete.**
+  - **Next (Iter 02 → Phase 1):** the **common model interface**
     (state·step·dials·provenance), the coupling/routing/disagreement + uncertainty-propagation
     design, the **welfare/equity multi-objective dial**, and the **tournament + red-team + synergy
     protocol**, with committed Mermaid diagrams and a tech-stack ADR. First vertical slice target:
