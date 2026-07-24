@@ -38,7 +38,7 @@ The loop completes when **all** of the following hold:
 |--------|------:|-----:|--------:|-----:|
 | Climate IAM | 9 | 0 | 7 (FUND, PAGE, MESSAGEix, REMIND, IMAGE, WITCH, AIM) | 2 (DICE, GCAM) ✅ **family complete** |
 | Energy | 5 | 0 | 3 (PyPSA, Calliope, EnergyPLAN) | 2 (OSeMOSYS, TIMES) ✅ **family complete** |
-| Economics | 7 | 5 | 0 | 2 (CGE, DSGE) |
+| Economics | 7 | 2 | 3 (Input-Output, GTAP, E3ME) | 2 (CGE, DSGE) |
 | Transport | 4 | 3 | 0 | 1 (MATSim) |
 | Urban | 3 | 3 | 0 | 0 |
 | Agriculture | 4 | 3 | 0 | 1 (GLOBIOM) |
@@ -148,6 +148,15 @@ The loop completes when **all** of the following hold:
   **EnergyPLAN** = rule-based hourly *simulation* (no optimizer — the in-domain
   [Optimization vs Simulation](docs/comparative/optimization-vs-simulation.md) fork, feasibility
   over optimality). Graph 99 nodes / 212 edges (institutions ETH, Aalborg added).
+- **Iter 23 — Economics breadth.** **Input–Output**, **GTAP**, **E3ME** → Bronze — the three
+  *structurally distinct* economy-wide models around the Gold CGE/DSGE core: **Input–Output** =
+  the linear Leontief ancestor (fixed coefficients, the SAM substrate CGE calibrates on);
+  **GTAP** = the global multi-region trade-CGE standard (shared versioned world SAM as community
+  infrastructure); **E3ME** = the flagship *disequilibrium* macro-econometric alternative
+  (estimated, demand-led — the double-dividend counter to CGE's closure, the
+  [Equilibrium vs Disequilibrium](docs/comparative/equilibrium-vs-disequilibrium.md) case study).
+  Economics now 2 Gold + 3 Bronze (2 stubs left: GEM-E3, ENVISAGE). Graph 101 nodes / 229 edges
+  (Leontief + Harvard added).
 
 ## Working order (program-director priority)
 

@@ -38,10 +38,10 @@ Legend: ✅ complete · 🟡 in progress · ⬜ planned
 |-------|------|--------|
 | [**CGE**](economics/cge.md) (static & dynamic) | Computable General Equilibrium | ✅ Gold |
 | [**DSGE**](economics/dsge.md) | Dynamic Stochastic General Equilibrium | ✅ Gold |
-| Input–Output / Leontief | Structural | ⬜ |
-| GTAP | Global trade CGE (Purdue) | ⬜ |
+| [**Input–Output / Leontief**](economics/input-output.md) — the structural ancestor | Leontief | ✅ Bronze |
+| [**GTAP**](economics/gtap.md) — global multi-region trade CGE | Purdue consortium | ✅ Bronze |
+| [**E3ME**](economics/e3me.md) — macro-econometric, disequilibrium | Cambridge Econometrics | ✅ Bronze |
 | GEM-E3 / ENVISAGE | Energy-economy CGE | ⬜ |
-| E3ME | Macroeconometric (Cambridge Econometrics) | ⬜ |
 
 ## Transportation
 
