@@ -63,12 +63,16 @@ UrbanSim · CityScope · SILO — ⬜
 |-------|-------------|--------|
 | [**GLOBIOM**](agriculture/globiom.md) — Global Biosphere Management Model | IIASA | ✅ Gold |
 | [**MAgPIE**](agriculture/magpie.md) — land-use cost-minimization (REMIND's land module) | PIK Potsdam | ✅ Bronze |
-| DSSAT | crop-model consortium | ⬜ |
-| EPIC | Texas A&M / IIASA | ⬜ |
+| [**DSSAT**](agriculture/dssat.md) — process-based crop-growth simulator | DSSAT Foundation / U. Florida | ✅ Bronze |
+| [**EPIC**](agriculture/epic.md) — field crop + erosion/nutrient model | USDA / Texas A&M | ✅ Bronze |
 
 ## Water
 
-WEAP · SWAT · MODFLOW — ⬜
+| Model | Institution | Status |
+|-------|-------------|--------|
+| [**SWAT**](water/swat.md) — watershed hydrology & water quality | USDA-ARS / Texas A&M | ✅ Bronze |
+| MODFLOW — groundwater flow (finite-difference) | USGS | ⬜ |
+| WEAP — water allocation & planning | SEI | ⬜ |
 
 ## Health / Epidemiology
 

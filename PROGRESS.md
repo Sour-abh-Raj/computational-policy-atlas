@@ -41,8 +41,8 @@ The loop completes when **all** of the following hold:
 | Economics | 7 | 0 | 5 (Input-Output, GTAP, E3ME, GEM-E3, ENVISAGE) | 2 (CGE, DSGE) ✅ **family complete** |
 | Transport | 4 | 0 | 3 (SUMO, TRANSIMS, ActivitySim) | 1 (MATSim) ✅ **family complete** |
 | Urban | 3 | 3 | 0 | 0 |
-| Agriculture | 4 | 2 | 1 (MAgPIE) | 1 (GLOBIOM) |
-| Water | 3 | 3 | 0 | 0 |
+| Agriculture | 4 | 0 | 3 (MAgPIE, DSSAT, EPIC) | 1 (GLOBIOM) ✅ **family complete** |
+| Water | 3 | 2 | 1 (SWAT) | 0 |
 | Health | 3 | 0 | 2 (GLEAM, OpenABM) | 1 (Covasim) ✅ **family complete** |
 | Frameworks | 7 | 0 | 6 (Mesa, Repast, NetLogo, GAMA, Stella, AnyLogic) | 1 (Vensim/SD) ✅ **family complete** |
 | Methods/Algorithms | 8 | 6 | 2 (LP, MILP) | 0 |
@@ -196,6 +196,15 @@ The loop completes when **all** of the following hold:
   surplus-max, coupled via the madrat pipeline). Graph 133 nodes / 351 edges (isee, AnyLogic Co.,
   Richmond, Borshchev added). **Six families complete: Climate IAM, Energy, Economics, Transport,
   Health, Frameworks.**
+- **Iter 29 — 🎉 Agriculture family COMPLETE + water domain opened.** **DSSAT**, **EPIC** → Bronze
+  (agriculture now **1 Gold + 3 Bronze, 0 stubs**), plus **SWAT** → Bronze (opens the water domain):
+  a coherent **scale ladder of Fortran process-based biophysical models** — **DSSAT** (point/field
+  crop physiology; the "yield engine" GLOBIOM/MAgPIE consume) → **EPIC** (field + erosion/hydrology/
+  nutrients for policy; the integrated-externality model) → **SWAT** (watershed HRU→routing; EPIC's
+  process routines lifted to basin scale; non-point-source water quality). The lineage doubles as an
+  atlas lesson in **reusable components migrating across scales**. Graph 141 nodes / 379 edges; new
+  **d-water domain** node (domains now 7); U. Florida, USDA/Texas A&M, Williams, Arnold added.
+  **Seven families complete: + Agriculture.**
 
 ## Working order (program-director priority)
 
