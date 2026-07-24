@@ -38,7 +38,7 @@ The loop completes when **all** of the following hold:
 |--------|------:|-----:|--------:|-----:|
 | Climate IAM | 9 | 0 | 7 (FUND, PAGE, MESSAGEix, REMIND, IMAGE, WITCH, AIM) | 2 (DICE, GCAM) ✅ **family complete** |
 | Energy | 5 | 0 | 3 (PyPSA, Calliope, EnergyPLAN) | 2 (OSeMOSYS, TIMES) ✅ **family complete** |
-| Economics | 7 | 2 | 3 (Input-Output, GTAP, E3ME) | 2 (CGE, DSGE) |
+| Economics | 7 | 0 | 5 (Input-Output, GTAP, E3ME, GEM-E3, ENVISAGE) | 2 (CGE, DSGE) ✅ **family complete** |
 | Transport | 4 | 3 | 0 | 1 (MATSim) |
 | Urban | 3 | 3 | 0 | 0 |
 | Agriculture | 4 | 3 | 0 | 1 (GLOBIOM) |
@@ -157,6 +157,12 @@ The loop completes when **all** of the following hold:
   [Equilibrium vs Disequilibrium](docs/comparative/equilibrium-vs-disequilibrium.md) case study).
   Economics now 2 Gold + 3 Bronze (2 stubs left: GEM-E3, ENVISAGE). Graph 101 nodes / 229 edges
   (Leontief + Harvard added).
+- **Iter 24 — 🎉 Economics family COMPLETE.** **GEM-E3** and **ENVISAGE** → Bronze, clearing the
+  last two economics stubs (family now **2 Gold + 5 Bronze, 0 stubs**). Both are recursive-dynamic
+  energy-economy CGEs: **GEM-E3** = the EU/NTUA impact-assessment hybrid (bottom-up power-tech
+  embedded in a CGE; PRIMES's partner); **ENVISAGE** = the World Bank global CGE with an integrated
+  climate module and distributional accounts (a compact CGE-based IAM). Graph 105 nodes / 248 edges
+  (NTUA, World Bank added). **Three full families now complete: Climate IAM, Energy, Economics.**
 
 ## Working order (program-director priority)
 
