@@ -92,8 +92,11 @@ Agent-Based ([**Mesa** ✅ Bronze](frameworks/mesa.md), [**Repast** ✅ Bronze](
 [**NetLogo** ✅ Bronze](frameworks/netlogo.md), [**GAMA** ✅ Bronze](frameworks/gama.md)) ·
 System Dynamics ([**Vensim** ✅ Gold](frameworks/vensim.md),
 [**Stella** ✅ Bronze](frameworks/stella.md), [**AnyLogic** ✅ Bronze](frameworks/anylogic.md) — multi-method) ·
-Optimization (LP, MILP, [**DP** ✅ Silver](../paradigms/algorithms/dp.md), optimal control,
-multi-objective) · ML-based policy (RL, Bayesian decision models, digital twins).
+Optimization (LP, MILP, [**DP** ✅](../paradigms/algorithms/dp.md),
+[**optimal control** ✅](../paradigms/algorithms/optimal-control.md),
+[**multi-objective** ✅](../paradigms/algorithms/multiobjective.md) — all Silver) ·
+ML-based policy ([**RL** ✅ Silver](../paradigms/algorithms/reinforcement-learning.md),
+Bayesian decision models, digital twins).
 
 ---
 

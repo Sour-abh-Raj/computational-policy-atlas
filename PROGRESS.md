@@ -45,7 +45,7 @@ The loop completes when **all** of the following hold:
 | Water | 3 | 0 | 3 (SWAT, MODFLOW, WEAP) | 0 ✅ **family complete** |
 | Health | 3 | 0 | 2 (GLEAM, OpenABM) | 1 (Covasim) ✅ **family complete** |
 | Frameworks | 7 | 0 | 6 (Mesa, Repast, NetLogo, GAMA, Stella, AnyLogic) | 1 (Vensim/SD) ✅ **family complete** |
-| Methods/Algorithms | 8 | 5 | 3 (LP, MILP, DP) | 0 |
+| Methods/Algorithms | 8 | 2 | 6 (LP, MILP, DP, Optimal-Control, Multi-Obj, RL) | 0 |
 | **Synergy** | matrices **10/10** ✅ · patterns **16/16** ✅ · graph **1/1** ✅ — **D2 DONE** | | | |
 
 ## Iteration log
@@ -223,6 +223,14 @@ The loop completes when **all** of the following hold:
   nodes / 434 edges (TU Munich, Moeckel, Larson, Bellman added; DP wired to DICE + Optimization Engine).
   **All 8 model-family domains now have Bronze+ coverage with 0 stubs.** Remaining D1: 5 algorithm
   method-pages (optimal-control, multiobjective, RL, Bayesian-decision, digital-twins).
+- **Iter 32 — Method-pages: the sequential-decision family.** **Optimal Control**, **Multi-Objective**,
+  **Reinforcement Learning** → Silver, a DP-rooted trio: **Optimal Control** = continuous DP (PMP/HJB;
+  DICE *is* a discretized instance; costates = shadow prices = the SCC); **Multi-Objective** = the
+  Pareto-frontier answer to competing goals (compute the frontier, defer the weighting — the atlas's
+  "expose contested values" thesis as an algorithm); **RL** = approximate DP that learns from a
+  simulator-as-environment (SUMO/TraCI; closed-loop adaptive policy; the black-box governance caution).
+  Methods now 6 Silver (2 stubs left: Bayesian-decision, digital-twins). Graph 160 nodes / 439 edges
+  (algorithms 12; Pontryagin, Deb, Sutton added).
 
 ## Working order (program-director priority)
 
