@@ -40,12 +40,12 @@ The loop completes when **all** of the following hold:
 | Energy | 5 | 0 | 3 (PyPSA, Calliope, EnergyPLAN) | 2 (OSeMOSYS, TIMES) ✅ **family complete** |
 | Economics | 7 | 0 | 5 (Input-Output, GTAP, E3ME, GEM-E3, ENVISAGE) | 2 (CGE, DSGE) ✅ **family complete** |
 | Transport | 4 | 0 | 3 (SUMO, TRANSIMS, ActivitySim) | 1 (MATSim) ✅ **family complete** |
-| Urban | 3 | 2 | 1 (UrbanSim) | 0 |
+| Urban | 3 | 0 | 3 (UrbanSim, SILO, CityScope) | 0 ✅ **family complete** |
 | Agriculture | 4 | 0 | 3 (MAgPIE, DSSAT, EPIC) | 1 (GLOBIOM) ✅ **family complete** |
 | Water | 3 | 0 | 3 (SWAT, MODFLOW, WEAP) | 0 ✅ **family complete** |
 | Health | 3 | 0 | 2 (GLEAM, OpenABM) | 1 (Covasim) ✅ **family complete** |
 | Frameworks | 7 | 0 | 6 (Mesa, Repast, NetLogo, GAMA, Stella, AnyLogic) | 1 (Vensim/SD) ✅ **family complete** |
-| Methods/Algorithms | 8 | 6 | 2 (LP, MILP) | 0 |
+| Methods/Algorithms | 8 | 5 | 3 (LP, MILP, DP) | 0 |
 | **Synergy** | matrices **10/10** ✅ · patterns **16/16** ✅ · graph **1/1** ✅ — **D2 DONE** | | | |
 
 ## Iteration log
@@ -214,6 +214,15 @@ The loop completes when **all** of the following hold:
   ↔ transport feedback; the discrete-choice kernel recurring again). Graph 149 nodes / **412 edges**;
   new **d-urban** domain (domains now 8); USGS, SEI, UC Berkeley, Waddell added. **Eight families with
   Bronze+ coverage; only urban (SILO, CityScope) + a few method-pages remain for full D1 breadth.**
+- **Iter 31 — 🎉 Urban family COMPLETE + DP method page.** **SILO**, **CityScope** → Bronze (urban now
+  **3 Bronze, 0 stubs**) + **DP** → Silver (opens the remaining algorithm method-pages): **SILO** =
+  coupling-first LUTI microsimulation (the "orchestrator"/microkernel-of-engines lesson; MATSim-coupled);
+  **CityScope** = MIT tangible participatory platform (the human-interface/participatory-modeling lesson —
+  models as shared decision instruments); **DP** = the Bellman-equation backbone (open-loop vs closed-loop;
+  the curse of dimensionality; parent of optimal-control & RL — foresight/feedback as dials). Graph 155
+  nodes / 434 edges (TU Munich, Moeckel, Larson, Bellman added; DP wired to DICE + Optimization Engine).
+  **All 8 model-family domains now have Bronze+ coverage with 0 stubs.** Remaining D1: 5 algorithm
+  method-pages (optimal-control, multiobjective, RL, Bayesian-decision, digital-twins).
 
 ## Working order (program-director priority)
 

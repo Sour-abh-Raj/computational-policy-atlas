@@ -58,8 +58,8 @@ Legend: ✅ complete · 🟡 in progress · ⬜ planned
 | Model | Institution | Status |
 |-------|-------------|--------|
 | [**UrbanSim**](urban/urbansim.md) — land-use/transport microsimulation | Waddell / UC Berkeley | ✅ Bronze |
-| SILO — LUTI microsimulation | TU Munich / partners | ⬜ |
-| CityScope — tangible interactive urban modeling | MIT Media Lab | ⬜ |
+| [**SILO**](urban/silo.md) — coupling-first LUTI microsimulation | TU Munich / partners | ✅ Bronze |
+| [**CityScope**](urban/cityscope.md) — tangible, participatory urban modeling | MIT Media Lab | ✅ Bronze |
 
 ## Agriculture & Land
 
@@ -92,8 +92,8 @@ Agent-Based ([**Mesa** ✅ Bronze](frameworks/mesa.md), [**Repast** ✅ Bronze](
 [**NetLogo** ✅ Bronze](frameworks/netlogo.md), [**GAMA** ✅ Bronze](frameworks/gama.md)) ·
 System Dynamics ([**Vensim** ✅ Gold](frameworks/vensim.md),
 [**Stella** ✅ Bronze](frameworks/stella.md), [**AnyLogic** ✅ Bronze](frameworks/anylogic.md) — multi-method) ·
-Optimization (LP, MILP, DP, optimal control, multi-objective) · ML-based policy (RL,
-Bayesian decision models, digital twins).
+Optimization (LP, MILP, [**DP** ✅ Silver](../paradigms/algorithms/dp.md), optimal control,
+multi-objective) · ML-based policy (RL, Bayesian decision models, digital twins).
 
 ---
 
