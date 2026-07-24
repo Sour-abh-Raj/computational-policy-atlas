@@ -44,7 +44,7 @@ The loop completes when **all** of the following hold:
 | Agriculture | 4 | 3 | 0 | 1 (GLOBIOM) |
 | Water | 3 | 3 | 0 | 0 |
 | Health | 3 | 0 | 2 (GLEAM, OpenABM) | 1 (Covasim) ✅ **family complete** |
-| Frameworks | 7 | 5 | 1 (Mesa) | 1 (Vensim/SD) |
+| Frameworks | 7 | 2 | 4 (Mesa, Repast, NetLogo, GAMA) | 1 (Vensim/SD) |
 | Methods/Algorithms | 8 | 6 | 2 (LP, MILP) | 0 |
 | **Synergy** | matrices **10/10** ✅ · patterns **16/16** ✅ · graph **1/1** ✅ — **D2 DONE** | | | |
 
@@ -180,6 +180,13 @@ The loop completes when **all** of the following hold:
   own engine-decomposition thesis realized as a library; the ABM analogue of Vensim). Graph 120
   nodes / **302 edges** (Northeastern, Oxford, Project Mesa, Vespignani, Fraser added). **Five
   families complete: Climate IAM, Energy, Economics, Transport, Health.**
+- **Iter 27 — ABM framework landscape.** **Repast**, **NetLogo**, **GAMA** → Bronze, completing the
+  general ABM-framework quartet with Mesa: **Repast** = HPC/scale-out (MPI domain decomposition +
+  ghost agents; the distribution-ready lesson); **NetLogo** = accessibility/pedagogy (turtles/
+  patches/links ontology; live viz as default; prototype-then-scale); **GAMA** = GIS-first
+  (geography as a first-class spatial engine via GAML). Frameworks now 1 Gold + 4 Bronze (2 stubs
+  left: Stella, AnyLogic — both System-Dynamics-side). Graph 127 nodes / 324 edges (Argonne,
+  Northwestern, IRD/UMMISCO, Wilensky added).
 
 ## Working order (program-director priority)
 
