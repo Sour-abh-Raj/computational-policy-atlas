@@ -95,8 +95,14 @@ System Dynamics ([**Vensim** ✅ Gold](frameworks/vensim.md),
 Optimization (LP, MILP, [**DP** ✅](../paradigms/algorithms/dp.md),
 [**optimal control** ✅](../paradigms/algorithms/optimal-control.md),
 [**multi-objective** ✅](../paradigms/algorithms/multiobjective.md) — all Silver) ·
-ML-based policy ([**RL** ✅ Silver](../paradigms/algorithms/reinforcement-learning.md),
-Bayesian decision models, digital twins).
+ML-based policy ([**RL** ✅](../paradigms/algorithms/reinforcement-learning.md),
+[**Bayesian decision** ✅](../paradigms/algorithms/bayesian-decision.md),
+[**digital twins** ✅](../paradigms/algorithms/digital-twins.md) — all Silver).
+
+!!! success "D1 breadth complete — every page is Bronze-or-better"
+    As of Iteration 33, **no `stub` pages remain** in the atlas: all 8 model-family domains are at
+    Bronze-or-better with a Gold (or Bronze-flagship) exemplar, and all method/algorithm pages are at
+    least Silver. The knowledge base and its synergy layer (matrices, patterns, graph) are complete.
 
 ---
 

@@ -7,9 +7,9 @@ work iteration. (Site-facing status also lives at `docs/status.md`.)
 
 The loop completes when **all** of the following hold:
 
-- [ ] **D1 — Content depth.** Every model page promoted from *stub* to at least
-      **Bronze** (all 18 dossier sections filled, concise but real). Flagships reach
-      **Gold** (DICE-level rigor).
+- [x] **D1 — Content depth. ✅ COMPLETE (Iter 33).** Every model page promoted from *stub* to at
+      least **Bronze** (all 18 dossier sections filled) — **0 stubs remain**; every method/algorithm
+      page is at least **Silver**. Flagships reach **Gold** (DICE-level rigor): 9 Gold dossiers.
 - [x] **D2 — Synergy artifacts. ✅ COMPLETE.** All 10 comparison matrices written as real
       chapters **(✅ 10/10)**; all architecture patterns detailed **(✅ 16/16)**; the
       knowledge graph built as data (`graph.json`, 93 nodes / 142 edges) + rendered views
@@ -45,7 +45,7 @@ The loop completes when **all** of the following hold:
 | Water | 3 | 0 | 3 (SWAT, MODFLOW, WEAP) | 0 ✅ **family complete** |
 | Health | 3 | 0 | 2 (GLEAM, OpenABM) | 1 (Covasim) ✅ **family complete** |
 | Frameworks | 7 | 0 | 6 (Mesa, Repast, NetLogo, GAMA, Stella, AnyLogic) | 1 (Vensim/SD) ✅ **family complete** |
-| Methods/Algorithms | 8 | 2 | 6 (LP, MILP, DP, Optimal-Control, Multi-Obj, RL) | 0 |
+| Methods/Algorithms | 8 | 0 | 8 Silver (LP, MILP, DP, Optimal-Control, Multi-Obj, RL, Bayesian-Decision, Digital-Twins) | 0 ✅ **family complete** |
 | **Synergy** | matrices **10/10** ✅ · patterns **16/16** ✅ · graph **1/1** ✅ — **D2 DONE** | | | |
 
 ## Iteration log
@@ -231,6 +231,17 @@ The loop completes when **all** of the following hold:
   simulator-as-environment (SUMO/TraCI; closed-loop adaptive policy; the black-box governance caution).
   Methods now 6 Silver (2 stubs left: Bayesian-decision, digital-twins). Graph 160 nodes / 439 edges
   (algorithms 12; Pontryagin, Deb, Sutton added).
+- **Iter 33 — 🎉🎉 D1 BREADTH COMPLETE.** **Bayesian Decision** and **Digital Twins** → Silver, the
+  final two stubs in the atlas: **Bayesian Decision** = expected-utility over a posterior + value of
+  information (the rigorous "carry distributions, not point estimates" framework; PAGE/DSGE's backbone;
+  paired with deep-uncertainty/robust methods); **Digital Twins** = the capstone integration pattern
+  (model ⇄ data-assimilation ⇄ control loop; Destination Earth; the live, sensor-coupled fusion of every
+  atlas engine — a miniature of the project's own goal). **grep confirms 0 `stub` pages remain
+  anywhere**; every model page is Bronze+, every method page Silver+. Graph 164 nodes / 444 edges,
+  0-dangling (Savage, Grieves added; algorithms now 14). **BOTH D1 (depth) and D2 (synergy) are now
+  COMPLETE.** With D3 (strict-build-green every commit), D4 (deploy pipeline), and D5 (published, live)
+  already satisfied, **the Definition of Done is met** — the atlas is a complete, coherent, published
+  knowledge base.
 
 ## Working order (program-director priority)
 
