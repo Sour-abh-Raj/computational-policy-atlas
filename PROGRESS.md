@@ -37,7 +37,7 @@ The loop completes when **all** of the following hold:
 | Family | Pages | Stub | Bronze+ | Gold |
 |--------|------:|-----:|--------:|-----:|
 | Climate IAM | 9 | 0 | 7 (FUND, PAGE, MESSAGEix, REMIND, IMAGE, WITCH, AIM) | 2 (DICE, GCAM) ✅ **family complete** |
-| Energy | 5 | 3 | 0 | 2 (OSeMOSYS, TIMES) |
+| Energy | 5 | 0 | 3 (PyPSA, Calliope, EnergyPLAN) | 2 (OSeMOSYS, TIMES) ✅ **family complete** |
 | Economics | 7 | 5 | 0 | 2 (CGE, DSGE) |
 | Transport | 4 | 3 | 0 | 1 (MATSim) |
 | Urban | 3 | 3 | 0 | 0 |
@@ -141,6 +141,13 @@ The loop completes when **all** of the following hold:
   soft-linked CGE + bottom-up enduse family with multi-scale downscaling (Asia-Pacific
   marker). Graph 97 nodes / 190 edges (3 institutions added: PBL, EIEE, NIES). **The Climate
   IAM family — the atlas's flagship domain — is now fully at Bronze-or-better.**
+- **Iter 22 — 🎉 Energy family COMPLETE.** **PyPSA**, **Calliope**, **EnergyPLAN** → Bronze
+  (family now **2 Gold + 3 Bronze, 0 stubs**). The trio sharpens the in-domain paradigm split:
+  **PyPSA** = network-physics LP (Kirchhoff constraints inside the optimization; space matters);
+  **Calliope** = declarative YAML "model-as-data" LP (reproducibility as architecture);
+  **EnergyPLAN** = rule-based hourly *simulation* (no optimizer — the in-domain
+  [Optimization vs Simulation](docs/comparative/optimization-vs-simulation.md) fork, feasibility
+  over optimality). Graph 99 nodes / 212 edges (institutions ETH, Aalborg added).
 
 ## Working order (program-director priority)
 

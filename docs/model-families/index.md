@@ -28,9 +28,9 @@ Legend: ✅ complete · 🟡 in progress · ⬜ planned
 |-------|-------------|--------|
 | [**OSeMOSYS**](energy/osemosys.md) — Open Source energy MOdelling SYStem | KTH / open community | ✅ Gold |
 | [**TIMES**](energy/times.md) — The Integrated MARKAL-EFOM System | IEA-ETSAP | ✅ Gold |
-| PyPSA | TU Berlin / open | ⬜ |
-| Calliope | ETH / open | ⬜ |
-| EnergyPLAN | Aalborg University | ⬜ |
+| [**PyPSA**](energy/pypsa.md) — network-physics power-system optimization | TU Berlin / open | ✅ Bronze |
+| [**Calliope**](energy/calliope.md) — declarative (YAML) energy optimization | ETH / open | ✅ Bronze |
+| [**EnergyPLAN**](energy/energyplan.md) — rule-based national-system simulation | Aalborg University | ✅ Bronze |
 
 ## Economics — Equilibrium & Macro
 
