@@ -243,6 +243,21 @@ The loop completes when **all** of the following hold:
   already satisfied, **the Definition of Done is met** — the atlas is a complete, coherent, published
   knowledge base.
 
+## Successor project — Polyphony (build phase begins)
+
+The atlas is the **design foundation**; the successor build is **Polyphony**, a paradigm-plural,
+adversarially-validated policy-simulation **ensemble** that composes and extends the atlas's models
+into one coupled, executable, validated system — and **reports disagreement between traditions**
+rather than averaging it away (it is a decision-support instrument, **not** a "world model"). It
+has its own iteration log and Definition of Done:
+
+- Code: [`polyphony/`](polyphony/README.md) · Docs: [`docs/polyphony/`](docs/polyphony/index.md)
+- Iteration log: **[`docs/polyphony/PROGRESS.md`](docs/polyphony/PROGRESS.md)** (Polyphony `Iter NN`)
+- Positioning: [`docs/polyphony/related-work.md`](docs/polyphony/related-work.md) ·
+  Decisions: [`docs/decisions/`](docs/decisions/index.md) ·
+  Inventory: [`docs/polyphony/00-inventory.md`](docs/polyphony/00-inventory.md)
+- **Polyphony Iter 01** (2026-07-24): scaffolding + Phase 0 (inventory & positioning) — see its log.
+
 ## Working order (program-director priority)
 
 1. **Contrast pair**: OSeMOSYS + TIMES (bottom-up energy) vs DICE → unlocks the

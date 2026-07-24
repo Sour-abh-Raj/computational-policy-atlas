@@ -1,0 +1,33 @@
+[project]
+name = "polyphony"
+version = "0.0.1"
+description = "A paradigm-plural, adversarially-validated policy simulation ensemble built on the Atlas of Computational Policy Simulation."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Polyphony contributors" }]
+keywords = ["policy", "simulation", "ensemble", "integrated-assessment", "validation"]
+
+# Runtime dependencies are intentionally minimal in Phase 0/1. The vertical-slice
+# scaffold (Phase 2) will pin numpy/pandas/scipy and any solver/adapter deps behind
+# extras, chosen by ADR. Kept lean so `pip install -e .` stays fast and reproducible.
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.6", "mypy>=1.11"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["polyphony*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]

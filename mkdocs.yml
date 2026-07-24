@@ -174,4 +174,15 @@ nav:
       - Data Pipeline: patterns/data-pipeline.md
   - Knowledge Graph:
       - graph/index.md
+  - Polyphony:
+      - polyphony/index.md
+      - 00 — Inventory: polyphony/00-inventory.md
+      - Related Work & Positioning: polyphony/related-work.md
+      - Leaderboard: polyphony/leaderboard.md
+      - PROGRESS (iteration log): polyphony/PROGRESS.md
+  - Decisions (ADRs):
+      - decisions/index.md
+      - ADR template: decisions/adr-template.md
+      - "ADR-0001 — Positioning": decisions/0001-positioning-paradigm-plural-not-world-model.md
+      - "ADR-0002 — Repo layout & flow": decisions/0002-repo-layout-and-trunk-based-flow.md
   - Bibliography: bibliography.md
