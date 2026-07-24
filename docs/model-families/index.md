@@ -18,9 +18,9 @@ Legend: ✅ complete · 🟡 in progress · ⬜ planned
 | [**PAGE**](climate-iam/page.md) — uncertainty-first (Stern Review) | Hope (Cambridge) | ✅ Bronze |
 | [**MESSAGEix**](climate-iam/messageix.md) — energy-system optimization IAM | IIASA | ✅ Bronze |
 | [**REMIND**](climate-iam/remind.md) — Ramsey-growth macro+energy IAM | PIK Potsdam | ✅ Bronze |
-| IMAGE | PBL Netherlands | ⬜ |
-| WITCH | RFF-CMCC / EIEE | ⬜ |
-| AIM | NIES Japan | ⬜ |
+| [**IMAGE**](climate-iam/image.md) — process-based, biophysical SSP model | PBL Netherlands | ✅ Bronze |
+| [**WITCH**](climate-iam/witch.md) — game-theoretic, induced tech change | RFF-CMCC / EIEE | ✅ Bronze |
+| [**AIM**](climate-iam/aim.md) — CGE + bottom-up enduse family | NIES Japan | ✅ Bronze |
 
 ## Energy Systems
 

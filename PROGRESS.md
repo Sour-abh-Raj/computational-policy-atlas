@@ -36,7 +36,7 @@ The loop completes when **all** of the following hold:
 
 | Family | Pages | Stub | Bronze+ | Gold |
 |--------|------:|-----:|--------:|-----:|
-| Climate IAM | 9 | 3 | 4 (FUND, PAGE, MESSAGEix, REMIND) | 2 (DICE, GCAM) |
+| Climate IAM | 9 | 0 | 7 (FUND, PAGE, MESSAGEix, REMIND, IMAGE, WITCH, AIM) | 2 (DICE, GCAM) ✅ **family complete** |
 | Energy | 5 | 3 | 0 | 2 (OSeMOSYS, TIMES) |
 | Economics | 7 | 5 | 0 | 2 (CGE, DSGE) |
 | Transport | 4 | 3 | 0 | 1 (MATSim) |
@@ -133,6 +133,14 @@ The loop completes when **all** of the following hold:
   MESSAGEix = IIASA energy-system LP on ixmp + MACRO, coupled to GLOBIOM; REMIND = PIK
   Ramsey-growth macro+energy NLP with Negishi/Nash trade, coupled to MAgPIE. Climate-IAM now
   2 Gold + 4 Bronze (3 stubs left: IMAGE, WITCH, AIM). Graph 94 nodes / 163 edges.
+- **Iter 21 — 🎉 Climate-IAM family COMPLETE.** **IMAGE**, **WITCH**, **AIM** → Bronze,
+  clearing the last three climate-IAM stubs (family now **2 Gold + 7 Bronze, 0 stubs**).
+  These fill the paradigm corners the family was missing: **IMAGE** = process-based
+  biophysical simulation (no objective; the SSP land engine); **WITCH** = game-theoretic
+  Nash IAM with induced technical change (the equilibrium *concept* as a dial); **AIM** =
+  soft-linked CGE + bottom-up enduse family with multi-scale downscaling (Asia-Pacific
+  marker). Graph 97 nodes / 190 edges (3 institutions added: PBL, EIEE, NIES). **The Climate
+  IAM family — the atlas's flagship domain — is now fully at Bronze-or-better.**
 
 ## Working order (program-director priority)
 
