@@ -75,12 +75,12 @@ WEAP · SWAT · MODFLOW — ⬜
 | Model | Institution | Status |
 |-------|-------------|--------|
 | [**Covasim**](health/covasim.md) — COVID-19 Agent-based Simulator | IDM / Gates Foundation | ✅ Gold |
-| GLEAM | Northeastern / ISI | ⬜ |
-| OpenABM-Covid19 | Oxford | ⬜ |
+| [**GLEAM**](health/gleam.md) — metapopulation + mobility epidemic model | Northeastern (MOBS) | ✅ Bronze |
+| [**OpenABM-Covid19**](health/openabm.md) — agent-based, contact-tracing focus | Oxford | ✅ Bronze |
 
 ## Cross-cutting method families (documented under [Paradigms](../paradigms/index.md))
 
-Agent-Based (Mesa, Repast, NetLogo, GAMA) · System Dynamics
+Agent-Based ([**Mesa** ✅ Bronze](frameworks/mesa.md), Repast, NetLogo, GAMA) · System Dynamics
 ([**Vensim** ✅ Gold](frameworks/vensim.md), Stella, AnyLogic) · Optimization (LP, MILP,
 DP, optimal control, multi-objective) · ML-based policy (RL, Bayesian decision models,
 digital twins).

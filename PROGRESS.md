@@ -43,8 +43,8 @@ The loop completes when **all** of the following hold:
 | Urban | 3 | 3 | 0 | 0 |
 | Agriculture | 4 | 3 | 0 | 1 (GLOBIOM) |
 | Water | 3 | 3 | 0 | 0 |
-| Health | 3 | 2 | 0 | 1 (Covasim) |
-| Frameworks | 7 | 6 | 0 | 1 (Vensim/SD) |
+| Health | 3 | 0 | 2 (GLEAM, OpenABM) | 1 (Covasim) ✅ **family complete** |
+| Frameworks | 7 | 5 | 1 (Mesa) | 1 (Vensim/SD) |
 | Methods/Algorithms | 8 | 6 | 2 (LP, MILP) | 0 |
 | **Synergy** | matrices **10/10** ✅ · patterns **16/16** ✅ · graph **1/1** ✅ — **D2 DONE** | | | |
 
@@ -171,6 +171,15 @@ The loop completes when **all** of the following hold:
   generalized); **ActivitySim** = consortium-maintained activity-based demand (nested-logit choice
   pipeline; the shared-open-infrastructure lesson in transport). Graph 112 nodes / 274 edges
   (DLR, LANL, ActivitySim consortium, Kai Nagel added). **Four families complete.**
+- **Iter 26 — 🎉 Health family COMPLETE + frameworks opened.** **GLEAM**, **OpenABM** → Bronze
+  (health now **1 Gold + 2 Bronze, 0 stubs**), plus **Mesa** → Bronze (opens frameworks): the trio
+  fills the epidemic-resolution ladder around Gold Covasim — **GLEAM** = stochastic metapopulation
+  + real air-mobility (reaction–diffusion on a network; global spread cheaply); **OpenABM** =
+  Oxford individual ABM on layered contact networks with a first-class contact-tracing/app module;
+  **Mesa** = the Python ABM *framework* (scheduler/space/data/viz as swappable engines — the atlas's
+  own engine-decomposition thesis realized as a library; the ABM analogue of Vensim). Graph 120
+  nodes / **302 edges** (Northeastern, Oxford, Project Mesa, Vespignani, Fraser added). **Five
+  families complete: Climate IAM, Energy, Economics, Transport, Health.**
 
 ## Working order (program-director priority)
 
