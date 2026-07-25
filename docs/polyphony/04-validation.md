@@ -52,18 +52,32 @@ cd polyphony && python -m pytest -q               # includes the two-regime tour
 python -m polyphony.experiments.run_leaderboard   # regenerates docs/polyphony/leaderboard.json
 ```
 
+## Red Team (Round 2) — the champion does **not** survive
+
+The Round-1 champion was attacked with five stress tests (`polyphony/tournament/redteam.py`). It
+survived distribution shift, a Lucas-critique policy-regime change, extreme dials, and noise-seed
+instability — but was **broken by the naive-baseline attack**: its held-out **MASE ≈ 8 > 1**, i.e. it
+is **worse than a naive random-walk forecast**. The apparent "synergy" is only relative to an
+artificially weak economy-only baseline, not evidence of absolute skill.
+
+This is the honest headline of the phase: **the synergy *method* is validated; the *champion* is
+not.** The break is a hard gate — no skill claim, and no trusted champion, until calibration against
+**real data** (issue #9) closes the gap. Exactly the kind of self-inflicted failure Polyphony is
+built to surface rather than paper over.
+
 ## Honesty-debt register (tracked to close)
 
 | Debt | Status | Tracked by |
 |------|--------|-----------|
 | Real historical datasets | network-blocked; synthetic fallback | issue #9 |
-| Model calibration (real levels) | not started | (opens when #9 lands) |
+| Model calibration (real levels) | **now the top gate** — champion loses to naive without it | (opens when #9 lands) |
 | Welfare/equity engine (values dial) | specified, not built | issue #4 |
-| Predictive distributions → CRPS/PIT in tournament | metrics ready, propagation pending | blueprint §6 |
-| Red-team attack on the champion | pending (next iteration) | blueprint §7 |
+| Predictive distributions → CRPS/PIT in tournament | **ensemble + CRPS/PIT now wired** (`experiments/uncertainty.py`); enters scored tournament next | blueprint §6 |
+| Red-team attack on the champion | ✅ done — champion **broken by naive baseline** (recorded) | blueprint §7 |
 
 ## Next
 
-Arm the **Red Team** against the Round 1 champion — shifted/held-out regimes, edge cases,
-Lucas-critique (does the learned coupling survive a policy-regime change?), and counterfactuals —
-and feed any break back into selection. No champion is trusted until it survives sustained attack.
+Because the champion loses to naive, the priority is **skill, not more couplings**: (1) land a real
+dataset (#9) or a calibrated synthetic; (2) **calibrate** the reduced-form voices to real levels; (3)
+re-run the tournament scoring **CRPS/PIT** (now available) alongside MASE; (4) only then re-arm the
+Red Team. A coupling that cannot beat naive earns no place, however positive its synergy Δ.

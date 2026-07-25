@@ -130,8 +130,25 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
     contract (issue **#9**). Added negative synthetic control generator + `synthetic_decoupled_series`.
   - **Gates green:** `pytest` (29) · `ruff` · `mypy` (24 files) · graph 0-dangling · `mkdocs --strict`.
     Nav gained 03/04; fixed a mypy Protocol-variance issue by widening model tuple annotations.
-  - **Next (Iter 06):** arm the **Red Team** against the Round 1 champion — shifted/held-out regimes,
-    edge cases, a **Lucas-critique** attack (does the coupling survive a policy-regime change?), and
-    counterfactuals — as `polyphony/tournament/redteam.py` with tests; feed any break back into
-    selection and record it on the leaderboard. Begin propagating **parametric uncertainty** so
-    CRPS/PIT enter the scored tournament.
+- **Iter 06 — 🔴 Red Team breaks the champion (the honest headline) + parametric uncertainty wired.**
+  - **`polyphony/tournament/redteam.py`** — five attacks on the Round-1 champion returning structured
+    `AttackResult(broke, evidence)`: `distribution_shift`, `lucas_regime_change` (policy shift between
+    train/test), `edge_dials` (extreme carbon_price/tcre stay finite), `noise_stability` (sign robust
+    across seeds), and the decisive **`naive_baseline`** (must beat a naive random-walk, i.e. MASE<1).
+  - **Result — champion does NOT survive.** It survives the first four, but is **broken by
+    naive_baseline**: coupled **MASE ≈ 8 > 1** ⇒ worse than naive. The "synergy" was only relative to
+    an artificially weak economy-only baseline; there is **no absolute-skill claim**. The Red Team
+    caught the ensemble mistaking "less-bad than a weak baseline" for skill — exactly its job. Break
+    recorded on the [leaderboard](leaderboard.md) (Round 2) and in [04-validation](04-validation.md);
+    it is now a **hard gate**: calibration + real data (#9) required before any champion is trusted.
+  - **Parametric uncertainty** `polyphony/experiments/uncertainty.py`: `ensemble_gdp_tracks` samples
+    the uncertain dials (carbon price, tcre) → an ensemble of coupled tracks; `ensemble_crps` scores
+    it — verified a **calibrated-input ensemble beats a biased one** on CRPS. This puts **CRPS/PIT**
+    on the runway to enter the *scored* tournament (not just point MASE).
+  - **Tests:** +6 (red-team runs all 5 attacks; edge dials finite; naive-baseline breaks; champion
+    doesn't survive; ensemble shape/spread; CRPS centered<biased) → **35 pass.** Gates green:
+    `pytest` (35) · `ruff` · `mypy` (26 files) · graph 0-dangling · `mkdocs --strict`.
+  - **Next (Iter 07):** priority is **skill, not more couplings**. Land a real/calibrated dataset
+    (#9), **calibrate** the reduced-form voices to real levels, re-run the tournament scoring
+    **CRPS/PIT** alongside MASE, and only then re-arm the Red Team. Also begin the **welfare/equity
+    engine** (#4) so policies are scored on the inspectable values dial (Pareto frontier + VoI).

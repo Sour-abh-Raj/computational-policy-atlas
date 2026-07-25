@@ -35,11 +35,31 @@ levels), and the target is **synthetic** (real data is [issue #9](https://github
 network fetch is currently blocked). See [04-validation](04-validation.md) for the full honesty
 accounting.
 
+## Round 2 — Red Team (does the champion survive attack?)
+
+The Round-1 champion (the coupled ensemble) was attacked with five stress tests
+(`polyphony/tournament/redteam.py`): distribution shift, a **Lucas-critique** policy-regime change,
+extreme dials, noise-seed instability, and a **naive-baseline** skill test.
+
+| Attack | Result | Why |
+|--------|--------|-----|
+| distribution_shift | survived | coupling advantage persists under a mis-assumed carbon price |
+| lucas_regime_change | survived | advantage persists across a mid-series policy shift |
+| edge_dials | survived | predictions stay finite at extreme carbon_price/tcre |
+| noise_stability | survived | synergy sign holds across all noise seeds (flip fraction 0) |
+| **naive_baseline** | **BROKE** | coupled **MASE ≈ 8 > 1** — the champion loses to a naive random-walk forecast |
+
+**Verdict: the champion does NOT survive.** The decisive finding — surfaced by the Red Team, not
+hidden — is that the coupling's "synergy" is only relative to an **artificially weak** economy-only
+baseline; on absolute skill the reduced-form champion is **worse than naive**. So there is **no skill
+claim** yet: the synergy *method* is validated, the *champion* is not. This break feeds back as a
+hard gate — calibration + real data (issue #9) are prerequisites before any champion can be trusted.
+
 ## Standing champions
 
 | Question / slice | Champion | Beat | On (data, split) | Synergy vs sum-of-parts | Red-team | Ref |
 |------------------|----------|------|------------------|-------------------------|----------|-----|
-| GDP track, energy⇄climate⇄economy slice | **coupled ensemble** (when coupling real) | economy-only | synthetic-policy, time-blocked 30% | **+2.22 (keep)** | ⏭ pending | [json](leaderboard.json) |
+| GDP track, energy⇄climate⇄economy slice | **coupled ensemble** (when coupling real) | economy-only | synthetic-policy, time-blocked 30% | **+2.22 (keep)** | ❌ **broken — loses to naive** | [json](leaderboard.json) |
 
 ## Contest log
 
