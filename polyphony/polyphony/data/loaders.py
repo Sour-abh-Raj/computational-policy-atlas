@@ -66,6 +66,28 @@ def synthetic_policy_series(n: int = 30, seed: int = 0, carbon_price: float = 50
     )
 
 
+def synthetic_decoupled_series(n: int = 30, seed: int = 0, carbon_price: float = 50.0) -> Dataset:
+    """A synthetic **negative control**: GDP is *independent* of emissions (no coupling in the DGP).
+
+    Emissions still evolve, but GDP is a flat noisy process. A coupled predictor that imposes a
+    climate→economy damage feedback should therefore **fail to beat** an economy-only baseline
+    here — i.e. synergy Δ ≤ 0 and the coupling is correctly **cut**. Pairing this with
+    :func:`synthetic_policy_series` validates the *method*: synergy detected when present, cut when
+    absent (docs/polyphony/04-validation.md).
+    """
+    rng = np.random.default_rng(seed)
+    t = np.arange(n)
+    emissions = 80.0 * (1.0 - 0.01 * t) + rng.normal(0, 1.5, n)
+    gdp = 100.0 + rng.normal(0, 0.6, n)  # independent of emissions/carbon price
+    return Dataset(
+        name="synthetic-decoupled",
+        series={"emissions": np.clip(emissions, 0, None), "gdp": gdp},
+        synthetic=True,
+        note="SYNTHETIC negative control — GDP independent of emissions (no coupling).",
+        meta={"carbon_price": carbon_price, "seed": seed, "coupling": False},
+    )
+
+
 def load(name: str = "synthetic") -> Dataset:
     """Load dataset ``name`` from datasets/ if a CSV exists, else the synthetic fallback."""
     path = DATASETS / f"{name}.csv"

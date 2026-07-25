@@ -17,12 +17,12 @@ from ..core.provenance import Provenance
 
 
 class EquilibriumEconomy:
-    name = "cge"
-    version = "0.1-reduced"
-    paradigm = "equilibrium"
-    engines = ("market", "calibration")
-    provides = ("gdp", "demand")
-    requires = ("energy_cost", "damage_frac")
+    name: str = "cge"
+    version: str = "0.1-reduced"
+    paradigm: str = "equilibrium"
+    engines: tuple[str, ...] = ("market", "calibration")
+    provides: tuple[str, ...] = ("gdp", "demand")
+    requires: tuple[str, ...] = ("energy_cost", "damage_frac")
 
     BASE_GDP = 100.0
     BASE_COST = 25.0

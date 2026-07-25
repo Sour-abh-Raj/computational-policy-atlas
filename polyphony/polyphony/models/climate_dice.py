@@ -18,12 +18,12 @@ from ..core.provenance import Provenance
 
 
 class ReducedFormClimate:
-    name = "dice"
-    version = "0.1-reduced"
-    paradigm = "optimization"  # DICE is optimal-control; here we run its climate core forward
-    engines = ("climate", "integration")
-    provides = ("temperature", "damage_frac")
-    requires = ("emissions",)
+    name: str = "dice"
+    version: str = "0.1-reduced"
+    paradigm: str = "optimization"  # DICE is optimal-control; here its climate core runs forward
+    engines: tuple[str, ...] = ("climate", "integration")
+    provides: tuple[str, ...] = ("temperature", "damage_frac")
+    requires: tuple[str, ...] = ("emissions",)
 
     DAMAGE_COEFF = 0.005  # damage_frac = coeff * T^2  (~2% of GDP at T=2°C)
     MAX_DAMAGE = 0.9

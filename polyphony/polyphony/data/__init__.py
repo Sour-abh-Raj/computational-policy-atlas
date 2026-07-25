@@ -5,13 +5,14 @@ Prefers real CSVs dropped in ``polyphony/data/datasets/`` (documented schema); f
 (World Bank GDP, Our World in Data CO₂, IEA energy balances) is tracked as a GitHub issue.
 """
 
-from .loaders import Dataset, load, synthetic_policy_series
+from .loaders import Dataset, load, synthetic_decoupled_series, synthetic_policy_series
 from .splits import Split, time_blocked_split, walk_forward
 
 __all__ = [
     "Dataset",
     "load",
     "synthetic_policy_series",
+    "synthetic_decoupled_series",
     "Split",
     "time_blocked_split",
     "walk_forward",

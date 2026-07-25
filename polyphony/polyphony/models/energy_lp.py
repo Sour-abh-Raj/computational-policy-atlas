@@ -18,12 +18,12 @@ from ..core.provenance import Provenance
 
 
 class ReducedFormEnergy:
-    name = "energy"
-    version = "0.1-reduced"
-    paradigm = "optimization"
-    engines = ("energy-dispatch", "technology-adoption")
-    provides = ("energy_cost", "emissions")
-    requires = ("demand",)
+    name: str = "energy"
+    version: str = "0.1-reduced"
+    paradigm: str = "optimization"
+    engines: tuple[str, ...] = ("energy-dispatch", "technology-adoption")
+    provides: tuple[str, ...] = ("energy_cost", "emissions")
+    requires: tuple[str, ...] = ("demand",)
 
     C_FOSSIL_BASE = 20.0
     C_CLEAN = 35.0
