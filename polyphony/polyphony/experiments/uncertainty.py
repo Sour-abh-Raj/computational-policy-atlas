@@ -23,14 +23,15 @@ def ensemble_gdp_tracks(
     tcre_mean: float = 0.001,
     tcre_sd: float = 0.0003,
     seed: int = 0,
+    coupled: bool = True,
 ) -> np.ndarray:
-    """(steps, members) ensemble of coupled GDP tracks from sampled dials."""
+    """(steps, members) ensemble of GDP tracks from sampled dials (coupled or economy-only)."""
     rng = np.random.default_rng(seed)
     cols = []
     for _ in range(members):
         c = float(max(0.0, rng.normal(cp, cp_sd)))
         tc = float(np.clip(rng.normal(tcre_mean, tcre_sd), 0.0, 0.01))
-        cols.append(gdp_track(c, steps, coupled=True, tcre=tc))
+        cols.append(gdp_track(c, steps, coupled=coupled, tcre=tc))
     return np.stack(cols, axis=1)
 
 

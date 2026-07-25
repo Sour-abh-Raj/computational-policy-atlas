@@ -65,15 +65,48 @@ not.** The break is a hard gate — no skill claim, and no trusted champion, unt
 **real data** (issue #9) closes the gap. Exactly the kind of self-inflicted failure Polyphony is
 built to surface rather than paper over.
 
+## Scored tournament (CRPS/PIT) & calibration — Round 3
+
+The tournament now scores the **parametric ensemble distribution** (`experiments/scored.py`), not just
+a point track:
+
+- **CRPS synergy holds on the proper score:** coupled ensemble **CRPS ≈ 7.9 < 10.2** economy-only ⇒ the
+  coupling helps on a *probabilistic* metric, not only on point MASE.
+- **PIT reveals mis-calibration:** mean PIT ≈ 0 — the ensemble sits **below** the target (biased low, and
+  too narrow). Reported, not hidden; the distribution is not yet trustworthy even where the mean helps.
+- **Calibration partly lifts the skill gate:** an affine level fit on the **train block only** drops the
+  coupled mean's held-out **MASE from ≈ 8.0 to ≈ 0.61 — now below 1, i.e. it beats naive** on the
+  synthetic target. Honest caveats: (a) **synthetic** data (real is #9); (b) calibration fixes *level*,
+  not the mis-calibrated *distribution* (PIT); (c) a genuine skill claim still needs real data. So the
+  Red-Team naive break is **partly addressed** (point skill after calibration) but **not closed**.
+
+## Welfare frontier — values change the recommendation (the altruism payoff)
+
+`experiments/welfare_frontier.py` maps coupled-ensemble outcomes across candidate carbon prices into
+welfare `PolicyOutcome`s (a stylized 3-group consumption distribution net of a quadratic **abatement
+cost**, plus emissions and welfare-equivalent climate risk), and ranks them under different value dials:
+
+| Value stance | Recommended carbon price |
+|--------------|--------------------------|
+| Utilitarian | **50** |
+| Prioritarian (η=1) | **50** |
+| Rawlsian + tail-averse | **100** |
+
+The recommendation **changes with the values**: a Rawlsian who is tail-averse to climate risk accepts a
+higher near-term abatement cost for a safer world, where a utilitarian does not. This is the point of the
+[Welfare/Equity engine](../patterns/welfare-equity-engine.md) — the choice of values is **surfaced**, not
+hidden in a single welfare number. (Numbers are illustrative — reduced-form outcomes + a stylized
+incidence/abatement assumption — but the *mechanism* is the deliverable.)
+
 ## Honesty-debt register (tracked to close)
 
 | Debt | Status | Tracked by |
 |------|--------|-----------|
 | Real historical datasets | network-blocked; synthetic fallback | issue #9 |
-| Model calibration (real levels) | **now the top gate** — champion loses to naive without it | (opens when #9 lands) |
-| Welfare/equity engine (values dial) | ✅ **built** (`engines/welfare.py`): EDE-SWF, Pareto frontier, EVPI; fed back as atlas engine #17 | issue #4 |
-| Predictive distributions → CRPS/PIT in tournament | **ensemble + CRPS/PIT now wired** (`experiments/uncertainty.py`); enters scored tournament next | blueprint §6 |
-| Red-team attack on the champion | ✅ done — champion **broken by naive baseline** (recorded) | blueprint §7 |
+| Model calibration (real levels) | affine calibration now beats naive **on synthetic** (MASE 0.61); real-level calibration still pending | (opens when #9 lands) |
+| Welfare/equity engine (values dial) | ✅ **built + integrated** — frontier over policies; recommendation changes with values | issue #4 |
+| Predictive distributions → CRPS/PIT in tournament | ✅ **scored** (`experiments/scored.py`): CRPS synergy holds; **PIT ≈ 0 ⇒ ensemble mis-calibrated** (open) | blueprint §6 |
+| Red-team attack on the champion | ✅ done — broken by naive; **partly addressed** by calibration (synthetic only) | blueprint §7 |
 
 ## Next
 

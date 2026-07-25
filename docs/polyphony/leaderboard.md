@@ -55,6 +55,18 @@ baseline; on absolute skill the reduced-form champion is **worse than naive**. S
 claim** yet: the synergy *method* is validated, the *champion* is not. This break feeds back as a
 hard gate — calibration + real data (issue #9) are prerequisites before any champion can be trusted.
 
+## Round 3 — probabilistic scoring (CRPS/PIT) + calibration
+
+| Question | Metric | coupled | economy-only | Synergy | Note |
+|---|---|---:|---:|:---:|---|
+| GDP distribution, synthetic-policy | **CRPS** (held-out) | **7.9** | 10.2 | **+2.3 keep** | coupling helps on the *proper* score, not just MASE |
+| GDP mean track, after affine calibration | **MASE** (held-out) | **0.61** | — | — | **beats naive** (<1) *on synthetic*; PIT≈0 ⇒ distribution still mis-calibrated |
+
+The naive-baseline break (Round 2) is **partly addressed**: after train-block calibration the coupled
+mean beats naive on the synthetic target — but this is synthetic, and PIT shows the *distribution* is
+biased low. Not a general skill claim; real data (#9) remains the gate. See
+[04-validation](04-validation.md).
+
 ## Standing champions
 
 | Question / slice | Champion | Beat | On (data, split) | Synergy vs sum-of-parts | Red-team | Ref |

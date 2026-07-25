@@ -169,6 +169,25 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
   - **Honesty:** welfare numbers are **illustrative** (reduced-form outcomes) — the contribution is the
     *machinery of honesty* (values as dials, trade-offs on a frontier, EVPI), not a calibrated welfare
     figure. CRPS/PIT into the *scored* tournament and calibration-on-real-data remain open (bound by #9).
-  - **Next (Iter 08):** wire **CRPS/PIT into the scored tournament** (score the parametric ensemble
-    distribution, not just point MASE) and integrate the welfare engine into the slice (score policies
-    across the disagreement set → frontier); keep pressing the **skill gate** (calibration; real data #9).
+- **Iter 08 — 📊 Probabilistic scoring + ⚖️ welfare frontier + calibration lifts (part of) the skill gate.**
+  - **CRPS/PIT scored tournament** (`experiments/scored.py`, `uncertainty.ensemble_gdp_tracks` now
+    coupled/economy-only): scores the **ensemble distribution**. **CRPS synergy holds** — coupled
+    **7.9 < 10.2** economy-only (coupling helps on the *proper* score, not just MASE). **PIT ≈ 0**
+    honestly flags the ensemble is **biased low / mis-calibrated**.
+  - **Calibration partly addresses the naive break:** affine level fit on the **train block only** drops
+    the coupled mean's held-out **MASE ≈ 8.0 → 0.61 (beats naive, <1)** on the synthetic target — a real
+    held-out improvement, but **synthetic-only** and it does not fix the distribution (PIT). Red-Team
+    naive break now **partly addressed, not closed**.
+  - **Welfare frontier integrated** (`experiments/welfare_frontier.py`): coupled outcomes across
+    candidate carbon prices → `PolicyOutcome`s (stylized 3-group consumption net of a quadratic
+    **abatement cost**, + emissions + welfare-equivalent climate risk) → **Pareto frontier** + rankings.
+    **The recommendation changes with the values:** utilitarian & prioritarian → **cp=50**, Rawlsian +
+    tail-averse → **cp=100**. The altruism payoff: values are *surfaced*, not hidden in one number.
+  - **Tests:** +4 (CRPS synergy + PIT range; calibration reduces error & beats naive on synthetic;
+    frontier non-empty & values change the recommendation; tail-averse never picks the dirtiest policy)
+    → **47 pass.** Gates green: `pytest` (47) · `ruff` · `mypy` (31 files) · graph 0-dangling ·
+    `mkdocs --strict`. Leaderboard Round 3 + 04-validation updated.
+  - **Next (Iter 09):** fix ensemble **calibration/sharpness** so PIT is uniform (widen/de-bias the
+    predictive distribution) and re-score CRPS/PIT; keep pressing real data (#9). Then resume **breadth**
+    — a second synergy loop (Land⇄Climate⇄Water⇄Food #6 or Macro⇄Health #8) with its own tournament +
+    red team, feeding new adapters back to the atlas graph.
