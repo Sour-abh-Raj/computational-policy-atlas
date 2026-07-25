@@ -105,7 +105,8 @@ incidence/abatement assumption — but the *mechanism* is the deliverable.)
 | Real historical datasets | network-blocked; synthetic fallback | issue #9 |
 | Model calibration (real levels) | affine calibration now beats naive **on synthetic** (MASE 0.61); real-level calibration still pending | (opens when #9 lands) |
 | Welfare/equity engine (values dial) | ✅ **built + integrated** — frontier over policies; recommendation changes with values | issue #4 |
-| Predictive distributions → CRPS/PIT in tournament | ✅ **scored** (`experiments/scored.py`): CRPS synergy holds; **PIT ≈ 0 ⇒ ensemble mis-calibrated** (open) | blueprint §6 |
+| Predictive distributions → CRPS/PIT in tournament | ✅ **scored + calibrated** — `calibrate_ensemble` de-bias+widen ⇒ CRPS 7.9→0.44, **PIT 0.0→0.39** (near-uniform, synthetic) | blueprint §6 |
+| Second synergy loop (breadth) | ✅ **Macro⇄Health (#8)**: keep in pandemic (coupled MASE 0.95 beats naive), cut on control | blueprint §7 |
 | Red-team attack on the champion | ✅ done — broken by naive; **partly addressed** by calibration (synthetic only) | blueprint §7 |
 
 ## Next

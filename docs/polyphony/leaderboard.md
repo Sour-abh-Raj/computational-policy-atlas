@@ -67,6 +67,24 @@ mean beats naive on the synthetic target — but this is synthetic, and PIT show
 biased low. Not a general skill claim; real data (#9) remains the gate. See
 [04-validation](04-validation.md).
 
+## Round 4 — second synergy loop: Macro ⇄ Health (issue #8)
+
+A **health-coupled** ensemble (reduced-form SIR epidemic + economics voices, so an outbreak drags
+output) vs an **economy-only** baseline, on a two-regime synthetic test (`experiments/macrohealth.py`):
+
+| Question | Metric | coupled | economy-only | Synergy | Verdict |
+|---|---|---:|---:|---:|---|
+| GDP — **pandemic** DGP (SIR-driven dip) | MASE (held-out) | **0.95** | 9.01 | **+8.06** | **keep** |
+| GDP — **no-pandemic** control (GDP ⟂ epidemic) | MASE (held-out) | 32.11 | 0.60 | **−31.51** | **cut** |
+
+The synergy method **replicates in a new domain**: keep when the coupling is real, cut on the control.
+Notably the health-coupled champion **beats naive** (MASE 0.95 < 1) in the pandemic regime — because the
+SIR structure matches the DGP — a sharper result than the energy champion (which lost to naive). Still
+**synthetic** with matched structure; real pandemic-economics data remains out of scope (network-blocked).
+
+**Ensemble calibration fixed:** the energy-slice ensemble was biased low (PIT ≈ 0); after de-biasing +
+widening (`engines.calibrate_ensemble`), **CRPS 7.9 → 0.44** and **PIT 0.0 → 0.39** (near-uniform).
+
 ## Standing champions
 
 | Question / slice | Champion | Beat | On (data, split) | Synergy vs sum-of-parts | Red-team | Ref |

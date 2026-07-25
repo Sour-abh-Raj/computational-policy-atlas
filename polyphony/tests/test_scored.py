@@ -17,3 +17,10 @@ def test_calibration_reduces_error_and_can_beat_naive_on_synthetic():
     assert r.calibrated_mase < r.coupled_mean_mase
     # …and on this synthetic target it drops below 1 (beats naive) — an honest, synthetic-only result
     assert r.beats_naive_after_calibration
+
+
+def test_ensemble_calibration_fixes_the_distribution():
+    r = scored_backtest(synthetic_policy_series(n=40, seed=0, carbon_price=50.0), members=64, seed=0)
+    # de-biasing + widening the ensemble sharpens CRPS and moves PIT from ~0 toward ~0.5
+    assert r.calibrated_crps < r.coupled_crps
+    assert abs(r.calibrated_pit_mean - 0.5) < abs(r.pit_mean - 0.5)

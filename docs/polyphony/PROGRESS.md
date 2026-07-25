@@ -187,7 +187,26 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
     frontier non-empty & values change the recommendation; tail-averse never picks the dirtiest policy)
     → **47 pass.** Gates green: `pytest` (47) · `ruff` · `mypy` (31 files) · graph 0-dangling ·
     `mkdocs --strict`. Leaderboard Round 3 + 04-validation updated.
-  - **Next (Iter 09):** fix ensemble **calibration/sharpness** so PIT is uniform (widen/de-bias the
-    predictive distribution) and re-score CRPS/PIT; keep pressing real data (#9). Then resume **breadth**
-    — a second synergy loop (Land⇄Climate⇄Water⇄Food #6 or Macro⇄Health #8) with its own tournament +
-    red team, feeding new adapters back to the atlas graph.
+- **Iter 09 — 🔧 Ensemble calibration fixed (PIT) + 🦠 second synergy loop Macro⇄Health.**
+  - **Calibration/PIT fix** (`engines.calibrate_ensemble`): de-bias (affine, train-only) **and widen**
+    the predictive ensemble by the residual std. On the energy slice: **CRPS 7.9 → 0.44** and
+    **PIT mean 0.0 → 0.39** (near-uniform) — the over-confident, biased ensemble is now well-calibrated.
+    `scored.py` reports raw vs calibrated CRPS/PIT; tests assert the improvement.
+  - **Macro⇄Health second loop** (issue **#8**): new **`models/epidemic_sir.py`** (`ReducedFormEpidemic`
+    — SIR with r0/npi dials, emitting an `output_penalty`; reduced form of Covasim, cites
+    Kermack–McKendrick / Eichenbaum-Rebelo-Trabandt). Wired `output_penalty` into both economy voices
+    (GDP ×(1−penalty); backward-compatible, default 0 so the energy slice is unchanged).
+    **`experiments/macrohealth.py`** runs the two-regime tournament: **pandemic DGP → coupled MASE 0.95
+    (beats naive!) vs econ-only 9.0 → Δ +8.06 keep**; **no-pandemic control → Δ −31.5 cut**. The method
+    replicates cleanly in a new domain, and here the coupled champion *beats naive* (matched SIR
+    structure) — a sharper result than the energy champion.
+  - **Atlas feedback:** the epidemic voice is a reduced form of existing nodes
+    ([Covasim](../model-families/health/covasim.md)) coupled to [CGE](../model-families/economics/cge.md)/
+    [E3ME](../model-families/economics/e3me.md) — no *new* atlas concept, so the graph is unchanged
+    (still 165 nodes / 448 edges, 0-dangling); the coupling is documented as realizing #8.
+  - **Tests:** +5 (epidemic wave + NPI flattens; macro-health keep/cut; champion beats naive in
+    pandemic; ensemble calibration fixes CRPS+PIT) → **52 pass.** Gates green: `pytest` (52) · `ruff` ·
+    `mypy` (33 files) · graph 0-dangling · `mkdocs --strict`. Leaderboard Round 4 + 04-validation updated.
+  - **Next (Iter 10):** add a **red team** for the Macro⇄Health champion (regime change: r0 shift /
+    variant; NPI-policy Lucas critique) + naive baseline; and add a **third** loop (Land⇄Climate⇄Water⇄Food
+    #6) or push **real data (#9)**. Keep pressing toward multi-domain convergence.

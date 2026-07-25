@@ -12,7 +12,7 @@ from dataclasses import dataclass
 
 from ..data.loaders import Dataset
 from ..data.splits import time_blocked_split
-from ..engines.calibration import calibrate_scale_offset, calibrated_track
+from ..engines.calibration import calibrate_ensemble, calibrate_scale_offset, calibrated_track
 from ..eval.metrics import crps_series, mase, pit_values
 from ..tournament.synergy import SynergyResult, measure_synergy
 from .uncertainty import ensemble_gdp_tracks
@@ -27,6 +27,8 @@ class ScoredResult:
     synergy_crps: SynergyResult
     calibrated_mase: float
     beats_naive_after_calibration: bool
+    calibrated_crps: float
+    calibrated_pit_mean: float
 
 
 def scored_backtest(dataset: Dataset, members: int = 64, seed: int = 0) -> ScoredResult:
@@ -51,6 +53,11 @@ def scored_backtest(dataset: Dataset, members: int = 64, seed: int = 0) -> Score
     cal = calibrated_track(coupled_mean, a, b)
     calibrated_mase = mase(y[test], cal[test])
 
+    # Calibrated *ensemble* (de-biased + widened) → CRPS/PIT should be well-calibrated.
+    cal_ens = calibrate_ensemble(coupled, y, train, seed=seed)
+    calibrated_crps = crps_series(cal_ens[test], y[test])
+    calibrated_pit_mean = float(pit_values(cal_ens[test], y[test]).mean())
+
     return ScoredResult(
         coupled_crps=coupled_crps,
         econ_crps=econ_crps,
@@ -59,4 +66,6 @@ def scored_backtest(dataset: Dataset, members: int = 64, seed: int = 0) -> Score
         synergy_crps=synergy,
         calibrated_mase=calibrated_mase,
         beats_naive_after_calibration=calibrated_mase < 1.0,
+        calibrated_crps=calibrated_crps,
+        calibrated_pit_mean=calibrated_pit_mean,
     )

@@ -88,6 +88,36 @@ def synthetic_decoupled_series(n: int = 30, seed: int = 0, carbon_price: float =
     )
 
 
+def synthetic_pandemic_series(n: int = 40, seed: int = 0, r0: float = 2.5) -> Dataset:
+    """Synthetic Macro⇄Health target: GDP dips during an SIR epidemic wave, then recovers.
+
+    Generated with the same reduced-form SIR the epidemic voice uses (so a matching health-coupled
+    predictor *can* track the dip), while an economy-only baseline (flat GDP) cannot. Its negative
+    control is :func:`synthetic_decoupled_series` (GDP independent of the epidemic). SYNTHETIC — proves
+    the coupling machinery, not real pandemic-economics skill.
+    """
+    rng = np.random.default_rng(seed)
+    s, i, r, gamma = 0.999, 0.001, 0.0, 0.2
+    penalty = np.empty(n)
+    infected = np.empty(n)
+    for t in range(n):
+        beta = r0 * gamma
+        new_inf = beta * s * i
+        s = max(s - new_inf, 0.0)
+        i = max(i + new_inf - gamma * i, 0.0)
+        r = r + gamma * i
+        penalty[t] = min(2.0 * i, 0.6)
+        infected[t] = i
+    gdp = 100.0 * (1.0 - penalty) + rng.normal(0, 0.6, n)
+    return Dataset(
+        name="synthetic-pandemic",
+        series={"gdp": gdp, "infected": infected},
+        synthetic=True,
+        note="SYNTHETIC Macro⇄Health target (SIR-driven GDP dip).",
+        meta={"r0": r0, "seed": seed, "coupling": True},
+    )
+
+
 def load(name: str = "synthetic") -> Dataset:
     """Load dataset ``name`` from datasets/ if a CSV exists, else the synthetic fallback."""
     path = DATASETS / f"{name}.csv"

@@ -22,7 +22,7 @@ class EquilibriumEconomy:
     paradigm: str = "equilibrium"
     engines: tuple[str, ...] = ("market", "calibration")
     provides: tuple[str, ...] = ("gdp", "demand")
-    requires: tuple[str, ...] = ("energy_cost", "damage_frac")
+    requires: tuple[str, ...] = ("energy_cost", "damage_frac", "output_penalty")
 
     BASE_GDP = 100.0
     BASE_COST = 25.0
@@ -58,8 +58,10 @@ class EquilibriumEconomy:
     ) -> StepResult:
         ec = inputs.get("energy_cost", self.BASE_COST) or self.BASE_COST
         damage_frac = float(inputs.get("damage_frac", 0.0))
+        output_penalty = float(inputs.get("output_penalty", 0.0))
         gdp = self.BASE_GDP * (1.0 - self.ELASTICITY * (ec - self.BASE_COST) / self.BASE_COST)
-        gdp *= 1.0 - damage_frac  # climate damages reduce output (energy⇄economy⇄climate loop)
+        gdp *= 1.0 - damage_frac  # climate damages (energy⇄economy⇄climate loop)
+        gdp *= 1.0 - output_penalty  # epidemic drag (health⇄macro loop)
         demand = self.DEMAND_BASE * (gdp / self.BASE_GDP)
         prov = Provenance.make(
             model=self.name,

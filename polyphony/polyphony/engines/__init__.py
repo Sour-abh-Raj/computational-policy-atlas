@@ -4,7 +4,7 @@ Currently: the **welfare/equity engine** (the inspectable values dial — issue 
 **calibration** helper. Data-assimilation, surrogate, and ensemble/meta engines follow.
 """
 
-from .calibration import calibrate_scale_offset, calibrated_track
+from .calibration import calibrate_ensemble, calibrate_scale_offset, calibrated_track
 from .welfare import (
     PolicyOutcome,
     WelfareDials,
@@ -31,4 +31,5 @@ __all__ = [
     "value_of_information",
     "calibrate_scale_offset",
     "calibrated_track",
+    "calibrate_ensemble",
 ]
