@@ -178,6 +178,7 @@ nav:
       - polyphony/index.md
       - 00 — Inventory: polyphony/00-inventory.md
       - 01 — Blueprint & Wireframes: polyphony/01-blueprint.md
+      - 02 — Scaffold (core + slice): polyphony/02-scaffold.md
       - Related Work & Positioning: polyphony/related-work.md
       - Leaderboard: polyphony/leaderboard.md
       - PROGRESS (iteration log): polyphony/PROGRESS.md

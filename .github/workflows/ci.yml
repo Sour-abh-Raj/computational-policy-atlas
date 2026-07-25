@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install docs + package (dev)
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install -e "polyphony[dev]"
+
+      - name: Validate knowledge graph (0-dangling gate)
+        run: python tools/validate_graph.py
+
+      - name: Lint (ruff)
+        run: python -m ruff check polyphony
+
+      - name: Type-check (mypy)
+        run: python -m mypy polyphony/polyphony --ignore-missing-imports
+
+      - name: Tests (pytest)
+        run: cd polyphony && python -m pytest -q
+
+      - name: Docs build (mkdocs --strict)
+        run: python -m mkdocs build --strict

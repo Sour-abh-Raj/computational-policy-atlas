@@ -66,9 +66,26 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
   solver in core) and **ADR-0004** (disagreement-preservation is the **default combiner**; BMA and
   skill-weighted averaging are **tournament challengers**, routed per question). Nav + decisions index
   updated; strict build green.
-  - **Next (Iter 03 → Phase 2):** turn the blueprint into code — scaffold
-    `polyphony/polyphony/core/` (`interface.py` common `Model` Protocol, `orchestrator.py`,
-    `combiner.py` with the disagreement index D, `provenance.py`, `dials.py`) with `pytest`/`ruff`/
-    `mypy` green, plus `tools/validate_graph.py` as the 0-dangling gate. Then begin adapters for the
-    **DICE ⇄ energy (reduced-form LP) ⇄ CGE** vertical slice (reduced-form, faithful, fidelity limits
-    stated) and a golden end-to-end coupled-scenario integration test.
+- **Iter 03 — 🎉 Phase 2 scaffold (core + vertical slice), all green.** The blueprint became
+  running code — see **[`02-scaffold.md`](02-scaffold.md)**.
+  - **`polyphony/polyphony/core/`**: `interface.py` (common `Model` `Protocol` state·step·dials·
+    provenance, `conforms()`), `dials.py` (`Dial`/`DialsSpec`, validated inspectable assumptions),
+    `provenance.py` (per-step reproducible record + stable input hash), **`combiner.py`** (the
+    `Disagreement` with the normalized **index D**, skill-weighted mean/sd, and `attribute_to_dial()`
+    explained-fraction — answers never averaged away, per ADR-0004), `orchestrator.py` (recursive
+    lagged coupling bus with **routing** for dynamics + **run-both** recording; validates names/routing).
+  - **`polyphony/polyphony/models/`** — first vertical slice (reduced-form toys, fidelity limits
+    stated, **no** fidelity claim): `energy_lp.py` (logit least-cost tech choice + carbon-price dial),
+    `econ_cge.py` (equilibrium: cost↑→GDP↓), `econ_e3me.py` (disequilibrium: cost↑→GDP↑).
+  - **Golden coupled test** (`tests/test_slice.py`): carbon price loops energy⇄economy; the two econ
+    voices are **run both** and **disagree with opposite sign**; the test asserts disagreement **D grows
+    with policy**, is **attributed to the closure dial** (>0.9), emissions **fall** with the price, and
+    provenance is recorded every step. 15 tests pass.
+  - **Gates green:** `pytest` (15) · `ruff` · `mypy` (11 files) · `tools/validate_graph.py` (164 nodes
+    / 444 edges, 0-dangling) · `mkdocs build --strict`. Added **`.github/workflows/ci.yml`** running all
+    of them on push/PR. Fixed one design bug: dials are a **shared global panel**, so the orchestrator
+    now filters to each voice's declared dials before validating.
+  - **Next (Iter 04):** add a reduced-form **DICE (climate)** voice to close energy⇄economy⇄**climate**
+    (emissions→T→damages→economy); stand up the **data layer** (loaders + time-blocked splits) and
+    **eval metrics** (MAE/MASE, CRPS, calibration/PIT); begin the **tournament** skeleton with the first
+    coupled-vs-sum-of-parts **synergy** stub. Toward Phase 3/4 (compete + validate on real data).
