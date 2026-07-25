@@ -8,8 +8,14 @@ adapters (with stated fidelity limits) and, later, wrapped reference implementat
 replace them in subsequent iterations.
 """
 
+from .climate_dice import ReducedFormClimate
 from .econ_cge import EquilibriumEconomy
 from .econ_e3me import DisequilibriumEconomy
 from .energy_lp import ReducedFormEnergy
 
-__all__ = ["ReducedFormEnergy", "EquilibriumEconomy", "DisequilibriumEconomy"]
+__all__ = [
+    "ReducedFormEnergy",
+    "EquilibriumEconomy",
+    "DisequilibriumEconomy",
+    "ReducedFormClimate",
+]

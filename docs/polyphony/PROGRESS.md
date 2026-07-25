@@ -85,7 +85,32 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
     / 444 edges, 0-dangling) · `mkdocs build --strict`. Added **`.github/workflows/ci.yml`** running all
     of them on push/PR. Fixed one design bug: dials are a **shared global panel**, so the orchestrator
     now filters to each voice's declared dials before validating.
-  - **Next (Iter 04):** add a reduced-form **DICE (climate)** voice to close energy⇄economy⇄**climate**
-    (emissions→T→damages→economy); stand up the **data layer** (loaders + time-blocked splits) and
-    **eval metrics** (MAE/MASE, CRPS, calibration/PIT); begin the **tournament** skeleton with the first
-    coupled-vs-sum-of-parts **synergy** stub. Toward Phase 3/4 (compete + validate on real data).
+- **Iter 04 — Climate loop closed + validation/tournament harness stood up (all green).**
+  - **Climate voice** `models/climate_dice.py` (`ReducedFormClimate`, toy): emissions → carbon
+    stock → **TCRE**-linear temperature → Nordhaus quadratic `damage_frac`; `tcre` dial. Wired
+    `damage_frac` into **both** economy voices (GDP ×(1−damage)), closing
+    energy⇄economy⇄**climate** (backward-compatible: absent climate ⇒ damage 0, the 3-voice slice
+    test is unchanged).
+  - **Data layer** `polyphony/data/`: `splits.py` (`time_blocked_split`, expanding-window
+    `walk_forward` — no shuffling a time series), `loaders.py` (real CSV if present in
+    `datasets/`, else a **clearly-labeled synthetic** fallback), `datasets/README.md` (schema +
+    real-source list). Real data tracked as **issue #9** (logged blocker + workaround).
+  - **Eval metrics** `polyphony/eval/metrics.py`: `mae`, `rmse`, `mase` (Hyndman–Koehler),
+    `crps_ensemble`/`crps_series` (Gneiting–Raftery; reduces to abs-error for a point ensemble,
+    rewards sharp-correct spread), `pit_values` (calibration).
+  - **Tournament** `polyphony/tournament/`: `synergy.py` (**Δ = best-part-error − coupled-error**;
+    >0 ⇒ keep, ≤0 ⇒ cut, "no synergy" publishable), `race.py` (rank by skill − overfit/complexity
+    penalty; penalties can dethrone a bloated candidate), `leaderboard.py` (append-only JSON store +
+    Markdown render).
+  - **Tests:** +13 (climate loop warms & damages, carbon price reduces warming, disagreement
+    survives climate coupling; metrics; synergy keep/cut; race ranking & dethrone; leaderboard
+    round-trip) → **28 pass**. Gates green: `pytest` · `ruff` · `mypy` (21 files) · graph 0-dangling
+    · `mkdocs --strict`.
+  - **Honest status:** the harness is real but runs on a **synthetic** target so far — this proves
+    the *machinery* (backtest → metric → synergy Δ → leaderboard), **not** real-world skill; that
+    awaits real data (#9) and is the Phase 4 deliverable.
+  - **Next (Iter 05):** run the **first real tournament** on the vertical slice — build a coupled
+    predictor vs isolated/sum-of-parts baselines over time-blocked splits, compute **synergy Δ** and
+    **disagreement**, write the first **leaderboard rows** + `03-research.md`/`04-validation.md`, and
+    fetch/commit a small real dataset if network allows (else keep synthetic + #9). Then arm the
+    **Red Team** to attack the first champion.
