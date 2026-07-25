@@ -118,6 +118,40 @@ def synthetic_pandemic_series(n: int = 40, seed: int = 0, r0: float = 2.5) -> Da
     )
 
 
+def synthetic_food_series(n: int = 40, seed: int = 0, carbon_price: float = 0.0) -> Dataset:
+    """Synthetic Land⇄Climate⇄Food target: food price rises as warming cuts crop yield.
+
+    Emissions → cumulative warming → yield loss → higher food price (matched to the reduced-form land
+    voice so a climate-coupled predictor can track it; a climate-blind baseline predicts a flat price).
+    Negative control: :func:`synthetic_flat_food_series`. SYNTHETIC — machinery, not real skill.
+    """
+    rng = np.random.default_rng(seed)
+    t = np.arange(n)
+    emissions = 80.0 * np.exp(-0.02 * carbon_price) * (1.0 - 0.01 * t)
+    temperature = 0.001 * np.cumsum(np.clip(emissions, 0, None))
+    yld = np.clip(1.0 - 0.1 * temperature, 0.2, None)
+    price = 100.0 / yld + rng.normal(0, 0.5, n)
+    return Dataset(
+        name="synthetic-food",
+        series={"food_price": price, "temperature": temperature},
+        synthetic=True,
+        note="SYNTHETIC Land⇄Climate⇄Food target (warming raises food price).",
+        meta={"carbon_price": carbon_price, "seed": seed, "coupling": True},
+    )
+
+
+def synthetic_flat_food_series(n: int = 40, seed: int = 0) -> Dataset:
+    """Negative control for the food loop: food price independent of climate (flat + noise)."""
+    rng = np.random.default_rng(seed)
+    return Dataset(
+        name="synthetic-flat-food",
+        series={"food_price": 100.0 + rng.normal(0, 0.5, n)},
+        synthetic=True,
+        note="SYNTHETIC negative control — food price independent of climate.",
+        meta={"carbon_price": 0.0, "seed": seed, "coupling": False},
+    )
+
+
 def load(name: str = "synthetic") -> Dataset:
     """Load dataset ``name`` from datasets/ if a CSV exists, else the synthetic fallback."""
     path = DATASETS / f"{name}.csv"

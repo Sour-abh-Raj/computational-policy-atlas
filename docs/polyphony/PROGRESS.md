@@ -207,6 +207,23 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
   - **Tests:** +5 (epidemic wave + NPI flattens; macro-health keep/cut; champion beats naive in
     pandemic; ensemble calibration fixes CRPS+PIT) → **52 pass.** Gates green: `pytest` (52) · `ruff` ·
     `mypy` (33 files) · graph 0-dangling · `mkdocs --strict`. Leaderboard Round 4 + 04-validation updated.
-  - **Next (Iter 10):** add a **red team** for the Macro⇄Health champion (regime change: r0 shift /
-    variant; NPI-policy Lucas critique) + naive baseline; and add a **third** loop (Land⇄Climate⇄Water⇄Food
-    #6) or push **real data (#9)**. Keep pressing toward multi-domain convergence.
+- **Iter 10 — 🔴 Macro⇄Health red team (r0 fragility found) + 🌾 third synergy loop (Land⇄Climate⇄Food).**
+  - **Macro⇄Health Red Team** (`experiments/redteam_macrohealth.py`): r0 distribution-shift, a variant
+    **Lucas-critique** regime change, extreme dials, and the naive baseline. **Champion BROKEN by
+    `r0_shift`** — at r0 4.0 while assuming 2.5, the coupling does far worse than economy-only (coupled
+    MASE 30.3 vs 4.1, Δ −26). Survives variant-Lucas, edge dials, and naive. Honest finding: **the health
+    coupling helps only when r0 is well-estimated**; the fix it points to is **r0 assimilation**.
+  - **Third synergy loop — Land⇄Climate⇄Food (issue #6):** new **`models/land_crop.py`**
+    (`ReducedFormLand`: warming → yield loss → food price; dial `yield_sensitivity`; reduced form of
+    GLOBIOM + DSSAT). **`experiments/landfood.py`** two-regime tournament: **warming → coupled MASE 6.68
+    vs land-only 30.56 → Δ +23.9 keep**; **flat control → Δ −112 cut**. The synergy method now replicates
+    across **three independent domains** (energy, health, land).
+  - **Atlas feedback:** land voice is a reduced form of existing nodes (GLOBIOM/DSSAT) coupled to climate
+    — no new atlas concept; graph unchanged (165/448, 0-dangling). Real data still network-blocked (#9).
+  - **Tests:** +4 (macro-health red team finds r0 break & survives naive; land price rises with warming;
+    land-food keep/cut) → **56 pass.** Gates green: `pytest` (56) · `ruff` · `mypy` (36 files) ·
+    graph 0-dangling · `mkdocs --strict`. Leaderboard Round 5 + 04-validation updated.
+  - **Next (Iter 11):** address the r0 break — add a small **assimilation** step (estimate r0 from the
+    early observed dip via least-squares) and re-run the Macro⇄Health red team to see if the coupling now
+    survives the shift; and/or add a fourth loop (Urban⇄Transport⇄Energy⇄Health #7). Keep pressing real
+    data (#9). Toward multi-domain convergence + a champion that survives sustained attack.

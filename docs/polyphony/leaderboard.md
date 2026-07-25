@@ -85,6 +85,26 @@ SIR structure matches the DGP — a sharper result than the energy champion (whi
 **Ensemble calibration fixed:** the energy-slice ensemble was biased low (PIT ≈ 0); after de-biasing +
 widening (`engines.calibrate_ensemble`), **CRPS 7.9 → 0.44** and **PIT 0.0 → 0.39** (near-uniform).
 
+## Round 5 — third synergy loop (Land⇄Climate⇄Food) + Macro⇄Health red team
+
+**Land⇄Climate⇄Food (issue #6):** a climate-coupled ensemble (energy + climate + land, so warming
+raises food price) vs a climate-blind land baseline:
+
+| Question | Metric | coupled | land-only | Synergy | Verdict |
+|---|---|---:|---:|---:|---|
+| Food price — **warming** DGP | MASE (held-out) | **6.68** | 30.56 | **+23.9** | **keep** |
+| Food price — **flat** control | MASE (held-out) | 112.9 | 0.81 | **−112.1** | **cut** |
+
+The synergy method now replicates across **three** independent domains (energy, health, land) — keep
+when the coupling is real, cut on the control.
+
+**Macro⇄Health Red Team — champion BROKEN by `r0_shift`.** When the world's reproduction number differs
+from the champion's assumption (r0 4.0 vs assumed 2.5), the health coupling does far *worse* than
+economy-only (coupled MASE 30.3 vs 4.1, Δ −26). It survives a variant Lucas-critique, extreme dials, and
+the naive baseline — but the r0 break is a real finding: **the coupling helps only when the epidemic
+driver is well-estimated**; under distribution shift in r0 it hurts. Feeds back a concrete need — **r0
+assimilation/estimation** before the health coupling can be trusted under shift.
+
 ## Standing champions
 
 | Question / slice | Champion | Beat | On (data, split) | Synergy vs sum-of-parts | Red-team | Ref |
