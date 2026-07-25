@@ -172,6 +172,7 @@ nav:
       - Validation Engine: patterns/validation-engine.md
       - Visualization Engine: patterns/visualization-engine.md
       - Data Pipeline: patterns/data-pipeline.md
+      - "Welfare/Equity Engine (Polyphony)": patterns/welfare-equity-engine.md
   - Knowledge Graph:
       - graph/index.md
   - Polyphony:

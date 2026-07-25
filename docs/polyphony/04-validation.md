@@ -71,7 +71,7 @@ built to surface rather than paper over.
 |------|--------|-----------|
 | Real historical datasets | network-blocked; synthetic fallback | issue #9 |
 | Model calibration (real levels) | **now the top gate** — champion loses to naive without it | (opens when #9 lands) |
-| Welfare/equity engine (values dial) | specified, not built | issue #4 |
+| Welfare/equity engine (values dial) | ✅ **built** (`engines/welfare.py`): EDE-SWF, Pareto frontier, EVPI; fed back as atlas engine #17 | issue #4 |
 | Predictive distributions → CRPS/PIT in tournament | **ensemble + CRPS/PIT now wired** (`experiments/uncertainty.py`); enters scored tournament next | blueprint §6 |
 | Red-team attack on the champion | ✅ done — champion **broken by naive baseline** (recorded) | blueprint §7 |
 

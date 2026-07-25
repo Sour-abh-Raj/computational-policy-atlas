@@ -166,6 +166,7 @@
     {"id": "p-data", "type": "pattern", "label": "Data Pipeline", "page": "patterns/data-pipeline.md"},
     {"id": "p-land", "type": "pattern", "label": "Land Engine", "page": "patterns/land-engine.md"},
     {"id": "p-techadopt", "type": "pattern", "label": "Technology-Adoption Engine", "page": "patterns/technology-adoption-engine.md"},
+    {"id": "p-welfare", "type": "pattern", "label": "Welfare/Equity Engine", "page": "patterns/welfare-equity-engine.md"},
 
     {"id": "d-climate", "type": "domain", "label": "Climate IAM"},
     {"id": "d-energy", "type": "domain", "label": "Energy Systems"},
@@ -532,6 +533,10 @@
     {"s": "page", "r": "solves_with", "t": "bayesian-decision"},
     {"s": "digital-twins", "r": "led_by", "t": "grieves"},
     {"s": "digital-twins", "r": "solves_with", "t": "bayesian-estimation"},
+    {"s": "p-welfare", "r": "grounded_in", "t": "multiobjective"},
+    {"s": "p-welfare", "r": "grounded_in", "t": "bayesian-decision"},
+    {"s": "envisage", "r": "exhibits_pattern", "t": "p-welfare"},
+    {"s": "e3me", "r": "exhibits_pattern", "t": "p-welfare"},
     {"s": "bottom-up", "r": "realized_by", "t": "globiom"},
     {"s": "p-land", "r": "grounded_in", "t": "lp"},
     {"s": "gcam", "r": "developed_at", "t": "pnnl"},

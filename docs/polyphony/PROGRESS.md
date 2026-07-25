@@ -148,7 +148,27 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
   - **Tests:** +6 (red-team runs all 5 attacks; edge dials finite; naive-baseline breaks; champion
     doesn't survive; ensemble shape/spread; CRPS centered<biased) → **35 pass.** Gates green:
     `pytest` (35) · `ruff` · `mypy` (26 files) · graph 0-dangling · `mkdocs --strict`.
-  - **Next (Iter 07):** priority is **skill, not more couplings**. Land a real/calibrated dataset
-    (#9), **calibrate** the reduced-form voices to real levels, re-run the tournament scoring
-    **CRPS/PIT** alongside MASE, and only then re-arm the Red Team. Also begin the **welfare/equity
-    engine** (#4) so policies are scored on the inspectable values dial (Pareto frontier + VoI).
+- **Iter 07 — ⚖️ Welfare/Equity engine (the values dial) + calibration; fed back to the atlas.**
+  - **`polyphony/engines/welfare.py`** (issue **#4** closed) — the inspectable values dial: value-neutral
+    axes (efficiency, −Gini equity, −climate-risk) with a **Pareto frontier** (`pareto_frontier`), a
+    value-laden **social welfare function** via the **equally-distributed-equivalent** (Atkinson: η=0
+    utilitarian → η→∞ Rawlsian, η>0 prioritarian) with dials {SWF, inequality aversion, discount rate,
+    tail-risk aversion}, and **value of information** (`value_of_information` = EVPI ≥ 0). Cites
+    Atkinson (1970), Fleurbaey (2010), Adler (2019).
+  - **`polyphony/engines/calibration.py`** — honest affine level/scale fit (train-block only, no
+    leakage) to remove bias; docstring states plainly it **does not manufacture skill** (a poor
+    structure calibrated to the right level can still lose to naive).
+  - **Fed back to the atlas** (scope-is-a-floor): new **Welfare/Equity Engine** pattern page
+    (`docs/patterns/welfare-equity-engine.md`, the **17th** engine, marked Polyphony-contributed) +
+    graph node `p-welfare` with edges (grounded_in multiobjective & bayesian-decision; ENVISAGE & E3ME
+    exhibit it). Graph now **165 nodes / 448 edges, 0-dangling**; graph/index stats + nav updated.
+  - **Tests:** +8 (EDE endpoints; Gini/Atkinson; SWF ranking flips utilitarian→Rawlsian; Pareto drops
+    dominated; tail-risk widens safety margin; EVPI ≥0 and >0 when it matters; calibration recovers an
+    affine map and reduces bias) → **43 pass.** Gates green: `pytest` (43) · `ruff` · `mypy` (29 files)
+    · graph 0-dangling · `mkdocs --strict`.
+  - **Honesty:** welfare numbers are **illustrative** (reduced-form outcomes) — the contribution is the
+    *machinery of honesty* (values as dials, trade-offs on a frontier, EVPI), not a calibrated welfare
+    figure. CRPS/PIT into the *scored* tournament and calibration-on-real-data remain open (bound by #9).
+  - **Next (Iter 08):** wire **CRPS/PIT into the scored tournament** (score the parametric ensemble
+    distribution, not just point MASE) and integrate the welfare engine into the slice (score policies
+    across the disagreement set → frontier); keep pressing the **skill gate** (calibration; real data #9).
