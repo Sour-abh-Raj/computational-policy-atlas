@@ -240,6 +240,37 @@ cannot resolve a feedback loop in one pass, and the guard enforces it. The land 
 diagnosis (Iter 14) is consistent: there the lag was removable but a *voice/DGP structural* mismatch
 remained; here the epidemic voice matches its DGP, so no-lag resolution alone yields the sharpening.
 
+## Round 12 — real-data cut is robust to the honest driver (observed temperature, not just CO₂)
+
+A fair objection to Round 10: cumulative CO₂ is a crude warming proxy; maybe **observed temperature**
+would carry real signal. Round 12 fetches the **Hadley Centre global temperature anomaly** (OWID) and
+re-runs the real tournament with temperature as the damage driver (58 overlapping years, 1960–2017):
+
+| Driver | econ-only MASE | coupled MASE | placebo (t^1.5) MASE | beats placebo? | Verdict |
+|---|---:|---:|---:|:---:|---|
+| cumulative CO₂ | 2.94 | 1.18 | **0.87** | ❌ | **cut** |
+| **observed temperature** | 2.94 | 1.07 | **0.87** | ❌ | **cut** |
+
+**The cut is robust.** Even with the *direct, observed* warming signal, the climate→GDP damage coupling
+beats the plain trend but **still fails the placebo** — a meaningless time trend predicts held-out GDP
+better than either climate driver, and neither beats naive. So the earlier verdict was **not** an
+artifact of the CO₂ proxy: on aggregate historical data, this reduced-form climate→GDP channel carries
+**no placebo-surviving predictive signal**. (Again: not a claim climate doesn't affect the economy — a
+statement about *this reduced-form channel on this aggregate series*.)
+
+## Convergence status (per domain)
+
+| Domain / coupling | Verdict | Champion survives | Real-data status | Open, improvable gap? |
+|---|---|---|---|---|
+| **Macro⇄Health** | **KEEP** | ✅ full red-team round (assimilation + no-lag, MASE 0.10) | underpowered (≈1 pandemic event in annual data) | no — no more real events to fetch |
+| **Energy⇄climate⇄economy** | **CUT** | n/a (level artifact; genuinely cyclic) | — | no |
+| **Land⇄Climate⇄Food** | **KEEP, not skillful** | coupling real (Δ+15) but loses to naive (voice/DGP structure) | **not yet tested on real data** | **yes — fetch real food-price + temperature** |
+| **Real climate→GDP** | **CUT** | fails placebo under both CO₂ and temperature | ✅ tested (58 yrs) | no |
+
+**Not DONE yet:** the Land⇄Climate⇄Food domain still has an **improvable gap** — a placebo-controlled
+test on *real* food-price + temperature data (e.g. FAO food price index). The loop continues until that
+gap is closed or shown unimprovable.
+
 ## Standing champions
 
 | Question / slice | Champion | Beat | On (data, split) | Synergy vs sum-of-parts | Red-team | Ref |

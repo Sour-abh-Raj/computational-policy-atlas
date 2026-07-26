@@ -74,10 +74,16 @@ def _damage_fit_predict(y: np.ndarray, trend: np.ndarray, reg: np.ndarray, tr: s
     return trend * (1.0 - k * reg**2), k
 
 
-def run_real_tournament(test_frac: float = 0.3) -> RealResult:
+def run_real_tournament(test_frac: float = 0.3, driver: str = "cum_co2") -> RealResult:
+    """Real climate→GDP tournament. ``driver`` selects the damage driver:
+
+    - ``"cum_co2"`` — cumulative CO₂ (a proxy for warming);
+    - ``"temp"`` — the **observed** global temperature anomaly (the more honest, direct driver).
+
+    Both are scored against the economy-only trend AND a generic-time-trend **placebo**.
+    """
     ds = load_real_gdp_co2()
     y = ds.column("gdp")
-    cum = ds.column("cum_co2")
     n = len(y)
     t = np.arange(n, dtype=float)
     split = time_blocked_split(n, test_frac)
@@ -87,11 +93,16 @@ def run_real_tournament(test_frac: float = 0.3) -> RealResult:
     a, b = _fit_log_trend(y[tr], t[tr])
     trend = np.exp(a * t + b)
 
-    # coupled: trend × climate-damage from observed cumulative CO₂ (normalized by last TRAIN value).
-    cum_norm = cum / cum[tr][-1]
-    coupled, k = _damage_fit_predict(y, trend, cum_norm, tr)
+    # coupled: trend × climate-damage from the chosen observed driver (normalized by last TRAIN value).
+    if driver == "temp":
+        raw_driver = ds.column("temp") - float(ds.column("temp")[tr][0])  # anomaly rebased to train start
+    else:
+        raw_driver = ds.column("cum_co2")
+    scale = raw_driver[tr][-1] if raw_driver[tr][-1] != 0 else 1.0
+    driver_norm = raw_driver / scale
+    coupled, k = _damage_fit_predict(y, trend, driver_norm, tr)
 
-    # placebo control: the SAME damage form driven by a generic monotone time trend, not CO₂.
+    # placebo control: the SAME damage form driven by a generic monotone time trend, not the climate driver.
     t_norm = (t / t[tr][-1]) ** 1.5
     placebo, _ = _damage_fit_predict(y, trend, t_norm, tr)
 

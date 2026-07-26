@@ -6,8 +6,11 @@ Two public, citable sources, merged by year:
   (https://api.worldbank.org).
 - **Global CO₂ emissions** (Mt CO₂/yr): Our World in Data ``owid-co2-data.csv``, ``country == "World"``
   (https://github.com/owid/co2-data).
+- **Global temperature anomaly** (°C vs pre-industrial, Hadley Centre median): OWID datasets mirror
+  (https://github.com/owid/owid-datasets). The *observed* warming — a more honest damage driver than
+  cumulative CO₂.
 
-Writes ``datasets/real_gdp_co2.csv`` (columns: ``year``, ``gdp``, ``co2``). Network egress is
+Writes ``datasets/real_gdp_co2.csv`` (columns: ``year``, ``gdp``, ``co2``, ``temp``). Network egress is
 intermittent in the loop; run this when it is up. The loader falls back to synthetic when the CSV is
 absent, so the suite never depends on the network.
 """
@@ -23,6 +26,11 @@ import urllib.request
 DATASETS = pathlib.Path(__file__).resolve().parent / "datasets"
 WB_GDP = "https://api.worldbank.org/v2/country/WLD/indicator/NY.GDP.MKTP.KD?format=json&per_page=400"
 OWID_CO2 = "https://raw.githubusercontent.com/owid/co2-data/master/owid-co2-data.csv"
+OWID_TEMP = (
+    "https://raw.githubusercontent.com/owid/owid-datasets/master/datasets/"
+    "Global%20average%20temperature%20anomaly%20-%20Hadley%20Centre/"
+    "Global%20average%20temperature%20anomaly%20-%20Hadley%20Centre.csv"
+)
 
 
 def _fetch_worldbank_gdp() -> dict[int, float]:
@@ -38,19 +46,28 @@ def _fetch_owid_co2() -> dict[int, float]:
     return {int(row["year"]): float(row["co2"]) for row in reader if row["country"] == "World" and row["co2"]}
 
 
+def _fetch_owid_temp() -> dict[int, float]:
+    with urllib.request.urlopen(OWID_TEMP, timeout=30) as r:
+        text = r.read().decode("utf-8")
+    reader = csv.DictReader(io.StringIO(text))
+    col = (reader.fieldnames or [])[-1]  # the anomaly column
+    return {int(row["Year"]): float(row[col]) for row in reader if row["Entity"] == "median" and row[col]}
+
+
 def fetch(out: pathlib.Path | None = None) -> pathlib.Path:
     """Fetch, align on common years, and write the merged CSV. Returns the path written."""
     gdp = _fetch_worldbank_gdp()
     co2 = _fetch_owid_co2()
-    years = sorted(set(gdp) & set(co2))
+    temp = _fetch_owid_temp()
+    years = sorted(set(gdp) & set(co2) & set(temp))
     if len(years) < 20:
         raise RuntimeError(f"too few overlapping years ({len(years)}); refusing to write")
     out = out or (DATASETS / "real_gdp_co2.csv")
     with out.open("w", newline="", encoding="utf-8") as fh:
         w = csv.writer(fh)
-        w.writerow(["year", "gdp", "co2"])
+        w.writerow(["year", "gdp", "co2", "temp"])
         for y in years:
-            w.writerow([y, gdp[y], co2[y]])
+            w.writerow([y, gdp[y], co2[y], temp[y]])
     return out
 
 

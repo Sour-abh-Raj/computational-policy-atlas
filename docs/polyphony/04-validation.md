@@ -196,6 +196,7 @@ placebo. The placebo control is now a **standing requirement** for real-data cou
 |------|--------|-----------|
 | Real historical datasets | ✅ **LANDED** — World Bank GDP + OWID CO₂ (65 yrs) fetched & merged; first real tournament run | issue #9 |
 | Real-data climate→GDP synergy | ✅ **CUT** — beats trend (Δ+1.70) but **fails a placebo control** (t^1.5 does better); no genuine signal, loses to naive | issue #9 |
+| Real-data cut robustness | ✅ **holds with OBSERVED temperature** (Hadley), not just the CO₂ proxy — coupled 1.07 vs placebo 0.87 ⇒ still cut; not a proxy artifact | issue #9 |
 | Model calibration (real levels) | affine calibration now beats naive **on synthetic** (MASE 0.61); real-level calibration still pending | (opens when #9 lands) |
 | Welfare/equity engine (values dial) | ✅ **built + integrated** — frontier over policies; recommendation changes with values | issue #4 |
 | Predictive distributions → CRPS/PIT in tournament | ✅ **scored + calibrated** — `calibrate_ensemble` de-bias+widen ⇒ CRPS 7.9→0.44, **PIT 0.0→0.39** (near-uniform, synthetic) | blueprint §6 |

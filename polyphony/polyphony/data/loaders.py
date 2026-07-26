@@ -181,10 +181,17 @@ def load_real_gdp_co2() -> Dataset:
     gdp = raw.column("gdp")
     co2 = raw.column("co2")
     gdp_index = 100.0 * gdp / gdp[0]
+    series = {"year": raw.column("year"), "gdp": gdp_index, "co2": co2, "cum_co2": np.cumsum(co2)}
+    if "temp" in raw.series:  # observed global temperature anomaly (°C), if the CSV carries it
+        series["temp"] = raw.column("temp")
     return Dataset(
         name="real-gdp-co2",
-        series={"year": raw.column("year"), "gdp": gdp_index, "co2": co2, "cum_co2": np.cumsum(co2)},
+        series=series,
         synthetic=False,
-        note="REAL World Bank world GDP (NY.GDP.MKTP.KD) + OWID global CO₂, merged by year; GDP indexed to 100.",
-        meta={"source_gdp": "World Bank WLD NY.GDP.MKTP.KD", "source_co2": "OWID owid-co2-data World"},
+        note="REAL World Bank world GDP (NY.GDP.MKTP.KD) + OWID global CO₂ + Hadley temperature anomaly, merged by year; GDP indexed to 100.",
+        meta={
+            "source_gdp": "World Bank WLD NY.GDP.MKTP.KD",
+            "source_co2": "OWID owid-co2-data World",
+            "source_temp": "OWID Hadley Centre global temperature anomaly (median)",
+        },
     )

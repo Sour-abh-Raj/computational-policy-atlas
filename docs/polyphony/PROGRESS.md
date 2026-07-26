@@ -370,3 +370,25 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
     MASE 0.10) and survives a full round — that domain is **converged**. Remaining: keep pressing a
     placebo-controlled REAL test where power exists; optionally the fourth loop (#7). Convergence overall
     = every kept coupling has a champion surviving red-team + placebo on real data.
+- **Iter 17 — 🌡️ Powered real test with OBSERVED temperature: the climate→GDP cut is robust (not a CO₂-proxy artifact) + per-domain convergence status.**
+  - **Fetched real temperature** (Hadley Centre global anomaly, via OWID) into `fetch_real.py`; merged
+    with GDP+CO₂ (**58 years, 1960–2017**; CSV re-committed) and exposed as `temp` in `load_real_gdp_co2`.
+  - **Re-ran the real climate→GDP tournament with a `driver` option** (`experiments/real_tournament.py`):
+    driven by **observed temperature** the coupling scores MASE **1.07** vs placebo **0.87** ⇒ still
+    **CUT** (fails the placebo, loses to naive) — same verdict as the cum-CO₂ proxy (1.18 vs 0.87). **The
+    real-data cut is robust to the honest, direct driver**: a meaningless time trend predicts held-out
+    GDP better than either climate driver. Not a claim climate doesn't affect the economy — a statement
+    about *this reduced-form channel on this aggregate series*.
+  - **Convergence status (per domain)** added to the leaderboard: Macro⇄Health **KEEP** (converged, real
+    test underpowered — no more events to fetch); Energy **CUT**; Land⇄Climate⇄Food **KEEP-not-skillful**
+    with an **open, improvable gap** (a real food-price + temperature test); Real climate→GDP **CUT**
+    (robust). **Not DONE** — the land real-data gap keeps the loop going.
+  - **Atlas feedback:** reuses Data Pipeline + Validation engines — no new atlas node; graph unchanged
+    (**166 nodes / 452 edges, 0-dangling**).
+  - **Tests:** parametrized the real-placebo test over both drivers (cum_co2, temp) + temp-carried-through
+    assertion -> **70 pass.** Gates green: `pytest` (70) - `ruff` - `mypy` (40 files) - graph 0-dangling -
+    `mkdocs --strict`. Leaderboard Round 12 + convergence status + 04-validation updated.
+  - **Next (Iter 18):** close the one open gap — fetch **real food-price (e.g. FAO Food Price Index) +
+    temperature** and run a placebo-controlled real Land⇄Climate⇄Food tournament; report keep/cut. If the
+    fetch is blocked, log + work around. When no domain has an improvable gap, STOP with a convergence
+    summary (per the DONE criterion).
