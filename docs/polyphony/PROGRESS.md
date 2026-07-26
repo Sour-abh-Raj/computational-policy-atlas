@@ -296,3 +296,29 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
     (#9). Optionally add the fourth loop (Urban-Transport-Energy-Health #7) with a cited reason + test +
     atlas feedback. Convergence = a champion that survives sustained attack in every domain where a
     coupling is kept.
+- **Iter 14 — 🔎 Why the land champion loses to naive: not parameter, not lag, but structure (+ a real method fix, ADR-0005).**
+  - **Attribution by elimination** of the kept-but-not-skillful land champion (Iter 13, calibrated MASE 2.87):
+    - **Not a parameter error:** generalized the assimilation engine to the land domain
+      (`engines.assimilation.estimate_yield_sensitivity`) — it recovers the **true 0.1** across seeds. The
+      driver was already right, so assimilation is not the missing piece here (unlike Macro-Health's r0).
+    - **Not (only) the coupling lag:** the energy->climate->land chain is **acyclic**, so it can be
+      resolved **contemporaneously** in topological order within the step — new opt-in
+      `Orchestrator.run(resolve="contemporaneous")` (**ADR-0005**; lag stays the default, raises on a
+      cycle). This removes the spurious one-step-per-hop delay (first-step price now moves with warming),
+      yet calibrated **MASE stays ~2.87**.
+    - **It is a structural voice/DGP mismatch:** with parameter and lag removed, the residual is the
+      reduced-form energy/climate voices' **tail dynamics** vs the target — closable only with **real
+      data / richer voices (issue #9)**, NOT by tuning the toy voices to their own synthetic generator
+      (refused as dishonest skill-inflation).
+  - **Method banked regardless:** contemporaneous resolution is a correct, general orchestrator
+    improvement for acyclic couplings (topological sort; cycle-guarded), retained via ADR-0005.
+  - **Atlas feedback:** reuses Assimilation + Integration engines — no new atlas node; graph unchanged
+    (**166 nodes / 452 edges, 0-dangling**). New **ADR-0005** added to decisions index + nav.
+  - **Tests:** +3 (contemporaneous removes the lag; rejects a cyclic routing; land naive-gap is not a
+    parameter error) -> **65 pass.** Gates green: `pytest` (65) - `ruff` - `mypy` (38 files) - graph
+    0-dangling - `mkdocs --strict`. Leaderboard Round 9 + 04-validation + ADR-0005 updated.
+  - **Next (Iter 15):** two kept couplings remain honestly bounded by real data (#9) — keep retrying the
+    fetch; if still blocked, either (a) add the fourth loop (Urban-Transport-Energy-Health #7) with a
+    cited reason + test + atlas feedback, or (b) offer contemporaneous resolution to the energy/Macro
+    slices (both acyclic) and re-measure. Convergence = a champion surviving sustained attack in every
+    domain where a coupling is kept.

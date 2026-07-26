@@ -8,6 +8,7 @@ measures synergy on a coupled (warming) DGP vs a flat negative control. Third do
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import Literal
 
 import numpy as np
 
@@ -21,7 +22,15 @@ from ..models import ReducedFormClimate, ReducedFormEnergy, ReducedFormLand
 from ..tournament.synergy import SynergyResult, measure_synergy
 
 
-def foodprice_track(cp: float, steps: int, coupled: bool, tcre: float = 0.001) -> np.ndarray:
+def foodprice_track(
+    cp: float,
+    steps: int,
+    coupled: bool,
+    tcre: float = 0.001,
+    resolve: str = "lagged",
+) -> np.ndarray:
+    """Predicted food-price track. ``resolve='contemporaneous'`` solves the acyclic
+    energy→climate→land chain in topological order within the step (no coupling lag; ADR-0005)."""
     if coupled:
         voices: list[Model] = [ReducedFormEnergy(), ReducedFormClimate(), ReducedFormLand()]
         routing = {
@@ -35,7 +44,8 @@ def foodprice_track(cp: float, steps: int, coupled: bool, tcre: float = 0.001) -
         voices = [ReducedFormLand()]
         routing = {"food_price": "land"}
     dials = {"carbon_price": cp, "tcre": tcre, "yield_sensitivity": 0.1}
-    r = Orchestrator(voices, routing).run(steps=steps, dials=dials, seed=1)
+    mode: Literal["lagged", "contemporaneous"] = "contemporaneous" if resolve == "contemporaneous" else "lagged"
+    r = Orchestrator(voices, routing).run(steps=steps, dials=dials, seed=1, resolve=mode)
     return np.array([r.history[t]["food_price"] for t in range(steps)], float)
 
 

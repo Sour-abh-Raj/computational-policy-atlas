@@ -16,6 +16,7 @@ Format: [Michael Nygard's ADR style](https://github.com/joelparkerhenderson/arch
 | [0002](0002-repo-layout-and-trunk-based-flow.md) | Repo layout, docs surface, and the autonomous-loop trunk-based flow | Accepted |
 | [0003](0003-tech-stack.md) | Tech stack for the Polyphony package | Accepted |
 | [0004](0004-disagreement-preservation-vs-bma.md) | Disagreement-preservation as default combiner; BMA as a challenger | Accepted |
+| [0005](0005-contemporaneous-resolution-of-acyclic-couplings.md) | Resolve acyclic couplings contemporaneously; lag only to break cycles | Accepted |
 
 !!! note "Why ADRs matter here"
     Polyphony selects by **adversarial competition**, extends the atlas freely, and makes

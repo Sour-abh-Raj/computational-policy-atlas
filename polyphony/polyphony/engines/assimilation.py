@@ -35,3 +35,30 @@ def estimate_r0(observed: ArrayLike, train: slice, lo: float = 0.5, hi: float = 
     candidates = np.linspace(lo, hi, steps)
     errors = [float(np.mean((y[train] - sir_output_track(float(c), len(y))[train]) ** 2)) for c in candidates]
     return float(candidates[int(np.argmin(errors))])
+
+
+def foodprice_track(ys: float, n: int, cp: float = 0.0, tcre: float = 0.001, base: float = 100.0) -> np.ndarray:
+    """Food-price track implied by yield_sensitivity ``ys`` (matches the land voice's closed form)."""
+    cum = 0.0
+    out = np.empty(n)
+    for t in range(n):
+        cum += max(base * 0.8 * np.exp(-0.02 * cp) * (1.0 - 0.01 * t), 0.0)
+        yld = max(1.0 - ys * tcre * cum, 0.2)
+        out[t] = base / yld
+    return out
+
+
+def estimate_yield_sensitivity(
+    observed: ArrayLike, train: slice, lo: float = 0.02, hi: float = 0.5, steps: int = 49
+) -> float:
+    """Assimilate the crop-yield sensitivity from the early food-price rise (train block, least-squares).
+
+    The second-domain generalization of :func:`estimate_r0`: same grid least-squares over a closed-form
+    forward map. On the synthetic Land⇄Climate⇄Food target it recovers the true 0.1 — evidence that the
+    land champion's residual naive-loss is **not** a parameter error (it is a coupling-lag / voice-tail
+    structural mismatch; see leaderboard Round 9), so assimilation is not the missing piece there.
+    """
+    y = np.asarray(observed, float)
+    candidates = np.linspace(lo, hi, steps)
+    errors = [float(np.mean((y[train] - foodprice_track(float(c), len(y))[train]) ** 2)) for c in candidates]
+    return float(candidates[int(np.argmin(errors))])

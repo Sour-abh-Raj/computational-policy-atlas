@@ -193,4 +193,5 @@ nav:
       - "ADR-0002 — Repo layout & flow": decisions/0002-repo-layout-and-trunk-based-flow.md
       - "ADR-0003 — Tech stack": decisions/0003-tech-stack.md
       - "ADR-0004 — Disagreement vs BMA": decisions/0004-disagreement-preservation-vs-bma.md
+      - "ADR-0005 — Contemporaneous coupling resolution": decisions/0005-contemporaneous-resolution-of-acyclic-couplings.md
   - Bibliography: bibliography.md

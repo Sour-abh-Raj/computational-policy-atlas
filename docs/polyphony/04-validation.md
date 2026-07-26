@@ -152,6 +152,26 @@ they do or don't earn their keep — energy **cut** (level artifact), land **kep
 Macro⇄Health **kept and skillful** (with assimilation). Honesty means reporting all three verdicts, not
 just the flattering one.
 
+## Why the land champion loses to naive — a precise attribution (Round 9)
+
+The land coupling is real (Δ +15 survives a fair calibration) but the champion loses to naive. Iter 14
+narrows *why* by elimination, and refuses the dishonest shortcut:
+
+- **Not a parameter error.** `engines.assimilation.estimate_yield_sensitivity` recovers the true yield
+  sensitivity (**0.1**) from the early food-price rise, across seeds — the driver was already right.
+- **Not (only) the coupling lag.** The energy→climate→land chain is *acyclic*, so it can be resolved
+  **contemporaneously** in topological order within the step ([ADR-0005](../decisions/0005-contemporaneous-resolution-of-acyclic-couplings.md),
+  `Orchestrator.run(resolve="contemporaneous")`). This removes the spurious one-step-per-hop delay — the
+  first-step price now moves with warming — yet the calibrated champion's **MASE stays ≈ 2.87**.
+- **It is a structural voice/DGP mismatch.** With parameter and lag removed, the residual is the
+  reduced-form energy/climate voices' **tail dynamics** diverging from the target — closable with **real
+  data / richer voices (issue #9)**, not by tuning the toy voices to their own synthetic generator (that
+  would be **dishonest skill-inflation**, and we refuse it).
+
+This is the honesty machinery working as intended: rather than a single "it doesn't beat naive," we now
+have an **attributed** diagnosis, and a general method improvement (contemporaneous resolution) banked
+regardless. Contrast Macro⇄Health, where the driver *was* mis-estimated and assimilation closed the gap.
+
 ## Honesty-debt register (tracked to close)
 
 | Debt | Status | Tracked by |
@@ -163,6 +183,7 @@ just the flattering one.
 | Second synergy loop (breadth) | ✅ **Macro⇄Health (#8)**: keep in pandemic (coupled MASE 0.95 beats naive), cut on control | blueprint §7 |
 | Third synergy loop (breadth) | ✅ **Land⇄Climate⇄Food (#6)**: keep under warming (+23.9), cut on flat control | blueprint §7 |
 | Land⇄Climate⇄Food red team | ✅ **coupling REAL** — survives fair calibration (Δ +15.2) & policy shift; but champion **loses to naive** (MASE 2.87) ⇒ keep, no skill claim yet | issue #9 |
+| Land naive-loss attribution | ✅ **diagnosed** — not parameter (assimilation recovers ys=0.1), not lag (contemporaneous resolution, ADR-0005); residual is voice/DGP structure ⇒ needs real data | issue #9 |
 | Macro⇄Health red team | ✅ **r0_shift CLOSED by assimilation** — `estimate_r0` recovers r0=4.0 from the early dip; coupled MASE 30.3→**1.03**, Δ −26.2→**+3.09**; champion survives the full round (synthetic) | issue #1 |
 | Red-team attack on the champion | ✅ done — broken by naive; **resolved honestly**: calibration lets it beat naive but a *fair* baseline calibration cuts the energy synergy to Δ≈0 (level artifact) | blueprint §7 |
 | Energy synergy after fair calibration | ✅ **cut** — coupled ties calibrated economy-only (Δ≈−0.01, 8 seeds); published "no synergy" (contrast Macro⇄Health keep) | issue #9 |

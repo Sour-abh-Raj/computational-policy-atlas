@@ -180,6 +180,24 @@ or doesn't earn its keep:
 | Land⇄Climate⇄Food | Δ ≈ **+15** (robust) | ❌ | **keep**, but not yet skillful |
 | Macro⇄Health (+ assimilation) | Δ ≈ **+3.1** (robust) | ✅ (MASE 1.03) | **keep** — real **and** skillful |
 
+## Round 9 — why the land champion loses to naive: not parameter, not lag, but structure
+
+Iter 13 left the land coupling **kept but not skillful** (calibrated MASE 2.87 > 1). Round 9 rules out
+the two easy explanations, honestly, one at a time:
+
+| Candidate cause | Test | Result |
+|---|---|---|
+| **Wrong driver** (mis-estimated parameter) | assimilate it: `estimate_yield_sensitivity` grid-fits the yield sensitivity from the early food-price rise | **ruled out** — recovers the true **0.1** across seeds; the parameter was already right |
+| **Coupling lag** (Gauss–Seidel one-step delay per hop) | resolve the acyclic energy→climate→land chain **contemporaneously** (topological order within the step; [ADR-0005](../decisions/0005-contemporaneous-resolution-of-acyclic-couplings.md)) | **ruled out as the fix** — the early track now moves with warming (no lag), but calibrated **MASE stays ≈ 2.87** |
+| **Structural voice/DGP mismatch** (reduced-form tail dynamics) | (remaining) | **the actual cause** — the toy energy/climate voices' tail slope differs from the target; closable only with **real data / richer voices** (issue #9) |
+
+**Verdict: the land coupling stays KEPT; the champion stays honestly *not* naive-beating.** We refuse
+the one move that *would* force MASE < 1 — tuning the reduced-form voices to their own synthetic
+generator — because that manufactures skill that would not survive real data. The **contemporaneous
+solver is retained** as a correct, general improvement (ADR-0005), and the residual is now **precisely
+attributed**. This is the difference from Macro⇄Health, where the driver genuinely *was* mis-estimated
+(r0 shift) and assimilation therefore *did* close the gap.
+
 ## Standing champions
 
 | Question / slice | Champion | Beat | On (data, split) | Synergy vs sum-of-parts | Red-team | Ref |
