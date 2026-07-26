@@ -392,3 +392,26 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
     temperature** and run a placebo-controlled real Land⇄Climate⇄Food tournament; report keep/cut. If the
     fetch is blocked, log + work around. When no domain has an improvable gap, STOP with a convergence
     summary (per the DONE criterion).
+- **Iter 18 — 🌾 Real Land⇄Climate⇄Food test CLOSES the last gap: CUT on real data (fails placebo AND wrong sign) ⇒ CONVERGENCE DONE.**
+  - **Fetched real cereal yield** (World Bank `AG.YLD.CREL.KG`, kg/ha) + reused Hadley temperature into a
+    new `datasets/real_food.csv` (57 yrs, 1961–2017) via `fetch_real.fetch_food` + loader `load_real_food`.
+  - **Real Land⇄Climate⇄Food tournament** (`experiments/real_land_tournament.py`) tests the land voice's
+    warming→lower-yield→higher-price mechanism on real yield. **CUT on two independent grounds:**
+    (a) the warming-damage term beats the trend (MASE 4.94→2.21) but **ties a t^1.5 placebo** (2.20) ⇒
+    fails the placebo; (b) **corr(temp, real yield) = +0.90 — the WRONG sign**: real yields rose *with*
+    warming because the **Green Revolution** (fertilizer/irrigation/genetics) dominated. A coupling
+    confidently **kept on synthetic** data (Δ+15) is **falsified by real data** — the sharpest possible
+    demonstration that synthetic validation is never enough.
+  - **CONVERGENCE (DONE):** every kept coupling survives its full round (Macro⇄Health; real test
+    unimprovable on annual data) and every other candidate is **cut with a recorded, falsifiable reason**
+    — three on *real* data under a placebo control. No domain retains an open, improvable gap. Convergence
+    table on the leaderboard marked DONE.
+  - **Atlas feedback:** reuses Data Pipeline + Validation engines — no new atlas node; graph unchanged
+    (**166 nodes / 452 edges, 0-dangling**).
+  - **Tests:** +2 (real food dataset loads & is non-synthetic; real land coupling is cut — fails placebo
+    + wrong sign) -> **72 pass.** Gates green: `pytest` (72) - `ruff` - `mypy` (41 files) - graph
+    0-dangling - `mkdocs --strict`. Leaderboard Round 13 + convergence table + 04-validation updated.
+  - **Loop STOPPED** at convergence: one coupling earned its keep and survives sustained attack
+    (Macro⇄Health); three were cut — and the cuts, especially the real-data sign reversal in
+    Land⇄Climate⇄Food, are the most valuable results, because they are the ones a single-confident-number
+    simulator would have hidden. Restartable anytime with /loop (e.g. to add the fourth domain #7).

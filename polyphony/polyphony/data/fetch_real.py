@@ -54,6 +54,15 @@ def _fetch_owid_temp() -> dict[int, float]:
     return {int(row["Year"]): float(row[col]) for row in reader if row["Entity"] == "median" and row[col]}
 
 
+WB_CEREAL_YIELD = "https://api.worldbank.org/v2/country/WLD/indicator/AG.YLD.CREL.KG?format=json&per_page=400"
+
+
+def _fetch_worldbank_cereal_yield() -> dict[int, float]:
+    with urllib.request.urlopen(WB_CEREAL_YIELD, timeout=30) as r:
+        payload = json.load(r)
+    return {int(x["date"]): float(x["value"]) for x in payload[1] if x["value"] is not None}
+
+
 def fetch(out: pathlib.Path | None = None) -> pathlib.Path:
     """Fetch, align on common years, and write the merged CSV. Returns the path written."""
     gdp = _fetch_worldbank_gdp()
@@ -71,6 +80,29 @@ def fetch(out: pathlib.Path | None = None) -> pathlib.Path:
     return out
 
 
+def fetch_food(out: pathlib.Path | None = None) -> pathlib.Path:
+    """Fetch the REAL Land⇄Climate⇄Food series: World Bank cereal yield (kg/ha) + Hadley temperature.
+
+    Writes ``datasets/real_food.csv`` (columns: ``year``, ``cereal_yield``, ``temp``). Cereal yield is
+    the quantity the land voice models (warming → lower yield → higher food price); this lets us test
+    that mechanism on real data with a placebo control.
+    """
+    yield_ = _fetch_worldbank_cereal_yield()
+    temp = _fetch_owid_temp()
+    years = sorted(set(yield_) & set(temp))
+    if len(years) < 20:
+        raise RuntimeError(f"too few overlapping years ({len(years)}); refusing to write")
+    out = out or (DATASETS / "real_food.csv")
+    with out.open("w", newline="", encoding="utf-8") as fh:
+        w = csv.writer(fh)
+        w.writerow(["year", "cereal_yield", "temp"])
+        for y in years:
+            w.writerow([y, yield_[y], temp[y]])
+    return out
+
+
 if __name__ == "__main__":
     path = fetch()
     print(f"wrote {path} ({sum(1 for _ in path.open()) - 1} rows)")
+    food = fetch_food()
+    print(f"wrote {food} ({sum(1 for _ in food.open()) - 1} rows)")

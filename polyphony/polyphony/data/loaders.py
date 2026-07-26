@@ -161,11 +161,35 @@ def load(name: str = "synthetic") -> Dataset:
 
 
 REAL_GDP_CO2 = DATASETS / "real_gdp_co2.csv"
+REAL_FOOD = DATASETS / "real_food.csv"
 
 
 def has_real_gdp_co2() -> bool:
     """Whether the real World-Bank-GDP / OWID-CO₂ CSV has been fetched (``data.fetch_real``)."""
     return REAL_GDP_CO2.exists()
+
+
+def has_real_food() -> bool:
+    """Whether the real cereal-yield / temperature CSV has been fetched (``data.fetch_real.fetch_food``)."""
+    return REAL_FOOD.exists()
+
+
+def load_real_food() -> Dataset:
+    """REAL Land⇄Climate⇄Food series: World Bank world cereal yield (kg/ha) + Hadley temperature anomaly.
+
+    The land voice models warming → lower yield → higher food price; this is the real yield to test that
+    mechanism against, with a placebo control. Raises if the CSV is absent — call ``data.fetch_real``.
+    """
+    if not REAL_FOOD.exists():
+        raise FileNotFoundError(f"{REAL_FOOD} missing; run `python -m polyphony.data.fetch_real`")
+    raw = load_csv(REAL_FOOD)
+    return Dataset(
+        name="real-food",
+        series={"year": raw.column("year"), "cereal_yield": raw.column("cereal_yield"), "temp": raw.column("temp")},
+        synthetic=False,
+        note="REAL World Bank world cereal yield (AG.YLD.CREL.KG) + OWID Hadley temperature anomaly, merged by year.",
+        meta={"source_yield": "World Bank WLD AG.YLD.CREL.KG", "source_temp": "OWID Hadley Centre temperature anomaly (median)"},
+    )
 
 
 def load_real_gdp_co2() -> Dataset:

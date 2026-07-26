@@ -258,18 +258,43 @@ artifact of the CO₂ proxy: on aggregate historical data, this reduced-form cli
 **no placebo-surviving predictive signal**. (Again: not a claim climate doesn't affect the economy — a
 statement about *this reduced-form channel on this aggregate series*.)
 
-## Convergence status (per domain)
+## Round 13 — the Land⇄Climate⇄Food coupling is CUT on real data (fails placebo AND has the wrong sign)
 
-| Domain / coupling | Verdict | Champion survives | Real-data status | Open, improvable gap? |
-|---|---|---|---|---|
-| **Macro⇄Health** | **KEEP** | ✅ full red-team round (assimilation + no-lag, MASE 0.10) | underpowered (≈1 pandemic event in annual data) | no — no more real events to fetch |
-| **Energy⇄climate⇄economy** | **CUT** | n/a (level artifact; genuinely cyclic) | — | no |
-| **Land⇄Climate⇄Food** | **KEEP, not skillful** | coupling real (Δ+15) but loses to naive (voice/DGP structure) | **not yet tested on real data** | **yes — fetch real food-price + temperature** |
-| **Real climate→GDP** | **CUT** | fails placebo under both CO₂ and temperature | ✅ tested (58 yrs) | no |
+The last open gap: the coupling *kept* on synthetic data (Δ+15) tested on **real** World Bank world
+cereal yield (kg/ha) vs the observed Hadley temperature anomaly (57 years, 1961–2017;
+`experiments/real_land_tournament.py`). The land voice assumes **warming → lower yield → higher price**.
 
-**Not DONE yet:** the Land⇄Climate⇄Food domain still has an **improvable gap** — a placebo-controlled
-test on *real* food-price + temperature data (e.g. FAO food price index). The loop continues until that
-gap is closed or shown unimprovable.
+| Check | Result |
+|---|---|
+| econ-only trend MASE | 4.94 |
+| coupled (warming-damage) MASE | 2.21 — beats the trend (Δ +2.73) |
+| **placebo (t^1.5) MASE** | **2.20 — as good ⇒ fails the placebo** |
+| **corr(temp, real yield)** | **+0.90 — the WRONG sign** |
+
+**Verdict: CUT, on two independent grounds.** The warming term beats the plain trend but **ties a
+meaningless placebo**, and — more tellingly — real cereal yield rose **with** warming (corr +0.90),
+because the **Green Revolution** (fertilizer, irrigation, genetics) dominated historical yield. The
+reduced-form warming→lower-yield mechanism therefore has the **wrong sign** on aggregate data. A
+coupling that was confidently *kept* on synthetic data is **falsified by real data** — the single
+sharpest demonstration of why synthetic validation is never enough, and why real data + a placebo +
+a sign check are the gates that matter.
+
+## Convergence status (per domain) — DONE
+
+| Domain / coupling | Verdict | Real-data status | Open, improvable gap? |
+|---|---|---|---|
+| **Macro⇄Health** | **KEEP** (survives full red-team round; assimilation + no-lag, MASE 0.10) | underpowered (≈1 pandemic event in annual data) | **no** — no more real events to fetch |
+| **Energy⇄climate⇄economy** | **CUT** (level artifact; genuinely cyclic) | — | **no** |
+| **Land⇄Climate⇄Food** | **CUT on real data** (fails placebo + wrong sign); coupling was real only on synthetic | ✅ tested (57 yrs cereal yield) | **no** |
+| **Real climate→GDP** | **CUT** (fails placebo under both CO₂ and temperature) | ✅ tested (58 yrs) | **no** |
+
+**DONE.** Every kept coupling has a champion that survives its full tournament round (Macro⇄Health, with
+its real-data test shown *unimprovable* on available annual data), and every other candidate coupling is
+**cut with a recorded, falsifiable reason** — three of them on *real* data under a placebo control. No
+domain retains an open, improvable gap. The honest headline of the whole exercise: **one coupling
+earned its keep and survives sustained attack; three were cut — and the cuts, especially the real-data
+sign reversal in Land⇄Climate⇄Food, are the most valuable results, because they are the ones a
+single-confident-number simulator would have hidden.**
 
 ## Standing champions
 
