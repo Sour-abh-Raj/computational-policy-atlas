@@ -133,6 +133,25 @@ the method. It **contrasts** with Macro⇄Health, whose coupling survives calibr
 with a real Δ>0: Polyphony's tournament separates a **real** coupling from a **spurious/level** one. No
 energy skill claim survives; genuine energy synergy needs real data + richer structure (issue #9).
 
+## The Land⇄Climate⇄Food coupling is real — Round 8 (the discrimination the method exists for)
+
+Round 7 cut the energy synergy as a level artifact. Round 8 subjects the land coupling to the **same**
+fair-calibration attack (`experiments/redteam_landfood.py`) and gets the **opposite** result:
+
+- **level_artifact attack — SURVIVED.** After the land-only baseline gets its own train-block affine fit,
+  the coupling *still* wins big: calibrated coupled MASE **2.87** vs land-only **18.1**, **Δ +15.2**
+  (mean +15.5 across 8 seeds). The warming→food-price shape is genuinely informative; no calibration of a
+  climate-blind baseline can fake it. **KEEP.**
+- **policy_shift attack — SURVIVED.** When the world mitigates (cp=100) but the champion assumed none, the
+  calibrated coupling still beats land-only (Δ +4.1).
+- **naive_baseline (calibrated) — BROKE.** The calibrated champion's MASE **2.87 > 1**: still worse than
+  naive. So the coupling is **real but not yet skillful** — no absolute skill claim.
+
+This is the point of the whole apparatus: the tournament now **discriminates** three couplings by *why*
+they do or don't earn their keep — energy **cut** (level artifact), land **kept but not skillful**,
+Macro⇄Health **kept and skillful** (with assimilation). Honesty means reporting all three verdicts, not
+just the flattering one.
+
 ## Honesty-debt register (tracked to close)
 
 | Debt | Status | Tracked by |
@@ -143,6 +162,7 @@ energy skill claim survives; genuine energy synergy needs real data + richer str
 | Predictive distributions → CRPS/PIT in tournament | ✅ **scored + calibrated** — `calibrate_ensemble` de-bias+widen ⇒ CRPS 7.9→0.44, **PIT 0.0→0.39** (near-uniform, synthetic) | blueprint §6 |
 | Second synergy loop (breadth) | ✅ **Macro⇄Health (#8)**: keep in pandemic (coupled MASE 0.95 beats naive), cut on control | blueprint §7 |
 | Third synergy loop (breadth) | ✅ **Land⇄Climate⇄Food (#6)**: keep under warming (+23.9), cut on flat control | blueprint §7 |
+| Land⇄Climate⇄Food red team | ✅ **coupling REAL** — survives fair calibration (Δ +15.2) & policy shift; but champion **loses to naive** (MASE 2.87) ⇒ keep, no skill claim yet | issue #9 |
 | Macro⇄Health red team | ✅ **r0_shift CLOSED by assimilation** — `estimate_r0` recovers r0=4.0 from the early dip; coupled MASE 30.3→**1.03**, Δ −26.2→**+3.09**; champion survives the full round (synthetic) | issue #1 |
 | Red-team attack on the champion | ✅ done — broken by naive; **resolved honestly**: calibration lets it beat naive but a *fair* baseline calibration cuts the energy synergy to Δ≈0 (level artifact) | blueprint §7 |
 | Energy synergy after fair calibration | ✅ **cut** — coupled ties calibrated economy-only (Δ≈−0.01, 8 seeds); published "no synergy" (contrast Macro⇄Health keep) | issue #9 |

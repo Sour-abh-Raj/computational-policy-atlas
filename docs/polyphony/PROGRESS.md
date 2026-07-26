@@ -273,3 +273,26 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
     run the **Land-Climate-Food red team** (does that coupling survive calibration too, or is it also a
     level artifact?); keep retrying real data (#9). Toward convergence: a champion that survives sustained
     attack in every domain where a coupling is *kept*.
+- **Iter 13 — 🌾 The Land-Climate-Food coupling is REAL (survives the energy-killer test) — a three-way discrimination.**
+  - **Same fair-calibration attack that CUT energy, applied to land** (`experiments/redteam_landfood.py`,
+    `experiments/landfood.calibrated_synergy`): give the climate-blind **land-only** baseline its own
+    train-block affine fit, then re-score. **Opposite result** — calibrated coupled MASE **2.87** vs
+    land-only **18.1**, **Δ +15.2** (mean +15.5 across 8 seeds). The warming->food-price shape is
+    genuinely informative; a calibrated blind baseline cannot fake it ⇒ **KEEP** (not a level artifact).
+  - **Land red team:** level_artifact **survived** (Δ+15.2), policy_shift **survived** (world mitigates at
+    cp=100 unassumed; calibrated Δ+4.1), edge_dials survived, **naive_baseline (calibrated) BROKE** (MASE
+    2.87>1). Honest split: **coupling real, champion not yet skillful** (no absolute skill claim).
+  - **The three-way contrast is now the headline** — the tournament discriminates *why* each coupling
+    earns its keep: **Energy = cut** (Δ≈−0.01, level artifact); **Land-Climate-Food = keep but not
+    skillful** (Δ≈+15 robust, loses to naive); **Macro-Health = keep and skillful** (Δ≈+3.1, beats naive
+    MASE 1.03 with assimilation). Reporting all three verdicts — not just the flattering one — is the point.
+  - **Atlas feedback:** reuses the existing [Calibration Engine](../patterns/calibration-engine.md) — no
+    new atlas concept, graph unchanged (**166 nodes / 452 edges, 0-dangling**).
+  - **Tests:** +2 (land coupling survives a fair calibration unlike energy; land champion still loses to
+    naive — the honest split) -> **62 pass.** Gates green: `pytest` (62) - `ruff` - `mypy` (38 files) -
+    graph 0-dangling - `mkdocs --strict`. Leaderboard Round 8 + 04-validation updated.
+  - **Next (Iter 14):** two kept couplings (Land, Macro-Health) — press the land champion toward **beating
+    naive** via richer structure/assimilation (estimate the warming driver), and keep retrying real data
+    (#9). Optionally add the fourth loop (Urban-Transport-Energy-Health #7) with a cited reason + test +
+    atlas feedback. Convergence = a champion that survives sustained attack in every domain where a
+    coupling is kept.

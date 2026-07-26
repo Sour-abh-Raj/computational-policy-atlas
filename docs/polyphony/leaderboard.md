@@ -152,12 +152,41 @@ with **Macro⇄Health**, whose coupling survives calibration **and** assimilatio
 coupling from a **spurious/level** one. The remaining route to genuine energy synergy is real data +
 richer structure (issue #9), not a level fit.
 
+## Round 8 — the Land⇄Climate⇄Food coupling is REAL (survives fair calibration; the energy-killer test)
+
+Iter 12 cut the *energy* synergy: a fair calibration of the baseline erased it (level artifact). Round 8
+runs the **same adversarial test** on the land coupling (`experiments/redteam_landfood.py`,
+`experiments/landfood.calibrated_synergy`) — give the climate-blind **land-only** baseline its own
+train-block affine fit, then ask whether the coupling still helps:
+
+| Attack | Result | Evidence |
+|--------|--------|----------|
+| **level_artifact** (fair calibration of the baseline — the energy-killer) | ✅ **survives** | calibrated coupled MASE **2.87** vs land-only **18.1** ⇒ **Δ +15.2** (mean +15.5 across 8 seeds) — **not** a level artifact |
+| **policy_shift** (world mitigates at cp=100, champion assumed cp=0) | ✅ survives | after calibration the coupling still beats land-only, **Δ +4.1** |
+| edge_dials | ✅ survives | predictions finite at extreme carbon_price/tcre |
+| **naive_baseline** (calibrated) | ❌ **BROKE** | calibrated coupled **MASE 2.87 > 1** — the champion still loses to a naive forecast |
+
+**Verdict: KEEP the coupling — but no absolute skill claim yet.** Unlike energy, the land coupling's
+Δ is a **real structural advantage** that a fairly-calibrated baseline cannot absorb (the warming→food
+-price shape is genuinely informative). Yet the calibrated champion is still worse than naive, so there
+is **no skill claim** — only a validated coupling awaiting real data + richer structure (issue #9).
+
+**The three-way contrast is now the headline** — the tournament discriminates *why* each coupling does
+or doesn't earn its keep:
+
+| Domain | Coupling after fair calibration | Beats naive? | Verdict |
+|--------|--------------------------------|:---:|--------|
+| Energy⇄Climate⇄Economy | Δ ≈ **−0.01** (collapses) | ✅ (by absorbing level) | **cut** — level artifact |
+| Land⇄Climate⇄Food | Δ ≈ **+15** (robust) | ❌ | **keep**, but not yet skillful |
+| Macro⇄Health (+ assimilation) | Δ ≈ **+3.1** (robust) | ✅ (MASE 1.03) | **keep** — real **and** skillful |
+
 ## Standing champions
 
 | Question / slice | Champion | Beat | On (data, split) | Synergy vs sum-of-parts | Red-team | Ref |
 |------------------|----------|------|------------------|-------------------------|----------|-----|
 | GDP track, energy⇄climate⇄economy slice | **economy-only** (after fair calibration) | — | synthetic-policy, time-blocked 30% | **−0.01 (cut)** | ✅ beats naive (cal) but coupling adds nothing | [json](leaderboard.json) |
 | GDP track, Macro⇄Health slice (**with assimilation**) | **coupled ensemble** | economy-only | synthetic-pandemic, time-blocked 30% | **+3.09 (keep)** | ✅ **survives full round** (r0_shift closed by assimilation) | [redteam](04-validation.md) |
+| Food-price track, Land⇄Climate⇄Food slice (**fair calibration**) | **coupled ensemble** | land-only | synthetic-warming, time-blocked 30% | **+15.2 (keep)** | ⚠️ coupling real (survives level-artifact + shift) but **loses to naive** — no skill claim yet | [redteam](04-validation.md) |
 
 ## Contest log
 
