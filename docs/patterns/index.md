@@ -5,14 +5,18 @@ catalogs them as reusable patterns — the raw material for a future integrated
 simulator. Each pattern names its intent, the models that exemplify it, its interface,
 and its trade-offs.
 
-!!! success "All 16 engines detailed"
+!!! success "All 16 core engines detailed — plus 2 Polyphony-contributed engines (18 total)"
     Every pattern in the catalog now has a full page — intent, forces, structure diagram,
     interface, exemplars, trade-offs, and a *lesson for the integrated simulator*. Together
     they form a **reference architecture**: the front-end (Scenario), the three solve
     paradigms (Optimization, Market, Behavior) over a shared Integration/Stock-Flow
     substrate, the domain engines (Climate, Energy Dispatch, Spatial, Land,
     Technology-Adoption), the UQ pair (Sensitivity, Calibration), the policy/quality pair
-    (Policy, Validation), and the infrastructure pair (Visualization, Data Pipeline).
+    (Policy, Validation), and the infrastructure pair (Visualization, Data Pipeline). The
+    **[Polyphony](../polyphony/index.md)** build then contributed two more, each earned by a test:
+    the [Welfare/Equity engine](welfare-equity-engine.md) (values as a dial) and the
+    [Data-Assimilation engine](data-assimilation-engine.md) (estimate parameters from data — added
+    only after it closed a red-team break).
 
 ## The engine catalog
 
@@ -54,6 +58,8 @@ Legend: ✅ detailed page · ⬜ cataloged, page pending
 | **[Data Pipeline](data-pipeline.md)** | Ingest, clean, harmonize, **balance** inputs | SAM build, RES data, synthetic population | ✅ |
 | **[Land Engine](land-engine.md)** | Land-use allocation & competition | GLOBIOM, MAgPIE, IMPACT | ✅ |
 | **[Technology-Adoption Engine](technology-adoption-engine.md)** | Diffusion / logit share / vintage turnover | GCAM, IMAGE, energy models | ✅ |
+| **[Welfare/Equity Engine](welfare-equity-engine.md)** *(Polyphony)* | Objective as an inspectable dial: Pareto frontier + SWF | ENVISAGE, E3ME, DICE discounting | ✅ |
+| **[Data-Assimilation Engine](data-assimilation-engine.md)** *(Polyphony)* | Estimate uncertain parameters from early data, then forecast | Covasim, DSGE, weather DA | ✅ |
 
 ## The recurring meta-pattern
 
@@ -65,8 +71,9 @@ this pattern applies — versus a Behavior/Market-Engine simulation — is a cen
 of the atlas.
 
 !!! note "Status"
-    Patterns are extracted *from* dossiers as they are written — and the catalog is now
-    **complete: 16 of 16**. The last two were unlocked by promoting
+    Patterns are extracted *from* dossiers as they are written — the core catalog is
+    **complete: 16 of 16**, with **2 Polyphony-contributed engines** on top (18 total). The last two
+    core engines were unlocked by promoting
     [GLOBIOM](../model-families/agriculture/globiom.md) (→ Land Engine) and
     [GCAM](../model-families/climate-iam/gcam.md) (→ Technology-Adoption Engine) to Gold. As
     more dossiers reach Gold, existing pattern pages gain referents and cross-links, but the

@@ -11,6 +11,7 @@ import numpy as np
 
 from ..data.loaders import synthetic_pandemic_series
 from ..data.splits import time_blocked_split
+from ..engines.assimilation import estimate_r0
 from ..eval.metrics import mase
 from ..tournament.redteam import AttackResult, RedTeamReport
 from ..tournament.synergy import measure_synergy
@@ -71,10 +72,25 @@ def attack_naive_baseline(n: int = 40, r0: float = 2.5, seed: int = 0) -> Attack
     return AttackResult("naive_baseline", broke=m > 1.0, evidence={"coupled_mase": m}, description="Must beat a naive forecast (MASE<1).")
 
 
-def run_red_team(n: int = 40, seed: int = 0) -> RedTeamReport:
+def attack_r0_shift_assimilated(r0_test: float = 4.0, n: int = 40, seed: int = 0) -> AttackResult:
+    """The SAME r0 shift that broke the champion — but now it ASSIMILATES r0 from early data first."""
+    y = synthetic_pandemic_series(n=n, seed=seed, r0=r0_test).column("gdp")
+    split = time_blocked_split(n)
+    r0_hat = estimate_r0(y, split.train)
+    err_c, err_e, delta = _synergy(y, r0_hat, split.test)
+    return AttackResult(
+        "r0_shift_assimilated", broke=delta <= 0.0,
+        evidence={"r0_test": r0_test, "r0_estimated": r0_hat, "coupled_mase": err_c, "econ_mase": err_e, "synergy_delta": delta},
+        description="Same r0 shift, but the champion assimilates r0 from the early observed dip.",
+    )
+
+
+def run_red_team(n: int = 40, seed: int = 0, assimilate: bool = False) -> RedTeamReport:
+    """Red-team the champion. With ``assimilate=True`` the r0-shift attack estimates r0 from data."""
+    shift = attack_r0_shift_assimilated(n=n, seed=seed) if assimilate else attack_r0_shift(n=n, seed=seed)
     return RedTeamReport(
         attacks=(
-            attack_r0_shift(n=n, seed=seed),
+            shift,
             attack_variant_lucas(n=n, seed=seed),
             attack_edge_dials(),
             attack_naive_baseline(n=n, seed=seed),

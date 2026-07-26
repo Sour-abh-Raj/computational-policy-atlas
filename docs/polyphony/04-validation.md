@@ -98,6 +98,23 @@ higher near-term abatement cost for a safer world, where a utilitarian does not.
 hidden in a single welfare number. (Numbers are illustrative — reduced-form outcomes + a stylized
 incidence/abatement assumption — but the *mechanism* is the deliverable.)
 
+## Assimilation closes the r0-shift break — Round 6 (the digital-twin backbone)
+
+The one outstanding red-team break was the Macro⇄Health `r0_shift`: the champion *assumed* a
+reproduction number and lost badly when the world's r0 differed. The
+[Data-Assimilation engine](../patterns/data-assimilation-engine.md) (`engines/assimilation.py`) fixes
+it by **estimating r0 from the early observed dip on the train block** (grid least-squares over the
+SIR) before forecasting — the model ⇄ **assimilation** ⇄ control limb of the digital twin. Re-running
+the *same* attack **with** assimilation: r0 is recovered as **4.0** (exact), coupled **MASE 30.3 →
+1.03**, synergy **Δ −26.2 → +3.09**, and `run_red_team(assimilate=True).survived` is **True**.
+
+Honest caveats, stated: the data is still **synthetic** (real is #9); assimilation fixes the
+**parameter**, not the coupling **structure**; and the grid estimator is a stand-in for a proper
+Kalman/particle filter. But the claim is narrow and verified: *when the epidemic driver is read off the
+data rather than assumed, the Macro⇄Health coupling survives the full red-team round it previously
+failed.* The break was surfaced, not hidden — and closed by earning a new atlas engine (#18) that
+itself carries a validation test (recovers a known r0 to within 0.5).
+
 ## Honesty-debt register (tracked to close)
 
 | Debt | Status | Tracked by |
@@ -108,7 +125,7 @@ incidence/abatement assumption — but the *mechanism* is the deliverable.)
 | Predictive distributions → CRPS/PIT in tournament | ✅ **scored + calibrated** — `calibrate_ensemble` de-bias+widen ⇒ CRPS 7.9→0.44, **PIT 0.0→0.39** (near-uniform, synthetic) | blueprint §6 |
 | Second synergy loop (breadth) | ✅ **Macro⇄Health (#8)**: keep in pandemic (coupled MASE 0.95 beats naive), cut on control | blueprint §7 |
 | Third synergy loop (breadth) | ✅ **Land⇄Climate⇄Food (#6)**: keep under warming (+23.9), cut on flat control | blueprint §7 |
-| Macro⇄Health red team | ⚠️ **broken by r0_shift** — coupling fragile to a mis-estimated r0; needs r0 assimilation | blueprint §7 |
+| Macro⇄Health red team | ✅ **r0_shift CLOSED by assimilation** — `estimate_r0` recovers r0=4.0 from the early dip; coupled MASE 30.3→**1.03**, Δ −26.2→**+3.09**; champion survives the full round (synthetic) | issue #1 |
 | Red-team attack on the champion | ✅ done — broken by naive; **partly addressed** by calibration (synthetic only) | blueprint §7 |
 
 ## Next

@@ -173,6 +173,7 @@ nav:
       - Visualization Engine: patterns/visualization-engine.md
       - Data Pipeline: patterns/data-pipeline.md
       - "Welfare/Equity Engine (Polyphony)": patterns/welfare-equity-engine.md
+      - "Data-Assimilation Engine (Polyphony)": patterns/data-assimilation-engine.md
   - Knowledge Graph:
       - graph/index.md
   - Polyphony:

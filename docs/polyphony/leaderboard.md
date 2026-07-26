@@ -105,11 +105,32 @@ the naive baseline — but the r0 break is a real finding: **the coupling helps 
 driver is well-estimated**; under distribution shift in r0 it hurts. Feeds back a concrete need — **r0
 assimilation/estimation** before the health coupling can be trusted under shift.
 
+## Round 6 — assimilation closes the r0-shift break (issue #1)
+
+The Round-5 break was that the Macro⇄Health champion *assumed* r0 = 2.5 while the world ran at 4.0.
+Round 6 adds the **[Data-Assimilation engine](../patterns/data-assimilation-engine.md)**: before
+forecasting, `estimate_r0` fits r0 from the **early observed dip on the train block** (grid
+least-squares over the SIR), then feeds the estimate into the coupled predictor. The *same* r0-shift
+attack is re-run **with** assimilation:
+
+| Attack | Before (assume r0) | After (assimilate r0) | Why |
+|--------|---|---|-----|
+| r0_shift | **BROKE** — coupled MASE 30.3, Δ −26.2 | **survives** — r0 recovered = 4.0, coupled MASE **1.03**, Δ **+3.09** | reading r0 off the early data repairs the coupling |
+| variant_lucas / edge_dials / naive_baseline | survived | survived | unchanged |
+
+**Verdict: the r0-shift break is CLOSED by assimilation** (`run_red_team(assimilate=True).survived`).
+The estimator is validated independently — it recovers a known r0 (2.0/3.0/4.5) to within 0.5 on
+synthetic data (`tests/test_assimilation.py`). Honest caveat: still **synthetic**, and assimilation
+fixes the *parameter*, not the coupling *structure* — but the champion now survives a full red-team
+round in the Macro⇄Health domain. The engine feeds back to the atlas as
+[engine #18](../patterns/data-assimilation-engine.md) (graph node `p-assimilation`, 0-dangling).
+
 ## Standing champions
 
 | Question / slice | Champion | Beat | On (data, split) | Synergy vs sum-of-parts | Red-team | Ref |
 |------------------|----------|------|------------------|-------------------------|----------|-----|
 | GDP track, energy⇄climate⇄economy slice | **coupled ensemble** (when coupling real) | economy-only | synthetic-policy, time-blocked 30% | **+2.22 (keep)** | ❌ **broken — loses to naive** | [json](leaderboard.json) |
+| GDP track, Macro⇄Health slice (**with assimilation**) | **coupled ensemble** | economy-only | synthetic-pandemic, time-blocked 30% | **+3.09 (keep)** | ✅ **survives full round** (r0_shift closed by assimilation) | [redteam](04-validation.md) |
 
 ## Contest log
 

@@ -227,3 +227,25 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
     early observed dip via least-squares) and re-run the Macro⇄Health red team to see if the coupling now
     survives the shift; and/or add a fourth loop (Urban⇄Transport⇄Energy⇄Health #7). Keep pressing real
     data (#9). Toward multi-domain convergence + a champion that survives sustained attack.
+- **Iter 11 — 🛰️ Assimilation closes the r0-shift break (the digital-twin backbone) + atlas engine #18.**
+  - **Assimilation engine** (`engines/assimilation.py`): `estimate_r0` fits r0 from the **early observed
+    GDP dip on the train block** (grid least-squares over the SIR forward map `sir_output_track`), then
+    feeds the estimate into the coupled Macro⇄Health predictor — the model ⇄ **assimilation** ⇄ control
+    limb (Kalman 1960; grounding [Bayesian estimation](../paradigms/algorithms/bayesian-decision.md) /
+    [Digital Twins](../paradigms/algorithms/digital-twins.md)).
+  - **Red team re-run WITH assimilation** (`redteam_macrohealth.attack_r0_shift_assimilated`,
+    `run_red_team(assimilate=True)`): the *same* attack that broke the champion in Iter 10 now **survives**
+    — r0 recovered = **4.0** (exact), coupled **MASE 30.3 → 1.03**, synergy **Δ −26.2 → +3.09**. Reported
+    honestly on [leaderboard Round 6](leaderboard.md) and [04-validation](04-validation.md): the break is
+    **CLOSED** (synthetic); assimilation fixes the *parameter*, not the coupling *structure*.
+  - **Atlas feedback (issue #1):** new **[Data-Assimilation Engine](../patterns/data-assimilation-engine.md)**
+    — engine **#18** (after Welfare/Equity #17). Graph node `p-assimilation` (pattern) with edges
+    `grounded_in` bayesian-estimation + digital-twins, and `covasim`/`dsge` `exhibits_pattern` — **166
+    nodes / 452 edges, 0-dangling.** Nav + patterns index + graph stats updated.
+  - **Tests:** +2 (estimator recovers known r0 to within 0.5; assimilation repairs the r0_shift break) →
+    **58 pass.** Gates green: `pytest` (58) · `ruff` · `mypy` (37 files) · graph 0-dangling ·
+    `mkdocs --strict`.
+  - **Next (Iter 12):** the Macro⇄Health champion now survives a full red-team round *with assimilation* —
+    press toward the same for the energy champion (still loses to naive) via calibration/assimilation;
+    optionally add the fourth loop (Urban⇄Transport⇄Energy⇄Health #7); keep retrying real data (#9). The
+    convergence target: a champion that survives sustained attack across **all** covered domains.
