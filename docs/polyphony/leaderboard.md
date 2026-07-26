@@ -198,6 +198,31 @@ solver is retained** as a correct, general improvement (ADR-0005), and the resid
 attributed**. This is the difference from Macro⇄Health, where the driver genuinely *was* mis-estimated
 (r0 shift) and assimilation therefore *did* close the gap.
 
+## Round 10 — REAL data at last (issue #9): the climate→GDP coupling fails a placebo control
+
+Network egress returned, so the loop fetched **real historical data** (`polyphony/data/fetch_real.py`):
+**World Bank** world GDP (`NY.GDP.MKTP.KD`, constant 2015 US$) + **OWID** global CO₂, merged by year
+(65 years, 1960–2024). The first tournament on non-synthetic data (`experiments/real_tournament.py`)
+predicts real GDP two ways, fit on the train block only:
+
+| Predictor | Held-out MASE | Note |
+|---|---:|---|
+| economy-only (log-linear growth trend) | **3.20** | the sum-of-parts baseline |
+| **coupled** (trend × damage from **observed cumulative CO₂**) | **1.49** | Δ = **+1.70** vs baseline — *looks like* synergy |
+| **placebo** (same damage form, generic **t^1.5** trend, no CO₂) | **1.34** | a meaningless regressor does **as well or better** |
+
+**Verdict: CUT.** The CO₂ term beats the plain trend, but it **fails the placebo control** — a generic
+monotone time-trend regressor improves the fit *more*. So the apparent gain is **not climate signal**;
+cumulative CO₂ is merely proxying the post-2008 **growth slowdown**. Neither predictor beats naive
+(coupled MASE 1.49 > 1). This is the honest headline of the real-data phase: **on real world GDP, this
+reduced-form climate→GDP coupling shows no genuine predictive synergy** — precisely the self-deception a
+placebo control exists to catch, and exactly what Polyphony is built to report rather than trumpet.
+
+This does **not** say climate has no effect on the economy — only that a *reduced-form CO₂→GDP damage
+channel does not add short-horizon predictive skill over trend on 65 years of aggregate data*, and that
+any claim it does must clear a placebo. Genuine climate-economy signal needs richer structure, regional
+/ sectoral resolution, and damage identification — not a single global regression (future work).
+
 ## Standing champions
 
 | Question / slice | Champion | Beat | On (data, split) | Synergy vs sum-of-parts | Red-team | Ref |

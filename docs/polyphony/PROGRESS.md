@@ -322,3 +322,28 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
     cited reason + test + atlas feedback, or (b) offer contemporaneous resolution to the energy/Macro
     slices (both acyclic) and re-measure. Convergence = a champion surviving sustained attack in every
     domain where a coupling is kept.
+- **Iter 15 — 🌍 REAL DATA lands (issue #9 closed) and the first real-data verdict is an honest CUT via placebo control.**
+  - **Egress returned** — fetched **real** World Bank world GDP (`NY.GDP.MKTP.KD`, constant 2015 US$) +
+    **OWID** global CO₂, merged by year (**65 years, 1960–2024**) via new `polyphony/data/fetch_real.py`
+    + loader `load_real_gdp_co2` (GDP indexed to 100; CSV committed for deterministic tests).
+  - **First tournament on non-synthetic data** (`experiments/real_tournament.py`): predict real GDP from
+    an economy-only log-trend vs a **coupled** trend×damage driven by **observed cumulative CO₂**.
+    Coupled beats the trend (held-out MASE 3.20 → **1.49**, Δ **+1.70**) — *looks like* synergy.
+  - **But it FAILS a placebo control:** the same damage form driven by a meaningless **t^1.5** trend does
+    as well or better (MASE **1.34**). So cumulative CO₂ is merely proxying the post-2008 growth
+    slowdown, not carrying climate signal ⇒ **CUT**. Neither predictor beats naive (1.49 > 1). The
+    placebo control is now a **standing requirement** for real-data couplings.
+  - **Honest headline:** on 65 years of real aggregate data, this reduced-form climate→GDP coupling shows
+    **no genuine predictive synergy** — precisely the self-deception a placebo exists to catch. (Not a
+    claim climate doesn't affect the economy; a single global CO₂→GDP regression just adds no
+    short-horizon skill over trend, and any claim it does must clear a placebo.)
+  - **Atlas feedback:** reuses existing engines (Data Pipeline + Validation) — no new atlas node; graph
+    unchanged (**166 nodes / 452 edges, 0-dangling**).
+  - **Tests:** +2 (real dataset loads & is non-synthetic; the real climate coupling fails the placebo →
+    cut) -> **67 pass.** Gates green: `pytest` (67) - `ruff` - `mypy` (40 files) - graph 0-dangling -
+    `mkdocs --strict`. Leaderboard Round 10 + 04-validation (#9 closed) updated.
+  - **Next (Iter 16):** with real data in hand, (a) run the placebo-controlled real tournament for the
+    OTHER kept couplings where real series exist; (b) offer contemporaneous resolution to the acyclic
+    energy/Macro slices and re-measure; (c) optionally the fourth loop (#7). Convergence = a champion
+    surviving sustained attack in every domain where a coupling is kept — now including a **placebo
+    control on real data**.

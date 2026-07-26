@@ -158,3 +158,33 @@ def load(name: str = "synthetic") -> Dataset:
     if path.exists():
         return load_csv(path)
     return synthetic_policy_series()
+
+
+REAL_GDP_CO2 = DATASETS / "real_gdp_co2.csv"
+
+
+def has_real_gdp_co2() -> bool:
+    """Whether the real World-Bank-GDP / OWID-CO₂ CSV has been fetched (``data.fetch_real``)."""
+    return REAL_GDP_CO2.exists()
+
+
+def load_real_gdp_co2() -> Dataset:
+    """REAL world GDP (World Bank, constant 2015 US$) + global CO₂ (OWID), merged by year (issue #9).
+
+    Not synthetic: this is historical data. ``gdp`` is indexed to 100 at the first year so it is
+    commensurable with the reduced-form voices' base-100 tracks; ``co2`` is Mt CO₂/yr and ``cum_co2``
+    its cumulative sum (a warming proxy). Raises if the CSV is absent — call ``data.fetch_real`` first.
+    """
+    if not REAL_GDP_CO2.exists():
+        raise FileNotFoundError(f"{REAL_GDP_CO2} missing; run `python -m polyphony.data.fetch_real`")
+    raw = load_csv(REAL_GDP_CO2)
+    gdp = raw.column("gdp")
+    co2 = raw.column("co2")
+    gdp_index = 100.0 * gdp / gdp[0]
+    return Dataset(
+        name="real-gdp-co2",
+        series={"year": raw.column("year"), "gdp": gdp_index, "co2": co2, "cum_co2": np.cumsum(co2)},
+        synthetic=False,
+        note="REAL World Bank world GDP (NY.GDP.MKTP.KD) + OWID global CO₂, merged by year; GDP indexed to 100.",
+        meta={"source_gdp": "World Bank WLD NY.GDP.MKTP.KD", "source_co2": "OWID owid-co2-data World"},
+    )

@@ -25,9 +25,10 @@ step, **time-blocked** splits (no leakage), and an **append-only leaderboard**.
 1. **No real-world predictive skill.** Both MASE values are **> 1** (worse than a naive random walk):
    the slice models are **uncalibrated reduced-form toys**, commensurable with the synthetic target
    only in shape, not level. We claim the **sign of synergy**, not forecast accuracy.
-2. **The target is synthetic.** Real historical data is **issue #9**; an automated fetch (World Bank
-   GDP / OWID CO₂ / HadCRUT) is **currently blocked** (network egress unavailable to the loop — logged,
-   worked around with the labelled synthetic series, and the loop continued, per the run contract).
+2. **The Round-1 target was synthetic.** Real historical data (issue #9) has since **landed** — World
+   Bank GDP + OWID CO₂, 65 years — and the first real-data tournament (Round 10 below) returns an honest
+   **cut** (the climate→GDP coupling fails a placebo control). The synthetic rounds validate the
+   *method*; the real round supplies the first real-world verdict.
 3. **A coupled DGP makes positive synergy "expected."** That is *why* the **negative control** is
    essential and reported alongside: it shows the method is not merely confirming its own generator —
    it **cuts** the coupling when the generator lacks it.
@@ -172,11 +173,29 @@ This is the honesty machinery working as intended: rather than a single "it does
 have an **attributed** diagnosis, and a general method improvement (contemporaneous resolution) banked
 regardless. Contrast Macro⇄Health, where the driver *was* mis-estimated and assimilation closed the gap.
 
+## Real data landed — and the first real-data verdict is an honest CUT (Round 10, issue #9)
+
+The largest honesty debt is now **closed**: `polyphony/data/fetch_real.py` fetches **real** World Bank
+world GDP + **OWID** global CO₂ (65 years), and `experiments/real_tournament.py` runs the first
+tournament on non-synthetic data. The result is a model of the honesty the project is *for*:
+
+- The CO₂ coupling **appears** to help (held-out MASE 3.20 → 1.49, Δ +1.70 over an economy-only trend).
+- But it **fails a placebo control**: the same damage form driven by a meaningless **t^1.5** trend does
+  as well or better (MASE 1.34). So the "synergy" is **spurious** — cumulative CO₂ is proxying the
+  post-2008 growth slowdown, not carrying climate signal ⇒ **CUT**.
+- Neither predictor **beats naive** (coupled MASE 1.49 > 1).
+
+So on real aggregate data, this reduced-form climate→GDP coupling shows **no genuine predictive
+synergy**. That is not a claim that climate doesn't affect the economy — only that a single global
+CO₂→GDP damage regression adds no short-horizon skill over trend, and any claim it does must clear a
+placebo. The placebo control is now a **standing requirement** for real-data couplings.
+
 ## Honesty-debt register (tracked to close)
 
 | Debt | Status | Tracked by |
 |------|--------|-----------|
-| Real historical datasets | network-blocked; synthetic fallback | issue #9 |
+| Real historical datasets | ✅ **LANDED** — World Bank GDP + OWID CO₂ (65 yrs) fetched & merged; first real tournament run | issue #9 |
+| Real-data climate→GDP synergy | ✅ **CUT** — beats trend (Δ+1.70) but **fails a placebo control** (t^1.5 does better); no genuine signal, loses to naive | issue #9 |
 | Model calibration (real levels) | affine calibration now beats naive **on synthetic** (MASE 0.61); real-level calibration still pending | (opens when #9 lands) |
 | Welfare/equity engine (values dial) | ✅ **built + integrated** — frontier over policies; recommendation changes with values | issue #4 |
 | Predictive distributions → CRPS/PIT in tournament | ✅ **scored + calibrated** — `calibrate_ensemble` de-bias+widen ⇒ CRPS 7.9→0.44, **PIT 0.0→0.39** (near-uniform, synthetic) | blueprint §6 |
