@@ -77,6 +77,11 @@ not a claim to have replicated the world.
   serves decision-makers better for which questions (see [00-inventory](00-inventory.md), §6 — gaps & candidate new factors).
 - **Digital twins** ([atlas page](../paradigms/algorithms/digital-twins.md)) — the model⇄data⇄control
   backbone, used as **engineering**, not as a fidelity claim.
+- **Placebo / negative controls** (Rosenbaum 2002; Lipsitch, Tchetgen Tchetgen & Cohen 2010) — the
+  epidemiological practice of re-running an analysis with a variable that *cannot* carry the claimed
+  effect. Polyphony makes this a **standing requirement for real-data couplings**: a coupling is kept
+  only if it beats *both* the sum-of-parts baseline **and** a placebo regressor. On real GDP+CO₂ this
+  cut an apparent climate→GDP "synergy" that a meaningless time trend reproduced (leaderboard Round 10).
 
 ## One-line self-description (use this everywhere)
 
@@ -93,3 +98,8 @@ not a claim to have replicated the world.
 - Ha & Schmidhuber (2018) *World Models*; LeCun (2022) JEPA — for the ML "world model" sense.
 - Borshchev & Filippov (2004), multi-method simulation (AnyLogic).
 - Weyant, EMF; Rosenzweig et al., AgMIP; Warszawski et al., ISIMIP — intercomparison practice.
+- Lipsitch, Tchetgen Tchetgen & Cohen (2010), *Negative controls: a tool for detecting confounding
+  and bias*; Rosenbaum (2002) on negative controls — the placebo-control method Polyphony adopts for
+  real-data couplings.
+- Hyndman & Koehler (2006), *Another look at measures of forecast accuracy* (MASE, the naive-baseline
+  skill gate).

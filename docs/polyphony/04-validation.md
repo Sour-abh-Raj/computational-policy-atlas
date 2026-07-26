@@ -204,6 +204,7 @@ placebo. The placebo control is now a **standing requirement** for real-data cou
 | Land⇄Climate⇄Food red team | ✅ **coupling REAL** — survives fair calibration (Δ +15.2) & policy shift; but champion **loses to naive** (MASE 2.87) ⇒ keep, no skill claim yet | issue #9 |
 | Land naive-loss attribution | ✅ **diagnosed** — not parameter (assimilation recovers ys=0.1), not lag (contemporaneous resolution, ADR-0005); residual is voice/DGP structure ⇒ needs real data | issue #9 |
 | Macro⇄Health red team | ✅ **r0_shift CLOSED by assimilation** — `estimate_r0` recovers r0=4.0 from the early dip; coupled MASE 30.3→**1.03**, Δ −26.2→**+3.09**; champion survives the full round (synthetic) | issue #1 |
+| Contemporaneous resolution (acyclic slices) | ✅ **helps Macro⇄Health** (no-lag ⇒ MASE 0.95→**0.10**, Δ +8.92) and is **correctly refused for the cyclic energy slice** (guard raises) | ADR-0005 |
 | Red-team attack on the champion | ✅ done — broken by naive; **resolved honestly**: calibration lets it beat naive but a *fair* baseline calibration cuts the energy synergy to Δ≈0 (level artifact) | blueprint §7 |
 | Energy synergy after fair calibration | ✅ **cut** — coupled ties calibrated economy-only (Δ≈−0.01, 8 seeds); published "no synergy" (contrast Macro⇄Health keep) | issue #9 |
 

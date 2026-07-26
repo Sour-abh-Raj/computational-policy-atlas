@@ -9,6 +9,7 @@ tournament, reusing the same harness (`tournament.synergy`) — the method is do
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import Literal
 
 import numpy as np
 
@@ -22,14 +23,17 @@ from ..models import DisequilibriumEconomy, EquilibriumEconomy, ReducedFormEpide
 from ..tournament.synergy import SynergyResult, measure_synergy
 
 
-def gdp_track(r0: float, steps: int, coupled: bool) -> np.ndarray:
+def gdp_track(r0: float, steps: int, coupled: bool, resolve: str = "lagged") -> np.ndarray:
+    """Predicted GDP track. ``resolve='contemporaneous'`` solves the acyclic epidemic→economy chain in
+    topological order within the step (no coupling lag; ADR-0005) — it sharpens the champion markedly."""
     if coupled:
         voices: list[Model] = [ReducedFormEpidemic(), EquilibriumEconomy(), DisequilibriumEconomy()]
         routing = {"output_penalty": "epidemic", "infected_frac": "epidemic", "demand": "cge", "gdp": "cge"}
     else:
         voices = [EquilibriumEconomy(), DisequilibriumEconomy()]
         routing = {"demand": "cge", "gdp": "cge"}
-    r = Orchestrator(voices, routing).run(steps=steps, dials={"r0": r0}, seed=1)
+    mode: Literal["lagged", "contemporaneous"] = "contemporaneous" if resolve == "contemporaneous" else "lagged"
+    r = Orchestrator(voices, routing).run(steps=steps, dials={"r0": r0}, seed=1, resolve=mode)
     return np.array([combine("gdp", r.answers_for("gdp", t)).weighted_mean for t in range(steps)], float)
 
 

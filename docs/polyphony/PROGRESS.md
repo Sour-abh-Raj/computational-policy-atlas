@@ -347,3 +347,26 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
     energy/Macro slices and re-measure; (c) optionally the fourth loop (#7). Convergence = a champion
     surviving sustained attack in every domain where a coupling is kept — now including a **placebo
     control on real data**.
+- **Iter 16 — ⚡ Contemporaneous resolution offered to the remaining slices: sharpens Macro⇄Health 10×, correctly refused for cyclic energy; + placebo-control method cited.**
+  - **Macro⇄Health (epidemic→economy is acyclic):** wired `resolve` into `experiments/macrohealth.gdp_track`.
+    No-lag resolution takes the coupled champion from **MASE 0.95 → 0.10** (10× sharper), synergy Δ
+    **+8.06 → +8.92** — the **sharpest champion yet**, decisively naive-beating. Economy-only unchanged.
+  - **Energy⇄climate⇄economy is CYCLIC** (genuine energy⇄economy feedback): `resolve="contemporaneous"`
+    **raises** — the ADR-0005 guard correctly refuses to resolve a feedback loop in one pass; it stays
+    lagged. Two honest wins at once: the mode helps where legitimate, forbids itself where not.
+  - **Real Macro⇄Health real-data test deferred honestly:** World Bank GDP-growth + life-expectancy
+    fetch fine, but 65 annual points contain essentially **one** pandemic event (2020) — too underpowered
+    to claim a verdict; recorded rather than fabricated.
+  - **Method surfaced:** added the **placebo / negative-control** method to `related-work.md` with
+    citations (Lipsitch–Tchetgen Tchetgen–Cohen 2010; Rosenbaum 2002; Hyndman–Koehler 2006 for MASE) —
+    now a standing requirement for real-data couplings (Round 10).
+  - **Atlas feedback:** reuses Integration + Data-Assimilation engines — no new atlas node; graph
+    unchanged (**166 nodes / 452 edges, 0-dangling**).
+  - **Tests:** +2 (contemporaneous sharpens the Macro-Health champion, MASE<0.2 and <½ lagged; energy
+    slice is cyclic so contemporaneous raises) -> **69 pass.** Gates green: `pytest` (69) - `ruff` -
+    `mypy` (40 files) - graph 0-dangling - `mkdocs --strict`. Leaderboard Round 11 + 04-validation +
+    related-work updated.
+  - **Next (Iter 17):** the Macro⇄Health champion is now decisively skillful (assimilation + no-lag,
+    MASE 0.10) and survives a full round — that domain is **converged**. Remaining: keep pressing a
+    placebo-controlled REAL test where power exists; optionally the fourth loop (#7). Convergence overall
+    = every kept coupling has a champion surviving red-team + placebo on real data.

@@ -223,12 +223,29 @@ channel does not add short-horizon predictive skill over trend on 65 years of ag
 any claim it does must clear a placebo. Genuine climate-economy signal needs richer structure, regional
 / sectoral resolution, and damage identification — not a single global regression (future work).
 
+## Round 11 — contemporaneous resolution: sharpens Macro⇄Health 10×, correctly refused for cyclic energy
+
+Iter 14 added an opt-in no-lag solver for **acyclic** couplings ([ADR-0005](../decisions/0005-contemporaneous-resolution-of-acyclic-couplings.md)).
+Round 11 offers it to the two remaining slices and reports what happens:
+
+| Slice | Coupling shape | `resolve="contemporaneous"` | Effect |
+|---|---|---|---|
+| **Macro⇄Health** (epidemic→economy) | **acyclic** | allowed | **coupled MASE 0.95 → 0.10** (10× sharper), synergy Δ **+8.06 → +8.92**; the sharpest champion yet |
+| **Energy⇄climate⇄economy** | **cyclic** (energy⇄economy feedback) | **refused** (raises) | the guard correctly forbids no-lag resolution of a genuine feedback loop — it stays lagged |
+
+**Two honest wins at once.** Where the coupling is a genuine feed-forward chain (Macro⇄Health),
+removing the artificial Gauss–Seidel lag is *correct* and makes the champion decisively naive-beating
+(MASE 0.10). Where the coupling is a true cycle (energy⇄economy), the same mode **refuses to run** — you
+cannot resolve a feedback loop in one pass, and the guard enforces it. The land champion's earlier
+diagnosis (Iter 14) is consistent: there the lag was removable but a *voice/DGP structural* mismatch
+remained; here the epidemic voice matches its DGP, so no-lag resolution alone yields the sharpening.
+
 ## Standing champions
 
 | Question / slice | Champion | Beat | On (data, split) | Synergy vs sum-of-parts | Red-team | Ref |
 |------------------|----------|------|------------------|-------------------------|----------|-----|
 | GDP track, energy⇄climate⇄economy slice | **economy-only** (after fair calibration) | — | synthetic-policy, time-blocked 30% | **−0.01 (cut)** | ✅ beats naive (cal) but coupling adds nothing | [json](leaderboard.json) |
-| GDP track, Macro⇄Health slice (**with assimilation**) | **coupled ensemble** | economy-only | synthetic-pandemic, time-blocked 30% | **+3.09 (keep)** | ✅ **survives full round** (r0_shift closed by assimilation) | [redteam](04-validation.md) |
+| GDP track, Macro⇄Health slice (**assimilation + contemporaneous**) | **coupled ensemble** | economy-only | synthetic-pandemic, time-blocked 30% | **+8.92 (keep)** | ✅ **survives full round**; no-lag solve ⇒ **MASE 0.10**, sharpest champion | [redteam](04-validation.md) |
 | Food-price track, Land⇄Climate⇄Food slice (**fair calibration**) | **coupled ensemble** | land-only | synthetic-warming, time-blocked 30% | **+15.2 (keep)** | ⚠️ coupling real (survives level-artifact + shift) but **loses to naive** — no skill claim yet | [redteam](04-validation.md) |
 
 ## Contest log
