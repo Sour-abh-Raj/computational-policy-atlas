@@ -249,3 +249,27 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
     press toward the same for the energy champion (still loses to naive) via calibration/assimilation;
     optionally add the fourth loop (Urban⇄Transport⇄Energy⇄Health #7); keep retrying real data (#9). The
     convergence target: a champion that survives sustained attack across **all** covered domains.
+- **Iter 12 — ⚖️ A fair calibration cuts the energy synergy (a published "no synergy") + energy naive break resolved honestly.**
+  - **Energy naive break closed by calibration:** `tournament/redteam.run_red_team(calibrate=True)` now
+    affine-calibrates the champion on the **train block** before the naive test — coupled **MASE 8.0 →
+    0.60 < 1**, so the calibrated champion **survives the full energy round** (raw still breaks on naive).
+  - **…but a *fair* calibration erases the energy synergy** (`experiments/slice_tournament.calibrated_synergy`):
+    give the economy-only baseline its *own* train-block affine fit — its strongest form — and the
+    coupled advantage collapses to **Δ ≈ −0.01** (mean +0.001 across 8 seeds, sign unstable) ⇒ **cut**.
+    The Round-1 +2.22 was a **level artifact**, not structural skill. A **falsifiable "no synergy"**
+    result, published rather than buried — the point of the method.
+  - **The contrast is the payoff:** the energy coupling is **cut** after fair calibration, while
+    **Macro⇄Health** survives calibration **and** assimilation with a real Δ>0 (Iter 11). Polyphony's
+    tournament **separates a real coupling from a spurious/level one** — exactly the honesty the north
+    star demands. No energy skill claim survives; genuine energy synergy needs real data + richer
+    structure (issue #9).
+  - **Atlas feedback:** reuses the existing [Calibration Engine](../patterns/calibration-engine.md) — no
+    new atlas concept, graph unchanged (**166 nodes / 452 edges, 0-dangling**).
+  - **Tests:** +2 (calibration closes the energy naive break & the champion survives; a fair calibration
+    erases the energy synergy -> cut) -> **60 pass.** Gates green: `pytest` (60) - `ruff` - `mypy` (37
+    files) - graph 0-dangling - `mkdocs --strict`. Leaderboard Round 7 + 04-validation updated.
+  - **Next (Iter 13):** with two domains now honestly adjudicated (energy = cut after fair calibration;
+    Macro-Health = keep, survives full round) and Land-Climate-Food's coupling still to be red-teamed,
+    run the **Land-Climate-Food red team** (does that coupling survive calibration too, or is it also a
+    level artifact?); keep retrying real data (#9). Toward convergence: a champion that survives sustained
+    attack in every domain where a coupling is *kept*.

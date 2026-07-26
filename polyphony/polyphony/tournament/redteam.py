@@ -119,34 +119,45 @@ def attack_noise_stability(n: int = 40, cp: float = 50.0, seeds: int = 8) -> Att
     )
 
 
-def attack_naive_baseline(n: int = 40, cp: float = 50.0, seed: int = 0) -> AttackResult:
+def attack_naive_baseline(n: int = 40, cp: float = 50.0, seed: int = 0, calibrate: bool = False) -> AttackResult:
     """The decisive skill test: must the champion beat a NAIVE random-walk forecast?
 
     MASE is defined against a one-step naive forecast, so MASE > 1 means the champion is *worse
     than naive*. A model that loses to naive has **no skill claim**, however favourable its synergy
     against a weaker structural baseline. This attack exists to stop Polyphony from mistaking
     "less-bad than an artificially weak baseline" for skill.
+
+    With ``calibrate=True`` the champion is first **affine-calibrated on the train block** (the atlas
+    Calibration Engine) — the honest way to ask whether the *structure* beats naive once level bias is
+    removed, without leakage. On the energy slice this closes the raw break (MASE ≈ 8 → < 1).
     """
+    from ..engines.calibration import calibrate_scale_offset, calibrated_track  # lazy
     from ..experiments.slice_tournament import gdp_track  # lazy
 
     y = synthetic_policy_series(n=n, seed=seed, carbon_price=cp).column("gdp")
-    test = time_blocked_split(n).test
-    coupled_mase = mase(y[test], gdp_track(cp, n, coupled=True)[test])
+    split = time_blocked_split(n)
+    coupled = gdp_track(cp, n, coupled=True)
+    if calibrate:
+        a, b = calibrate_scale_offset(coupled[split.train], y[split.train])
+        coupled = calibrated_track(coupled, a, b)
+    coupled_mase = mase(y[split.test], coupled[split.test])
     return AttackResult(
-        "naive_baseline",
+        "naive_baseline" + ("_calibrated" if calibrate else ""),
         broke=coupled_mase > 1.0,
-        evidence={"coupled_mase": coupled_mase, "beats_naive": coupled_mase <= 1.0},
+        evidence={"coupled_mase": coupled_mase, "beats_naive": coupled_mase <= 1.0, "calibrated": calibrate},
         description="Champion must beat a naive random-walk forecast (MASE<1), not just a weak baseline.",
     )
 
 
-def run_red_team(n: int = 40, seed: int = 0) -> RedTeamReport:
+def run_red_team(n: int = 40, seed: int = 0, calibrate: bool = False) -> RedTeamReport:
+    """Red-team the energy champion. With ``calibrate=True`` the naive-baseline test scores the
+    **train-block calibrated** champion (closes the raw level break; see leaderboard Round 7)."""
     return RedTeamReport(
         attacks=(
             attack_distribution_shift(n=n, seed=seed),
             attack_lucas_regime_change(n=n, seed=seed),
             attack_edge_dials(),
             attack_noise_stability(n=n),
-            attack_naive_baseline(n=n, seed=seed),
+            attack_naive_baseline(n=n, seed=seed, calibrate=calibrate),
         )
     )

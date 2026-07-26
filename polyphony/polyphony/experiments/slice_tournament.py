@@ -25,6 +25,7 @@ from ..core.interface import Model
 from ..core.orchestrator import Orchestrator
 from ..data.loaders import Dataset, synthetic_decoupled_series, synthetic_policy_series
 from ..data.splits import time_blocked_split
+from ..engines.calibration import calibrate_scale_offset, calibrated_track
 from ..eval.metrics import mase
 from ..models import (
     DisequilibriumEconomy,
@@ -100,3 +101,41 @@ def run_two_regime_tournament(n: int = 40, seed: int = 0) -> dict[str, BacktestR
     coupled_regime = backtest_gdp(synthetic_policy_series(n=n, seed=seed, carbon_price=50.0))
     decoupled_regime = backtest_gdp(synthetic_decoupled_series(n=n, seed=seed, carbon_price=50.0))
     return {"coupled_regime": coupled_regime, "decoupled_regime": decoupled_regime}
+
+
+@dataclass(frozen=True)
+class CalibratedSynergyResult:
+    """The energy synergy re-scored **after a fair affine calibration of BOTH sides**.
+
+    The Round-1 synergy (+2.22) was measured on *raw* reduced-form tracks whose levels are miscalibrated
+    (MASE ≈ 8, worse than naive). The honest test gives the **economy-only baseline its own** train-block
+    affine fit too — its strongest form — then asks whether the coupling *still* helps. If the advantage
+    was merely a level artifact, a calibrated baseline erases it and Δ collapses to ≈ 0 ⇒ **cut**.
+    """
+
+    dataset: str
+    coupled_cal_mase: float
+    econ_cal_mase: float
+    delta: float
+    coupled_beats_naive: bool
+
+    def verdict(self) -> str:
+        # A real coupling must still beat the *calibrated* sum-of-parts by a non-trivial margin.
+        return "keep" if self.delta > 0.05 else "cut"
+
+
+def calibrated_synergy(dataset: Dataset, test_frac: float = 0.3) -> CalibratedSynergyResult:
+    """Score coupled vs economy-only after each is affine-calibrated on the **train block only**."""
+    y = dataset.column("gdp")
+    n = len(y)
+    cp = float(dataset.meta.get("carbon_price", 50.0))
+    split = time_blocked_split(n, test_frac)
+    tr, te = split.train, split.test
+
+    coupled = gdp_track(cp, n, coupled=True)
+    econ = gdp_track(cp, n, coupled=False)
+    ac, bc = calibrate_scale_offset(coupled[tr], y[tr])
+    ae, be = calibrate_scale_offset(econ[tr], y[tr])
+    mc = mase(y[te], calibrated_track(coupled, ac, bc)[te])
+    me = mase(y[te], calibrated_track(econ, ae, be)[te])
+    return CalibratedSynergyResult(dataset.name, mc, me, me - mc, mc < 1.0)

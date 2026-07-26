@@ -115,6 +115,24 @@ data rather than assumed, the Macro⇄Health coupling survives the full red-team
 failed.* The break was surfaced, not hidden — and closed by earning a new atlas engine (#18) that
 itself carries a validation test (recovers a known r0 to within 0.5).
 
+## A fair calibration cuts the energy synergy — Round 7 (a published "no synergy")
+
+The energy champion's naive break (Round 2) had been *partly* addressed by calibrating the coupled
+track (Round 3, MASE 8→0.61). Round 7 finishes the accounting honestly by calibrating **both sides**.
+Two findings, reported together:
+
+1. **Calibration closes the naive break.** `run_red_team(calibrate=True).survived == True` — the
+   train-block-calibrated champion beats naive (MASE 0.60 < 1) and clears every other energy attack.
+2. **But a *fair* calibration erases the energy synergy.** When the economy-only baseline gets its own
+   train-block affine fit (`experiments.calibrated_synergy`), the coupled advantage collapses to
+   **Δ ≈ −0.01** (mean +0.001 across 8 seeds, sign unstable) ⇒ **cut**. The Round-1 +2.22 was a **level
+   artifact**, not structural skill.
+
+This is a **falsifiable "no synergy" result**, published rather than buried — and it is the *point* of
+the method. It **contrasts** with Macro⇄Health, whose coupling survives calibration **and** assimilation
+with a real Δ>0: Polyphony's tournament separates a **real** coupling from a **spurious/level** one. No
+energy skill claim survives; genuine energy synergy needs real data + richer structure (issue #9).
+
 ## Honesty-debt register (tracked to close)
 
 | Debt | Status | Tracked by |
@@ -126,7 +144,8 @@ itself carries a validation test (recovers a known r0 to within 0.5).
 | Second synergy loop (breadth) | ✅ **Macro⇄Health (#8)**: keep in pandemic (coupled MASE 0.95 beats naive), cut on control | blueprint §7 |
 | Third synergy loop (breadth) | ✅ **Land⇄Climate⇄Food (#6)**: keep under warming (+23.9), cut on flat control | blueprint §7 |
 | Macro⇄Health red team | ✅ **r0_shift CLOSED by assimilation** — `estimate_r0` recovers r0=4.0 from the early dip; coupled MASE 30.3→**1.03**, Δ −26.2→**+3.09**; champion survives the full round (synthetic) | issue #1 |
-| Red-team attack on the champion | ✅ done — broken by naive; **partly addressed** by calibration (synthetic only) | blueprint §7 |
+| Red-team attack on the champion | ✅ done — broken by naive; **resolved honestly**: calibration lets it beat naive but a *fair* baseline calibration cuts the energy synergy to Δ≈0 (level artifact) | blueprint §7 |
+| Energy synergy after fair calibration | ✅ **cut** — coupled ties calibrated economy-only (Δ≈−0.01, 8 seeds); published "no synergy" (contrast Macro⇄Health keep) | issue #9 |
 
 ## Next
 

@@ -125,11 +125,38 @@ fixes the *parameter*, not the coupling *structure* — but the champion now sur
 round in the Macro⇄Health domain. The engine feeds back to the atlas as
 [engine #18](../patterns/data-assimilation-engine.md) (graph node `p-assimilation`, 0-dangling).
 
+## Round 7 — the energy naive break, and a fair calibration cuts the energy synergy (issue #9 direction)
+
+Two facts about the energy⇄climate⇄economy champion, reported together because together they are the
+honest story:
+
+**(a) Calibration closes the naive break.** The raw champion lost to naive (MASE ≈ 8). After an affine
+**train-block** calibration (atlas [Calibration Engine](../patterns/calibration-engine.md)), it **beats
+naive** — `run_red_team(calibrate=True).survived == True`, coupled **MASE 8.0 → 0.60 < 1** — and clears
+distribution-shift, Lucas, edge-dials and noise-stability too.
+
+**(b) …but a *fair* calibration also cuts the energy synergy.** The Round-1 synergy (+2.22) was measured
+on **raw** tracks. Give the **economy-only** baseline its *own* train-block affine fit — its strongest
+form — and re-score (`experiments.calibrated_synergy`):
+
+| Slice | coupled (cal) | economy-only (cal) | Δ | Verdict |
+|---|---:|---:|---:|---|
+| GDP — coupled regime, cp=50, held-out 30% | **0.600** | 0.591 | **−0.009** | **cut** |
+| across 8 seeds | 0.60–0.93 (beats naive 8/8) | ≈ equal | mean **+0.001** (sign flips) | **cut** |
+
+**Verdict: the energy coupling earns no keep once the baseline is fairly calibrated.** Its apparent
+Round-1 advantage was a **level artifact** that a calibrated sum-of-parts absorbs — a **falsifiable
+"no synergy" result**, exactly the kind Polyphony is built to publish rather than bury. This *contrasts*
+with **Macro⇄Health**, whose coupling survives calibration **and** assimilation with a real Δ>0
+([Round 6](#round-6-assimilation-closes-the-r0-shift-break-issue-1)): the method distinguishes a **real**
+coupling from a **spurious/level** one. The remaining route to genuine energy synergy is real data +
+richer structure (issue #9), not a level fit.
+
 ## Standing champions
 
 | Question / slice | Champion | Beat | On (data, split) | Synergy vs sum-of-parts | Red-team | Ref |
 |------------------|----------|------|------------------|-------------------------|----------|-----|
-| GDP track, energy⇄climate⇄economy slice | **coupled ensemble** (when coupling real) | economy-only | synthetic-policy, time-blocked 30% | **+2.22 (keep)** | ❌ **broken — loses to naive** | [json](leaderboard.json) |
+| GDP track, energy⇄climate⇄economy slice | **economy-only** (after fair calibration) | — | synthetic-policy, time-blocked 30% | **−0.01 (cut)** | ✅ beats naive (cal) but coupling adds nothing | [json](leaderboard.json) |
 | GDP track, Macro⇄Health slice (**with assimilation**) | **coupled ensemble** | economy-only | synthetic-pandemic, time-blocked 30% | **+3.09 (keep)** | ✅ **survives full round** (r0_shift closed by assimilation) | [redteam](04-validation.md) |
 
 ## Contest log
