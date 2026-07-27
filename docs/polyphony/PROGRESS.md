@@ -945,3 +945,23 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
     (66 files) · graph 0-dangling · `mkdocs --strict`. decision-support page updated.
   - **Next (Iter 41):** numeric effect-size margins on the meta-analysis, another domain, or a
     values-vs-paradigm sensitivity sweep (which uncertainty is load-bearing for which questions).
+- **Iter 41 — 🎚️ Sensitivity analysis: which uncertainty is load-bearing? (values, not paradigm, here.)**
+  - **Generalized Iter 40 into a tool:** `experiments/sensitivity_analysis.py` builds the full
+    recommendation grid over **value setting × economic paradigm** (3×2) and reports how many distinct
+    policies each axis produces.
+  - **Finding (sharp + actionable):** for the carbon-price question, varying **values** yields **two**
+    distinct policies (cp=50 vs cp=100) while varying the **paradigm** yields **one** →
+    `dominant_uncertainty = "values (ethical)"`. The recommendation is fully invariant to the
+    equilibrium-vs-disequilibrium debate but changes with the welfare weighting. The card can now point a
+    decision-maker's scarce attention at the axis that *actually moves the choice* — a sharper honesty than a
+    bare disagreement index ("the models disagree" → "**your values decide this one, not the economics**").
+  - **Validated:** `test_sensitivity_analysis.py` asserts value_sensitivity=2, paradigm_sensitivity=1,
+    dominant = values.
+  - **Docs:** added the recommendation-grid table + the load-bearing-uncertainty reading to
+    `docs/polyphony/decision-support.md`.
+  - **Atlas feedback:** reuses the welfare + paradigm machinery — no new graph node; graph unchanged
+    (**180 nodes / 480 edges, 0-dangling**).
+  - **Convergence stays DONE.** **+2 tests -> 141 pass.** Gates green: `pytest` (141) · `ruff` · `mypy`
+    (67 files) · graph 0-dangling · `mkdocs --strict`.
+  - **Next (Iter 42):** a question where the *paradigm* IS load-bearing (to show the analysis cuts both
+    ways), numeric effect-size margins on the meta-analysis, or another domain.

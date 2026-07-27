@@ -74,6 +74,20 @@ not have to resolve the equilibrium-vs-disequilibrium debate to choose this poli
 to it, even though the projected outcome is not. (The recommendation still changes with your **values** — so
 the load-bearing uncertainty here is ethical, not paradigmatic.)
 
+A **sensitivity analysis** (`experiments/sensitivity_analysis.py`) makes this precise by building the full
+recommendation grid over *value setting × paradigm*:
+
+| | equilibrium | disequilibrium |
+|---|---|---|
+| utilitarian | cp=50 | cp=50 |
+| prioritarian | cp=50 | cp=50 |
+| Rawlsian + tail-averse | cp=100 | cp=100 |
+
+Varying **values** yields **two** distinct policies; varying the **paradigm** yields **one**. So the
+*dominant uncertainty* for this question is **ethical, not paradigmatic** — the card can point a
+decision-maker's scarce attention at the axis that actually moves the choice, instead of at the loudest
+disagreement.
+
 ## 3. The validation status is disclosed
 
 The recommendation leans on cross-domain couplings. Their **real-data verdict** (leaderboard Rounds 1–22)
