@@ -882,3 +882,27 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
   - **Next (Iter 38):** another plausible-keep domain (interest rate → housing) to further probe the bar,
     per-candidate honest bands on the decision card, or extend the meta-analysis with a numeric
     effect-size margin per coupling.
+- **Iter 38 — 🏠 Ninth domain Interest-Rate⇄Housing: CUT via a NEW failure mode (reverse causation + momentum).**
+  - **Probed the bar with a policy-central coupling** (monetary policy → house prices) that could plausibly
+    keep — and found a *seventh distinct* failure mode.
+  - **Fetched real data** (`fetch_housing`; loader `load_real_housing`): 30-yr mortgage rate (FRED
+    MORTGAGE30US) + Case-Shiller HPI (CSUSHPINSA), 37 yrs. `experiments/real_housing_tournament.py`.
+  - **Result — CUT on two counts a bare correlation hides:** (1) **reverse causation** — the contemporaneous
+    corr is **+0.38 (wrong sign)** because the Fed hikes *into* booms (the policy reacts to the outcome);
+    (2) the correctly-signed **lagged** rate (−0.27) can't beat a **persistence/momentum** baseline (0% of
+    folds) — house-price growth is highly autocorrelated. Failing to beat the honest baseline is decisive
+    (the Iter-37 rule).
+  - **New failure mode #7 — reverse causation / policy endogeneity:** *when the lever reacts to the target,
+    the naive correlation is backwards; use lags, and beware momentum baselines.* Added to the catalogue.
+  - **Ledgers propagated:** `failure_modes.py` (7 modes, +Interest-Rate⇄Housing → reverse-causation),
+    `meta_analysis.py` (+row; right-sign false positives now 7 of 8), `decision_card.py` (+cut) — with all
+    three tests + the field-guide / decision-support / leaderboard / 04-validation pages updated to **two
+    keeps, eight cuts**.
+  - **Atlas feedback:** reuses Data Pipeline + Validation (rate/housing sits in existing d-economics) — no
+    new graph node; graph unchanged (**180 nodes / 480 edges, 0-dangling**). New real dataset committed.
+  - **Convergence stays DONE.** **+2 tests -> 138 pass.** Gates green: `pytest` (138) · `ruff` · `mypy`
+    (66 files) · graph 0-dangling · `mkdocs --strict`. Leaderboard Round 27 + convergence + 04-validation +
+    failure-modes (new mode) updated.
+  - **Next (Iter 39):** per-candidate honest bands / effect-size margins on the meta-analysis, another
+    domain, or an instrumental-variable rescue attempt for the housing reverse-causation (if a clean
+    instrument exists).

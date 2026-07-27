@@ -585,7 +585,27 @@ out). So the keep is a genuine *short-horizon forecaster*, not a long-horizon on
 doctrine of "looking through" transitory energy shocks. Reporting *how far ahead* the skill reaches, and
 where it reverses, is more honest than a bare "it predicts inflation".
 
-## Convergence status (per domain) — DONE (again, with an eighth domain — and a second keep)
+## Round 27 — Interest-Rate⇄Housing: CUT via reverse causation + momentum (issue #14)
+
+A ninth coupling, and a *new* failure mode. Higher rates should slow house-price growth — but rates and
+growth **co-move contemporaneously with the wrong (positive) sign** because the Fed **hikes into booms**
+(reverse causation; the policy reacts to the outcome). Tested on real FRED data (30-yr mortgage rate +
+Case-Shiller HPI), decided by walk-forward. `experiments/real_housing_tournament.py`.
+
+| Check | Result |
+|---|---|
+| contemporaneous corr(Δrate, house-price growth) | **+0.38 — WRONG sign (reverse causation)** |
+| lead corr(rate_{t−1}, growth_t) | −0.27 — right sign, but weak |
+| lagged rate beats a **persistence (momentum)** baseline | **0% of folds** |
+
+**Verdict: CUT — a seventh, distinct failure mode: reverse causation / policy endogeneity.** The naive
+contemporaneous correlation would tell you *higher rates raise house prices* — the opposite of the
+mechanism — because the central bank moves in response to the boom. Using the correctly-signed **lagged**
+rate fixes the sign but not the skill: house-price growth is dominated by **momentum**, and last year's
+growth forecasts this year's far better than the rate does. Failing to beat that honest baseline is
+decisive (the Iter-37 rule). A policy-central coupling, cut for a principled, teachable reason.
+
+## Convergence status (per domain) — DONE (again, ninth domain resolved; two keeps, seven-plus cuts)
 
 | Domain / coupling | Verdict | Real-data status | Open, improvable gap? |
 |---|---|---|---|
@@ -598,15 +618,17 @@ where it reverses, is more honest than a bare "it predicts inflation".
 | **Macro⇄Finance** (spread→growth nowcast) | **CUT on real data** (narrowest call: right sign −0.61, beats placebo 80% + naive 60%, but not a mean-growth climatology; regime-dependent skill) | ✅ tested (39 yrs credit spread + GDP growth) | **no** |
 | **Trade⇄Emissions** (carbon leakage) | **CUT on real data** (UK: gap real, corr +0.81 right sign, but openness-leakage confounded-away — loses to a production-blind baseline; panel FE across 114 countries confirms, 92% attenuation) | ✅ tested (34 yrs + 114-country panel) | **no** |
 | **Energy⇄Inflation** (pass-through) | ✅ **KEEP on real data** (corr +0.65; beats mean baseline/placebo/persistence/naive across walk-forward folds) — the first clean real-data keep | ✅ tested (32 yrs energy price + CPI) | **no** |
+| **Interest-Rate⇄Housing** | **CUT on real data** (reverse causation: contemp +0.38 wrong sign; lagged rate right-signed but loses to housing momentum) | ✅ tested (37 yrs mortgage rate + Case-Shiller) | **no** |
 
-**DONE (again).** The eighth domain is resolved on real data — and it **survives**, the first clean
-real-data keep. **Two** couplings now earn their keep (Macro⇄Health; Energy⇄Inflation); **seven** are cut,
-each with a recorded, falsifiable reason — **six on real data under a placebo/robust walk-forward** —
+**DONE (again).** The eighth domain survives (Energy⇄Inflation, the first clean real-data keep); the ninth
+(Interest-Rate⇄Housing) is cut for a new, teachable reason (reverse causation + momentum). **Two** couplings
+now earn their keep (Macro⇄Health; Energy⇄Inflation); **eight** are cut,
+each with a recorded, falsifiable reason — **seven on real data under a placebo/robust walk-forward** —
 spanning the failure-mode catalogue (level artifact · genuinely cyclic · wrong sign · **confounded-away** ×2
-· real-signal-no-skill · regime-dependent skill). No domain retains an open, improvable gap. Standing
-headline, now with its complement: **two couplings earned their keep; seven were cut — the bar never bent
-for a hollow story, and it rewarded the two that were real. A discriminating instrument, not a destructive
-one.**
+· real-signal-no-skill · regime-dependent skill · **reverse causation**). No domain retains an open,
+improvable gap. Standing headline, now with its complement: **two couplings earned their keep; eight were
+cut — the bar never bent for a hollow story, and it rewarded the two that were real. A discriminating
+instrument, not a destructive one.**
 
 ## Standing champions
 

@@ -41,6 +41,7 @@ CUT_COUPLINGS: tuple[tuple[str, str], ...] = (
     ("Water⇄Energy⇄Food (energy→food)", "corr +0.90 but no out-of-sample skill"),
     ("Macro⇄Finance (spread→growth)", "right sign, beats placebo, but regime-dependent skill"),
     ("Trade⇄Emissions (carbon leakage)", "right sign but confounded-away (panel FE: 92% attenuation)"),
+    ("Interest-Rate⇄Housing", "reverse causation + loses to housing momentum"),
 )
 
 

@@ -17,9 +17,9 @@ from polyphony.experiments.meta_analysis import (
 )
 
 
-def test_two_keeps_seven_cuts():
+def test_two_keeps_eight_cuts():
     assert len(kept()) == 2
-    assert len(cut()) == 7
+    assert len(cut()) == 8
 
 
 def test_only_beating_the_baseline_perfectly_separates():

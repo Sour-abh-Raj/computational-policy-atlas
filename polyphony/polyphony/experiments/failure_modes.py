@@ -75,6 +75,13 @@ CATALOGUE: tuple[FailureMode, ...] = (
         diagnostic="Beats placebo + naive in a majority of walk-forward folds, but not a climatology baseline.",
         lesson="Skill concentrated in rare regimes won't beat a mean/climatology on average — say so honestly.",
     ),
+    FailureMode(
+        key="reverse-causation",
+        name="Reverse causation / policy endogeneity",
+        definition="The policy responds to the outcome, so the contemporaneous correlation has the wrong sign.",
+        diagnostic="Contemporaneous corr is opposite to the mechanism; even the correctly-signed lag loses to momentum.",
+        lesson="When the lever reacts to the target (the Fed hikes into booms), use lags — and beware momentum baselines.",
+    ),
 )
 
 _MODE_KEYS = frozenset(m.key for m in CATALOGUE) | {"kept"}
@@ -89,6 +96,7 @@ LEDGER: tuple[CouplingVerdict, ...] = (
     CouplingVerdict("Water⇄Energy⇄Food (energy→food)", "real-signal-no-skill", "corr +0.90 but MASE ≫ 1 (loses to naive)"),
     CouplingVerdict("Macro⇄Finance (spread→growth)", "regime-dependent-skill", "corr −0.61, beats placebo 80% but not climatology"),
     CouplingVerdict("Trade⇄Emissions (carbon leakage)", "confounded-away", "openness↔gap corr +0.81 but loses to production-blind"),
+    CouplingVerdict("Interest-Rate⇄Housing", "reverse-causation", "contemp corr +0.38 (Fed hikes into booms); lagged rate loses to momentum"),
 )
 
 

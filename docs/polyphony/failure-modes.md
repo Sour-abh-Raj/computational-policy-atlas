@@ -24,6 +24,7 @@ synthesis, generated from the tested catalogue in `experiments/failure_modes.py`
 | Water⇄Energy⇄Food (energy→food) | ❌ cut | Real signal, no skill | corr **+0.90** but MASE ≫ 1 (loses to naive) |
 | Macro⇄Finance (spread→growth) | ❌ cut | Regime-dependent skill | corr −0.61, beats placebo 80% but not climatology |
 | Trade⇄Emissions (carbon leakage) | ❌ cut | Confounded-away | openness↔gap corr **+0.81** but loses to production-blind |
+| Interest-Rate⇄Housing | ❌ cut | Reverse causation | contemp corr **+0.38** (Fed hikes into booms); lagged rate loses to momentum |
 
 ## The failure modes
 
@@ -62,6 +63,14 @@ correlation is +0.90, yet a train-fit pass-through doesn't extrapolate to the 20
 contemporaneous association is not a usable forecast; a volatile target can be near-unforecastable.
 (Water⇄Energy⇄Food, [Round 17](leaderboard.md).)
 
+### 7. Reverse causation / policy endogeneity
+The lever **reacts to the target**, so the *contemporaneous* correlation has the **wrong sign**.
+*Diagnostic:* contemporaneous corr opposite to the mechanism; even the correctly-signed lag loses to
+momentum. Higher interest rates should slow house prices, but rates and house-price growth co-move
+**positively** because the Fed hikes *into* booms; the correctly-signed lagged rate then can't beat housing
+**momentum** (persistence). *Lesson:* when the policy responds to the outcome, the naive correlation is
+backwards — use lags, and beware momentum baselines. (Interest-Rate⇄Housing, [Round 27](leaderboard.md).)
+
 ### 6. Regime-dependent skill
 Real skill in some **regimes** (e.g. crises) that doesn't beat an **unconditional** baseline. *Diagnostic:*
 beats placebo + naive in most walk-forward folds, but not a climatology. The credit spread caught the 2008
@@ -75,11 +84,11 @@ concentrated in rare regimes won't beat a mean on average — say so, don't clai
 data-assimilation engine recovers the reproduction number, and the contemporaneous solve sharpens it to
 MASE 0.10, surviving the full red-team round. **Energy⇄Inflation** — energy-price growth beats every
 baseline, persistence, and naive across walk-forward folds on real data (corr +0.65), the first *clean
-real-data* keep. Those two successes, standing against **seven** named failures, are the honest yield of
+real-data* keep. Those two successes, standing against **eight** named failures, are the honest yield of
 paradigm-plural, adversarially-validated simulation. The point is not that the instrument is destructive:
 the same strict bar that cut six plausible couplings **rewarded** the two that were genuinely skillful — a
 *discriminating* instrument. A single-confident-number simulator would have reported nine "insights";
-Polyphony reports two results and seven cautionary tales — and the cautionary tales are the more valuable
+Polyphony reports two results and eight cautionary tales — and the cautionary tales are the more valuable
 half, because they are the ones you would otherwise have believed.
 
 ## What actually separates keeps from cuts (a computed answer)
@@ -89,7 +98,7 @@ discriminators (`experiments/meta_analysis.py`) gives a sharp, slightly surprisi
 
 | Discriminator | Perfectly separates keep/cut? | False positives (cut couplings that have it) |
 |---|---|---|
-| right sign of the real correlation | ❌ | **6 of 7 cuts** — sign alone tells you almost nothing |
+| right sign of the real correlation | ❌ | **7 of 8 cuts** — sign alone tells you almost nothing |
 | beats a placebo | ❌ | Macro⇄Finance |
 | beats naive (random walk) | ❌ | Macro⇄Finance |
 | **beats the honest baseline** (sum-of-parts / climatology) | ✅ | — |

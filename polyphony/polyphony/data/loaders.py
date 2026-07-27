@@ -306,6 +306,7 @@ REAL_TRADE = DATASETS / "real_trade.csv"
 REAL_LEAKAGE_PANEL = DATASETS / "real_leakage_panel.csv"
 REAL_PM25_MORTALITY_PANEL = DATASETS / "real_pm25_mortality_panel.csv"
 REAL_INFLATION = DATASETS / "real_inflation.csv"
+REAL_HOUSING = DATASETS / "real_housing.csv"
 
 
 def has_real_gdp_co2() -> bool:
@@ -341,6 +342,29 @@ def has_real_trade() -> bool:
 def has_real_inflation() -> bool:
     """Whether the real energy-price / CPI CSV has been fetched (``fetch_real.fetch_inflation``)."""
     return REAL_INFLATION.exists()
+
+
+def has_real_housing() -> bool:
+    """Whether the real mortgage-rate / house-price CSV has been fetched (``fetch_real.fetch_housing``)."""
+    return REAL_HOUSING.exists()
+
+
+def load_real_housing() -> Dataset:
+    """REAL Interest-Rate⇄Housing series: 30-yr mortgage rate (FRED MORTGAGE30US) + Case-Shiller HPI.
+
+    The tournament derives house-price growth from the HPI and tests the **lagged** rate against it (rates
+    and growth co-move contemporaneously via reverse causation). Raises if the CSV is absent.
+    """
+    if not REAL_HOUSING.exists():
+        raise FileNotFoundError(f"{REAL_HOUSING} missing; run `python -m polyphony.data.fetch_real`")
+    raw = load_csv(REAL_HOUSING)
+    return Dataset(
+        name="real-housing",
+        series={"year": raw.column("year"), "rate": raw.column("rate"), "hpi": raw.column("hpi")},
+        synthetic=False,
+        note="REAL 30-yr mortgage rate (FRED MORTGAGE30US) + Case-Shiller national HPI (CSUSHPINSA), annual.",
+        meta={"source_rate": "FRED MORTGAGE30US", "source_hpi": "FRED CSUSHPINSA"},
+    )
 
 
 def load_real_inflation() -> Dataset:

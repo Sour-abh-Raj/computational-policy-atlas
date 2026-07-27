@@ -49,6 +49,7 @@ FEATURES: tuple[CouplingFeatures, ...] = (
     CouplingFeatures("Water⇄Energy⇄Food", False, True, False, False, False),
     CouplingFeatures("Macro⇄Finance", False, True, True, True, False),  # the instructive false positive
     CouplingFeatures("Trade⇄Emissions", False, True, False, False, False),
+    CouplingFeatures("Interest-Rate⇄Housing", False, True, False, False, False),  # right-signed lag, loses to momentum
 )
 
 

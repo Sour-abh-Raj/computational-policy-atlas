@@ -328,6 +328,30 @@ def fetch_finance(out: pathlib.Path | None = None) -> pathlib.Path:
 
 
 FRED_CPI = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=CPIAUCSL"  # US CPI, all urban consumers
+FRED_MORTGAGE = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=MORTGAGE30US"  # 30-yr fixed mortgage rate
+FRED_HPI = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=CSUSHPINSA"  # Case-Shiller national HPI
+
+
+def fetch_housing(out: pathlib.Path | None = None) -> pathlib.Path:
+    """Fetch the REAL Interest-Rate⇄Housing series (issue #14): the 30-year mortgage **rate** (FRED
+    MORTGAGE30US) and the Case-Shiller national **house-price index** (CSUSHPINSA), annual means.
+
+    Higher rates should slow house-price growth — but rates and house-price growth *co-move* contemporaneously
+    because the Fed hikes into booms (reverse causation), so the tournament tests the **lagged** rate against
+    house-price growth. Writes ``datasets/real_housing.csv`` (columns: ``year``, ``rate``, ``hpi``).
+    """
+    rate = _fetch_fred_annual(FRED_MORTGAGE, min_obs=12)
+    hpi = _fetch_fred_annual(FRED_HPI, min_obs=12)
+    years = sorted(set(rate) & set(hpi))
+    if len(years) < 20:
+        raise RuntimeError(f"too few overlapping years ({len(years)}); refusing to write")
+    out = out or (DATASETS / "real_housing.csv")
+    with out.open("w", newline="", encoding="utf-8") as fh:
+        w = csv.writer(fh)
+        w.writerow(["year", "rate", "hpi"])
+        for y in years:
+            w.writerow([y, rate[y], hpi[y]])
+    return out
 
 
 def fetch_inflation(out: pathlib.Path | None = None) -> pathlib.Path:
@@ -399,3 +423,5 @@ if __name__ == "__main__":
     print(f"wrote {pm_panel} ({sum(1 for _ in pm_panel.open()) - 1} rows)")
     inflation = fetch_inflation()
     print(f"wrote {inflation} ({sum(1 for _ in inflation.open()) - 1} rows)")
+    housing = fetch_housing()
+    print(f"wrote {housing} ({sum(1 for _ in housing.open()) - 1} rows)")
