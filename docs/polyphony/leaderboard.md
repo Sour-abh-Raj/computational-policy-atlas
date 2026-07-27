@@ -569,6 +569,22 @@ and it matters: the strict bar that cut six plausible couplings **rewards** this
 discriminating, not merely destructive. Atlas fed back: **FRB/US** dossier (the Fed's macroeconometric model,
 the reference for empirical energy→inflation pass-through).
 
+**Lead-lag deepening (Iter 36) — it forecasts, not just nowcasts.** A horizon study
+(`experiments/inflation_leadlag.py`) lags energy-price growth by 0–3 years:
+
+| Lead | corr | beats baseline | verdict |
+|---:|---:|---:|---|
+| h=0 (nowcast) | +0.65 | 100% | **keep** |
+| h=1 (one year ahead) | +0.41 | 100% | **keep** |
+| h=2 | −0.20 | 0% | cut (sign flips) |
+| h=3 | −0.11 | 0% | cut |
+
+**Forecast horizon = 1 year**, then skill decays and the correlation **flips negative** — the classic
+**base effect** (a spike raises inflation now and *lowers* it a couple of years later as the level drops
+out). So the keep is a genuine *short-horizon forecaster*, not a long-horizon one — matching central banks'
+doctrine of "looking through" transitory energy shocks. Reporting *how far ahead* the skill reaches, and
+where it reverses, is more honest than a bare "it predicts inflation".
+
 ## Convergence status (per domain) — DONE (again, with an eighth domain — and a second keep)
 
 | Domain / coupling | Verdict | Real-data status | Open, improvable gap? |

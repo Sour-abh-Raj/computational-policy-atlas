@@ -843,3 +843,21 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
     + convergence (DONE, 2 keeps) + 04-validation + related-work updated.
   - **Next (Iter 36):** deepen the KEEP (a lead-lag / horizon study of energy→inflation), another
     plausible-keep domain, or per-candidate honest bands on the decision card.
+- **Iter 36 — ⏱️ Energy⇄Inflation lead-lag: it forecasts one year ahead, then base-effects reverse it.**
+  - **Deepened the keep honestly:** the Iter-35 keep tested the *contemporaneous* pass-through (a nowcast).
+    The decision-relevant question is whether energy prices carry genuine **leading** information.
+  - **`experiments/inflation_leadlag.py`:** lags energy-price growth by 0–3 years and re-runs walk-forward.
+    **Finding:** skill is strong at **h=0** (corr +0.65) and **survives at h=1** (a genuine one-year-ahead
+    forecast, corr +0.41, beats baselines) — then **decays and the sign flips by h=2** (corr −0.20). The
+    **forecast horizon is 1 year**; the reversal is the classic **base effect** (a spike raises inflation
+    now and lowers it ~2 years later as the level drops out).
+  - **Economic content:** a real *short-horizon* forecaster, not a long-horizon one — matching central
+    banks' doctrine of "looking through" transitory energy shocks. Reporting how far ahead the skill
+    reaches (and where it reverses) is more honest than a bare "it predicts inflation".
+  - **Atlas feedback:** reuses the Validation engine — no new graph node; graph unchanged (**180 nodes /
+    480 edges, 0-dangling**).
+  - **Convergence stays DONE.** **+2 tests -> 131 pass.** Gates green: `pytest` (131) · `ruff` · `mypy`
+    (64 files) · graph 0-dangling · `mkdocs --strict`. Leaderboard Round 26 lead-lag deepening added.
+  - **Next (Iter 37):** another plausible-keep domain (e.g. interest rate → housing), per-candidate honest
+    bands on the decision card, or a cross-coupling meta-analysis of what distinguishes the two keeps from
+    the seven cuts.
