@@ -45,6 +45,24 @@ which paradigm is right is itself contested (it depends on whether the economy h
 would manufacture a false consensus. The honest read: *whether a carbon price helps or hurts GDP depends
 on a modelling assumption you should choose consciously.*
 
+### When does the disagreement matter? (a policy sweep)
+
+Sweeping the carbon price shows the disagreement is not constant — it **activates with policy**
+(`experiments/disagreement_study.py`):
+
+| Carbon price | Disagreement index D | CGE GDP | E3ME GDP |
+|---:|---:|---:|---:|
+| 0 | 0.02 | 99.9 | 95.5 |
+| 25 | **0.13** | 84.6 | 109.9 |
+| 100 | 0.10 | 88.0 | 108.0 |
+| 400 | 0.10 | 88.0 | 108.0 |
+
+At **zero** policy the paradigms nearly agree (D ≈ 0.02); the moment a carbon price bites the split jumps
+**~6×** (D ≈ 0.13), then plateaus once the energy transition completes. The decision-relevant lesson: **the
+choice of economic paradigm matters most exactly where a real policy is contemplated** — so that is where
+the instrument raises a flag, not where it hides one. Disagreement is a *signal about where your beliefs
+are load-bearing*, not noise to be smoothed.
+
 ## 3. The validation status is disclosed
 
 The recommendation leans on cross-domain couplings. Their **real-data verdict** (leaderboard Rounds 1–22)

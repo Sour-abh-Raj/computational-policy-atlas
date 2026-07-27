@@ -752,3 +752,23 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
     `pytest` (117) · `ruff` · `mypy` (60 files) · graph 0-dangling · `mkdocs --strict`.
   - **Next (Iter 32):** an eighth domain, deepen the decision card (attach per-candidate honest bands /
     disagreement-vs-policy curve), or a cross-domain disagreement study.
+- **Iter 32 — 🔀 Disagreement study: paradigm splits ACTIVATE with policy (deepening the reporting core).**
+  - **The distinctive core, exercised:** Polyphony reports disagreement rather than averaging it. This
+    study asks *when* the equilibrium (CGE) vs disequilibrium (E3ME) split on GDP matters, sweeping the
+    carbon-price dial.
+  - **`experiments/disagreement_study.py`:** at each carbon price, measures the disagreement index D and
+    both paradigm answers. **Finding:** disagreement is small at zero policy (D ≈ 0.02) and **activates
+    ~6×** the moment a carbon price bites (D ≈ 0.13 at cp=25), then **saturates** as the energy transition
+    completes. At the peak the paradigms **straddle the baseline** — CGE says pricing lowers GDP (84.6),
+    E3ME says it raises GDP (109.9), opposite signs, both reported.
+  - **Decision-relevant lesson:** the choice of economic paradigm matters **most exactly where a real
+    policy is contemplated** — so that is where the instrument raises a flag, not hides one. Disagreement
+    is a *signal about where your beliefs are load-bearing*, not noise to smooth.
+  - **Docs:** added a "When does the disagreement matter?" section (the activation table + lesson) to
+    `docs/polyphony/decision-support.md`, deepening the decision card's paradigm-disagreement point.
+  - **Atlas feedback:** uses the existing disagreement combiner (ADR-0004) — no new graph node; graph
+    unchanged (**178 nodes / 475 edges, 0-dangling**).
+  - **Convergence stays DONE.** **+3 tests -> 120 pass.** Gates green: `pytest` (120) · `ruff` · `mypy`
+    (61 files) · graph 0-dangling · `mkdocs --strict`.
+  - **Next (Iter 33):** an eighth domain, attach per-candidate honest predictive bands to the decision
+    card, or extend the disagreement study to more quantities/couplings.
