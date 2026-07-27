@@ -906,3 +906,21 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
   - **Next (Iter 39):** per-candidate honest bands / effect-size margins on the meta-analysis, another
     domain, or an instrumental-variable rescue attempt for the housing reverse-causation (if a clean
     instrument exists).
+- **Iter 39 — 📖 Rewrote the Polyphony landing page as a current "state of the ensemble" (holistic entry point).**
+  - **The landing `index.md` was a stale Phase-0 stub** — it described the *method* but none of the
+    *results*. Rewrote it as the crisp synthesis a newcomer reads first.
+  - **New sections:** *The result so far* (the full ten-coupling verdict table — two kept, eight cut, with
+    each cut's failure mode); *Why so few keeps is the point* (the discriminating-not-destructive framing +
+    the meta-analysis punchline); *How a coupling earns its keep* (the bar + the six validation methods);
+    the decision-card payoff; an updated document table and *Coverage & status* (10 domains, 180-node graph,
+    130+ green tests); Phases 0–4 done, Phase 5 (scale) ongoing.
+  - **Fixed accumulated count drift:** reconciled the ledger counts to the tested source of truth (**two
+    kept, eight cut, ten couplings**) across `index.md`, `decision-support.md` ("eight of ten"; +the housing
+    row), matching `decision_card.honest_summary()` ("8 of 10") and the pinned `failure_modes`/`meta_analysis`
+    tests.
+  - **Atlas feedback:** docs synthesis — no code/graph change; graph unchanged (**180 nodes / 480 edges,
+    0-dangling**).
+  - **Convergence stays DONE.** Gates green: `pytest` (138) · `ruff` · `mypy` (66 files) · graph 0-dangling ·
+    `mkdocs --strict`.
+  - **Next (Iter 40):** numeric effect-size margins on the meta-analysis, per-candidate honest bands on the
+    decision card, or another domain under the same bar.

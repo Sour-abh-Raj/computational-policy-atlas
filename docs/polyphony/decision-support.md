@@ -79,8 +79,9 @@ is disclosed, not hidden:
 | Water⇄Energy⇄Food (energy→food) | ❌ cut — corr +0.90 but no out-of-sample skill |
 | Macro⇄Finance (spread→growth) | ❌ cut — right sign, beats placebo, but regime-dependent skill |
 | Trade⇄Emissions (carbon leakage) | ❌ cut — confounded-away (panel FE: 92% attenuation) |
+| Interest-Rate⇄Housing | ❌ cut — reverse causation (Fed hikes into booms) + momentum |
 
-**Seven of nine couplings failed real-data validation** (two — Macro⇄Health and Energy⇄Inflation — earned
+**Eight of ten couplings failed real-data validation** (two — Macro⇄Health and Energy⇄Inflation — earned
 their keep). The card states this plainly, because a decision-support tool that let you forget it would be
 lying by omission.
 
