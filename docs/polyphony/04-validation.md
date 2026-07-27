@@ -345,7 +345,8 @@ cut under a placebo.
 | Convergence (after #11) | ✅ **DONE (again)** — Macro⇄Finance resolved on real data (sixth distinct failure mode). Every kept coupling survives its round; six cuts, six named failure modes; no open improvable gap | — |
 | Seventh synergy loop (breadth, #12) | ✅ **KEEP on synthetic** — Trade⇄Emissions carbon leakage survives fair calibration (Δ +17.3) + correct sign; no-leakage control cut. New voice `trade`, MRIO dossier + `d-trade` domain | issue #12 |
 | Real Trade⇄Emissions test | ⏳ **OPEN** — synthetic keep is machinery; needs a real production-vs-consumption CO₂ placebo test. Unusually clean target: OWID publishes the gap (`trade_co2`) directly | issue #12-real |
-| Convergence (after #12) | 🔄 **REOPENED** — seven prior couplings resolved; the Trade⇄Emissions real-data placebo test is an open, improvable gap; loop continues until it resolves | — |
+| Real Trade⇄Emissions test | ✅ **CUT on real data** — UK (textbook leakage): gap real (corr +0.81, right sign) but openness-leakage **confounded-away** — loses to a production-blind baseline in 0% of walk-forward folds. Openness↔gap is a shared trend, not independent info. `experiments/real_trade_tournament.py` | issue #12-real |
+| Convergence (after #12) | ✅ **DONE (again)** — Trade⇄Emissions resolved on real data. Every kept coupling survives its round; **seven** cuts (six on real data), spanning the failure-mode catalogue; no open improvable gap | — |
 | Model calibration (real levels) | affine calibration now beats naive **on synthetic** (MASE 0.61); real-level calibration still pending | (opens when #9 lands) |
 | Welfare/equity engine (values dial) | ✅ **built + integrated** — frontier over policies; recommendation changes with values | issue #4 |
 | Predictive distributions → CRPS/PIT in tournament | ✅ **scored + calibrated** — `calibrate_ensemble` de-bias+widen ⇒ CRPS 7.9→0.44, **PIT 0.0→0.39** (near-uniform, synthetic) | blueprint §6 |

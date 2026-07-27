@@ -703,3 +703,28 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
     `consumption_co2`, `trade_co2`, 35 yrs) and run a **placebo-controlled real Trade⇄Emissions tournament**
     (walk-forward): does trade openness / the leakage mechanism explain the real embodied-carbon gap beyond
     a trend + placebo? Report keep/cut honestly.
+- **Iter 30 — 🚢 Real Trade⇄Emissions: carbon leakage is real but CUT (confounded-away). Convergence DONE again.**
+  - **Key data insight:** the **World** aggregate can't test leakage (global trade nets to zero ⇒
+    consumption = production). Used the **United Kingdom** — the textbook case (production CO₂ ~halved since
+    1990 while consumption CO₂ fell far less).
+  - **Fetched real data** (`fetch_real.fetch_trade` + `_fetch_owid_country_co2`): UK OWID production +
+    consumption CO₂ + World Bank UK **trade openness** (`NE.TRD.GNFS.ZS`) as an **independent** leakage
+    driver (using the observed gap would be circular) → `datasets/real_trade.csv` (34 yrs). Loader
+    `load_real_trade`.
+  - **Real tournament** (`experiments/real_trade_tournament.py`, walk-forward): corr(openness,
+    consumption/production ratio) = **+0.81** (right sign — the UK gap really grew as it opened), but the
+    openness-leakage term beats a **production-blind** baseline in **0% of folds** (and placebo/naive 0%).
+    **Verdict CUT — "confounded-away":** the openness↔gap correlation is a **shared trend** (both rose
+    1990–2023), not independent predictive info. The *average* leakage is real and trivially captured by
+    production; its *openness-driven dynamics* aren't predictable beyond a trend.
+  - **The lesson:** a genuine, policy-important phenomenon (UK carbon leakage is textbook) whose
+    reduced-form mechanism still **fails the strict skill bar** — the bar doesn't bend for importance.
+  - **Atlas feedback:** reuses Data Pipeline + Validation engines — no new graph node; graph unchanged
+    (**178 nodes / 475 edges, 0-dangling**). New real dataset committed.
+  - **CONVERGENCE (DONE again):** seven candidate couplings cut (six on real data), one kept
+    (Macro⇄Health); no open improvable gap. **+2 tests -> 111 pass.** Gates green: `pytest` (111) · `ruff` ·
+    `mypy` (59 files) · graph 0-dangling · `mkdocs --strict`. Leaderboard Round 24 + convergence (DONE) +
+    04-validation register updated.
+  - **Next (Iter 31):** an eighth domain, or deepen the decision card / a cross-domain disagreement study,
+    or consolidate the seven-domain findings into a short synthesis page (the failure-mode catalogue as a
+    teaching artifact).

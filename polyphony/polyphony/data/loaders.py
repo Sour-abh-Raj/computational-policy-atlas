@@ -302,6 +302,7 @@ REAL_FOOD = DATASETS / "real_food.csv"
 REAL_COBENEFIT = DATASETS / "real_cobenefit.csv"
 REAL_NEXUS = DATASETS / "real_nexus.csv"
 REAL_FINANCE = DATASETS / "real_finance.csv"
+REAL_TRADE = DATASETS / "real_trade.csv"
 
 
 def has_real_gdp_co2() -> bool:
@@ -327,6 +328,35 @@ def has_real_nexus() -> bool:
 def has_real_finance() -> bool:
     """Whether the real credit-spread / GDP CSV has been fetched (``data.fetch_real.fetch_finance``)."""
     return REAL_FINANCE.exists()
+
+
+def has_real_trade() -> bool:
+    """Whether the real UK production/consumption-CO₂ + openness CSV has been fetched (``fetch_real.fetch_trade``)."""
+    return REAL_TRADE.exists()
+
+
+def load_real_trade() -> Dataset:
+    """REAL Trade⇄Emissions series (United Kingdom): OWID production + consumption CO₂ + WB trade openness.
+
+    The UK is the textbook carbon-leakage case. ``openness`` is an **independent** leakage driver (using the
+    observed gap would be circular). Raises if the CSV is absent — call ``data.fetch_real``.
+    """
+    if not REAL_TRADE.exists():
+        raise FileNotFoundError(f"{REAL_TRADE} missing; run `python -m polyphony.data.fetch_real`")
+    raw = load_csv(REAL_TRADE)
+    return Dataset(
+        name="real-trade",
+        series={
+            "year": raw.column("year"),
+            "production_co2": raw.column("production_co2"),
+            "consumption_co2": raw.column("consumption_co2"),
+            "openness": raw.column("openness"),
+        },
+        synthetic=False,
+        note="REAL United Kingdom OWID production + consumption CO₂ + World Bank trade openness "
+        "(NE.TRD.GNFS.ZS), merged by year — the classic carbon-leakage case.",
+        meta={"country": "United Kingdom", "source_co2": "OWID", "source_openness": "World Bank NE.TRD.GNFS.ZS"},
+    )
 
 
 def load_real_finance() -> Dataset:

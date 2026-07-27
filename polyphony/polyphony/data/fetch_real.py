@@ -168,6 +168,44 @@ def fetch_nexus(out: pathlib.Path | None = None) -> pathlib.Path:
     return out
 
 
+WB_TRADE_OPENNESS = "https://api.worldbank.org/v2/country/GBR/indicator/NE.TRD.GNFS.ZS?format=json&per_page=400"
+
+
+def _fetch_owid_country_co2(country: str) -> dict[int, tuple[float, float]]:
+    """{year: (production_co2, consumption_co2)} for one country from OWID (both columns present)."""
+    with urllib.request.urlopen(OWID_CO2, timeout=60) as r:
+        text = r.read().decode("utf-8")
+    reader = csv.DictReader(io.StringIO(text))
+    out: dict[int, tuple[float, float]] = {}
+    for row in reader:
+        if row["country"] == country and row.get("co2") and row.get("consumption_co2"):
+            out[int(row["year"])] = (float(row["co2"]), float(row["consumption_co2"]))
+    return out
+
+
+def fetch_trade(out: pathlib.Path | None = None) -> pathlib.Path:
+    """Fetch the REAL Trade⇄Emissions series (issue #12-real): the **United Kingdom** — the textbook
+    carbon-leakage case (production emissions ~halved since 1990 while consumption emissions fell far less).
+
+    OWID production (``co2``) + consumption (``consumption_co2``) CO₂, plus World Bank UK **trade openness**
+    (``NE.TRD.GNFS.ZS``) as an **independent** leakage driver (using the observed gap itself would be
+    circular). The World aggregate is *not* usable — global trade nets to zero, so consumption = production.
+    Writes ``datasets/real_trade.csv`` (columns: ``year``, ``production_co2``, ``consumption_co2``, ``openness``).
+    """
+    co2 = _fetch_owid_country_co2("United Kingdom")
+    openness = _fetch_worldbank(WB_TRADE_OPENNESS)
+    years = sorted(set(co2) & set(openness))
+    if len(years) < 20:
+        raise RuntimeError(f"too few overlapping years ({len(years)}); refusing to write")
+    out = out or (DATASETS / "real_trade.csv")
+    with out.open("w", newline="", encoding="utf-8") as fh:
+        w = csv.writer(fh)
+        w.writerow(["year", "production_co2", "consumption_co2", "openness"])
+        for y in years:
+            w.writerow([y, co2[y][0], co2[y][1], openness[y]])
+    return out
+
+
 FRED_SPREAD = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAA10Y"  # Baa − 10Y Treasury credit spread
 FRED_REALGDP = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=GDPC1"  # real GDP (chained 2017 $)
 
@@ -233,3 +271,5 @@ if __name__ == "__main__":
     print(f"wrote {nexus} ({sum(1 for _ in nexus.open()) - 1} rows)")
     finance = fetch_finance()
     print(f"wrote {finance} ({sum(1 for _ in finance.open()) - 1} rows)")
+    trade = fetch_trade()
+    print(f"wrote {trade} ({sum(1 for _ in trade.open()) - 1} rows)")

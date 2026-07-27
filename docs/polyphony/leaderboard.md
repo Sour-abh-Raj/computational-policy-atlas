@@ -525,7 +525,28 @@ keep is machinery, not skill — the real-data test is especially clean here bec
 production–consumption gap directly (``trade_co2``), so issue **#12-real** has an unusually well-measured
 target.
 
-## Convergence status (per domain) — REOPENED (scope extended to a seventh domain)
+## Round 24 — real Trade⇄Emissions: carbon leakage is real but CUT (confounded-away) (issue #12-real)
+
+Iter 29 opened the gap; Iter 30 closes it on the textbook case — the **United Kingdom**, whose production
+CO₂ ~halved since 1990 while consumption CO₂ fell far less. Target: real consumption CO₂; the leakage
+driver is **trade openness** (World Bank), an *independent* regressor (using the observed gap would be
+circular). `experiments/real_trade_tournament.py`, decided by walk-forward. *(The World aggregate is not
+usable — global trade nets to zero, so consumption = production.)*
+
+| Check | Result |
+|---|---|
+| corr(openness, consumption/production ratio) — sign | **+0.81 — strong, and the RIGHT sign** |
+| leakage-coupled vs **production-blind** baseline | **beats it in 0% of folds** |
+| leakage-coupled vs **placebo** / **naive** | 0% / 0% of folds |
+
+**Verdict: CUT — the "confounded-away" mode again.** The UK's carbon-leakage gap is unmistakably real (the
+ratio rose 1.11→1.58 as it opened, corr +0.81), but out of sample the openness-driven leakage term does
+**not** beat a baseline that simply scales production — the openness↔gap correlation is a **shared trend**
+(both rose over 1990–2023), not independent predictive information. The *average* leakage level is real and
+trivially captured by production; its *openness-driven dynamics* are not predictable beyond a trend. A
+genuine, policy-important phenomenon whose reduced-form mechanism still fails the strict skill bar.
+
+## Convergence status (per domain) — DONE (again, with the seventh domain resolved)
 
 | Domain / coupling | Verdict | Real-data status | Open, improvable gap? |
 |---|---|---|---|
@@ -536,15 +557,15 @@ target.
 | **Urban⇄Transport⇄Energy⇄Health** (co-benefit) | **CUT on real data** (right sign, no skill above trend; fails placebo) | ✅ tested (34 yrs) | **no** |
 | **Water⇄Energy⇄Food** (nexus, energy→food leg) | **CUT on real data** (corr +0.90 but no out-of-sample skill) | ✅ tested (34 yrs); water-leg data-limited | **no** |
 | **Macro⇄Finance** (spread→growth nowcast) | **CUT on real data** (narrowest call: right sign −0.61, beats placebo 80% + naive 60%, but not a mean-growth climatology; regime-dependent skill) | ✅ tested (39 yrs credit spread + GDP growth) | **no** |
-| **Trade⇄Emissions** (carbon leakage) | **KEEP on synthetic** (fair-cal Δ+17.3, correct sign); no-leakage control cut | ❌ **not yet** — synthetic only | **YES** — needs a real production-vs-consumption CO₂ placebo test (issue #12-real) |
+| **Trade⇄Emissions** (carbon leakage) | **CUT on real data** (UK: gap real, corr +0.81 right sign, but openness-leakage confounded-away — loses to a production-blind baseline) | ✅ tested (34 yrs UK production/consumption CO₂ + openness) | **no** |
 
-**REOPENED.** The seven prior couplings stay resolved, but honoring "scope is a floor" added an eighth
-whose synthetic keep is not yet a real-data keep — and its real target is unusually clean (OWID publishes
-the production–consumption gap, ``trade_co2``, directly). The loop continues until this domain survives a
-real placebo or is cut. Ledger so far: **one coupling kept (Macro⇄Health); six cut** on the strict bar,
-**six distinct named failure modes** (level artifact · genuinely cyclic · wrong sign · confounded-away ·
-real-signal-no-skill · regime-dependent skill). Standing headline unchanged: **a synthetic keep is a
-hypothesis, not a result.**
+**DONE (again).** The Iter-29 scope extension is resolved on real data. Every kept coupling survives its
+round (Macro⇄Health); **seven** candidate couplings are now cut, each with a recorded, falsifiable
+reason — **six on real data under a placebo/robust walk-forward** — spanning the same catalogue of failure
+modes (level artifact · genuinely cyclic · wrong sign · **confounded-away** ×2 · real-signal-no-skill ·
+regime-dependent skill). No domain retains an open, improvable gap. Standing headline: **one coupling
+earned its keep; seven were cut — and the bar never bent, not even for the best-motivated, most
+policy-important stories.**
 
 ## Standing champions
 
@@ -556,7 +577,7 @@ hypothesis, not a result.**
 | Health-burden track, Urban⇄Transport⇄Energy⇄Health slice (**fair calibration**) | **coupled ensemble** (synthetic only) | airhealth-only | synthetic-cobenefit, time-blocked 30% | **+13.5 (keep synth)** | ❌ **CUT on real data** — right sign (+0.35) but PM2.5 adds no skill above trend; fails placebo (#7-real) | [redteam](04-validation.md) |
 | Food-price track, Water⇄Energy⇄Food nexus slice (**fair calibration**) | **coupled ensemble** (synthetic only) | nexusfood-only | synthetic-nexus, time-blocked 30% | **+99.3 (keep synth)** | ❌ **CUT on real data** — energy→food corr +0.90 but no out-of-sample skill (loses to trend/placebo/naive; #10-real) | [redteam](04-validation.md) |
 | GDP track, Macro⇄Finance slice (**fair calibration**) | **coupled ensemble** (synthetic only) | economy-only | synthetic-financial-crisis, time-blocked 30% | **+2.74 (keep synth)** | ❌ **CUT on real data** — spread→growth right sign (−0.61), beats placebo 80%/naive 60% but not climatology; regime-dependent skill (#11-real) | [redteam](04-validation.md) |
-| Consumption-emissions track, Trade⇄Emissions slice (**fair calibration**) | **coupled ensemble** (synthetic only) | leakage-blind | synthetic-leakage, time-blocked 30% | **+17.3 (keep synth)** | ⚠️ survives level-artifact + correct sign, but **synthetic only** — real placebo pending (#12-real) | [redteam](04-validation.md) |
+| Consumption-emissions track, Trade⇄Emissions slice (**fair calibration**) | **coupled ensemble** (synthetic only) | leakage-blind | synthetic-leakage, time-blocked 30% | **+17.3 (keep synth)** | ❌ **CUT on real data** — UK gap real (corr +0.81) but openness-leakage confounded-away; loses to production-blind (#12-real) | [redteam](04-validation.md) |
 
 ## Contest log
 
