@@ -63,6 +63,17 @@ choice of economic paradigm matters most exactly where a real policy is contempl
 the instrument raises a flag, not where it hides one. Disagreement is a *signal about where your beliefs
 are load-bearing*, not noise to be smoothed.
 
+### Does the disagreement change the *choice*? (here, no — and that's useful)
+
+The paradigms disagree sharply on the GDP *level* — but the card also computes the recommended carbon price
+**within each worldview** (`recommendation_by_paradigm`), and here they **agree**: the utilitarian choice is
+**cp = 50** under *both* equilibrium and disequilibrium. The welfare ranking is driven by the
+abatement-cost ↔ climate-risk trade-off, which both paradigms share, so the *level* disagreement does not
+move the *decision*. This is exactly the kind of honesty a decision-maker needs in both directions: **you do
+not have to resolve the equilibrium-vs-disequilibrium debate to choose this policy** — the choice is robust
+to it, even though the projected outcome is not. (The recommendation still changes with your **values** — so
+the load-bearing uncertainty here is ethical, not paradigmatic.)
+
 ## 3. The validation status is disclosed
 
 The recommendation leans on cross-domain couplings. Their **real-data verdict** (leaderboard Rounds 1–22)

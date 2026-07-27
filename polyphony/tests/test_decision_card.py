@@ -43,3 +43,15 @@ def test_pareto_front_is_reported():
     c = build_decision_card()
     assert len(c.pareto_front) >= 1
     assert all(name.startswith("cp=") for name in c.pareto_front)
+
+
+def test_choice_is_robust_to_the_paradigm_even_though_the_level_is_not():
+    c = build_decision_card()
+    # The paradigms disagree sharply on the GDP *level* (equilibrium vs disequilibrium)…
+    assert c.paradigms_disagree_on_gdp
+    # …yet the recommended carbon price is the *same* under both worldviews — an honest, useful finding:
+    # you need not resolve that debate to choose this policy (the abatement↔risk trade-off, shared by both,
+    # drives the ranking). Meanwhile the recommendation DOES change with values.
+    assert set(c.recommendation_by_paradigm) == {"equilibrium", "disequilibrium"}
+    assert c.paradigm_recommendations_agree
+    assert not c.values_agree

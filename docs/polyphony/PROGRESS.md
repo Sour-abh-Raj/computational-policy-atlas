@@ -924,3 +924,24 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
     `mkdocs --strict`.
   - **Next (Iter 40):** numeric effect-size margins on the meta-analysis, per-candidate honest bands on the
     decision card, or another domain under the same bar.
+- **Iter 40 — ⚖️ Decision card: is the *choice* robust to the paradigm? (here yes — a useful honesty in both directions.)**
+  - **Deepened the north-star artifact:** the decision card showed the paradigms disagree on the GDP *level*;
+    this adds whether they disagree on the *recommended policy*. Parameterized `welfare_frontier` by
+    `paradigm` (equilibrium = CGE-only, disequilibrium = E3ME-only, both) and computed the utilitarian
+    recommendation **within each worldview**.
+  - **Finding:** the paradigms disagree sharply on the GDP level (CGE 88 vs E3ME 108, even opposite-signed
+    carbon-price effects) but **agree on the recommended carbon price (cp=50)** — because the welfare ranking
+    is driven by the abatement-cost ↔ climate-risk trade-off both share. **The *choice* is robust to the
+    equilibrium-vs-disequilibrium debate even though the projected *level* is not** — honesty in both
+    directions (flag the disagreement, but also say when it doesn't change the decision). The recommendation
+    still flips with **values**, so here the load-bearing uncertainty is *ethical, not paradigmatic*.
+  - **`decision_card`:** new `recommendation_by_paradigm` + `paradigm_recommendations_agree`; `honest_summary`
+    now states whether the choice flips with the paradigm.
+  - **Validated:** `test_decision_card.py` asserts the paradigms disagree on the level yet agree on the
+    choice, while values still change it.
+  - **Atlas feedback:** reuses the welfare + disagreement engines — no new graph node; graph unchanged
+    (**180 nodes / 480 edges, 0-dangling**).
+  - **Convergence stays DONE.** **+1 test -> 139 pass.** Gates green: `pytest` (139) · `ruff` · `mypy`
+    (66 files) · graph 0-dangling · `mkdocs --strict`. decision-support page updated.
+  - **Next (Iter 41):** numeric effect-size margins on the meta-analysis, another domain, or a
+    values-vs-paradigm sensitivity sweep (which uncertainty is load-bearing for which questions).

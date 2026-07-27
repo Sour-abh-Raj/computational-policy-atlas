@@ -39,20 +39,25 @@ def _abatement_cost_frac(cp: float) -> float:
     return float(min(_ABATE_K * (cp / 100.0) ** 2, 0.5))
 
 
-def slice_outcome(cp: float, n: int = 30, tcre: float = 0.001) -> PolicyOutcome:
-    voices: list[Model] = [
-        ReducedFormEnergy(),
-        ReducedFormClimate(),
-        EquilibriumEconomy(),
-        DisequilibriumEconomy(),
-    ]
+def slice_outcome(cp: float, n: int = 30, tcre: float = 0.001, paradigm: str = "both") -> PolicyOutcome:
+    """Welfare outcome of a carbon price. ``paradigm`` selects the economy voice(s): ``"both"`` (report the
+    disagreement-averaged GDP), ``"equilibrium"`` (CGE only), or ``"disequilibrium"`` (E3ME only) — so the
+    recommendation can be computed *within* each worldview and compared."""
+    econ_by_paradigm: dict[str, list[Model]] = {
+        "both": [EquilibriumEconomy(), DisequilibriumEconomy()],
+        "equilibrium": [EquilibriumEconomy()],
+        "disequilibrium": [DisequilibriumEconomy()],
+    }
+    econ: list[Model] = econ_by_paradigm[paradigm]
+    driver = econ[0].name  # the voice that drives gdp/demand on the bus
+    voices: list[Model] = [ReducedFormEnergy(), ReducedFormClimate(), *econ]
     routing = {
         "energy_cost": "energy",
         "emissions": "energy",
         "temperature": "dice",
         "damage_frac": "dice",
-        "demand": "cge",
-        "gdp": "cge",
+        "demand": driver,
+        "gdp": driver,
     }
     r = Orchestrator(voices, routing).run(steps=n, dials={"carbon_price": cp, "tcre": tcre}, seed=1)
     mean_gdp = combine("gdp", r.answers_for("gdp")).weighted_mean
@@ -69,8 +74,8 @@ def slice_outcome(cp: float, n: int = 30, tcre: float = 0.001) -> PolicyOutcome:
     return PolicyOutcome(f"cp={cp:g}", consumption, emissions, climate_risk)
 
 
-def policy_outcomes(carbon_prices, n: int = 30) -> list[PolicyOutcome]:
-    return [slice_outcome(cp, n) for cp in carbon_prices]
+def policy_outcomes(carbon_prices, n: int = 30, paradigm: str = "both") -> list[PolicyOutcome]:
+    return [slice_outcome(cp, n, paradigm=paradigm) for cp in carbon_prices]
 
 
 def recommendations(outcomes) -> dict[str, str]:
@@ -83,7 +88,7 @@ def recommendations(outcomes) -> dict[str, str]:
     return {label: rank_policies(outcomes, d)[0].name for label, d in settings.items()}
 
 
-def frontier_and_recommendations(carbon_prices, n: int = 30):
-    outcomes = policy_outcomes(carbon_prices, n=n)
+def frontier_and_recommendations(carbon_prices, n: int = 30, paradigm: str = "both"):
+    outcomes = policy_outcomes(carbon_prices, n=n, paradigm=paradigm)
     front = [o.name for o in pareto_frontier(outcomes)]
     return {"outcomes": outcomes, "pareto_front": front, "recommendations": recommendations(outcomes)}

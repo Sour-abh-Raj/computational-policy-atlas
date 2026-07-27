@@ -71,6 +71,7 @@ class DecisionCard:
     candidates: tuple[float, ...]
     pareto_front: tuple[str, ...]
     recommendation_by_value: dict[str, str]
+    recommendation_by_paradigm: dict[str, str]  # utilitarian recommendation under each economic worldview
     gdp_disagreement_D: float
     gdp_paradigm_answers: dict[str, float]
     kept_couplings: tuple[str, ...]
@@ -79,6 +80,11 @@ class DecisionCard:
     @property
     def values_agree(self) -> bool:
         return len(set(self.recommendation_by_value.values())) == 1
+
+    @property
+    def paradigm_recommendations_agree(self) -> bool:
+        """Whether the recommended policy is the same under the equilibrium and disequilibrium worldviews."""
+        return len(set(self.recommendation_by_paradigm.values())) == 1
 
     @property
     def paradigms_disagree_on_gdp(self) -> bool:
@@ -91,8 +97,13 @@ class DecisionCard:
             if self.values_agree
             else "a **different** policy depending on your values"
         )
+        para = (
+            "the same under both economic paradigms"
+            if self.paradigm_recommendations_agree
+            else "**also flips** with the economic paradigm (equilibrium vs disequilibrium)"
+        )
         return (
-            f"Recommendation: {rec} — see the per-value table. On GDP, the equilibrium and "
+            f"Recommendation: {rec}, and it is {para} — see the per-value table. On GDP, the equilibrium and "
             f"disequilibrium paradigms {'disagree' if self.paradigms_disagree_on_gdp else 'agree'} "
             f"(D={self.gdp_disagreement_D:.2f}); both answers are shown, not averaged. The ensemble leans "
             f"on cross-domain couplings of which **{len(self.cut_couplings)} of "
@@ -102,7 +113,13 @@ class DecisionCard:
 
 
 def build_decision_card(carbon_prices: tuple[float, ...] = (0.0, 50.0, 100.0, 200.0, 400.0)) -> DecisionCard:
-    fr = frontier_and_recommendations(list(carbon_prices))
+    prices = list(carbon_prices)
+    fr = frontier_and_recommendations(prices)
+    # The utilitarian recommendation computed *within* each economic worldview — does the choice flip?
+    by_paradigm = {
+        "equilibrium": frontier_and_recommendations(prices, paradigm="equilibrium")["recommendations"]["utilitarian"],
+        "disequilibrium": frontier_and_recommendations(prices, paradigm="disequilibrium")["recommendations"]["utilitarian"],
+    }
     ref = carbon_prices[len(carbon_prices) // 2]  # a representative (median) policy for the disagreement read
     dis = _gdp_disagreement(ref)
     return DecisionCard(
@@ -110,6 +127,7 @@ def build_decision_card(carbon_prices: tuple[float, ...] = (0.0, 50.0, 100.0, 20
         candidates=carbon_prices,
         pareto_front=tuple(fr["pareto_front"]),
         recommendation_by_value=fr["recommendations"],
+        recommendation_by_paradigm=by_paradigm,
         gdp_disagreement_D=dis.index_D,
         gdp_paradigm_answers={a.voice: a.value for a in dis.answers},
         kept_couplings=KEPT_COUPLINGS,
