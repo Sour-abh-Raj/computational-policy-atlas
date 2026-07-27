@@ -433,6 +433,29 @@ Inaccurate *and* overconfident is precisely the failure a single-confident-numbe
 is measured and named. (The honest remedy — predictive distributions that carry parameter and structural
 uncertainty, not just in-sample residuals — is future work, now motivated by a number.)
 
+## Round 20 — honest uncertainty: calibration is achievable, but not against regime breaks (Iter 25)
+
+Round 19 diagnosed overconfidence; Round 20 tries to *fix* it, using only training information —
+**out-of-sample bias correction** (from a walk-forward backtest on the train block) + **horizon-fanning
+bands** (spread grown as √h with the forecast lead). `experiments/honest_uncertainty.py`.
+
+| Coupling (real) | central coverage: in-sample | central coverage: honest | honest PIT mean | calibrated? |
+|---|---:|---:|---:|---|
+| climate→GDP | 0% | **47%** | 0.22 | improved (near) |
+| warming→yield | 0% | **100%** | 0.35 | ✅ (mildly over-dispersed) |
+| PM2.5→mortality | 0% | 0% | 0.99 | ❌ regime break (aging upturn) |
+| energy→food | 0% | 0% | 0.08 | ❌ regime break (2022 shock) |
+
+**Two honest halves.** (1) Where the future resembles the past, the honest bands **earn calibration** —
+climate→GDP and warming→yield go from *zero* central coverage to 47% / 100%, showing a calibrated
+predictive distribution is achievable **even for a coupling with no point skill** (the north star: report
+*earned* confidence, not none and not false). (2) Where the test block contains a genuine **regime break**
+the train backtest never saw — mortality turning up with population aging; the unprecedented 2022 energy
+shock — historical residuals **cannot** insure against it, and calibration stays broken. That second half
+is not a failure to hide but the lesson: **honest uncertainty from history is still blind to structural
+breaks**, and a system that claimed otherwise would be dishonest in exactly the way this project exists to
+avoid.
+
 ## Convergence status (per domain) — DONE (again, with the fifth domain resolved)
 
 | Domain / coupling | Verdict | Real-data status | Open, improvable gap? |

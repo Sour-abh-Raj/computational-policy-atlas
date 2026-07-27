@@ -289,6 +289,22 @@ forecast is wrong, but that its **confidence is unearned**. The honest remedy �
 carrying parameter and structural uncertainty rather than only in-sample residuals — is now future work
 motivated by a measured miscalibration, not a vibe.
 
+## Honest uncertainty: calibration achievable, but blind to regime breaks (Round 20)
+
+Round 19 found the couplings overconfident; Round 20 builds an honest predictive distribution — OOS bias
+correction (walk-forward on train) + √h horizon-fanning bands — and asks whether it earns calibration.
+
+- **Where the future resembles the past** (climate→GDP, warming→yield), it does: central PIT coverage
+  rises from **0% to 47% / 100%**. A *calibrated* predictive distribution is achievable even for a
+  coupling with **no point skill** — honest confidence, neither absent nor false.
+- **Where the test block holds a regime break** (PM2.5→mortality's aging upturn; energy→food's 2022
+  shock), it does **not**: historical residuals cannot insure against a structural break the backtest
+  never saw. Calibration stays broken — and saying so plainly is the honest outcome.
+
+The lesson for the instrument: honest uncertainty from history is a real, achievable virtue, but it is
+**still blind to structural breaks**. Any claim of calibrated bands must carry that caveat — which is
+precisely the kind of over-promise a single-confident-number simulator makes and this project refuses.
+
 ## Honesty-debt register (tracked to close)
 
 | Debt | Status | Tracked by |
@@ -305,6 +321,7 @@ motivated by a measured miscalibration, not a vibe.
 | Convergence (after #10) | ✅ **DONE (again)** — nexus resolved on real data (fourth distinct failure mode). Every kept coupling survives its round; five cuts, five named failure modes; no open improvable gap | — |
 | Split-robustness of real verdicts | ✅ **hardened by walk-forward CV** — all four real cuts hold across expanding-window folds; the robust common reason is **no skill vs naive** (single-split placebo attributions were partly split artifacts). `experiments/walkforward.py` | Round 18 |
 | Uncertainty honesty of real forecasts | ✅ **measured (CRPS/PIT)** — real couplings are not only inaccurate but **grossly overconfident** (PIT at the tails, 0% central coverage): train-residual bands are far too narrow out-of-sample. Honest remedy (parameter/structural uncertainty) now motivated. `experiments/real_probabilistic.py` | Round 19 |
+| Honest predictive bands | ✅ **calibration achievable, with a caveat** — OOS bias-correction + √h horizon-fanning bands lift central coverage 0%→47%/100% where the future resembles the past (climate→GDP, warming→yield), but **cannot** cover regime breaks (PM2.5 aging upturn; 2022 energy shock). Honest uncertainty from history is still blind to structural breaks. `experiments/honest_uncertainty.py` | Round 20 |
 | Model calibration (real levels) | affine calibration now beats naive **on synthetic** (MASE 0.61); real-level calibration still pending | (opens when #9 lands) |
 | Welfare/equity engine (values dial) | ✅ **built + integrated** — frontier over policies; recommendation changes with values | issue #4 |
 | Predictive distributions → CRPS/PIT in tournament | ✅ **scored + calibrated** — `calibrate_ensemble` de-bias+widen ⇒ CRPS 7.9→0.44, **PIT 0.0→0.39** (near-uniform, synthetic) | blueprint §6 |

@@ -580,3 +580,25 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
   - **Next (Iter 25):** either widen the predictive distributions to earn honest calibration (parameter +
     structural uncertainty; re-score CRPS/PIT), or add a **sixth domain**, or hunt a real water-scarcity
     driver for the nexus water-leg.
+- **Iter 25 — 🎯 Honest uncertainty: calibration is achievable (but blind to regime breaks). Turned the Round-19 overconfidence diagnosis into a remedy.**
+  - **`experiments/honest_uncertainty.py`:** builds an honest predictive distribution using only training
+    info — **OOS bias correction** (walk-forward backtest on the train block) + **horizon-fanning bands**
+    (spread grown as √h with forecast lead), fixing the two diagnosed causes of Round-19 overconfidence
+    (out-of-sample point bias + horizon-blind in-sample bands).
+  - **Two honest halves:** (1) where the future resembles the past, the honest bands **earn calibration**
+    — climate→GDP and warming→yield rise from **0% → 47% / 100%** central PIT coverage, proving a
+    calibrated predictive distribution is achievable **even for a coupling with no point skill**; (2) where
+    the test block holds a genuine **regime break** the backtest never saw (PM2.5→mortality's aging upturn;
+    energy→food's 2022 shock), historical residuals **cannot** insure against it and calibration stays
+    broken.
+  - **The lesson:** honest uncertainty from history is a real, achievable virtue but **still blind to
+    structural breaks** — a caveat any calibration claim must carry, and exactly the over-promise a
+    single-confident-number simulator makes and this project refuses.
+  - **Atlas feedback:** reuses the Validation Engine (probabilistic-calibration row already added Iter 24);
+    no new graph node; graph unchanged (**172 nodes / 465 edges, 0-dangling**).
+  - **Convergence stays DONE** (validation/uncertainty deepening, no new coupling). **+3 tests -> 93
+    pass.** Gates green: `pytest` (93) · `ruff` · `mypy` (52 files) · graph 0-dangling · `mkdocs --strict`.
+    Leaderboard Round 20 + 04-validation register updated.
+  - **Next (Iter 26):** a **sixth domain** for breadth (e.g. Macro⇄Finance systemic risk, Migration⇄Climate),
+    or a real water-scarcity driver for the nexus water-leg, or surface the disagreement/uncertainty
+    machinery in the docs as a worked decision-support example (north star: help humans choose).
