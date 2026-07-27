@@ -254,6 +254,24 @@ here it stays strong but doesn't forecast). Honesty means reporting the +0.90 co
 in the same breath — the co-movement is real, the forecast skill is not. Five couplings cut, five *named*
 failure modes (level artifact, cyclic, wrong sign, confounded-away, real-signal-no-skill); one kept.
 
+## Walk-forward CV hardens (and corrects) the real-data verdicts (Round 18)
+
+Each single-split verdict rests on one arbitrary train/test cut — and the nexus placebo comparison flipped
+between two reasonable choices. Iter 23 re-runs every real coupling over an **expanding-window
+walk-forward** and reports, across folds, how often it beats its baseline, a placebo, and naive. The
+result is both a confirmation and a correction:
+
+- **All four cuts hold** across folds — none is a single-split artifact.
+- **But the *reason* is corrected.** climate→GDP and energy→food actually **beat the placebo in most
+  folds**, so the earlier "fails placebo" attributions were partly split-dependent. What is invariant is
+  that **none beats a naive random-walk in a majority of folds** (14%, 14%, 50%, 25%). On smooth aggregate
+  series, a random walk is the honest baseline, and these reduced-form couplings do not clear it.
+
+This is the validation discipline working on *itself*: a more robust method (walk-forward) revised a
+conclusion reached by a weaker one (single split), and the revision is documented rather than hidden. The
+standing lesson — *beat rivals AND a placebo AND naive on real data, or be cut* — is unchanged; walk-forward
+just makes the "naive" clause the load-bearing one.
+
 ## Honesty-debt register (tracked to close)
 
 | Debt | Status | Tracked by |
@@ -268,6 +286,7 @@ failure modes (level artifact, cyclic, wrong sign, confounded-away, real-signal-
 | Fifth synergy loop (breadth, #10) | ✅ **KEEP on synthetic** — Water⇄Energy⇄Food nexus survives fair calibration (Δ +99) + correct sign; negative control cut. New voices `water`+`nexusfood`, CLEWs dossier | issue #10 |
 | Real Water⇄Energy⇄Food test | ✅ **CUT on real data** — energy→food leg (IMF indices, 34 yrs): corr +0.90 (right sign) but **no out-of-sample skill** (loses to trend/placebo/naive; 2022 energy shock doesn't pass through). Water-leg driver data-limited | issue #10-real |
 | Convergence (after #10) | ✅ **DONE (again)** — nexus resolved on real data (fourth distinct failure mode). Every kept coupling survives its round; five cuts, five named failure modes; no open improvable gap | — |
+| Split-robustness of real verdicts | ✅ **hardened by walk-forward CV** — all four real cuts hold across expanding-window folds; the robust common reason is **no skill vs naive** (single-split placebo attributions were partly split artifacts). `experiments/walkforward.py` | Round 18 |
 | Model calibration (real levels) | affine calibration now beats naive **on synthetic** (MASE 0.61); real-level calibration still pending | (opens when #9 lands) |
 | Welfare/equity engine (values dial) | ✅ **built + integrated** — frontier over policies; recommendation changes with values | issue #4 |
 | Predictive distributions → CRPS/PIT in tournament | ✅ **scored + calibrated** — `calibrate_ensemble` de-bias+widen ⇒ CRPS 7.9→0.44, **PIT 0.0→0.39** (near-uniform, synthetic) | blueprint §6 |

@@ -56,6 +56,8 @@ graph TD
 | **Reference-mode** | Reproduce the qualitative dynamic of concern? | System dynamics |
 | **Structural / sensitivity** | Right output for the right reasons? | all (via [Sensitivity Engine](sensitivity-engine.md)) |
 | **Cross-model / benchmark** | Agree with independent models (e.g. IPCC ensembles)? | IAMs, energy models |
+| **Walk-forward CV** | Does skill hold across *many* expanding-window splits, not one? | Polyphony (real-data couplings) |
+| **Placebo / naive baselines** | Beat a meaningless regressor *and* a random walk, not just a trend? | Polyphony (keep/cut gate) |
 
 ## Interface
 

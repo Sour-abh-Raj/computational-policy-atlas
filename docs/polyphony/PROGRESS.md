@@ -532,3 +532,26 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
     coverage + validation. Next avenues: a **sixth domain** (e.g. Macro⇄Finance systemic risk, or
     Migration⇄Climate), or **deepening validation** (walk-forward CV instead of a single split; CRPS/PIT
     on real tournaments; a real water-scarcity driver for the nexus water-leg if a source can be found).
+- **Iter 23 — 🔁 Walk-forward CV hardens the real-data verdicts (and corrects their reasons): the robust common cut is "no skill vs naive".**
+  - **Motivation (robustness, not breadth):** the single-split real tournaments each rest on one arbitrary
+    time-blocked cut, and the nexus placebo comparison *flipped* between two reasonable splits (Iter 22).
+    So instead of a sixth domain, this iteration hardens the validation itself.
+  - **`experiments/walkforward.py`:** re-runs every real coupling over an **expanding-window walk-forward**
+    (reusing the existing `walk_forward` split helper) on a unified **sign-aware reduced form**
+    (`trend·(1 + direction·k·z)`, k≥0 clamped to the assumed direction), reporting per-fold how often the
+    coupling beats its **baseline**, a **placebo**, and **naive**.
+  - **Result — all four real cuts hold across folds, but the reason is corrected:** climate→GDP and
+    energy→food actually **beat the placebo in most folds** (so the single-split "fails placebo"
+    attributions were partly split artifacts); what is invariant is that **none beats a naive random walk**
+    in a majority of folds (14% / 14% / 50% / 25%). On smooth aggregate series a random walk is the honest
+    baseline, and these reduced-form couplings don't clear it. A more robust method revised a weaker
+    method's conclusion — documented, not hidden.
+  - **Atlas feedback:** deepens the **Validation Engine** — added **Walk-forward CV** and **Placebo/naive
+    baselines** rows to `docs/patterns/validation-engine.md`. Reuses the Validation engine, no new graph
+    node; graph unchanged (**172 nodes / 465 edges, 0-dangling**).
+  - **Convergence stays DONE:** this confirms/hardens existing verdicts (doesn't add a coupling). **+2
+    tests -> 88 pass.** Gates green: `pytest` (88) · `ruff` · `mypy` (50 files) · graph 0-dangling ·
+    `mkdocs --strict`. Leaderboard Round 18 + 04-validation register + validation-engine page updated.
+  - **Next (Iter 24):** either a **sixth domain** OR further validation depth (CRPS/PIT probabilistic
+    scoring on the real tournaments; or hunt a real water-scarcity driver to test the nexus water-leg,
+    not just the energy leg).

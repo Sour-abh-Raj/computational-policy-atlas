@@ -386,6 +386,30 @@ is **not** a usable leading predictor. This joins the catalogue of *named* cuts 
 wrong sign (land), confounded-away (co-benefit), and now **real signal without out-of-sample skill**
 (nexus energy→food).
 
+## Round 18 — walk-forward CV hardens the verdicts: the robust reason is "no skill vs naive" (Iter 23)
+
+The single-split real tournaments (Rounds 10, 13, 15, 17) each decide on **one** time-blocked split — and
+the nexus placebo comparison flipped between two reasonable split choices. So every real coupling is
+re-run over an **expanding-window walk-forward** (`experiments/walkforward.py`), on a unified sign-aware
+reduced form, reporting how often the coupling beats its **baseline**, a **placebo**, and **naive** across
+folds.
+
+| Coupling (real) | folds | beats baseline | beats placebo | **beats naive** | robust verdict |
+|---|---:|---:|---:|---:|---|
+| climate→GDP | 7 | 100% | 100% | **14%** | **cut** |
+| warming→yield | 7 | 100% | 100% | **14%** | **cut** |
+| PM2.5→mortality | 4 | 0% | 0% | **50%** | **cut** |
+| energy→food | 4 | 50% | 75% | **25%** | **cut** |
+
+**All four cuts are robust across folds — but the honest reason is now unified and *more* honest than the
+single-split story.** Two couplings (climate→GDP, energy→food) actually **beat the placebo in most folds**
+— so the single-split "fails placebo" attributions were partly *split artifacts*. What holds across every
+fold and every coupling is that **none beats a naive random-walk forecast** (14%, 14%, 50%, 25%). That —
+not the fragile placebo comparison — is the robust, split-independent reason all four aggregate reduced-form
+couplings are cut: on these smooth aggregate series a random walk is simply hard to beat. Walk-forward CV
+thus both **confirms the cuts** and **corrects their stated reasons**, which is exactly what a validation
+upgrade should do.
+
 ## Convergence status (per domain) — DONE (again, with the fifth domain resolved)
 
 | Domain / coupling | Verdict | Real-data status | Open, improvable gap? |
