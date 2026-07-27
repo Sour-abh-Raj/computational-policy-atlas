@@ -1057,3 +1057,25 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
     (69 files) · graph 0-dangling · `mkdocs --strict`.
   - **Next (Iter 47):** a concrete demonstration of the Macro⇄Health real-data underpowering (one-pandemic
     unidentifiability), or another distinct domain.
+- **Iter 47 — 🦠 Macro⇄Health underpowering, DEMONSTRATED (not asserted) — completing the honesty arc.**
+  - **`experiments/real_macrohealth.py`:** turns the "real test underpowered" claim into a computed fact via
+    two independent structural reasons:
+    1. **One pandemic episode.** The modern GDP era has exactly **one** output-shock pandemic (COVID,
+       2020–2023, a single contiguous block), so you cannot learn the coupling on one occurrence and test it
+       on another → `identifiable_out_of_sample = (episodes ≥ 2)` is **False**. (A multi-year episode can
+       straddle one fold boundary — 2020 in train, 2022 in test — but that is *within-episode* re-testing,
+       not independent validation.)
+    2. **Near-zero in-sample relationship.** At **annual** resolution corr(severity, GDP growth) = **−0.02**
+       — 2021 had the *most* deaths *and* strong recovery growth, because the 2020 collapse came from
+       lockdowns, not deaths directly (a timing confound). So the coupling that is clean *by construction* on
+       synthetic data is neither cross-validatable nor even strongly present in-sample on real annual data.
+  - **Closes the Iter 45–47 honesty arc:** Iter 45 flagged the two keeps' unequal footing; Iter 46 confirmed
+    the separator on real evidence alone; Iter 47 now **demonstrates** exactly why Macro⇄Health's real
+    footing is thin. The synthetic keep remains honest machinery, its limits fully explicit.
+  - **Validated:** `test_real_macrohealth.py` asserts one episode / not identifiable / weak in-sample.
+  - **Atlas feedback:** reuses the committed real GDP series + documented CDC COVID deaths — no new graph
+    node; graph unchanged (**180 nodes / 480 edges, 0-dangling**).
+  - **Convergence stays DONE.** **+2 tests -> 150 pass.** Gates green: `pytest` (150) · `ruff` · `mypy`
+    (70 files) · graph 0-dangling · `mkdocs --strict`. 04-validation register updated.
+  - **Next (Iter 48):** a genuinely distinct new domain, or a further robustness/coverage pass if one is
+    worth the propagation.
