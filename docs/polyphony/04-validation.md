@@ -272,6 +272,23 @@ conclusion reached by a weaker one (single split), and the revision is documente
 standing lesson — *beat rivals AND a placebo AND naive on real data, or be cut* — is unchanged; walk-forward
 just makes the "naive" clause the load-bearing one.
 
+## Probabilistic scoring: inaccurate *and* overconfident (Round 19)
+
+Point scores (MASE) miss whether a model's uncertainty is honest. Iter 24 turns each real coupling's point
+forecast into a predictive distribution (point ± resampled train residuals) and scores CRPS + PIT against a
+probabilistic naive. Two separate verdicts result:
+
+- **Accuracy:** every coupling loses to naive on CRPS too (consistent with the point cuts).
+- **Calibration:** every coupling is **grossly overconfident** — the PIT piles entirely at the tails (0%
+  of values in the central half), so the predictive interval almost never contains the realised value.
+  Out-of-sample error is dominated by **trend-extrapolation bias** the in-sample residual spread never
+  saw, so train-calibrated bands are far too narrow out of sample.
+
+This is the north star made quantitative: *foregrounding uncertainty* means reporting not just that a
+forecast is wrong, but that its **confidence is unearned**. The honest remedy — predictive distributions
+carrying parameter and structural uncertainty rather than only in-sample residuals — is now future work
+motivated by a measured miscalibration, not a vibe.
+
 ## Honesty-debt register (tracked to close)
 
 | Debt | Status | Tracked by |
@@ -287,6 +304,7 @@ just makes the "naive" clause the load-bearing one.
 | Real Water⇄Energy⇄Food test | ✅ **CUT on real data** — energy→food leg (IMF indices, 34 yrs): corr +0.90 (right sign) but **no out-of-sample skill** (loses to trend/placebo/naive; 2022 energy shock doesn't pass through). Water-leg driver data-limited | issue #10-real |
 | Convergence (after #10) | ✅ **DONE (again)** — nexus resolved on real data (fourth distinct failure mode). Every kept coupling survives its round; five cuts, five named failure modes; no open improvable gap | — |
 | Split-robustness of real verdicts | ✅ **hardened by walk-forward CV** — all four real cuts hold across expanding-window folds; the robust common reason is **no skill vs naive** (single-split placebo attributions were partly split artifacts). `experiments/walkforward.py` | Round 18 |
+| Uncertainty honesty of real forecasts | ✅ **measured (CRPS/PIT)** — real couplings are not only inaccurate but **grossly overconfident** (PIT at the tails, 0% central coverage): train-residual bands are far too narrow out-of-sample. Honest remedy (parameter/structural uncertainty) now motivated. `experiments/real_probabilistic.py` | Round 19 |
 | Model calibration (real levels) | affine calibration now beats naive **on synthetic** (MASE 0.61); real-level calibration still pending | (opens when #9 lands) |
 | Welfare/equity engine (values dial) | ✅ **built + integrated** — frontier over policies; recommendation changes with values | issue #4 |
 | Predictive distributions → CRPS/PIT in tournament | ✅ **scored + calibrated** — `calibrate_ensemble` de-bias+widen ⇒ CRPS 7.9→0.44, **PIT 0.0→0.39** (near-uniform, synthetic) | blueprint §6 |

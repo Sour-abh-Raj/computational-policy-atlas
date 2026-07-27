@@ -555,3 +555,28 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
   - **Next (Iter 24):** either a **sixth domain** OR further validation depth (CRPS/PIT probabilistic
     scoring on the real tournaments; or hunt a real water-scarcity driver to test the nexus water-leg,
     not just the energy leg).
+- **Iter 24 — 🎲 Probabilistic scoring on real data: the couplings are inaccurate AND grossly overconfident (foreground uncertainty).**
+  - **North-star move:** point accuracy (MASE) can't see whether a model's *bands* are honest. This
+    iteration scores **uncertainty**, not just error, on the real couplings.
+  - **`experiments/real_probabilistic.py`:** turns each real coupling's point forecast into a predictive
+    distribution (point ± resampled train residuals) and scores **CRPS** + **PIT** (reusing the existing
+    metrics, previously synthetic-only) against a probabilistic **naive** (persistence ± train
+    first-difference spread).
+  - **Two distinct verdicts:** (1) **accuracy** — every coupling loses to naive on CRPS too (mirrors the
+    point cuts); (2) **calibration** — every coupling is **grossly overconfident**: the PIT piles entirely
+    at the tails (**0% of values in the central half**), so the predictive interval almost never contains
+    the realised value. Cause: out-of-sample error is dominated by **trend-extrapolation bias** the
+    in-sample residual spread never saw, so train-calibrated bands are far too narrow out of sample.
+  - **Why it matters:** *foregrounding uncertainty* means reporting not just that a forecast is wrong but
+    that its **confidence is unearned** — exactly what a single-confident-number simulator hides. The
+    honest remedy (predictive distributions carrying parameter/structural uncertainty, not only in-sample
+    residuals) is now future work motivated by a measured miscalibration.
+  - **Atlas feedback:** deepened the **Validation Engine** page with a **Probabilistic calibration** row.
+    Reuses existing CRPS/PIT metrics + Validation/Sensitivity engines — no new graph node; graph unchanged
+    (**172 nodes / 465 edges, 0-dangling**).
+  - **Convergence stays DONE** (validation deepening, no new coupling). **+2 tests -> 90 pass.** Gates
+    green: `pytest` (90) · `ruff` · `mypy` (51 files) · graph 0-dangling · `mkdocs --strict`. Leaderboard
+    Round 19 + 04-validation register + validation-engine page updated.
+  - **Next (Iter 25):** either widen the predictive distributions to earn honest calibration (parameter +
+    structural uncertainty; re-score CRPS/PIT), or add a **sixth domain**, or hunt a real water-scarcity
+    driver for the nexus water-leg.

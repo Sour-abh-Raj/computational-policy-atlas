@@ -58,6 +58,7 @@ graph TD
 | **Cross-model / benchmark** | Agree with independent models (e.g. IPCC ensembles)? | IAMs, energy models |
 | **Walk-forward CV** | Does skill hold across *many* expanding-window splits, not one? | Polyphony (real-data couplings) |
 | **Placebo / naive baselines** | Beat a meaningless regressor *and* a random walk, not just a trend? | Polyphony (keep/cut gate) |
+| **Probabilistic calibration** | Are the predictive *bands* honest (CRPS, PIT uniform) or overconfident? | Polyphony (real couplings), ensemble forecasting |
 
 ## Interface
 

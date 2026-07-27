@@ -410,6 +410,29 @@ couplings are cut: on these smooth aggregate series a random walk is simply hard
 thus both **confirms the cuts** and **corrects their stated reasons**, which is exactly what a validation
 upgrade should do.
 
+## Round 19 — probabilistic scoring: the real couplings are inaccurate AND overconfident (Iter 24)
+
+Point accuracy (MASE) can't see whether a model's *bands* are honest. So each real coupling's point
+forecast is turned into a **predictive distribution** (point ± resampled train residuals) and scored with
+**CRPS** and the **PIT** against a probabilistic naive (persistence ± train first-difference spread);
+`experiments/real_probabilistic.py`.
+
+| Coupling (real) | CRPS coupled | CRPS naive | PIT mean | PIT in central half | calibrated? |
+|---|---:|---:|---:|---:|---|
+| climate→GDP | 36.5 | 8.7 | 0.01 | 0% | ❌ overconfident |
+| warming→yield | 226 | 49 | 0.01 | 0% | ❌ overconfident |
+| PM2.5→mortality | 0.47 | 0.25 | 0.99 | 0% | ❌ overconfident |
+| energy→food | 27.5 | 6.5 | 0.00 | 0% | ❌ overconfident |
+
+**A second, distinct verdict on top of the point cuts.** Every coupling not only loses to naive on CRPS
+(mirroring the MASE result) but is **grossly overconfident**: the PIT piles entirely at the tails (0% of
+values in the central half), meaning the predictive interval **almost never contains the realised value**.
+The cause is concrete — out-of-sample error is dominated by **trend-extrapolation bias** that the
+in-sample residual spread never saw, so bands calibrated on train are far too narrow out of sample.
+Inaccurate *and* overconfident is precisely the failure a single-confident-number simulator hides; here it
+is measured and named. (The honest remedy — predictive distributions that carry parameter and structural
+uncertainty, not just in-sample residuals — is future work, now motivated by a number.)
+
 ## Convergence status (per domain) — DONE (again, with the fifth domain resolved)
 
 | Domain / coupling | Verdict | Real-data status | Open, improvable gap? |
