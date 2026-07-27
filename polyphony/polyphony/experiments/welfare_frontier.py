@@ -35,14 +35,23 @@ _RISK_TO_CONSUMPTION = 8.0
 _ABATE_K = 0.06
 
 
-def _abatement_cost_frac(cp: float) -> float:
-    return float(min(_ABATE_K * (cp / 100.0) ** 2, 0.5))
+def _abatement_cost_frac(cp: float, abate_k: float = _ABATE_K) -> float:
+    return float(min(abate_k * (cp / 100.0) ** 2, 0.5))
 
 
-def slice_outcome(cp: float, n: int = 30, tcre: float = 0.001, paradigm: str = "both") -> PolicyOutcome:
+def slice_outcome(
+    cp: float,
+    n: int = 30,
+    tcre: float = 0.001,
+    paradigm: str = "both",
+    abate_k: float = _ABATE_K,
+    risk_weight: float = _RISK_TO_CONSUMPTION,
+) -> PolicyOutcome:
     """Welfare outcome of a carbon price. ``paradigm`` selects the economy voice(s): ``"both"`` (report the
     disagreement-averaged GDP), ``"equilibrium"`` (CGE only), or ``"disequilibrium"`` (E3ME only) — so the
-    recommendation can be computed *within* each worldview and compared."""
+    recommendation can be computed *within* each worldview and compared. ``abate_k`` is the near-term
+    abatement-cost intensity; **low** ``abate_k`` (cheap green tech) lets the carbon-price→GDP *sign* — on
+    which the paradigms disagree — drive the ranking, so the paradigm becomes the load-bearing uncertainty."""
     econ_by_paradigm: dict[str, list[Model]] = {
         "both": [EquilibriumEconomy(), DisequilibriumEconomy()],
         "equilibrium": [EquilibriumEconomy()],
@@ -64,18 +73,24 @@ def slice_outcome(cp: float, n: int = 30, tcre: float = 0.001, paradigm: str = "
     emissions = float(r.history[-1]["emissions"])
     temperature = float(r.history[-1]["temperature"])
     # Near-term abatement cost reduces consumption as the carbon price rises (efficiency side).
-    mean_consumption = mean_gdp * (1.0 - _abatement_cost_frac(cp))
+    mean_consumption = mean_gdp * (1.0 - _abatement_cost_frac(cp, abate_k))
     # Mild progressive recycling: higher carbon price slightly compresses the distribution (equity).
     compression = 1.0 - min(cp / 1000.0, 0.3)
     shares = 1.0 + (_BASE_SHARES - 1.0) * compression
     consumption = mean_consumption * shares / shares.mean()
     # Welfare-equivalent climate risk (so tail-risk aversion can trade it against consumption).
-    climate_risk = temperature * _RISK_TO_CONSUMPTION
+    climate_risk = temperature * risk_weight
     return PolicyOutcome(f"cp={cp:g}", consumption, emissions, climate_risk)
 
 
-def policy_outcomes(carbon_prices, n: int = 30, paradigm: str = "both") -> list[PolicyOutcome]:
-    return [slice_outcome(cp, n, paradigm=paradigm) for cp in carbon_prices]
+def policy_outcomes(
+    carbon_prices,
+    n: int = 30,
+    paradigm: str = "both",
+    abate_k: float = _ABATE_K,
+    risk_weight: float = _RISK_TO_CONSUMPTION,
+) -> list[PolicyOutcome]:
+    return [slice_outcome(cp, n, paradigm=paradigm, abate_k=abate_k, risk_weight=risk_weight) for cp in carbon_prices]
 
 
 def recommendations(outcomes) -> dict[str, str]:
@@ -88,7 +103,13 @@ def recommendations(outcomes) -> dict[str, str]:
     return {label: rank_policies(outcomes, d)[0].name for label, d in settings.items()}
 
 
-def frontier_and_recommendations(carbon_prices, n: int = 30, paradigm: str = "both"):
-    outcomes = policy_outcomes(carbon_prices, n=n, paradigm=paradigm)
+def frontier_and_recommendations(
+    carbon_prices,
+    n: int = 30,
+    paradigm: str = "both",
+    abate_k: float = _ABATE_K,
+    risk_weight: float = _RISK_TO_CONSUMPTION,
+):
+    outcomes = policy_outcomes(carbon_prices, n=n, paradigm=paradigm, abate_k=abate_k, risk_weight=risk_weight)
     front = [o.name for o in pareto_frontier(outcomes)]
     return {"outcomes": outcomes, "pareto_front": front, "recommendations": recommendations(outcomes)}

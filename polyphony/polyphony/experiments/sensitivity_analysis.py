@@ -49,11 +49,28 @@ class SensitivityResult:
         return "both equally" if self.value_sensitivity > 1 else "neither (robust choice)"
 
 
-def run_sensitivity_analysis(carbon_prices: tuple[float, ...] = (0.0, 50.0, 100.0, 200.0, 400.0)) -> SensitivityResult:
+def run_sensitivity_analysis(
+    carbon_prices: tuple[float, ...] = (0.0, 50.0, 100.0, 200.0, 400.0),
+    abate_k: float = 0.06,
+    risk_weight: float = 8.0,
+) -> SensitivityResult:
+    """Recommendation grid for a scenario. ``abate_k`` is the near-term abatement-cost intensity and
+    ``risk_weight`` the climate-tail valuation. The **default** scenario makes **values** load-bearing; a
+    **low-abatement-cost, low-tail-risk** scenario (cheap green tech, a discounter of catastrophe) makes the
+    **paradigm** load-bearing — proving the analysis discriminates rather than always crediting one axis."""
     prices = list(carbon_prices)
     grid: dict[tuple[str, str], str] = {}
     for p in _PARADIGMS:
-        recs = frontier_and_recommendations(prices, paradigm=p)["recommendations"]
+        recs = frontier_and_recommendations(prices, paradigm=p, abate_k=abate_k, risk_weight=risk_weight)["recommendations"]
         for v in _VALUE_SETTINGS:
             grid[(v, p)] = recs[v]
     return SensitivityResult(grid=grid)
+
+
+def cheap_green_tech_scenario() -> SensitivityResult:
+    """A cheap-abatement scenario where the **economic paradigm becomes load-bearing** too — the
+    carbon-price→GDP *sign* (on which the paradigms disagree) starts to move the recommendation, so
+    paradigm-sensitivity rises from 1 (default question) to 2. Proof the analysis discriminates: it does not
+    always credit the same axis. (Values remain load-bearing via the income distribution, so this is
+    "both matter", not "paradigm alone" — an honest limit of a fixed-inequality welfare setup.)"""
+    return run_sensitivity_analysis(abate_k=0.008)

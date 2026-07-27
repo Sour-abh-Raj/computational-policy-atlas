@@ -88,6 +88,13 @@ Varying **values** yields **two** distinct policies; varying the **paradigm** yi
 decision-maker's scarce attention at the axis that actually moves the choice, instead of at the loudest
 disagreement.
 
+**And it cuts both ways.** In a **cheap-green-tech** scenario (low near-term abatement cost), the
+carbon-price→GDP *sign* — on which the equilibrium and disequilibrium paradigms disagree — starts to move
+the recommendation, and paradigm-sensitivity rises from 1 to 2 (`cheap_green_tech_scenario`). So the analysis
+is a genuine discriminator, not a tool rigged to always blame "values": *when* the economics is load-bearing,
+it says so. (Values still matter here via the income distribution, so this scenario is "both matter" rather
+than "paradigm alone" — an honest limit of the fixed-inequality welfare setup.)
+
 ## 3. The validation status is disclosed
 
 The recommendation leans on cross-domain couplings. Their **real-data verdict** (leaderboard Rounds 1–22)

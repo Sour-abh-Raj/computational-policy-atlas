@@ -965,3 +965,21 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
     (67 files) · graph 0-dangling · `mkdocs --strict`.
   - **Next (Iter 42):** a question where the *paradigm* IS load-bearing (to show the analysis cuts both
     ways), numeric effect-size margins on the meta-analysis, or another domain.
+- **Iter 42 — ↔️ Sensitivity analysis cuts BOTH ways: cheap green tech makes the paradigm load-bearing too.**
+  - **Validated the tool discriminates** (isn't rigged to always credit "values"). Threaded two scenario
+    knobs through `welfare_frontier` — `abate_k` (near-term abatement-cost intensity) and `risk_weight`
+    (climate-tail valuation) — so a policy *question* can be varied, not just the answer.
+  - **Finding:** in a **cheap-green-tech** scenario (`cheap_green_tech_scenario`, low `abate_k`), the
+    carbon-price→GDP *sign* — on which the paradigms disagree — starts to move the recommendation, and
+    **paradigm-sensitivity rises from 1 (default question) to 2**. So the analysis genuinely cuts both ways:
+    *when* the economics is load-bearing, it says so. (Values still matter via the fixed income
+    distribution, so this is "both matter" not "paradigm alone" — an honest limit noted in the docstring.)
+  - **Validated:** `test_sensitivity_analysis.py` asserts the default question is values-dominant
+    (paradigm-sensitivity 1) while cheap green tech lifts paradigm-sensitivity to 2.
+  - **Docs:** added the "cuts both ways" note to `docs/polyphony/decision-support.md`.
+  - **Atlas feedback:** reuses the welfare machinery (now scenario-parameterized) — no new graph node; graph
+    unchanged (**180 nodes / 480 edges, 0-dangling**).
+  - **Convergence stays DONE.** **+1 test -> 142 pass.** Gates green: `pytest` (142) · `ruff` · `mypy`
+    (67 files) · graph 0-dangling · `mkdocs --strict`.
+  - **Next (Iter 43):** numeric effect-size margins on the meta-analysis, another domain, or a
+    scenario-atlas of which uncertainty is load-bearing across several stylized policy questions.
