@@ -656,3 +656,25 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
     consolidate — a **worked decision-support vignette** (welfare/equity dial + disagreement + honest
     uncertainty → "help a human choose", the north star), or hunt the nexus water-leg / a lead-lag finance
     spec if honestly motivated.
+- **Iter 28 — 🧭 The north star, made concrete: a worked DECISION CARD (help a human choose, honestly).**
+  - **Consolidation, not more breadth:** after six converged domains + deep validation machinery, this
+    iteration connects it all to the *purpose* — supporting a human choosing a policy with eyes open.
+  - **`experiments/decision_card.py`:** for a concrete question (what carbon price?), assembles the three
+    things a single confident number hides: (1) **values are a dial** — utilitarian/prioritarian recommend
+    50 $/t but a Rawlsian + tail-averse view recommends 100 $/t (the recommendation is *not*
+    value-invariant); (2) **paradigms disagree** — on GDP at 100 $/t, CGE says **88** (pricing lowers
+    output) while E3ME says **108** (pricing raises it), opposite signs, D≈0.10, **both reported, never
+    averaged**; (3) **validation is disclosed** — the ensemble leans on couplings of which **6 of 7 failed
+    real-data validation**, stated plainly. Bottom line: *decision-support under deep uncertainty, NOT a
+    forecast.*
+  - **Docs (north-star payoff):** new `docs/polyphony/decision-support.md` presents the worked card
+    (values fork + paradigm disagreement table + real-data verdict table + the honest bottom-line
+    paragraph) — the whole Polyphony thesis in miniature, contrasted with an "optimal carbon price = \$X"
+    oracle headline. Added to nav.
+  - **Atlas feedback:** a synthesis of existing engines (Welfare/Equity + the disagreement combiner +
+    the validation ledger) — no new graph node; graph unchanged (**175 nodes / 470 edges, 0-dangling**).
+  - **Convergence stays DONE** (consolidation, no new coupling). **+4 tests -> 104 pass.** Gates green:
+    `pytest` (104) · `ruff` · `mypy` (56 files) · graph 0-dangling · `mkdocs --strict`.
+  - **Next (Iter 29):** a **seventh domain** for further coverage, deepen the decision card (attach the
+    honest predictive bands from Iter 25 to each candidate; disagreement-vs-carbon-price curve), or a
+    lead-lag / crisis-conditional finance spec if honestly motivated (not to force a keep).
