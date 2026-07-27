@@ -116,6 +116,15 @@ to beat a climatology on; the couplings that look like they should help usually 
 that does, does so for a boringly mechanical reason.* Reporting that plainly is worth more than a shelf of
 plausible-but-hollow "insights."
 
+**The generalization has a boundary — and it is about *aggregate forecasting*, not "nothing works".** The
+instrument is not a nihilism machine. Move from forecasting an aggregate time series to a **cross-country
+panel** with a genuine within-unit mechanism, and couplings *do* survive: the **Preston curve** (income →
+life expectancy) keeps a **positive within-country correlation (+0.13)** under two-way fixed effects across
+252 countries, where confounded carbon leakage collapsed to ≈0 (`experiments/panel_validation.run_preston_panel`).
+The *same* fixed-effects tool passes one and cuts the other — so the failure of aggregate couplings is a
+statement about **the difficulty of beating climatology on aggregate time series**, not about the
+instrument's ability to find real structure when it is there.
+
 ## What actually separates keeps from cuts (a computed answer)
 
 Given two keeps and seven cuts, *which property* decides? Scoring every coupling on four plausible

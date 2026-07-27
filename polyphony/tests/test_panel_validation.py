@@ -11,10 +11,15 @@ from __future__ import annotations
 import numpy as np
 import pytest
 
-from polyphony.data.loaders import has_real_leakage_panel, has_real_pm25_mortality_panel
+from polyphony.data.loaders import (
+    has_real_leakage_panel,
+    has_real_pm25_mortality_panel,
+    has_real_preston_panel,
+)
 from polyphony.experiments.panel_validation import (
     run_leakage_panel,
     run_pm25_mortality_panel,
+    run_preston_panel,
     two_way_within,
 )
 
@@ -70,6 +75,29 @@ def test_pm25_mortality_panel_cannot_recover_the_effect():
     assert r.n_countries >= 100  # a large panel
     assert not r.within_has_assumed_sign  # no positive within signal (it is weak / wrong-signed)
     assert r.verdict() == "no within-country mechanism (outcome confounded)"
+
+
+@pytest.mark.skipif(not has_real_preston_panel(), reason="real Preston panel not fetched")
+def test_preston_curve_survives_panel_fe_a_boundary_case():
+    # The boundary of the central generalization: a coupling with a REAL within-unit mechanism (income →
+    # life expectancy) keeps its positive within-country correlation under two-way fixed effects — unlike the
+    # confounded-away leakage panel. The instrument is not a "nothing works" machine.
+    r = run_preston_panel()
+    assert r.n_countries >= 100
+    assert r.pooled_corr > 0.5
+    assert r.within_corr > 0.1  # a real within-country effect survives (leakage's was ≈ 0.02)
+    assert r.within_has_assumed_sign
+    assert r.verdict() == "within-signal survives"
+
+
+@pytest.mark.skipif(
+    not (has_real_leakage_panel() and has_real_preston_panel()),
+    reason="real panels not fetched",
+)
+def test_panel_fe_discriminates_survivor_from_confounded():
+    # Same tool, opposite verdicts: a genuine within-unit mechanism survives; a confounded one is cut.
+    assert run_preston_panel().verdict() == "within-signal survives"
+    assert run_leakage_panel().verdict() == "cut-confirmed (confounded-away)"
 
 
 @pytest.mark.skipif(

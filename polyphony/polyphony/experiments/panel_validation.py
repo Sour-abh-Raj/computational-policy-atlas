@@ -24,7 +24,11 @@ from dataclasses import dataclass
 
 import numpy as np
 
-from ..data.loaders import load_real_leakage_panel, load_real_pm25_mortality_panel
+from ..data.loaders import (
+    load_real_leakage_panel,
+    load_real_pm25_mortality_panel,
+    load_real_preston_panel,
+)
 
 
 def _group_demean(v: np.ndarray, group: np.ndarray) -> np.ndarray:
@@ -98,3 +102,12 @@ def run_pm25_mortality_panel() -> PanelFEResult:
     """Co-benefit: does PM2.5 explain the all-cause death rate *within* countries? (outcome is confounded)."""
     iso, year, pm25, death = load_real_pm25_mortality_panel()
     return _panel_fe("Urban⇄Transport⇄Energy⇄Health (co-benefit)", +1, iso, year, pm25, death)
+
+
+def run_preston_panel() -> PanelFEResult:
+    """The Preston curve: does income explain life expectancy *within* countries? A **surviving** panel
+    coupling — a real within-unit mechanism, so the within-FE correlation stays positive (the boundary of
+    the aggregate-forecasting generalization: panels with a genuine mechanism are *not* all confounded-away).
+    """
+    iso, year, log_gdppc, life_exp = load_real_preston_panel()
+    return _panel_fe("Income⇄LifeExpectancy (Preston)", +1, iso, year, log_gdppc, life_exp)

@@ -300,6 +300,37 @@ def fetch_pm25_mortality_panel(out: pathlib.Path | None = None, min_years: int =
     return out
 
 
+WB_GDP_PCAP = "https://api.worldbank.org/v2/country/all/indicator/NY.GDP.PCAP.KD?format=json&per_page=27000"
+WB_LIFE_EXP = "https://api.worldbank.org/v2/country/all/indicator/SP.DYN.LE00.IN?format=json&per_page=27000"
+
+
+def fetch_preston_panel(out: pathlib.Path | None = None, min_years: int = 15) -> pathlib.Path:
+    """Fetch a multi-country panel for the **Preston curve** (Iter 51 — the generalization's boundary):
+    log GDP per capita (World Bank ``NY.GDP.PCAP.KD``) + life expectancy (``SP.DYN.LE00.IN``). Unlike carbon
+    leakage, income→life-expectancy has a **real within-country mechanism**, so its two-way-FE within
+    correlation survives (positive) rather than collapsing — a panel coupling that is *kept*. Writes
+    ``datasets/real_preston_panel.csv`` (columns: ``iso``, ``year``, ``log_gdppc``, ``life_exp``).
+    """
+    import math
+
+    gdp = _fetch_worldbank_all(WB_GDP_PCAP)
+    le = _fetch_worldbank_all(WB_LIFE_EXP)
+    out = out or (DATASETS / "real_preston_panel.csv")
+    n = 0
+    with out.open("w", newline="", encoding="utf-8") as fh:
+        w = csv.writer(fh)
+        w.writerow(["iso", "year", "log_gdppc", "life_exp"])
+        for iso in sorted(set(gdp) & set(le)):
+            years = [y for y in sorted(set(gdp[iso]) & set(le[iso])) if gdp[iso][y] > 0]
+            if len(years) >= min_years:
+                for y in years:
+                    w.writerow([iso, y, math.log(gdp[iso][y]), le[iso][y]])
+                    n += 1
+    if n < 1000:
+        raise RuntimeError(f"too few panel observations ({n}); refusing to write")
+    return out
+
+
 FRED_SPREAD = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAA10Y"  # Baa − 10Y Treasury credit spread
 FRED_REALGDP = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=GDPC1"  # real GDP (chained 2017 $)
 
@@ -503,3 +534,5 @@ if __name__ == "__main__":
     print(f"wrote {inflation_q} ({sum(1 for _ in inflation_q.open()) - 1} rows)")
     okun_p, yc_p = fetch_additional_probes()
     print(f"wrote {okun_p} and {yc_p}")
+    preston = fetch_preston_panel()
+    print(f"wrote {preston} ({sum(1 for _ in preston.open()) - 1} rows)")

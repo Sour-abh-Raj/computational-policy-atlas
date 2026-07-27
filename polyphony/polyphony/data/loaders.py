@@ -305,6 +305,17 @@ REAL_FINANCE = DATASETS / "real_finance.csv"
 REAL_TRADE = DATASETS / "real_trade.csv"
 REAL_LEAKAGE_PANEL = DATASETS / "real_leakage_panel.csv"
 REAL_PM25_MORTALITY_PANEL = DATASETS / "real_pm25_mortality_panel.csv"
+REAL_PRESTON_PANEL = DATASETS / "real_preston_panel.csv"
+
+
+def has_real_preston_panel() -> bool:
+    """Whether the Preston-curve panel has been fetched (``fetch_real.fetch_preston_panel``)."""
+    return REAL_PRESTON_PANEL.exists()
+
+
+def load_real_preston_panel() -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+    """REAL Preston-curve panel: ``(iso, year, log_gdppc, life_exp)`` — income vs life expectancy."""
+    return _load_panel_csv(REAL_PRESTON_PANEL, "log_gdppc", "life_exp")
 REAL_INFLATION = DATASETS / "real_inflation.csv"
 REAL_INFLATION_Q = DATASETS / "real_inflation_q.csv"
 REAL_HOUSING = DATASETS / "real_housing.csv"

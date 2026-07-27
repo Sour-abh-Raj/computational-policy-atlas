@@ -1140,3 +1140,23 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
   - **Next (Iter 51):** the project is intellectually complete — the central finding is stress-tested and
     articulated. Options: a non-aggregate (panel/micro) domain where the generalization might *not* hold, or
     a consolidation/polish pass.
+- **Iter 51 — 🌍 The generalization has a BOUNDARY: the Preston curve survives panel FE (income → life expectancy).**
+  - **Tested whether the central finding is about *aggregation* or "nothing works".** The sharpest test: a
+    cross-country **panel** with a genuine within-unit mechanism.
+  - **Fetched the Preston-curve panel** (`fetch_preston_panel`: World Bank log GDP per capita + life
+    expectancy, **252 countries × 1960–2024, 13,983 obs**). Loader `load_real_preston_panel`;
+    `panel_validation.run_preston_panel`.
+  - **Result — it SURVIVES:** pooled corr **+0.79** → two-way-FE within corr **+0.13** (positive, right
+    sign) → verdict **"within-signal survives"**. Contrast carbon leakage (pooled +0.30 → within +0.02,
+    confounded-away): the **same** fixed-effects tool passes one and cuts the other. So the instrument is
+    **not a "nothing works" machine** — a coupling with a real within-unit mechanism keeps its signal.
+  - **The boundary, stated:** the failure of aggregate couplings is specifically about **beating a
+    climatology on aggregate time series**, *not* about the instrument's ability to find real structure when
+    it exists. The generalization has a clean, demonstrated boundary.
+  - **Validated:** `test_panel_validation.py` asserts the Preston curve survives, and that the same tool
+    discriminates survivor (Preston) from confounded (leakage). Field guide + 04-validation updated.
+  - **Atlas feedback:** reuses the panel-FE tool — no new graph node; graph unchanged (**180 nodes / 480
+    edges, 0-dangling**). New Preston panel dataset committed.
+  - **Convergence stays DONE.** **+3 tests -> 158 pass.** Gates green: `pytest` (158) · `ruff` · `mypy`
+    (73 files) · graph 0-dangling · `mkdocs --strict`.
+  - **Next (Iter 52):** consolidation, or a further boundary/coverage probe if genuinely distinct.
