@@ -117,9 +117,15 @@ baseline** — the whole project's discipline compressed into a single computed 
 
 !!! warning "Honest caveat on the separator"
     One of the two "beats-baseline" keeps — **Macro⇄Health** — clears the baseline on **synthetic** data
-    (its real test is underpowered), so the perfect-separator claim rests on *real* evidence for
-    Energy⇄Inflation and the seven real cuts, plus *synthetic* evidence for Macro⇄Health. The rule still
-    holds cleanly on the real-data-tested couplings; we flag the mixed footing rather than hide it.
+    (its real test is underpowered), so the boolean perfect-separator claim rests on *real* evidence for
+    Energy⇄Inflation and the seven real cuts, plus *synthetic* evidence for Macro⇄Health. We flag the mixed
+    footing rather than hide it.
+
+    **And we checked it holds on real evidence alone.** A **numeric** version
+    (`experiments/real_margins.py`) computes, for the four couplings decided by walk-forward *on real data*,
+    the fraction of folds beating the honest baseline: **Energy⇄Inflation (keep) 100%**, Macro⇄Finance 40%,
+    Trade⇄Emissions 0%, Interest-Rate⇄Housing 0%. The keep clears the 50% line; every cut falls below it —
+    so the separator is clean **without** the synthetic Macro⇄Health evidence.
 
 *Reproduce:* `python -c "from polyphony.experiments.failure_modes import LEDGER; [print(c.mode, c.coupling)
 for c in LEDGER]"` and `from polyphony.experiments.meta_analysis import perfect_separators; print(perfect_separators())`.

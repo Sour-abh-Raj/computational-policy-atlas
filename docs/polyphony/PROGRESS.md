@@ -1040,3 +1040,20 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
     (68 files) · graph 0-dangling · `mkdocs --strict`.
   - **Next (Iter 46):** attempt a concrete (even if underpowered) real Macro⇄Health test around COVID-2020
     to make the "underpowered" claim demonstrated rather than asserted, or another distinct domain.
+- **Iter 46 — 📏 The keeps-vs-cuts separator, on REAL evidence alone (numeric, addressing the Iter-45 caveat).**
+  - **Motivation:** Iter 45 flagged that the meta-analysis's boolean "beats-baseline separates keeps from
+    cuts" leaned partly on Macro⇄Health's *synthetic* baseline-beating. This strengthens it to a **numeric**
+    separator using **real data only**.
+  - **`experiments/real_margins.py`:** for the four couplings decided by walk-forward on real data, pulls
+    the live fraction of folds each beats its honest baseline — **Energy⇄Inflation (keep) 100%**,
+    Macro⇄Finance 40%, Trade⇄Emissions 0%, Interest-Rate⇄Housing 0%. The keep clears the 50% line; every cut
+    falls below it → `separator_holds_on_real_data()` is True. The separator is clean **without** the
+    synthetic Macro⇄Health evidence — the Iter-45 caveat is answered, not just noted.
+  - **Validated:** `test_real_margins.py` asserts the keep clears the line and every cut falls below it.
+    Field-guide caveat updated with the numeric real-data confirmation.
+  - **Atlas feedback:** reuses the real tournaments — no new graph node; graph unchanged (**180 nodes / 480
+    edges, 0-dangling**).
+  - **Convergence stays DONE.** **+2 tests -> 148 pass.** Gates green: `pytest` (148) · `ruff` · `mypy`
+    (69 files) · graph 0-dangling · `mkdocs --strict`.
+  - **Next (Iter 47):** a concrete demonstration of the Macro⇄Health real-data underpowering (one-pandemic
+    unidentifiability), or another distinct domain.
