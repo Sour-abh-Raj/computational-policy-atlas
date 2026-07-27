@@ -1098,3 +1098,22 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
     (71 files) · graph 0-dangling · `mkdocs --strict`.
   - **Next (Iter 49):** a genuinely distinct new domain, a monthly/lead-lag deepening of the keep, or a
     consolidation pass.
+- **Iter 49 — 🎯 Is the keep also *calibrated*? Yes — accurate AND honest (the mirror image of the cuts).**
+  - **Completed the uncertainty picture.** Iter 24 showed the *cut* couplings are inaccurate AND grossly
+    **overconfident** (PIT at the tails). The complementary question — is the coupling that *clears* the bar
+    also honest about its uncertainty? — had never been asked.
+  - **`experiments/inflation_probabilistic.py`:** scores the Energy⇄Inflation keep's predictive distribution
+    (pass-through point + train-residual ensemble) vs an honest persistence naive, via **CRPS** + **PIT**.
+    (The target is a growth rate that can go negative, so the log-trend scorer used for the level-target cuts
+    doesn't apply — a small correct scorer was needed.)
+  - **Result — accurate AND calibrated:** CRPS coupled **0.89** beats naive **1.21**, and the **PIT is
+    centred** (mean 0.55) with ~**50%** central coverage (well-dispersed). So the one coupling that earns its
+    keep is trustworthy in *both* dimensions — the exact mirror of the cuts (wrong *and* overconfident).
+    Skill and honest uncertainty travel together here, as they should.
+  - **Validated:** `test_inflation_probabilistic.py` asserts the keep beats naive on CRPS and is calibrated.
+    04-validation register updated.
+  - **Atlas feedback:** reuses the CRPS/PIT metrics + inflation machinery — no new graph node; graph
+    unchanged (**180 nodes / 480 edges, 0-dangling**).
+  - **Convergence stays DONE.** **+1 test -> 152 pass.** Gates green: `pytest` (152) · `ruff` · `mypy`
+    (72 files) · graph 0-dangling · `mkdocs --strict`.
+  - **Next (Iter 50):** a genuinely distinct new domain, or a consolidation/polish pass.
