@@ -244,6 +244,9 @@ is the instrument's real output.
 | Fourth synergy loop (breadth, #7) | ✅ **KEEP on synthetic** — Urban⇄Transport⇄Energy⇄Health co-benefit survives fair calibration (Δ +13.5) + correct sign; negative control cut. New voices `transport`+`airhealth`, BenMAP-CE dossier | issue #7 |
 | Real Urban⇄Transport⇄Energy⇄Health test | ✅ **CUT on real data** — real PM2.5 vs independent all-cause death rate (34 yrs): **right sign** (+0.35) but PM2.5 adds no skill above trend (hazard k→0), fails placebo (1.781 vs 1.768). Ecological confounding, not a wrong mechanism; GBD outcome excluded as circular | issue #7-real |
 | Convergence | ✅ **DONE (again)** — the Iter-19 scope extension is resolved: the fourth coupling is cut on real data (confounding). Every kept coupling survives its round; all four cuts have recorded, falsifiable reasons; no open improvable gap | — |
+| Fifth synergy loop (breadth, #10) | ✅ **KEEP on synthetic** — Water⇄Energy⇄Food nexus survives fair calibration (Δ +99) + correct sign; negative control cut. New voices `water`+`nexusfood`, CLEWs dossier | issue #10 |
+| Real Water⇄Energy⇄Food test | ⏳ **OPEN** — synthetic keep is machinery, not skill; needs a real water/food-price placebo test before any keep is banked | issue #10-real |
+| Convergence (after #10) | 🔄 **REOPENED** — the five prior couplings stay resolved, but the nexus real-data placebo test is an open, improvable gap; loop continues until it resolves | — |
 | Model calibration (real levels) | affine calibration now beats naive **on synthetic** (MASE 0.61); real-level calibration still pending | (opens when #9 lands) |
 | Welfare/equity engine (values dial) | ✅ **built + integrated** — frontier over policies; recommendation changes with values | issue #4 |
 | Predictive distributions → CRPS/PIT in tournament | ✅ **scored + calibrated** — `calibrate_ensemble` de-bias+widen ⇒ CRPS 7.9→0.44, **PIT 0.0→0.39** (near-uniform, synthetic) | blueprint §6 |

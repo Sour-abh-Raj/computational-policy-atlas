@@ -1004,6 +1004,16 @@
       "id": "epa",
       "type": "institution",
       "label": "US EPA"
+    },
+    {
+      "id": "clews",
+      "type": "model",
+      "label": "CLEWs"
+    },
+    {
+      "id": "howells",
+      "type": "researcher",
+      "label": "Mark Howells"
     }
   ],
   "edges": [
@@ -3296,6 +3306,41 @@
       "s": "crf",
       "r": "led_by",
       "t": "dockery"
+    },
+    {
+      "s": "clews",
+      "r": "belongs_to",
+      "t": "d-water"
+    },
+    {
+      "s": "clews",
+      "r": "developed_at",
+      "t": "kth"
+    },
+    {
+      "s": "clews",
+      "r": "led_by",
+      "t": "howells"
+    },
+    {
+      "s": "clews",
+      "r": "solves_with",
+      "t": "lp"
+    },
+    {
+      "s": "clews",
+      "r": "exhibits_pattern",
+      "t": "p-integration"
+    },
+    {
+      "s": "clews",
+      "r": "exhibits_pattern",
+      "t": "p-scenario"
+    },
+    {
+      "s": "osemosys",
+      "r": "led_by",
+      "t": "howells"
     }
   ]
 }

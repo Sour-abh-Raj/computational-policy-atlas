@@ -335,7 +335,32 @@ earns no skill, even though the underlying **micro-epidemiology is real** (cohor
 of ecological confounding, and a reminder that a coupling being *scientifically true at the individual
 level* does not make it *predictively skillful in an aggregate time series*.
 
-## Convergence status (per domain) — DONE (again, with the fourth domain resolved)
+## Round 16 — fifth synergy loop: the Water⇄Energy⇄Food nexus (issue #10)
+
+**Scope is a floor** once more: the ensemble extends to the **Water⇄Energy⇄Food nexus** — the thesis
+(Hoff 2011, Bonn Nexus Conference; integrated tools like [CLEWs](../model-families/water/clews.md)) that
+water, energy, and food are so interdependent a drought propagates into food *and* energy prices. Two new
+voices — a `water` reservoir/storage voice (a `precipitation` dial drives inflow against demand; a
+sustained deficit draws down the store so **water stress** rises and saturates) and a `nexusfood` voice
+(irrigation-dependent yield loss + a pumping-energy surcharge turn stress into food price) — coupled
+**contemporaneously** (acyclic chain; ADR-0005). The driver is **water**, distinct from the climate-driven
+land voice. Atlas fed back: new **CLEWs** dossier + graph nodes (`clews`, `howells`; also linking
+`osemosys`).
+
+| Check (`experiments/waternexus.py`) | Drought regime | Flat negative control |
+|---|---|---|
+| raw synergy Δ (uncalibrated) | +727 | 0.00 — *the blind baseline has no level* |
+| **fair-calibrated** coupled MASE | **0.82** | 0.81 |
+| **fair-calibrated** blind MASE | 100.1 | 0.81 |
+| **fair-calibrated Δ** | **+99.3 ⇒ keep** | **0.00 ⇒ cut** |
+| corr(water stress, food price) — sign check | **+0.99 (as assumed)** | −0.06 |
+
+**Verdict: KEEP on synthetic (survives fair calibration + correct sign), CUT on the negative control.**
+The three-way machinery transfers to the fifth domain. **But — as with every domain — a synthetic keep is
+machinery, not skill.** No real water/food series has been tested yet, so this opens a *new open,
+improvable gap* (issue #10-real): the real-data placebo test comes next.
+
+## Convergence status (per domain) — REOPENED (scope extended to a fifth domain)
 
 | Domain / coupling | Verdict | Real-data status | Open, improvable gap? |
 |---|---|---|---|
@@ -343,14 +368,13 @@ level* does not make it *predictively skillful in an aggregate time series*.
 | **Energy⇄climate⇄economy** | **CUT** (level artifact; genuinely cyclic) | — | **no** |
 | **Land⇄Climate⇄Food** | **CUT on real data** (fails placebo + wrong sign); coupling was real only on synthetic | ✅ tested (57 yrs cereal yield) | **no** |
 | **Real climate→GDP** | **CUT** (fails placebo under both CO₂ and temperature) | ✅ tested (58 yrs) | **no** |
-| **Urban⇄Transport⇄Energy⇄Health** (co-benefit) | **CUT on real data** (right sign, but PM2.5 adds no skill above trend; fails placebo) — kept only on synthetic | ✅ tested (34 yrs PM2.5 + all-cause mortality) | **no** |
+| **Urban⇄Transport⇄Energy⇄Health** (co-benefit) | **CUT on real data** (right sign, but PM2.5 adds no skill above trend; fails placebo) | ✅ tested (34 yrs PM2.5 + all-cause mortality) | **no** |
+| **Water⇄Energy⇄Food** (nexus) | **KEEP on synthetic** (fair-cal Δ+99, correct sign); negative control cut | ❌ **not yet** — synthetic only | **YES** — needs a real water/food-price placebo test (issue #10-real) |
 
-**DONE (again).** The scope extension of Iter 19 is now resolved: the fourth coupling's synthetic keep did
-**not** survive a real placebo, so it is cut — the same fate as land, reached by a *different* mechanism
-(confounding rather than wrong sign). Every kept coupling survives its full round (Macro⇄Health); every
-other candidate — now **four** of them, three on real data under a placebo — is cut with a recorded,
-falsifiable reason. No domain retains an open, improvable gap. Standing headline: **one coupling earned
-its keep; four were cut — and each cut names *why*, which is the product.**
+**REOPENED.** The five prior couplings stay resolved, but honoring "scope is a floor" added a sixth whose
+synthetic keep is not yet a real-data keep. Per the DONE criterion, the loop continues until this domain
+survives a real placebo or is cut on real data. Standing headline unchanged: **couplings earn their keep
+only against rivals and a placebo on real data; a synthetic keep is a hypothesis, not a result.**
 
 ## Standing champions
 
@@ -360,6 +384,7 @@ its keep; four were cut — and each cut names *why*, which is the product.**
 | GDP track, Macro⇄Health slice (**assimilation + contemporaneous**) | **coupled ensemble** | economy-only | synthetic-pandemic, time-blocked 30% | **+8.92 (keep)** | ✅ **survives full round**; no-lag solve ⇒ **MASE 0.10**, sharpest champion | [redteam](04-validation.md) |
 | Food-price track, Land⇄Climate⇄Food slice (**fair calibration**) | **coupled ensemble** | land-only | synthetic-warming, time-blocked 30% | **+15.2 (keep)** | ⚠️ coupling real (survives level-artifact + shift) but **loses to naive** — no skill claim yet | [redteam](04-validation.md) |
 | Health-burden track, Urban⇄Transport⇄Energy⇄Health slice (**fair calibration**) | **coupled ensemble** (synthetic only) | airhealth-only | synthetic-cobenefit, time-blocked 30% | **+13.5 (keep synth)** | ❌ **CUT on real data** — right sign (+0.35) but PM2.5 adds no skill above trend; fails placebo (#7-real) | [redteam](04-validation.md) |
+| Food-price track, Water⇄Energy⇄Food nexus slice (**fair calibration**) | **coupled ensemble** (synthetic only) | nexusfood-only | synthetic-nexus, time-blocked 30% | **+99.3 (keep synth)** | ⚠️ survives level-artifact + correct sign, but **synthetic only** — real placebo pending (#10-real) | [redteam](04-validation.md) |
 
 ## Contest log
 

@@ -15,7 +15,9 @@ from .energy_lp import ReducedFormEnergy
 from .epidemic_sir import ReducedFormEpidemic
 from .health_airquality import ReducedFormAirHealth
 from .land_crop import ReducedFormLand
+from .nexus_food import ReducedFormNexusFood
 from .transport_mode import ReducedFormTransport
+from .water_balance import ReducedFormWater
 
 __all__ = [
     "ReducedFormEnergy",
@@ -26,4 +28,6 @@ __all__ = [
     "ReducedFormLand",
     "ReducedFormTransport",
     "ReducedFormAirHealth",
+    "ReducedFormWater",
+    "ReducedFormNexusFood",
 ]

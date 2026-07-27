@@ -119,6 +119,7 @@ nav:
           - WEAP: model-families/water/weap.md
           - SWAT: model-families/water/swat.md
           - MODFLOW: model-families/water/modflow.md
+          - CLEWs (nexus): model-families/water/clews.md
       - Health / Epidemiology:
           - Covasim: model-families/health/covasim.md
           - GLEAM: model-families/health/gleam.md

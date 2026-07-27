@@ -192,6 +192,43 @@ def synthetic_flat_health_series(n: int = 40, seed: int = 0) -> Dataset:
     )
 
 
+def synthetic_nexus_series(n: int = 40, seed: int = 0, precipitation: float = 0.7) -> Dataset:
+    """Synthetic Water⇄Energy⇄Food nexus target: a sustained drought raises food price over time.
+
+    Matched to the reduced-form water + nexus-food voices — precipitation < demand drains a buffer store,
+    water stress rises (and saturates), irrigation-dependent yield falls and pumping energy rises, so food
+    price climbs then plateaus. A water-blind baseline (no stress) predicts a flat price and cannot track
+    the drought. Negative control: :func:`synthetic_flat_nexus_series`. SYNTHETIC — proves the coupling
+    machinery, not real nexus skill.
+    """
+    rng = np.random.default_rng(seed)
+    store, stress = 2.0, np.empty(n)
+    for k in range(n):
+        store = min(max(store + precipitation - 1.0, 0.0), 2.0)
+        stress[k] = min(max(1.0 - store / 2.0, 0.0), 1.0)
+    yld = np.clip(1.0 - 0.6 * stress, 0.2, None)
+    price = 100.0 / yld * (1.0 + 0.15 * stress) + rng.normal(0, 0.4, n)
+    return Dataset(
+        name="synthetic-nexus",
+        series={"food_price": price, "water_stress": stress},
+        synthetic=True,
+        note="SYNTHETIC Water⇄Energy⇄Food nexus target (drought raises food price).",
+        meta={"precipitation": precipitation, "seed": seed, "coupling": True},
+    )
+
+
+def synthetic_flat_nexus_series(n: int = 40, seed: int = 0) -> Dataset:
+    """Negative control for the nexus loop: food price independent of water (flat + noise)."""
+    rng = np.random.default_rng(seed)
+    return Dataset(
+        name="synthetic-flat-nexus",
+        series={"food_price": 100.0 + rng.normal(0, 0.4, n), "water_stress": rng.normal(0, 0.01, n)},
+        synthetic=True,
+        note="SYNTHETIC negative control — food price independent of water stress.",
+        meta={"precipitation": 1.0, "seed": seed, "coupling": False},
+    )
+
+
 def load(name: str = "synthetic") -> Dataset:
     """Load dataset ``name`` from datasets/ if a CSV exists, else the synthetic fallback."""
     path = DATASETS / f"{name}.csv"

@@ -82,6 +82,11 @@ not a claim to have replicated the world.
   effect. Polyphony makes this a **standing requirement for real-data couplings**: a coupling is kept
   only if it beats *both* the sum-of-parts baseline **and** a placebo regressor. On real GDP+CO₂ this
   cut an apparent climate→GDP "synergy" that a meaningless time trend reproduced (leaderboard Round 10).
+- **Water–Energy–Food nexus modelling** (Hoff 2011, Bonn Nexus Conference; Howells et al. 2013 CLEWs;
+  [CLEWs](../model-families/water/clews.md)) — the tradition of modelling water, energy, and food
+  *jointly* via shared resource constraints, so a drought propagates across sectors. Polyphony adds this
+  as its fifth coupling (Water⇄Energy⇄Food) and — unlike the scenario-contrast norm of nexus tooling —
+  holds it to the fair-calibration + placebo + sign discipline on real data (leaderboard Round 16).
 - **Health co-benefits assessment** (Haines et al. 2009; the Lancet Countdown; U.S. EPA
   [BenMAP-CE](../model-families/health/benmap.md)) — the practice of computing the *near-term, local*
   health gains of climate/transport/energy policy via air-quality **concentration–response functions**
@@ -114,3 +119,6 @@ not a claim to have replicated the world.
   Pope et al. (2002) (JAMA); Burnett et al. (2018) *GEMM* (PNAS); Haines et al. (2009), *Public health
   benefits of strategies to reduce greenhouse-gas emissions* (Lancet) — the air-quality
   concentration–response and co-benefits basis for the fourth coupling (BenMAP-CE dossier).
+- Hoff (2011), *Understanding the Nexus* (Bonn2011 Nexus Conference, SEI); Howells et al. (2013),
+  *Integrated analysis of climate change, land-use, energy and water strategies* (Nature Climate Change) —
+  the Water–Energy–Food nexus basis for the fifth coupling (CLEWs dossier).

@@ -477,3 +477,30 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
     Water⇄Energy⇄Food nexus, or Urban⇄Housing⇄Migration), or **deepening validation** (CRPS/PIT on the
     real-data tournaments; multi-region rather than world-aggregate to reduce the confounding that cut
     the co-benefit).
+- **Iter 21 — 💧 Fifth synergy loop: the Water⇄Energy⇄Food nexus (#10). KEEP on synthetic; real gap reopens convergence.**
+  - **Scope is a floor:** extended to the **Water⇄Energy⇄Food nexus** (Hoff 2011 Bonn Nexus Conference;
+    Howells et al. 2013 CLEWs) — water, energy, food are interdependent so a drought propagates into food
+    *and* energy prices.
+  - **Two new voices:** `ReducedFormWater` (a `precipitation` dial drives inflow against demand into a
+    buffer **store**; a sustained deficit draws it down so **water stress** rises and saturates — storage
+    dynamics turn a constant deficit into a time-varying signal) and `ReducedFormNexusFood` (irrigation
+    yield loss + a pumping-energy surcharge turn stress into food price). Coupled **contemporaneously**
+    (acyclic; ADR-0005). Driver is **water**, distinct from the climate-driven land voice. DGPs:
+    `synthetic_nexus_series` (drought) + `synthetic_flat_nexus_series` (negative control).
+  - **`experiments/waternexus.py`:** raw synergy is a level artifact (+727), but under **fair calibration**
+    the coupling keeps **Δ +99.3** (coupled MASE 0.82 vs blind 100.1) with the **right sign** (corr +0.99),
+    while the negative control is **cut** (Δ 0.00). **KEEP on synthetic, CUT on control.**
+  - **Honest caveat:** synthetic keep = machinery, not skill (cf. every prior domain). Opens a **new
+    real-data gap** (#10-real): a real water/food-price placebo test. Convergence **REOPENED**.
+  - **Atlas feedback (new coverage):** **CLEWs** dossier (`docs/model-families/water/clews.md`, the
+    integrated Climate-Land-Energy-Water nexus framework — genuinely missing atlas coverage) + graph nodes
+    `clews` (model), `howells` (researcher, also linked to `osemosys` which he created) with
+    convention-matching edges. Nav + model-families index + graph stats updated. **172 nodes / 465 edges,
+    0-dangling.**
+  - **Tests:** +5 (`test_waternexus.py`) -> **84 pass.** Gates green: `pytest` (84) · `ruff` · `mypy` (48
+    files) · graph 0-dangling · `mkdocs --strict`. Leaderboard Round 16 + reopened convergence table +
+    standing champion + 04-validation + related-work updated.
+  - **Next (Iter 22):** close the new gap — fetch a **real water/food series** (e.g. FAO/IMF food price
+    index vs a drought/precipitation or renewable-freshwater index; or World Bank agricultural-water data)
+    and run a **placebo-controlled real nexus tournament**; report keep/cut honestly with the sign check.
+    If the fetch is hard-blocked, log + open an issue + work around.

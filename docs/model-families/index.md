@@ -77,6 +77,7 @@ Legend: ✅ complete · 🟡 in progress · ⬜ planned
 | [**SWAT**](water/swat.md) — watershed hydrology & water quality | USDA-ARS / Texas A&M | ✅ Bronze |
 | [**MODFLOW**](water/modflow.md) — 3-D groundwater-flow PDE (finite-difference) | USGS | ✅ Bronze |
 | [**WEAP**](water/weap.md) — water allocation & planning (LP + scenarios) | SEI | ✅ Bronze |
+| [**CLEWs**](water/clews.md) — integrated Climate-Land-Energy-Water nexus (LP) | KTH / UN DESA | ✅ Bronze |
 
 ## Health / Epidemiology
 
