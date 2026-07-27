@@ -17,6 +17,7 @@ from .finance_accelerator import ReducedFormFinance
 from .health_airquality import ReducedFormAirHealth
 from .land_crop import ReducedFormLand
 from .nexus_food import ReducedFormNexusFood
+from .trade_leakage import ReducedFormTrade
 from .transport_mode import ReducedFormTransport
 from .water_balance import ReducedFormWater
 
@@ -32,4 +33,5 @@ __all__ = [
     "ReducedFormWater",
     "ReducedFormNexusFood",
     "ReducedFormFinance",
+    "ReducedFormTrade",
 ]

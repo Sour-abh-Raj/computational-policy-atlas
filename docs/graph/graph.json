@@ -1029,6 +1029,21 @@
       "id": "monasterolo",
       "type": "researcher",
       "label": "Irene Monasterolo"
+    },
+    {
+      "id": "d-trade",
+      "type": "domain",
+      "label": "Trade / Carbon Leakage"
+    },
+    {
+      "id": "mrio",
+      "type": "model",
+      "label": "MRIO (EXIOBASE/Eora)"
+    },
+    {
+      "id": "lenzen",
+      "type": "researcher",
+      "label": "Manfred Lenzen"
     }
   ],
   "edges": [
@@ -3381,6 +3396,31 @@
       "s": "eirin",
       "r": "exhibits_pattern",
       "t": "p-behavior"
+    },
+    {
+      "s": "mrio",
+      "r": "belongs_to",
+      "t": "d-trade"
+    },
+    {
+      "s": "mrio",
+      "r": "led_by",
+      "t": "lenzen"
+    },
+    {
+      "s": "mrio",
+      "r": "exhibits_pattern",
+      "t": "p-market"
+    },
+    {
+      "s": "mrio",
+      "r": "exhibits_pattern",
+      "t": "p-data"
+    },
+    {
+      "s": "gtap",
+      "r": "belongs_to",
+      "t": "d-trade"
     }
   ]
 }

@@ -505,7 +505,27 @@ noise otherwise — which an annual reduced-form linear coupling cannot exploit 
 *this* well-motivated is still cut on the strict bar is exactly the point: **the bar does not bend for a
 good story.**
 
-## Convergence status (per domain) — DONE (again, with the sixth domain resolved)
+## Round 23 — seventh synergy loop: Trade⇄Emissions, carbon leakage (issue #12)
+
+**Scope is a floor** once more: the ensemble extends to **Trade⇄Emissions** — the carbon-leakage /
+pollution-haven channel (Copeland-Taylor), central to border-carbon-adjustment policy. A new `trade` voice
+adds embodied carbon from imports as globalisation builds, so **consumption-based** emissions rise above
+**production-based** emissions — the gap is embodied carbon in trade (measured by MRIO databases like
+EXIOBASE/Eora). Coupled contemporaneously to the energy voice (acyclic; ADR-0005). Atlas fed back: a new
+**Trade / Carbon Leakage** domain + **MRIO** dossier + graph nodes (`d-trade`, `mrio`, `lenzen`).
+
+| Check (`experiments/tradeemissions.py`) | Leakage regime | No-leakage control |
+|---|---|---|
+| raw synergy Δ (uncalibrated) | +3.3 | 0.00 |
+| **fair-calibrated Δ** | **+17.3 ⇒ keep** | **0.00 ⇒ cut** |
+| corr(leakage frac, consumption) — sign | **+0.998 (as assumed)** | — |
+
+**Verdict: KEEP on synthetic (survives fair calibration + correct sign), CUT on the control.** A synthetic
+keep is machinery, not skill — the real-data test is especially clean here because OWID publishes the
+production–consumption gap directly (``trade_co2``), so issue **#12-real** has an unusually well-measured
+target.
+
+## Convergence status (per domain) — REOPENED (scope extended to a seventh domain)
 
 | Domain / coupling | Verdict | Real-data status | Open, improvable gap? |
 |---|---|---|---|
@@ -516,15 +536,15 @@ good story.**
 | **Urban⇄Transport⇄Energy⇄Health** (co-benefit) | **CUT on real data** (right sign, no skill above trend; fails placebo) | ✅ tested (34 yrs) | **no** |
 | **Water⇄Energy⇄Food** (nexus, energy→food leg) | **CUT on real data** (corr +0.90 but no out-of-sample skill) | ✅ tested (34 yrs); water-leg data-limited | **no** |
 | **Macro⇄Finance** (spread→growth nowcast) | **CUT on real data** (narrowest call: right sign −0.61, beats placebo 80% + naive 60%, but not a mean-growth climatology; regime-dependent skill) | ✅ tested (39 yrs credit spread + GDP growth) | **no** |
+| **Trade⇄Emissions** (carbon leakage) | **KEEP on synthetic** (fair-cal Δ+17.3, correct sign); no-leakage control cut | ❌ **not yet** — synthetic only | **YES** — needs a real production-vs-consumption CO₂ placebo test (issue #12-real) |
 
-**DONE (again).** The Iter-26 scope extension is resolved on real data — and the coupling most likely to
-survive (the Gilchrist-Zakrajšek financial-conditions channel) is the **closest call**, cut only because
-its skill is *regime-dependent* (real near crises, noise otherwise) and so does not beat an unconditional
-climatology. Every kept coupling survives its round (Macro⇄Health); **six** candidate couplings are cut,
-each with a recorded, falsifiable reason — **five on real data under a placebo** — spanning **six distinct
-failure modes** (level artifact · genuinely cyclic · wrong sign · confounded-away · real-signal-no-skill ·
-regime-dependent skill). No domain retains an open, improvable gap. Standing headline: **one coupling
-earned its keep; six were cut — and the bar never bent, not even for the best-motivated story.**
+**REOPENED.** The seven prior couplings stay resolved, but honoring "scope is a floor" added an eighth
+whose synthetic keep is not yet a real-data keep — and its real target is unusually clean (OWID publishes
+the production–consumption gap, ``trade_co2``, directly). The loop continues until this domain survives a
+real placebo or is cut. Ledger so far: **one coupling kept (Macro⇄Health); six cut** on the strict bar,
+**six distinct named failure modes** (level artifact · genuinely cyclic · wrong sign · confounded-away ·
+real-signal-no-skill · regime-dependent skill). Standing headline unchanged: **a synthetic keep is a
+hypothesis, not a result.**
 
 ## Standing champions
 
@@ -536,6 +556,7 @@ earned its keep; six were cut — and the bar never bent, not even for the best-
 | Health-burden track, Urban⇄Transport⇄Energy⇄Health slice (**fair calibration**) | **coupled ensemble** (synthetic only) | airhealth-only | synthetic-cobenefit, time-blocked 30% | **+13.5 (keep synth)** | ❌ **CUT on real data** — right sign (+0.35) but PM2.5 adds no skill above trend; fails placebo (#7-real) | [redteam](04-validation.md) |
 | Food-price track, Water⇄Energy⇄Food nexus slice (**fair calibration**) | **coupled ensemble** (synthetic only) | nexusfood-only | synthetic-nexus, time-blocked 30% | **+99.3 (keep synth)** | ❌ **CUT on real data** — energy→food corr +0.90 but no out-of-sample skill (loses to trend/placebo/naive; #10-real) | [redteam](04-validation.md) |
 | GDP track, Macro⇄Finance slice (**fair calibration**) | **coupled ensemble** (synthetic only) | economy-only | synthetic-financial-crisis, time-blocked 30% | **+2.74 (keep synth)** | ❌ **CUT on real data** — spread→growth right sign (−0.61), beats placebo 80%/naive 60% but not climatology; regime-dependent skill (#11-real) | [redteam](04-validation.md) |
+| Consumption-emissions track, Trade⇄Emissions slice (**fair calibration**) | **coupled ensemble** (synthetic only) | leakage-blind | synthetic-leakage, time-blocked 30% | **+17.3 (keep synth)** | ⚠️ survives level-artifact + correct sign, but **synthetic only** — real placebo pending (#12-real) | [redteam](04-validation.md) |
 
 ## Contest log
 

@@ -678,3 +678,28 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
   - **Next (Iter 29):** a **seventh domain** for further coverage, deepen the decision card (attach the
     honest predictive bands from Iter 25 to each candidate; disagreement-vs-carbon-price curve), or a
     lead-lag / crisis-conditional finance spec if honestly motivated (not to force a keep).
+- **Iter 29 — 🚢 Seventh synergy loop: Trade⇄Emissions, carbon leakage (#12). KEEP on synthetic; real gap reopens convergence.**
+  - **Scope is a floor:** extended to **Trade⇄Emissions** — the carbon-leakage / pollution-haven channel
+    (Copeland-Taylor; Peters et al. 2011), central to border-carbon-adjustment policy.
+  - **New voice `ReducedFormTrade`:** consumes production `emissions` (from the energy voice); as trade
+    openness builds (globalisation relaxes toward a target), a fraction of production reappears as embodied
+    carbon in imports, so **consumption-based** emissions rise above **production-based** — the leakage gap.
+    Coupled contemporaneously (acyclic energy→trade; ADR-0005). DGPs: `synthetic_leakage_series` +
+    `synthetic_no_leakage_series` (control).
+  - **`experiments/tradeemissions.py`:** raw Δ +3.3; under **fair calibration** Δ **+17.3** with the **right
+    sign** (corr(leakage, consumption) = +0.998); no-leakage control **cut** (Δ 0). **KEEP on synthetic,
+    CUT on control.**
+  - **Honest caveat:** synthetic keep = machinery. Opens a **new real-data gap** (#12-real) with an
+    unusually clean target — **OWID publishes the production–consumption gap directly** (`trade_co2`).
+    Convergence **REOPENED**.
+  - **Atlas feedback (new coverage):** new **Trade / Carbon Leakage** domain (`d-trade`) + **MRIO** dossier
+    (`docs/model-families/trade/mrio.md`, multi-regional input-output / consumption-based accounting —
+    genuinely missing) + graph nodes `mrio` (model), `lenzen` (researcher); also linked existing `gtap` to
+    `d-trade`. Nav + index + graph stats updated. **178 nodes / 475 edges, 0-dangling.**
+  - **Tests:** +5 (`test_tradeemissions.py`) -> **109 pass.** Gates green: `pytest` (109) · `ruff` · `mypy`
+    (58 files) · graph 0-dangling · `mkdocs --strict`. Leaderboard Round 23 + reopened convergence table +
+    standing champion + 04-validation + related-work updated.
+  - **Next (Iter 30):** close the gap — fetch **OWID World production vs consumption CO₂** (`co2`,
+    `consumption_co2`, `trade_co2`, 35 yrs) and run a **placebo-controlled real Trade⇄Emissions tournament**
+    (walk-forward): does trade openness / the leakage mechanism explain the real embodied-carbon gap beyond
+    a trend + placebo? Report keep/cut honestly.

@@ -137,15 +137,15 @@ The graph is built to answer relational questions. A few, resolved from `graph.j
 
 | Node type | Count | Edge type | Count |
 |-----------|------:|-----------|------:|
-| model | 51 | exhibits_pattern | 170 |
+| model | 52 | exhibits_pattern | 172 |
 | pattern | 18 | realized_by | 58 |
 | institution | 39 | developed_at | 46 |
-| researcher | 30 | alternative_to | 38 |
-| algorithm | 15 | belongs_to | 41 |
+| researcher | 31 | alternative_to | 38 |
+| algorithm | 15 | belongs_to | 43 |
 | paradigm | 8 | solves_with | 34 |
-| domain | 9 | grounded_in | 20 |
+| domain | 10 | grounded_in | 20 |
 | axis | 5 | positions | 10 |
-| **Total nodes** | **175** | **Total edges** | **470** |
+| **Total nodes** | **178** | **Total edges** | **475** |
 
 ## Roadmap
 

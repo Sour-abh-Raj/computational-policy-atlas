@@ -94,6 +94,12 @@ Legend: ✅ complete · 🟡 in progress · ⬜ planned
 |-------|-------------|--------|
 | [**EIRIN**](finance/eirin.md) — stock-flow-consistent behavioural macro-finance (climate-transition risk) | RFF-CMCC / EIEE | ✅ Bronze |
 
+## Trade / Carbon Leakage
+
+| Model | Institution | Status |
+|-------|-------------|--------|
+| [**MRIO**](trade/mrio.md) — multi-regional input-output; consumption-based accounting & carbon leakage | Eora / EXIOBASE / WIOD | ✅ Bronze |
+
 ## Cross-cutting method families (documented under [Paradigms](../paradigms/index.md))
 
 Agent-Based ([**Mesa** ✅ Bronze](frameworks/mesa.md), [**Repast** ✅ Bronze](frameworks/repast.md),

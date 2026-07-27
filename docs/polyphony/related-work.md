@@ -82,6 +82,11 @@ not a claim to have replicated the world.
   effect. Polyphony makes this a **standing requirement for real-data couplings**: a coupling is kept
   only if it beats *both* the sum-of-parts baseline **and** a placebo regressor. On real GDP+CO₂ this
   cut an apparent climate→GDP "synergy" that a meaningless time trend reproduced (leaderboard Round 10).
+- **Consumption-based carbon accounting / leakage** (Copeland-Taylor pollution-haven hypothesis; Peters
+  et al. 2011; multi-regional input-output databases like [EXIOBASE/Eora](../model-families/trade/mrio.md))
+  — tracing emissions *embodied in trade* so a carbon price's true climate effect (not just offshored
+  production) is visible. Polyphony adds this as its seventh coupling (Trade⇄Emissions) and holds it to the
+  same real-data + placebo + sign discipline; its real target is unusually clean (OWID's `trade_co2`).
 - **Macro-finance / financial-accelerator modelling** (Bernanke, Gertler & Gilchrist 1999; Minsky's
   financial-instability hypothesis; Gilchrist & Zakrajšek 2012; stock-flow-consistent tools like
   [EIRIN](../model-families/finance/eirin.md)) — the tradition treating finance as an *amplifier* of the

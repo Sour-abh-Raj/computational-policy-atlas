@@ -127,6 +127,8 @@ nav:
           - BenMAP-CE: model-families/health/benmap.md
       - Finance / Systemic Risk:
           - EIRIN: model-families/finance/eirin.md
+      - Trade / Carbon Leakage:
+          - MRIO (EXIOBASE/Eora): model-families/trade/mrio.md
       - Frameworks & Environments:
           - Mesa: model-families/frameworks/mesa.md
           - Repast: model-families/frameworks/repast.md

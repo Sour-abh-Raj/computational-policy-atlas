@@ -192,6 +192,42 @@ def synthetic_flat_health_series(n: int = 40, seed: int = 0) -> Dataset:
     )
 
 
+def synthetic_leakage_series(n: int = 40, seed: int = 0, openness: float = 0.6) -> Dataset:
+    """Synthetic Trade⇄Emissions target: consumption-based emissions diverge above production as trade opens.
+
+    Production emissions are ~flat (a fixed policy), but globalisation builds an embodied-carbon leakage
+    channel over time, so **consumption-based** emissions rise above production — the carbon-leakage gap. A
+    leakage-blind baseline (consumption = production ⇒ flat) cannot track the divergence. Negative control:
+    :func:`synthetic_no_leakage_series` (openness 0). SYNTHETIC — proves the coupling machinery, not skill.
+    """
+    rng = np.random.default_rng(seed)
+    production = 80.0
+    o, leak = 0.0, np.empty(n)
+    for k in range(n):
+        o = o + 0.15 * (openness - o)
+        leak[k] = 0.5 * o
+    consumption = production * (1.0 + leak) + rng.normal(0, 0.4, n)
+    return Dataset(
+        name="synthetic-leakage",
+        series={"consumption_emissions": consumption, "leakage_frac": leak},
+        synthetic=True,
+        note="SYNTHETIC Trade⇄Emissions target (carbon leakage lifts consumption above production).",
+        meta={"openness": openness, "seed": seed, "coupling": True},
+    )
+
+
+def synthetic_no_leakage_series(n: int = 40, seed: int = 0) -> Dataset:
+    """Negative control for the trade loop: consumption = production (no leakage; flat + noise)."""
+    rng = np.random.default_rng(seed)
+    return Dataset(
+        name="synthetic-no-leakage",
+        series={"consumption_emissions": 80.0 + rng.normal(0, 0.4, n), "leakage_frac": np.zeros(n)},
+        synthetic=True,
+        note="SYNTHETIC negative control — consumption emissions equal production (no carbon leakage).",
+        meta={"openness": 0.0, "seed": seed, "coupling": False},
+    )
+
+
 def synthetic_financial_crisis_series(n: int = 40, seed: int = 0, credit_shock: float = 0.3) -> Dataset:
     """Synthetic Macro⇄Finance target: GDP dips during a financial-accelerator crisis wave, then recovers.
 
