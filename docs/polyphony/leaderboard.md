@@ -481,7 +481,31 @@ so this opens a *new open, improvable gap* (issue #11-real) — and unusually, a
 (financial conditions genuinely lead output; Gilchrist-Zakrajšek), which makes the real test especially
 worth running.
 
-## Convergence status (per domain) — REOPENED (scope extended to a sixth domain)
+## Round 22 — real Macro⇄Finance: the closest call yet, a narrow CUT with regime-dependent skill (issue #11-real)
+
+Iter 26 opened the gap; Iter 27 closes it — on the coupling most likely to survive. Tested on **real** FRED
+data: the Baa−10Y **credit spread** vs annual real-GDP **growth** (the natural target; financial conditions
+predict activity, not the smooth level — Gilchrist-Zakrajšek 2012). As a real-time **nowcast** (spreads are
+observed before GDP is released), it matches the finance voice's contemporaneous drag.
+`experiments/real_finance_tournament.py`, decided by walk-forward (Round 18).
+
+| Check (walk-forward, 5 folds) | Result |
+|---|---|
+| corr(spread, growth) — sign | **−0.61 — strong, and the RIGHT sign** |
+| beats a **placebo** | **80% of folds** (genuine, non-spurious information) |
+| beats **naive** | 60% of folds |
+| beats a **mean-growth climatology** | **40% of folds — a minority** |
+
+**Verdict: CUT — but the strongest real signal of any coupling, and a *sixth distinct* failure mode.** The
+spread carries real, right-signed, placebo-beating information and beats naive in a majority — yet it does
+**not** robustly beat an unconditional mean-growth baseline. The per-fold detail says why: it **caught the
+2008 and COVID growth collapses** (beating the baseline there) but *hurt* in calm years and **overshot the
+2022 spread-widening that brought no recession**. So its skill is **regime-dependent** — real near crises,
+noise otherwise — which an annual reduced-form linear coupling cannot exploit for a keep. That a channel
+*this* well-motivated is still cut on the strict bar is exactly the point: **the bar does not bend for a
+good story.**
+
+## Convergence status (per domain) — DONE (again, with the sixth domain resolved)
 
 | Domain / coupling | Verdict | Real-data status | Open, improvable gap? |
 |---|---|---|---|
@@ -491,11 +515,16 @@ worth running.
 | **Real climate→GDP** | **CUT** (fails placebo under both CO₂ and temperature) | ✅ tested (58 yrs) | **no** |
 | **Urban⇄Transport⇄Energy⇄Health** (co-benefit) | **CUT on real data** (right sign, no skill above trend; fails placebo) | ✅ tested (34 yrs) | **no** |
 | **Water⇄Energy⇄Food** (nexus, energy→food leg) | **CUT on real data** (corr +0.90 but no out-of-sample skill) | ✅ tested (34 yrs); water-leg data-limited | **no** |
-| **Macro⇄Finance** (financial accelerator) | **KEEP on synthetic** (fair-cal Δ+2.74, correct sign, beats naive); control cut | ❌ **not yet** — synthetic only | **YES** — needs a real credit-spread → output placebo test (issue #11-real) |
+| **Macro⇄Finance** (spread→growth nowcast) | **CUT on real data** (narrowest call: right sign −0.61, beats placebo 80% + naive 60%, but not a mean-growth climatology; regime-dependent skill) | ✅ tested (39 yrs credit spread + GDP growth) | **no** |
 
-**REOPENED.** The six prior couplings stay resolved, but honoring "scope is a floor" added a seventh whose
-synthetic keep is not yet a real-data keep. The loop continues until this domain survives a real placebo
-or is cut. Standing headline unchanged: **a synthetic keep is a hypothesis, not a result.**
+**DONE (again).** The Iter-26 scope extension is resolved on real data — and the coupling most likely to
+survive (the Gilchrist-Zakrajšek financial-conditions channel) is the **closest call**, cut only because
+its skill is *regime-dependent* (real near crises, noise otherwise) and so does not beat an unconditional
+climatology. Every kept coupling survives its round (Macro⇄Health); **six** candidate couplings are cut,
+each with a recorded, falsifiable reason — **five on real data under a placebo** — spanning **six distinct
+failure modes** (level artifact · genuinely cyclic · wrong sign · confounded-away · real-signal-no-skill ·
+regime-dependent skill). No domain retains an open, improvable gap. Standing headline: **one coupling
+earned its keep; six were cut — and the bar never bent, not even for the best-motivated story.**
 
 ## Standing champions
 
@@ -506,7 +535,7 @@ or is cut. Standing headline unchanged: **a synthetic keep is a hypothesis, not 
 | Food-price track, Land⇄Climate⇄Food slice (**fair calibration**) | **coupled ensemble** | land-only | synthetic-warming, time-blocked 30% | **+15.2 (keep)** | ⚠️ coupling real (survives level-artifact + shift) but **loses to naive** — no skill claim yet | [redteam](04-validation.md) |
 | Health-burden track, Urban⇄Transport⇄Energy⇄Health slice (**fair calibration**) | **coupled ensemble** (synthetic only) | airhealth-only | synthetic-cobenefit, time-blocked 30% | **+13.5 (keep synth)** | ❌ **CUT on real data** — right sign (+0.35) but PM2.5 adds no skill above trend; fails placebo (#7-real) | [redteam](04-validation.md) |
 | Food-price track, Water⇄Energy⇄Food nexus slice (**fair calibration**) | **coupled ensemble** (synthetic only) | nexusfood-only | synthetic-nexus, time-blocked 30% | **+99.3 (keep synth)** | ❌ **CUT on real data** — energy→food corr +0.90 but no out-of-sample skill (loses to trend/placebo/naive; #10-real) | [redteam](04-validation.md) |
-| GDP track, Macro⇄Finance slice (**fair calibration**) | **coupled ensemble** (synthetic only) | economy-only | synthetic-financial-crisis, time-blocked 30% | **+2.74 (keep synth)** | ⚠️ survives level-artifact + correct sign + beats naive, but **synthetic only** — real placebo pending (#11-real) | [redteam](04-validation.md) |
+| GDP track, Macro⇄Finance slice (**fair calibration**) | **coupled ensemble** (synthetic only) | economy-only | synthetic-financial-crisis, time-blocked 30% | **+2.74 (keep synth)** | ❌ **CUT on real data** — spread→growth right sign (−0.61), beats placebo 80%/naive 60% but not climatology; regime-dependent skill (#11-real) | [redteam](04-validation.md) |
 
 ## Contest log
 

@@ -122,8 +122,9 @@ FRED_FOOD = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=PFOODINDEXM"  # 
 FRED_ENERGY = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=PNRGINDEXM"  # IMF Global Energy Price Index
 
 
-def _fetch_fred_annual(url: str) -> dict[int, float]:
-    """Fetch a FRED monthly series (CSV, no API key) and average to calendar-year means (full years only)."""
+def _fetch_fred_annual(url: str, min_obs: int = 12) -> dict[int, float]:
+    """Fetch a FRED series (CSV, no API key) and average to calendar-year means, keeping only years with
+    at least ``min_obs`` observations (12 for monthly, 4 for quarterly) so partial years don't bias the mean."""
     last: Exception | None = None
     for _ in range(3):
         try:
@@ -135,7 +136,7 @@ def _fetch_fred_annual(url: str) -> dict[int, float]:
             for row in reader:
                 if len(row) >= 2 and row[1] not in (".", ""):
                     by_year.setdefault(int(row[0][:4]), []).append(float(row[1]))
-            return {y: sum(v) / len(v) for y, v in by_year.items() if len(v) >= 12}
+            return {y: sum(v) / len(v) for y, v in by_year.items() if len(v) >= min_obs}
         except Exception as e:  # transient egress failures; retry
             last = e
     raise RuntimeError(f"FRED fetch failed after retries: {url}") from last
@@ -164,6 +165,33 @@ def fetch_nexus(out: pathlib.Path | None = None) -> pathlib.Path:
         w.writerow(["year", "food_price", "energy_price"])
         for y in years:
             w.writerow([y, food[y], energy[y]])
+    return out
+
+
+FRED_SPREAD = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAA10Y"  # Baa − 10Y Treasury credit spread
+FRED_REALGDP = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=GDPC1"  # real GDP (chained 2017 $)
+
+
+def fetch_finance(out: pathlib.Path | None = None) -> pathlib.Path:
+    """Fetch the REAL Macro⇄Finance series (issue #11-real): the Baa−10Y **credit spread** (FRED BAA10Y)
+    and **real GDP** (FRED GDPC1), annual means.
+
+    Tests the financial-accelerator mechanism (credit stress → weaker output) on real data. The natural
+    target is GDP *growth* (financial conditions predict activity, not the smooth level; Gilchrist-Zakrajšek
+    2012); the tournament computes growth from the GDP level. Writes ``datasets/real_finance.csv`` (columns:
+    ``year``, ``gdp``, ``spread``).
+    """
+    spread = _fetch_fred_annual(FRED_SPREAD, min_obs=12)  # daily
+    gdp = _fetch_fred_annual(FRED_REALGDP, min_obs=4)  # quarterly
+    years = sorted(set(spread) & set(gdp))
+    if len(years) < 20:
+        raise RuntimeError(f"too few overlapping years ({len(years)}); refusing to write")
+    out = out or (DATASETS / "real_finance.csv")
+    with out.open("w", newline="", encoding="utf-8") as fh:
+        w = csv.writer(fh)
+        w.writerow(["year", "gdp", "spread"])
+        for y in years:
+            w.writerow([y, gdp[y], spread[y]])
     return out
 
 
@@ -203,3 +231,5 @@ if __name__ == "__main__":
     print(f"wrote {cobenefit} ({sum(1 for _ in cobenefit.open()) - 1} rows)")
     nexus = fetch_nexus()
     print(f"wrote {nexus} ({sum(1 for _ in nexus.open()) - 1} rows)")
+    finance = fetch_finance()
+    print(f"wrote {finance} ({sum(1 for _ in finance.open()) - 1} rows)")

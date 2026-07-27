@@ -305,6 +305,24 @@ The lesson for the instrument: honest uncertainty from history is a real, achiev
 **still blind to structural breaks**. Any claim of calibrated bands must carry that caveat — which is
 precisely the kind of over-promise a single-confident-number simulator makes and this project refuses.
 
+## Real Macro⇄Finance: the closest call, a narrow CUT (regime-dependent skill) (Round 22)
+
+Iter 27 closes the gap on the coupling *most likely* to survive — the financial-conditions→output channel
+(Gilchrist-Zakrajšek 2012). Tested as a real-time **nowcast**: the Baa−10Y credit spread vs annual real-GDP
+growth (39 yrs), decided by walk-forward.
+
+- **Strongest real signal yet:** corr(spread, growth) = **−0.61**, the right sign, robust across folds; the
+  spread **beats a placebo in 80%** of folds and **naive in 60%** — genuine, non-spurious information.
+- **But cut:** it beats a mean-growth **climatology in only 40%** of folds. The per-fold detail shows why —
+  it **caught the 2008 and COVID collapses** but *hurt* in calm years and **overshot the 2022** spread
+  spike that brought no recession. Its skill is **regime-dependent** (real near crises, noise otherwise),
+  which an annual reduced-form linear coupling cannot turn into an unconditional edge.
+
+The lesson is the project's thesis in one result: a channel with genuine, well-documented, right-signed
+information is still **cut** because it does not robustly beat the honest baseline. **The bar does not bend
+for a good story** — the sixth distinct named failure mode (regime-dependent skill), and the fifth real-data
+cut under a placebo.
+
 ## Honesty-debt register (tracked to close)
 
 | Debt | Status | Tracked by |
@@ -323,8 +341,8 @@ precisely the kind of over-promise a single-confident-number simulator makes and
 | Uncertainty honesty of real forecasts | ✅ **measured (CRPS/PIT)** — real couplings are not only inaccurate but **grossly overconfident** (PIT at the tails, 0% central coverage): train-residual bands are far too narrow out-of-sample. Honest remedy (parameter/structural uncertainty) now motivated. `experiments/real_probabilistic.py` | Round 19 |
 | Honest predictive bands | ✅ **calibration achievable, with a caveat** — OOS bias-correction + √h horizon-fanning bands lift central coverage 0%→47%/100% where the future resembles the past (climate→GDP, warming→yield), but **cannot** cover regime breaks (PM2.5 aging upturn; 2022 energy shock). Honest uncertainty from history is still blind to structural breaks. `experiments/honest_uncertainty.py` | Round 20 |
 | Sixth synergy loop (breadth, #11) | ✅ **KEEP on synthetic** — Macro⇄Finance financial-accelerator survives fair calibration (Δ +2.74), correct sign (corr −0.999), and **beats naive**; decoupled control cut. New voice `finance`, EIRIN dossier + `d-finance` domain | issue #11 |
-| Real Macro⇄Finance test | ⏳ **OPEN** — synthetic keep is machinery, not skill; needs a real credit-spread → output placebo test. A real KEEP is *plausible* here (financial conditions lead output; Gilchrist-Zakrajšek 2012) | issue #11-real |
-| Convergence (after #11) | 🔄 **REOPENED** — six prior couplings resolved; the Macro⇄Finance real-data placebo test is an open, improvable gap; loop continues until it resolves | — |
+| Real Macro⇄Finance test | ✅ **CUT on real data (narrowest call)** — spread→growth nowcast (39 yrs): right sign (−0.61), beats placebo 80% + naive 60% of walk-forward folds, but not a mean-growth climatology (40%). **Regime-dependent skill** — real near crises, noise otherwise. The bar didn't bend for the best-motivated coupling. `experiments/real_finance_tournament.py` | issue #11-real |
+| Convergence (after #11) | ✅ **DONE (again)** — Macro⇄Finance resolved on real data (sixth distinct failure mode). Every kept coupling survives its round; six cuts, six named failure modes; no open improvable gap | — |
 | Model calibration (real levels) | affine calibration now beats naive **on synthetic** (MASE 0.61); real-level calibration still pending | (opens when #9 lands) |
 | Welfare/equity engine (values dial) | ✅ **built + integrated** — frontier over policies; recommendation changes with values | issue #4 |
 | Predictive distributions → CRPS/PIT in tournament | ✅ **scored + calibrated** — `calibrate_ensemble` de-bias+widen ⇒ CRPS 7.9→0.44, **PIT 0.0→0.39** (near-uniform, synthetic) | blueprint §6 |

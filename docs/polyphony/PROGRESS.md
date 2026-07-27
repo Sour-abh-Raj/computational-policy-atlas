@@ -628,3 +628,31 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
     BAA-10Y or the excess bond premium vs GDP growth) and run a **placebo-controlled real Macro⇄Finance
     tournament** (with walk-forward + CRPS/PIT); report keep/cut honestly. A real KEEP would be the second
     surviving coupling — worth testing carefully and honestly.
+- **Iter 27 — 🏦 Real Macro⇄Finance: the closest call yet — a narrow CUT (regime-dependent skill). Convergence DONE again.**
+  - **Fetched real data** (`fetch_real.fetch_finance`; FRED CSV, `_fetch_fred_annual` extended with a
+    per-series `min_obs` so quarterly GDP isn't dropped by the monthly full-year guard): Baa−10Y **credit
+    spread** (BAA10Y) + **real GDP** (GDPC1) → `datasets/real_finance.csv` (40 yrs). Loader
+    `load_real_finance`.
+  - **Real tournament** (`experiments/real_finance_tournament.py`): tests the spread → real-GDP-**growth**
+    nowcast (the natural target; financial conditions predict activity, not the smooth level —
+    Gilchrist-Zakrajšek 2012), decided by **walk-forward** (Round 18).
+  - **Honest result — the strongest real signal, still CUT:** corr(spread, growth) = **−0.61** (right sign,
+    robust); the spread **beats a placebo 80%** and **naive 60%** of folds (genuine information) — but
+    beats a mean-growth **climatology only 40%**. Per-fold: it **caught the 2008 & COVID collapses** but
+    *hurt* in calm years and **overshot the 2022** spread spike (no recession). **Regime-dependent skill** →
+    not an unconditional keep. Both single-split and walk-forward agree on cut.
+  - **Honesty note:** an early one-off probe (different data vintage) had looked like a KEEP; the committed,
+    reproducible, pre-specified result is a narrow CUT. **Reported faithfully — did not tune settings to
+    force the keep** (that would be the p-hacking this project condemns). The bar does not bend for the
+    best-motivated story.
+  - **Atlas feedback:** reuses Data Pipeline + Validation engines — no new graph node; graph unchanged
+    (**175 nodes / 470 edges, 0-dangling**). New real dataset committed.
+  - **CONVERGENCE (DONE again):** Macro⇄Finance resolved on real data (**sixth** distinct failure mode:
+    regime-dependent skill). Ledger: **one coupling kept (Macro⇄Health); six cut**, five on real data under
+    a placebo, six named failure modes. **+2 tests -> 100 pass.** Gates green: `pytest` (100) · `ruff` ·
+    `mypy` (55 files) · graph 0-dangling · `mkdocs --strict`. Leaderboard Round 22 + convergence (DONE) +
+    04-validation register updated.
+  - **Next (Iter 28):** the six-domain sweep is convergence-complete. Options: a **seventh domain**, or
+    consolidate — a **worked decision-support vignette** (welfare/equity dial + disagreement + honest
+    uncertainty → "help a human choose", the north star), or hunt the nexus water-leg / a lead-lag finance
+    spec if honestly motivated.

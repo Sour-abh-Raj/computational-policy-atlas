@@ -265,6 +265,7 @@ REAL_GDP_CO2 = DATASETS / "real_gdp_co2.csv"
 REAL_FOOD = DATASETS / "real_food.csv"
 REAL_COBENEFIT = DATASETS / "real_cobenefit.csv"
 REAL_NEXUS = DATASETS / "real_nexus.csv"
+REAL_FINANCE = DATASETS / "real_finance.csv"
 
 
 def has_real_gdp_co2() -> bool:
@@ -285,6 +286,29 @@ def has_real_cobenefit() -> bool:
 def has_real_nexus() -> bool:
     """Whether the real food / energy price-index CSV has been fetched (``data.fetch_real.fetch_nexus``)."""
     return REAL_NEXUS.exists()
+
+
+def has_real_finance() -> bool:
+    """Whether the real credit-spread / GDP CSV has been fetched (``data.fetch_real.fetch_finance``)."""
+    return REAL_FINANCE.exists()
+
+
+def load_real_finance() -> Dataset:
+    """REAL Macro⇄Finance series: Baa−10Y credit spread (FRED BAA10Y) + real GDP (FRED GDPC1), annual.
+
+    Tests the financial-accelerator mechanism (credit stress → weaker output). ``gdp`` is the real GDP
+    level; the tournament derives annual growth from it. Raises if the CSV is absent — call ``data.fetch_real``.
+    """
+    if not REAL_FINANCE.exists():
+        raise FileNotFoundError(f"{REAL_FINANCE} missing; run `python -m polyphony.data.fetch_real`")
+    raw = load_csv(REAL_FINANCE)
+    return Dataset(
+        name="real-finance",
+        series={"year": raw.column("year"), "gdp": raw.column("gdp"), "spread": raw.column("spread")},
+        synthetic=False,
+        note="REAL Baa−10Y credit spread (FRED BAA10Y) + real GDP (FRED GDPC1), annual means, merged by year.",
+        meta={"source_spread": "FRED BAA10Y", "source_gdp": "FRED GDPC1"},
+    )
 
 
 def load_real_nexus() -> Dataset:
