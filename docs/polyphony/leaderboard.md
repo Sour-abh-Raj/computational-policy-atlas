@@ -585,6 +585,13 @@ out). So the keep is a genuine *short-horizon forecaster*, not a long-horizon on
 doctrine of "looking through" transitory energy shocks. Reporting *how far ahead* the skill reaches, and
 where it reverses, is more honest than a bare "it predicts inflation".
 
+**Red-team (Iter 43) — the keep survives its attacks.** The obvious objection is that it rides on the 2022
+spike; the decisive attack **removes the most extreme energy-move year** and re-runs the walk-forward — the
+pass-through **still beats the baseline and naive in every fold** (`experiments/redteam_inflation.py`). So
+it is *not* a single-episode artifact. It is stable in the **recent** half; the **early** half is weaker
+(50% of folds) — a disclosed small-sample fragility (few folds, lower 1990s energy volatility), reported
+rather than hidden. A keep with its fragilities named, still standing.
+
 ## Round 27 — Interest-Rate⇄Housing: CUT via reverse causation + momentum (issue #14)
 
 A ninth coupling, and a *new* failure mode. Higher rates should slow house-price growth — but rates and

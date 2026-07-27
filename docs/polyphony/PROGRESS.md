@@ -983,3 +983,22 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
     (67 files) · graph 0-dangling · `mkdocs --strict`.
   - **Next (Iter 43):** numeric effect-size margins on the meta-analysis, another domain, or a
     scenario-atlas of which uncertainty is load-bearing across several stylized policy questions.
+- **Iter 43 — 🛡️ Red-team of the Energy⇄Inflation keep: it survives (not a 2022-spike artifact).**
+  - **Hardened the core, not the periphery:** the one clean real-data keep had never been adversarially
+    attacked. `experiments/redteam_inflation.py` runs three attacks.
+  - **The decisive attack — remove the most extreme energy-move year (the 2022 spike)** and re-run
+    walk-forward: the pass-through **still beats the baseline and naive in every fold** →
+    `survives_outlier_attack = True`. The keep is **not** a single-episode artifact — the obvious objection
+    is defeated.
+  - **Sub-period stability:** stable in the **recent** half (100% of folds); the **early** half is weaker
+    (50%) — a *disclosed* small-sample fragility (few folds, lower 1990s energy volatility), reported not
+    hidden. A keep with its fragilities named, still standing.
+  - **Validated:** `test_redteam_inflation.py` asserts the keep survives the outlier attack and that the
+    early half is honestly weaker than the recent half.
+  - **Atlas feedback:** reuses the Validation engine — no new graph node; graph unchanged (**180 nodes /
+    480 edges, 0-dangling**).
+  - **Convergence stays DONE.** **+2 tests -> 144 pass.** Gates green: `pytest` (144) · `ruff` · `mypy`
+    (68 files) · graph 0-dangling · `mkdocs --strict`. Leaderboard Round 26 red-team + 04-validation register
+    updated.
+  - **Next (Iter 44):** red-team Macro⇄Health's real-data footing / the other keep, numeric effect-size
+    margins on the meta-analysis, or another domain.
