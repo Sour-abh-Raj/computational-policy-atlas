@@ -119,3 +119,43 @@ def cut() -> tuple[CouplingVerdict, ...]:
 def modes_exemplified() -> frozenset[str]:
     """The set of failure-mode keys that at least one cut coupling exemplifies."""
     return frozenset(c.mode for c in cut())
+
+
+# The validation methods that enforce the bar (each has a dedicated experiment + tests).
+VALIDATION_METHODS: tuple[str, ...] = (
+    "fair calibration",
+    "placebo control",
+    "walk-forward cross-validation",
+    "CRPS/PIT probabilistic scoring",
+    "honest (bias-corrected, horizon-fanning) uncertainty",
+    "panel fixed effects",
+)
+
+
+@dataclass(frozen=True)
+class EnsembleState:
+    """A single **tested source of truth** for the ensemble's headline numbers, to prevent doc drift
+    (see Iter 39, where the per-page counts had diverged). The docs cite these; a test pins them."""
+
+    couplings_tested: int
+    kept: int
+    cut: int
+    failure_modes: int
+    validation_methods: int
+
+    def as_prose(self) -> str:
+        return (
+            f"{self.couplings_tested} couplings tested: {self.kept} kept, {self.cut} cut "
+            f"across {self.failure_modes} named failure modes; {self.validation_methods} validation methods."
+        )
+
+
+def state_of_ensemble() -> EnsembleState:
+    """Compute the canonical ensemble state from the tested ledger + catalogue (never hand-typed)."""
+    return EnsembleState(
+        couplings_tested=len(LEDGER),
+        kept=len(kept()),
+        cut=len(cut()),
+        failure_modes=len(CATALOGUE),
+        validation_methods=len(VALIDATION_METHODS),
+    )

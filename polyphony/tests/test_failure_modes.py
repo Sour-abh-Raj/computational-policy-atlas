@@ -19,11 +19,13 @@ from polyphony.data.loaders import (
 from polyphony.experiments.failure_modes import (
     CATALOGUE,
     LEDGER,
+    VALIDATION_METHODS,
     _MODE_KEYS,
     cut,
     kept,
     mode,
     modes_exemplified,
+    state_of_ensemble,
 )
 
 
@@ -42,6 +44,15 @@ def test_catalogue_and_ledger_are_internally_consistent():
 def test_every_mode_has_a_lesson_and_diagnostic():
     for m in CATALOGUE:
         assert m.definition and m.diagnostic and m.lesson
+
+
+def test_state_of_ensemble_is_the_pinned_source_of_truth():
+    # The single tested source of truth the docs cite (guards against the count drift found in Iter 39).
+    s = state_of_ensemble()
+    assert (s.couplings_tested, s.kept, s.cut) == (10, 2, 8)
+    assert s.kept + s.cut == s.couplings_tested
+    assert s.failure_modes == len(CATALOGUE) == 7
+    assert s.validation_methods == len(VALIDATION_METHODS) == 6
 
 
 def test_confounded_away_is_the_most_common_mode():

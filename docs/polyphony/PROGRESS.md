@@ -1002,3 +1002,21 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
     updated.
   - **Next (Iter 44):** red-team Macro⇄Health's real-data footing / the other keep, numeric effect-size
     margins on the meta-analysis, or another domain.
+- **Iter 44 — 🔢 A pinned "state of the ensemble" — the tested source of truth for the headline counts (anti-drift).**
+  - **Probed Okun's law (Employment⇄Output)** as a possible 11th domain / 3rd keep: corr(Δunemployment,
+    GDP growth) = **−0.81** (textbook-strong, right sign) but it **fails to beat a climatology baseline**
+    out-of-sample (44% of walk-forward folds, n=76) — because unemployment is a **coincident** indicator
+    (two measures of one business cycle), not a leading one. A would-be cut mapping to an *existing* mode
+    (real-signal-no-skill); **not added** — the ledger-propagation cost outweighed the marginal insight
+    (an honest call about diminishing returns).
+  - **Instead, fixed a real robustness gap** (the count drift found in Iter 39): added
+    `failure_modes.state_of_ensemble()` + `VALIDATION_METHODS` — a **single tested source of truth** computed
+    from the ledger/catalogue (10 couplings · 2 kept · 8 cut · 7 failure modes · 6 validation methods), never
+    hand-typed. `tests/test_failure_modes.py` pins it; the landing page now cites it with a reproduce
+    pointer, so the docs cannot silently diverge from the code again.
+  - **Atlas feedback:** reuses existing ledgers — no new graph node; graph unchanged (**180 nodes / 480
+    edges, 0-dangling**).
+  - **Convergence stays DONE.** **+1 test -> 145 pass.** Gates green: `pytest` (145) · `ruff` · `mypy`
+    (68 files) · graph 0-dangling · `mkdocs --strict`. Landing page (`index.md`) reproduce pointer added.
+  - **Next (Iter 45):** red-team the Macro⇄Health keep on real footing, numeric effect-size margins for the
+    walk-forward-decided couplings, or another genuinely distinct domain.

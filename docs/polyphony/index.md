@@ -94,7 +94,12 @@ under deep uncertainty, *not* a forecast.
 
 Ten atlas domains (climate · energy · economics · health · transport · agriculture · water · urban ·
 **finance** · **trade**), a typed [knowledge graph](../graph/index.md) of 180 nodes / 480 edges (0-dangling),
-and a Python package (`polyphony/`) with 130+ tests, all green under `ruff` · `mypy` · `mkdocs --strict`.
+and a Python package (`polyphony/`) with 140+ tests, all green under `ruff` · `mypy` · `mkdocs --strict`.
+
+The headline counts above (ten couplings — two kept, eight cut — across seven failure modes and six
+validation methods) are not hand-typed: they are computed from the tested ledger by
+`experiments/failure_modes.state_of_ensemble()` and pinned by `tests/test_failure_modes.py`, so the docs
+cannot silently drift from the code.
 
 - **Phases 0–4 — done.** Inventory & positioning; blueprint; scaffold (interface, orchestrator, tournament);
   research (couplings raced); validation (real data, placebo, walk-forward, red-team).
