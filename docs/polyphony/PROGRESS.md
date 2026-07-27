@@ -728,3 +728,27 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
   - **Next (Iter 31):** an eighth domain, or deepen the decision card / a cross-domain disagreement study,
     or consolidate the seven-domain findings into a short synthesis page (the failure-mode catalogue as a
     teaching artifact).
+- **Iter 31 — 📚 Consolidation: a VALIDATED failure-mode catalogue (how couplings fail on real data).**
+  - **The intellectual payoff:** seven couplings tested on real data, one kept, six cut — and each cut
+    names a distinct, reusable failure mode. This iteration turns that into a canonical, *tested* taxonomy.
+  - **`experiments/failure_modes.py`:** a `CATALOGUE` of six failure modes (Level artifact · Genuinely
+    cyclic · Wrong sign · Confounded-away · Real-signal-no-skill · Regime-dependent skill), each with a
+    definition, the real-data diagnostic that detects it, and the lesson; plus a `LEDGER` mapping all eight
+    couplings (1 kept + 7 cut) to their mode and decisive real number.
+  - **Validated, not just prose:** `tests/test_failure_modes.py` checks internal consistency (kept=1,
+    cut=7, all modes defined) AND — where the real data is present — re-runs the land/nexus/finance/trade
+    tournaments and asserts each **live diagnostic matches its classified mode** (e.g. land: corr>0.5 &
+    wrong sign; nexus: strong corr & loses to naive; finance: beats placebo but robust-cut; trade:
+    corr>0.5 & robust-cut). The taxonomy is tied to reproducible computation.
+  - **Finding:** **confounded-away (shared trend) is the modal failure** — three couplings (climate→GDP,
+    the PM2.5 co-benefit, UK carbon leakage) fail this way, which is exactly why the placebo control is
+    non-negotiable.
+  - **Docs (teaching artifact):** new `docs/polyphony/failure-modes.md` — the ledger + a field guide to
+    the six modes, cross-linked to the rounds, closing on why *one* success against *six* named failures is
+    the honest yield of adversarial paradigm-plural simulation. Added to nav.
+  - **Atlas feedback:** a synthesis of existing results — no new graph node; graph unchanged (**178 nodes /
+    475 edges, 0-dangling**).
+  - **Convergence stays DONE** (consolidation, no new coupling). **+6 tests -> 117 pass.** Gates green:
+    `pytest` (117) · `ruff` · `mypy` (60 files) · graph 0-dangling · `mkdocs --strict`.
+  - **Next (Iter 32):** an eighth domain, deepen the decision card (attach per-candidate honest bands /
+    disagreement-vs-policy curve), or a cross-domain disagreement study.
