@@ -63,6 +63,13 @@ correlation is +0.90, yet a train-fit pass-through doesn't extrapolate to the 20
 contemporaneous association is not a usable forecast; a volatile target can be near-unforecastable.
 (Water⇄Energy⇄Food, [Round 17](leaderboard.md).)
 
+### 6. Regime-dependent skill
+Real skill in some **regimes** (e.g. crises) that doesn't beat an **unconditional** baseline. *Diagnostic:*
+beats placebo + naive in most walk-forward folds, but not a climatology. The credit spread caught the 2008
+and COVID growth collapses but hurt in calm years and overshot the 2022 spread spike. *Lesson:* skill
+concentrated in rare regimes won't beat a mean on average — say so, don't claim an unconditional edge.
+(Macro⇄Finance, [Round 22](leaderboard.md).)
+
 ### 7. Reverse causation / policy endogeneity
 The lever **reacts to the target**, so the *contemporaneous* correlation has the **wrong sign**.
 *Diagnostic:* contemporaneous corr opposite to the mechanism; even the correctly-signed lag loses to
@@ -70,13 +77,6 @@ momentum. Higher interest rates should slow house prices, but rates and house-pr
 **positively** because the Fed hikes *into* booms; the correctly-signed lagged rate then can't beat housing
 **momentum** (persistence). *Lesson:* when the policy responds to the outcome, the naive correlation is
 backwards — use lags, and beware momentum baselines. (Interest-Rate⇄Housing, [Round 27](leaderboard.md).)
-
-### 6. Regime-dependent skill
-Real skill in some **regimes** (e.g. crises) that doesn't beat an **unconditional** baseline. *Diagnostic:*
-beats placebo + naive in most walk-forward folds, but not a climatology. The credit spread caught the 2008
-and COVID growth collapses but hurt in calm years and overshot the 2022 spread spike. *Lesson:* skill
-concentrated in rare regimes won't beat a mean on average — say so, don't claim an unconditional edge.
-(Macro⇄Finance, [Round 22](leaderboard.md).)
 
 ## What survived, and why it matters that the bar rewards it
 
