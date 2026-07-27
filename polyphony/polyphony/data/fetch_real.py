@@ -328,6 +328,45 @@ def fetch_finance(out: pathlib.Path | None = None) -> pathlib.Path:
 
 
 FRED_CPI = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=CPIAUCSL"  # US CPI, all urban consumers
+def _fetch_fred_quarterly(url: str) -> dict[tuple[int, int], float]:
+    """Fetch a FRED monthly series and average to calendar quarters (full quarters only), keyed (year, q)."""
+    last: Exception | None = None
+    for _ in range(3):
+        try:
+            with urllib.request.urlopen(url, timeout=60) as r:
+                text = r.read().decode("utf-8")
+            reader = csv.reader(io.StringIO(text))
+            next(reader, None)
+            by_q: dict[tuple[int, int], list[float]] = {}
+            for row in reader:
+                if len(row) >= 2 and row[1] not in (".", ""):
+                    y, m = int(row[0][:4]), int(row[0][5:7])
+                    by_q.setdefault((y, (m - 1) // 3 + 1), []).append(float(row[1]))
+            return {q: sum(v) / len(v) for q, v in by_q.items() if len(v) >= 3}
+        except Exception as e:
+            last = e
+    raise RuntimeError(f"FRED quarterly fetch failed after retries: {url}") from last
+
+
+def fetch_inflation_quarterly(out: pathlib.Path | None = None) -> pathlib.Path:
+    """Fetch the REAL Energy⇄Inflation series at **quarterly** frequency (Iter 48 — higher-power confirmation):
+    IMF Global Energy price index (FRED PNRGINDEXM) + US CPI (CPIAUCSL), quarterly means. More observations
+    ⇒ more walk-forward folds. Writes ``datasets/real_inflation_q.csv`` (columns: ``year``, ``quarter``,
+    ``energy``, ``cpi``)."""
+    energy = _fetch_fred_quarterly(FRED_ENERGY)
+    cpi = _fetch_fred_quarterly(FRED_CPI)
+    quarters = sorted(set(energy) & set(cpi))
+    if len(quarters) < 40:
+        raise RuntimeError(f"too few overlapping quarters ({len(quarters)}); refusing to write")
+    out = out or (DATASETS / "real_inflation_q.csv")
+    with out.open("w", newline="", encoding="utf-8") as fh:
+        w = csv.writer(fh)
+        w.writerow(["year", "quarter", "energy", "cpi"])
+        for (y, q) in quarters:
+            w.writerow([y, q, energy[(y, q)], cpi[(y, q)]])
+    return out
+
+
 FRED_MORTGAGE = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=MORTGAGE30US"  # 30-yr fixed mortgage rate
 FRED_HPI = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=CSUSHPINSA"  # Case-Shiller national HPI
 
@@ -425,3 +464,5 @@ if __name__ == "__main__":
     print(f"wrote {inflation} ({sum(1 for _ in inflation.open()) - 1} rows)")
     housing = fetch_housing()
     print(f"wrote {housing} ({sum(1 for _ in housing.open()) - 1} rows)")
+    inflation_q = fetch_inflation_quarterly()
+    print(f"wrote {inflation_q} ({sum(1 for _ in inflation_q.open()) - 1} rows)")

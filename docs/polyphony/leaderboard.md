@@ -592,6 +592,13 @@ it is *not* a single-episode artifact. It is stable in the **recent** half; the 
 (50% of folds) — a disclosed small-sample fragility (few folds, lower 1990s energy volatility), reported
 rather than hidden. A keep with its fragilities named, still standing.
 
+**Higher-power confirmation (Iter 48) — it holds at quarterly frequency.** A fair worry is that a 4-fold
+annual walk-forward is low-powered. Re-run at **quarterly** frequency (136 quarters ⇒ **8 folds**,
+`experiments/inflation_quarterly.py`), the keep holds with a **stronger** contemporaneous correlation
+(**0.72**) and still beats the baseline (88%), placebo (75%), persistence (75%), and naive (75%) in a
+majority of folds. The keep is **not** an artifact of low-power annual data — it is the project's most
+solidly established real-data result.
+
 ## Round 27 — Interest-Rate⇄Housing: CUT via reverse causation + momentum (issue #14)
 
 A ninth coupling, and a *new* failure mode. Higher rates should slow house-price growth — but rates and

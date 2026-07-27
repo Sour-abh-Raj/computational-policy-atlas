@@ -1079,3 +1079,22 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
     (70 files) · graph 0-dangling · `mkdocs --strict`. 04-validation register updated.
   - **Next (Iter 48):** a genuinely distinct new domain, or a further robustness/coverage pass if one is
     worth the propagation.
+- **Iter 48 — 📈 Higher-power confirmation: the Energy⇄Inflation keep holds at QUARTERLY frequency.**
+  - **Strengthened the one solid real result.** The keep rested on annual data (~4 walk-forward folds — a
+    fair low-power worry). Re-ran the *same* pass-through test at **quarterly** frequency.
+  - **Fetched quarterly data** (`fetch_inflation_quarterly` + `_fetch_fred_quarterly`): FRED energy price
+    index + US CPI, quarterly means → `datasets/real_inflation_q.csv` (137 quarters). Loader
+    `load_real_inflation_q`; `experiments/inflation_quarterly.py` reuses the annual `_score` on annualized
+    QoQ growth with **8 folds**.
+  - **Result — KEEP holds, with more power:** 136 quarters, **8 folds** (double the annual), a **stronger**
+    contemporaneous correlation (**0.72** vs 0.65), beating baseline **88%**, placebo **75%**, persistence
+    **75%**, naive **75%** of folds. The keep is **not** an artifact of low-power annual data — it is the
+    project's most solidly established real-data result.
+  - **Validated:** `test_inflation_quarterly.py` asserts ≥6 folds, right sign, and a robust keep across all
+    baselines. Leaderboard Round 26 updated with the higher-power confirmation.
+  - **Atlas feedback:** reuses the inflation machinery — no new graph node; graph unchanged (**180 nodes /
+    480 edges, 0-dangling**). New quarterly dataset committed.
+  - **Convergence stays DONE.** **+1 test -> 151 pass.** Gates green: `pytest` (151) · `ruff` · `mypy`
+    (71 files) · graph 0-dangling · `mkdocs --strict`.
+  - **Next (Iter 49):** a genuinely distinct new domain, a monthly/lead-lag deepening of the keep, or a
+    consolidation pass.

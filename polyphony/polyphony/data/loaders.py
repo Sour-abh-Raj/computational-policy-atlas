@@ -306,6 +306,7 @@ REAL_TRADE = DATASETS / "real_trade.csv"
 REAL_LEAKAGE_PANEL = DATASETS / "real_leakage_panel.csv"
 REAL_PM25_MORTALITY_PANEL = DATASETS / "real_pm25_mortality_panel.csv"
 REAL_INFLATION = DATASETS / "real_inflation.csv"
+REAL_INFLATION_Q = DATASETS / "real_inflation_q.csv"
 REAL_HOUSING = DATASETS / "real_housing.csv"
 
 
@@ -342,6 +343,29 @@ def has_real_trade() -> bool:
 def has_real_inflation() -> bool:
     """Whether the real energy-price / CPI CSV has been fetched (``fetch_real.fetch_inflation``)."""
     return REAL_INFLATION.exists()
+
+
+def has_real_inflation_q() -> bool:
+    """Whether the quarterly energy-price / CPI CSV has been fetched (``fetch_real.fetch_inflation_quarterly``)."""
+    return REAL_INFLATION_Q.exists()
+
+
+def load_real_inflation_q() -> Dataset:
+    """REAL quarterly Energy⇄Inflation series: IMF Global Energy price index + US CPI (FRED), quarterly means.
+
+    More observations than the annual series ⇒ more walk-forward folds for a higher-power confirmation of the
+    keep. Series are in chronological order. Raises if the CSV is absent — call ``data.fetch_real``.
+    """
+    if not REAL_INFLATION_Q.exists():
+        raise FileNotFoundError(f"{REAL_INFLATION_Q} missing; run `python -m polyphony.data.fetch_real`")
+    raw = load_csv(REAL_INFLATION_Q)
+    return Dataset(
+        name="real-inflation-quarterly",
+        series={"energy": raw.column("energy"), "cpi": raw.column("cpi")},
+        synthetic=False,
+        note="REAL quarterly IMF Global Energy price index (FRED PNRGINDEXM) + US CPI (CPIAUCSL).",
+        meta={"frequency": "quarterly"},
+    )
 
 
 def has_real_housing() -> bool:
