@@ -25,6 +25,7 @@ from polyphony.experiments.failure_modes import (
     kept,
     mode,
     modes_exemplified,
+    real_data_keeps,
     state_of_ensemble,
 )
 
@@ -44,6 +45,17 @@ def test_catalogue_and_ledger_are_internally_consistent():
 def test_every_mode_has_a_lesson_and_diagnostic():
     for m in CATALOGUE:
         assert m.definition and m.diagnostic and m.lesson
+
+
+def test_not_all_keeps_are_equal_only_one_is_real_data_validated():
+    # The project's own ethos ("a synthetic keep is a hypothesis, not a result") demands the ledger
+    # distinguish evidential status: two keeps, but only Energy⇄Inflation is validated on real data.
+    assert len(kept()) == 2
+    reals = real_data_keeps()
+    assert len(reals) == 1
+    assert reals[0].coupling == "Energy⇄Inflation"
+    macro = next(c for c in kept() if c.coupling == "Macro⇄Health")
+    assert "underpowered" in macro.evidence.lower()  # honest about the weaker footing
 
 
 def test_state_of_ensemble_is_the_pinned_source_of_truth():

@@ -30,6 +30,7 @@ class CouplingVerdict:
     coupling: str
     mode: str  # a FailureMode.key, or "kept"
     headline: str  # the decisive real (or synthetic-round) number
+    evidence: str = "real data"  # the evidential status — NOT all keeps are equal (see real_data_keeps)
 
 
 CATALOGUE: tuple[FailureMode, ...] = (
@@ -87,9 +88,19 @@ CATALOGUE: tuple[FailureMode, ...] = (
 _MODE_KEYS = frozenset(m.key for m in CATALOGUE) | {"kept"}
 
 LEDGER: tuple[CouplingVerdict, ...] = (
-    CouplingVerdict("Macro⇄Health", "kept", "survives full red-team round; assimilation + no-lag ⇒ MASE 0.10"),
-    CouplingVerdict("Energy⇄Inflation", "kept", "REAL keep: corr +0.65, beats every baseline + naive across walk-forward folds"),
-    CouplingVerdict("Energy⇄climate⇄economy", "level-artifact", "fair-cal Δ ≈ −0.01 (also genuinely cyclic)"),
+    CouplingVerdict(
+        "Macro⇄Health",
+        "kept",
+        "survives full red-team round; assimilation + no-lag ⇒ MASE 0.10",
+        evidence="synthetic + red-team; real test UNDERPOWERED (≈1 pandemic event)",
+    ),
+    CouplingVerdict(
+        "Energy⇄Inflation",
+        "kept",
+        "REAL keep: corr +0.65, beats every baseline + naive across walk-forward folds",
+        evidence="real data + red-team (survives the 2022-outlier attack)",
+    ),
+    CouplingVerdict("Energy⇄climate⇄economy", "level-artifact", "fair-cal Δ ≈ −0.01 (also genuinely cyclic)", evidence="synthetic"),
     CouplingVerdict("Real climate→GDP", "confounded-away", "fails placebo under both CO₂ and temperature"),
     CouplingVerdict("Land⇄Climate⇄Food", "wrong-sign", "corr(temp, real yield) = +0.90 (Green Revolution)"),
     CouplingVerdict("Urban⇄Transport⇄Energy⇄Health", "confounded-away", "PM2.5 corr +0.35 but hazard k → 0; ties placebo"),
@@ -114,6 +125,14 @@ def kept() -> tuple[CouplingVerdict, ...]:
 
 def cut() -> tuple[CouplingVerdict, ...]:
     return tuple(c for c in LEDGER if c.mode != "kept")
+
+
+def real_data_keeps() -> tuple[CouplingVerdict, ...]:
+    """Keeps validated **on real data** — the strongest evidential class. Not every keep qualifies:
+    Macro⇄Health is kept on *synthetic* data + red-team with an underpowered real test (≈1 pandemic event),
+    so it is a keep of weaker evidential status than the real-data Energy⇄Inflation keep. Honesty means the
+    ledger distinguishes them rather than flattening both into a bare "keep"."""
+    return tuple(c for c in kept() if c.evidence.startswith("real data"))
 
 
 def modes_exemplified() -> frozenset[str]:

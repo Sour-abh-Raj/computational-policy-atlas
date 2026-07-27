@@ -1020,3 +1020,23 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
     (68 files) · graph 0-dangling · `mkdocs --strict`. Landing page (`index.md`) reproduce pointer added.
   - **Next (Iter 45):** red-team the Macro⇄Health keep on real footing, numeric effect-size margins for the
     walk-forward-decided couplings, or another genuinely distinct domain.
+- **Iter 45 — ⚖️ Not all keeps are equal: distinguish the two keeps' evidential status (a self-audit honesty fix).**
+  - **The self-critical finding:** the ledger listed **two keeps as equal**, but Energy⇄Inflation is
+    validated on **real data** (+ red-team) whereas Macro⇄Health is kept on **synthetic** data + red-team
+    with an **underpowered real test** (≈1 pandemic event). The project's own ethos — *a synthetic keep is a
+    hypothesis, not a result* — demands the ledger record that difference, not flatten it.
+  - **`failure_modes`:** added an `evidence` field to `CouplingVerdict` + a `real_data_keeps()` helper →
+    **two keeps, but only one (Energy⇄Inflation) real-data-validated.** Also flagged the Energy⇄climate
+    cut as synthetic.
+  - **Honest caveat propagated to the meta-analysis:** the "only beats-baseline separates keeps from cuts"
+    claim rests on *real* evidence for Energy⇄Inflation + the seven real cuts, plus *synthetic* evidence for
+    Macro⇄Health — flagged in the field guide rather than hidden.
+  - **Validated:** `test_failure_modes.py` asserts only one keep is real-data-validated and that
+    Macro⇄Health's evidence says "underpowered". Docs (index result table, failure-modes "what survived" +
+    separator caveat) updated to distinguish the keeps.
+  - **Atlas feedback:** reuses existing ledgers — no new graph node; graph unchanged (**180 nodes / 480
+    edges, 0-dangling**).
+  - **Convergence stays DONE.** **+1 test -> 146 pass.** Gates green: `pytest` (146) · `ruff` · `mypy`
+    (68 files) · graph 0-dangling · `mkdocs --strict`.
+  - **Next (Iter 46):** attempt a concrete (even if underpowered) real Macro⇄Health test around COVID-2020
+    to make the "underpowered" claim demonstrated rather than asserted, or another distinct domain.

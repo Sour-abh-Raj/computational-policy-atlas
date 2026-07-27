@@ -38,8 +38,8 @@ names a **distinct, reusable failure mode** (seven modes in all). (See the
 
 | | Coupling | Verdict |
 |---|---|---|
-| ✅ | **Macro⇄Health** (epidemic → output; data-assimilation + no-lag) | **kept** — survives the full red-team round (MASE 0.10) |
-| ✅ | **Energy⇄Inflation** (price pass-through) | **kept on real data** — beats every baseline + naive across walk-forward folds; forecasts ~1 year ahead |
+| ✅ | **Macro⇄Health** (epidemic → output; data-assimilation + no-lag) | **kept — synthetic** + red-team (MASE 0.10); real test *underpowered* (≈1 pandemic) |
+| ✅ | **Energy⇄Inflation** (price pass-through) | **kept on real data** — beats every baseline + naive across walk-forward folds; forecasts ~1 year ahead; survives a real red-team |
 | ❌ | Energy⇄climate⇄economy | cut — *level artifact* |
 | ❌ | Real climate→GDP | cut — *confounded-away* (fails placebo) |
 | ❌ | Land⇄Climate⇄Food | cut — *wrong sign* (real yield rose with warming) |

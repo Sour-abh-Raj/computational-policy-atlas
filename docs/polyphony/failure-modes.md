@@ -80,11 +80,16 @@ backwards — use lags, and beware momentum baselines. (Interest-Rate⇄Housing,
 
 ## What survived, and why it matters that the bar rewards it
 
-**Two** couplings earn their keep. **Macro⇄Health** — a health shock genuinely drags output, the
-data-assimilation engine recovers the reproduction number, and the contemporaneous solve sharpens it to
-MASE 0.10, surviving the full red-team round. **Energy⇄Inflation** — energy-price growth beats every
-baseline, persistence, and naive across walk-forward folds on real data (corr +0.65), the first *clean
-real-data* keep. Those two successes, standing against **eight** named failures, are the honest yield of
+**Two** couplings earn their keep — **but not with equal evidence**, and honesty means saying so.
+**Macro⇄Health** — a health shock genuinely drags output, the data-assimilation engine recovers the
+reproduction number, and the contemporaneous solve sharpens it to MASE 0.10, surviving the full red-team
+round — **on synthetic data**; its *real* test is **underpowered** (≈1 pandemic event, no way to validate
+out-of-sample). **Energy⇄Inflation** — energy-price growth beats every baseline, persistence, and naive
+across walk-forward folds **on real data** (corr +0.65) and survives a real red-team (drop the 2022 spike,
+it holds): the **only keep validated on real data** (`real_data_keeps()`). So "two keeps" is really *one
+real-data keep and one synthetic-plus-underpowered-real keep* — the ledger records the difference rather
+than flattening it, because a synthetic keep is a hypothesis, not a result. Those two successes, standing
+against **eight** named failures, are the honest yield of
 paradigm-plural, adversarially-validated simulation. The point is not that the instrument is destructive:
 the same strict bar that cut six plausible couplings **rewarded** the two that were genuinely skillful — a
 *discriminating* instrument. A single-confident-number simulator would have reported nine "insights";
@@ -109,6 +114,12 @@ majority of folds — yet is cut, because its (regime-dependent) skill does not 
 baseline. So a strong correlation, the right sign, beating a placebo, even beating naive are each
 **necessary-ish but not sufficient**. The one criterion that decides is **out-predicting the honest
 baseline** — the whole project's discipline compressed into a single computed fact.
+
+!!! warning "Honest caveat on the separator"
+    One of the two "beats-baseline" keeps — **Macro⇄Health** — clears the baseline on **synthetic** data
+    (its real test is underpowered), so the perfect-separator claim rests on *real* evidence for
+    Energy⇄Inflation and the seven real cuts, plus *synthetic* evidence for Macro⇄Health. The rule still
+    holds cleanly on the real-data-tested couplings; we flag the mixed footing rather than hide it.
 
 *Reproduce:* `python -c "from polyphony.experiments.failure_modes import LEDGER; [print(c.mode, c.coupling)
 for c in LEDGER]"` and `from polyphony.experiments.meta_analysis import perfect_separators; print(perfect_separators())`.
