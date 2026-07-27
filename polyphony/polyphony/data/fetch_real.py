@@ -327,6 +327,32 @@ def fetch_finance(out: pathlib.Path | None = None) -> pathlib.Path:
     return out
 
 
+FRED_CPI = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=CPIAUCSL"  # US CPI, all urban consumers
+
+
+def fetch_inflation(out: pathlib.Path | None = None) -> pathlib.Path:
+    """Fetch the REAL Energy⇄Inflation series (issue #13-real): the IMF Global **Energy** price index
+    (FRED PNRGINDEXM) and US **CPI** (FRED CPIAUCSL), annual means.
+
+    Energy is a large, direct component of consumer prices and passes through to core costs, so energy
+    price *growth* should predict inflation — a central-bank-relevant coupling. The tournament derives
+    both growth rates from the levels. Writes ``datasets/real_inflation.csv`` (columns: ``year``,
+    ``energy``, ``cpi``).
+    """
+    energy = _fetch_fred_annual(FRED_ENERGY, min_obs=12)
+    cpi = _fetch_fred_annual(FRED_CPI, min_obs=12)
+    years = sorted(set(energy) & set(cpi))
+    if len(years) < 20:
+        raise RuntimeError(f"too few overlapping years ({len(years)}); refusing to write")
+    out = out or (DATASETS / "real_inflation.csv")
+    with out.open("w", newline="", encoding="utf-8") as fh:
+        w = csv.writer(fh)
+        w.writerow(["year", "energy", "cpi"])
+        for y in years:
+            w.writerow([y, energy[y], cpi[y]])
+    return out
+
+
 def fetch_cobenefit(out: pathlib.Path | None = None) -> pathlib.Path:
     """Fetch the REAL Urban⇄Transport⇄Energy⇄Health series (issue #7-real): World Bank world PM2.5 mean
     annual exposure (``EN.ATM.PM25.MC.M3``, µg/m³) + an **independent** all-cause crude death rate
@@ -371,3 +397,5 @@ if __name__ == "__main__":
     print(f"wrote {panel} ({sum(1 for _ in panel.open()) - 1} rows)")
     pm_panel = fetch_pm25_mortality_panel()
     print(f"wrote {pm_panel} ({sum(1 for _ in pm_panel.open()) - 1} rows)")
+    inflation = fetch_inflation()
+    print(f"wrote {inflation} ({sum(1 for _ in inflation.open()) - 1} rows)")

@@ -41,6 +41,7 @@ Legend: ✅ complete · 🟡 in progress · ⬜ planned
 | [**Input–Output / Leontief**](economics/input-output.md) — the structural ancestor | Leontief | ✅ Bronze |
 | [**GTAP**](economics/gtap.md) — global multi-region trade CGE | Purdue consortium | ✅ Bronze |
 | [**E3ME**](economics/e3me.md) — macro-econometric, disequilibrium | Cambridge Econometrics | ✅ Bronze |
+| [**FRB/US**](economics/frbus.md) — Fed macroeconometric model (inflation, monetary policy) | Federal Reserve Board | ✅ Bronze |
 | [**GEM-E3**](economics/gem-e3.md) — EU energy-economy hybrid CGE | E3MLab / NTUA · EU JRC | ✅ Bronze |
 | [**ENVISAGE**](economics/envisage.md) — World Bank global CGE + climate | World Bank | ✅ Bronze |
 

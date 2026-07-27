@@ -101,6 +101,7 @@ nav:
           - GEM-E3: model-families/economics/gem-e3.md
           - ENVISAGE: model-families/economics/envisage.md
           - E3ME: model-families/economics/e3me.md
+          - FRB/US: model-families/economics/frbus.md
       - Transportation:
           - MATSim: model-families/transport/matsim.md
           - SUMO: model-families/transport/sumo.md

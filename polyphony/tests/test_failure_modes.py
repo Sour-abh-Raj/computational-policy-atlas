@@ -32,7 +32,7 @@ def test_catalogue_and_ledger_are_internally_consistent():
     assert len({m.key for m in CATALOGUE}) == 6  # unique keys
     for c in LEDGER:
         assert c.mode in _MODE_KEYS, f"{c.coupling}: unknown mode {c.mode!r}"
-    assert len(kept()) == 1  # Macro⇄Health
+    assert len(kept()) == 2  # Macro⇄Health + Energy⇄Inflation (the first clean REAL keep)
     assert len(cut()) == 7  # the rest
     # Every mode a cut coupling claims is a real, defined mode; at least five distinct modes are exemplified.
     assert modes_exemplified() <= {m.key for m in CATALOGUE}

@@ -87,6 +87,11 @@ not a claim to have replicated the world.
   — tracing emissions *embodied in trade* so a carbon price's true climate effect (not just offshored
   production) is visible. Polyphony adds this as its seventh coupling (Trade⇄Emissions) and holds it to the
   same real-data + placebo + sign discipline; its real target is unusually clean (OWID's `trade_co2`).
+- **Macroeconometric inflation modelling** (the Fed's [FRB/US](../model-families/economics/frbus.md);
+  the energy pass-through literature) — estimated-equation models of how energy and import prices feed
+  headline and core inflation. Polyphony's eighth coupling (Energy⇄Inflation) is its **first clean
+  real-data keep**: energy-price growth beats every baseline and naive across walk-forward folds
+  (leaderboard Round 26) — evidence the strict bar rewards a genuinely skillful coupling.
 - **Macro-finance / financial-accelerator modelling** (Bernanke, Gertler & Gilchrist 1999; Minsky's
   financial-instability hypothesis; Gilchrist & Zakrajšek 2012; stock-flow-consistent tools like
   [EIRIN](../model-families/finance/eirin.md)) — the tradition treating finance as an *amplifier* of the

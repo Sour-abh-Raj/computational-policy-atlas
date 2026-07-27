@@ -71,15 +71,18 @@ is disclosed, not hidden:
 | Coupling | Real-data verdict |
 |---|---|
 | **Macro⇄Health** (assimilation + no-lag) | ✅ **kept** — survives the full red-team round |
+| **Energy⇄Inflation** (pass-through) | ✅ **kept (real data)** — beats every baseline + naive across folds |
 | Energy⇄climate⇄economy | ❌ cut — level artifact; genuinely cyclic |
 | Real climate→GDP | ❌ cut — fails placebo (CO₂ *and* temperature) |
 | Land⇄Climate⇄Food | ❌ cut — fails placebo + wrong sign on real yield |
 | Urban⇄Transport⇄Energy⇄Health | ❌ cut — right sign but no skill above trend (confounded) |
 | Water⇄Energy⇄Food (energy→food) | ❌ cut — corr +0.90 but no out-of-sample skill |
 | Macro⇄Finance (spread→growth) | ❌ cut — right sign, beats placebo, but regime-dependent skill |
+| Trade⇄Emissions (carbon leakage) | ❌ cut — confounded-away (panel FE: 92% attenuation) |
 
-**Six of seven couplings failed real-data validation.** The card states this plainly, because a
-decision-support tool that let you forget it would be lying by omission.
+**Seven of nine couplings failed real-data validation** (two — Macro⇄Health and Energy⇄Inflation — earned
+their keep). The card states this plainly, because a decision-support tool that let you forget it would be
+lying by omission.
 
 ## The bottom line
 

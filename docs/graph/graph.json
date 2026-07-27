@@ -1044,6 +1044,16 @@
       "id": "lenzen",
       "type": "researcher",
       "label": "Manfred Lenzen"
+    },
+    {
+      "id": "fed",
+      "type": "institution",
+      "label": "Federal Reserve Board"
+    },
+    {
+      "id": "frbus",
+      "type": "model",
+      "label": "FRB/US"
     }
   ],
   "edges": [
@@ -3421,6 +3431,31 @@
       "s": "gtap",
       "r": "belongs_to",
       "t": "d-trade"
+    },
+    {
+      "s": "frbus",
+      "r": "belongs_to",
+      "t": "d-economics"
+    },
+    {
+      "s": "frbus",
+      "r": "developed_at",
+      "t": "fed"
+    },
+    {
+      "s": "frbus",
+      "r": "exhibits_pattern",
+      "t": "p-market"
+    },
+    {
+      "s": "frbus",
+      "r": "exhibits_pattern",
+      "t": "p-calibration"
+    },
+    {
+      "s": "frbus",
+      "r": "exhibits_pattern",
+      "t": "p-scenario"
     }
   ]
 }

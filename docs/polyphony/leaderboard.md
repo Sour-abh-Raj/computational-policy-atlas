@@ -546,7 +546,30 @@ ratio rose 1.11→1.58 as it opened, corr +0.81), but out of sample the openness
 trivially captured by production; its *openness-driven dynamics* are not predictable beyond a trend. A
 genuine, policy-important phenomenon whose reduced-form mechanism still fails the strict skill bar.
 
-## Convergence status (per domain) — DONE (again, with the seventh domain resolved)
+## Round 26 — Energy⇄Inflation: the FIRST clean real-data KEEP (issue #13)
+
+Seven couplings had been cut on real data; the eighth **survives**. Energy is a large, direct component of
+consumer prices and passes through to core costs, so **energy-price growth should predict inflation** — the
+mechanism behind the 1970s, 2008, and 2022 episodes. Tested on real FRED data (IMF Global Energy price index
++ US CPI, 32 years), decided by walk-forward. `experiments/inflation_tournament.py`.
+
+| Check (walk-forward, 4 folds) | Result |
+|---|---|
+| corr(energy-price growth, inflation) — sign | **+0.65 — strong, RIGHT sign** |
+| beats a **mean baseline** | **100% of folds** |
+| beats a **placebo** | 75% of folds |
+| beats **persistence** (last year's inflation) | **100% of folds** |
+| beats **naive** (MASE < 1) | **100% of folds** |
+
+**Verdict: KEEP — robustly, on real data.** Energy-price growth beats every baseline, persistence, and naive
+in a majority (mostly all) of walk-forward folds with the right sign — a genuinely skillful coupling. The
+method is validated synthetically too (a matched pass-through is kept; an independent control is cut). This
+is the instrument's **first clean real-data keep** (Macro⇄Health is kept but its real test was underpowered),
+and it matters: the strict bar that cut six plausible couplings **rewards** this one, so the bar is
+discriminating, not merely destructive. Atlas fed back: **FRB/US** dossier (the Fed's macroeconometric model,
+the reference for empirical energy→inflation pass-through).
+
+## Convergence status (per domain) — DONE (again, with an eighth domain — and a second keep)
 
 | Domain / coupling | Verdict | Real-data status | Open, improvable gap? |
 |---|---|---|---|
@@ -557,15 +580,17 @@ genuine, policy-important phenomenon whose reduced-form mechanism still fails th
 | **Urban⇄Transport⇄Energy⇄Health** (co-benefit) | **CUT on real data** (right sign, no skill above trend; fails placebo) | ✅ tested (34 yrs) | **no** |
 | **Water⇄Energy⇄Food** (nexus, energy→food leg) | **CUT on real data** (corr +0.90 but no out-of-sample skill) | ✅ tested (34 yrs); water-leg data-limited | **no** |
 | **Macro⇄Finance** (spread→growth nowcast) | **CUT on real data** (narrowest call: right sign −0.61, beats placebo 80% + naive 60%, but not a mean-growth climatology; regime-dependent skill) | ✅ tested (39 yrs credit spread + GDP growth) | **no** |
-| **Trade⇄Emissions** (carbon leakage) | **CUT on real data** (UK: gap real, corr +0.81 right sign, but openness-leakage confounded-away — loses to a production-blind baseline) | ✅ tested (34 yrs UK production/consumption CO₂ + openness) | **no** |
+| **Trade⇄Emissions** (carbon leakage) | **CUT on real data** (UK: gap real, corr +0.81 right sign, but openness-leakage confounded-away — loses to a production-blind baseline; panel FE across 114 countries confirms, 92% attenuation) | ✅ tested (34 yrs + 114-country panel) | **no** |
+| **Energy⇄Inflation** (pass-through) | ✅ **KEEP on real data** (corr +0.65; beats mean baseline/placebo/persistence/naive across walk-forward folds) — the first clean real-data keep | ✅ tested (32 yrs energy price + CPI) | **no** |
 
-**DONE (again).** The Iter-29 scope extension is resolved on real data. Every kept coupling survives its
-round (Macro⇄Health); **seven** candidate couplings are now cut, each with a recorded, falsifiable
-reason — **six on real data under a placebo/robust walk-forward** — spanning the same catalogue of failure
-modes (level artifact · genuinely cyclic · wrong sign · **confounded-away** ×2 · real-signal-no-skill ·
-regime-dependent skill). No domain retains an open, improvable gap. Standing headline: **one coupling
-earned its keep; seven were cut — and the bar never bent, not even for the best-motivated, most
-policy-important stories.**
+**DONE (again).** The eighth domain is resolved on real data — and it **survives**, the first clean
+real-data keep. **Two** couplings now earn their keep (Macro⇄Health; Energy⇄Inflation); **seven** are cut,
+each with a recorded, falsifiable reason — **six on real data under a placebo/robust walk-forward** —
+spanning the failure-mode catalogue (level artifact · genuinely cyclic · wrong sign · **confounded-away** ×2
+· real-signal-no-skill · regime-dependent skill). No domain retains an open, improvable gap. Standing
+headline, now with its complement: **two couplings earned their keep; seven were cut — the bar never bent
+for a hollow story, and it rewarded the two that were real. A discriminating instrument, not a destructive
+one.**
 
 ## Standing champions
 

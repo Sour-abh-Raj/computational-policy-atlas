@@ -31,9 +31,9 @@ def test_paradigms_disagree_on_gdp_and_both_answers_are_kept():
 
 def test_validation_status_is_disclosed_and_honest():
     c = build_decision_card()
-    # One coupling kept (Macro⇄Health), six cut — the card discloses this rather than hiding it.
-    assert len(c.kept_couplings) == 1
-    assert len(c.cut_couplings) == 6
+    # Two couplings kept (Macro⇄Health, Energy⇄Inflation), seven cut — the card discloses this, not hides it.
+    assert len(c.kept_couplings) == 2
+    assert len(c.cut_couplings) == 7
     summary = c.honest_summary()
     assert "NOT a forecast" in summary
     assert "failed real-data validation" in summary

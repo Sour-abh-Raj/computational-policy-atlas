@@ -819,3 +819,27 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
   - **Next (Iter 35):** an eighth domain, per-candidate honest bands on the decision card, or a
     country-fixed-effects rescue attempt with a *clean* outcome (e.g. age-standardized mortality) if a
     non-circular source exists.
+- **Iter 35 — 💵 Eighth coupling Energy⇄Inflation: the FIRST clean real-data KEEP. The bar rewards, not just cuts.**
+  - **Balancing the ledger honestly:** seven couplings had been cut; this iteration tests one with a genuine
+    chance of surviving — the energy→inflation pass-through (energy is a large CPI component + feeds core
+    costs; the 1970s/2008/2022 episodes; central-bank-relevant).
+  - **A reduced-form pass-through coupling** (regression, not a dynamical voice — an honest modeling choice):
+    `experiments/inflation_tournament.py` fetches real IMF energy price index + US CPI (FRED, 32 yrs;
+    `fetch_inflation`, loader `load_real_inflation`) and tests energy-price **growth** → inflation by
+    walk-forward.
+  - **Result — KEEP (robustly):** corr **+0.65** (right sign); beats a **mean baseline 100%**, **placebo
+    75%**, **persistence 100%**, and **naive 100%** of walk-forward folds. Method validated synthetically
+    (matched pass-through kept; independent control cut). The instrument's **first clean real-data keep**
+    (Macro⇄Health is kept but its real test was underpowered).
+  - **Why it matters:** the *same strict bar* that cut six plausible couplings **rewards** this genuinely
+    skillful one — a **discriminating** instrument, not a destructive one. Ledger now **two kept, seven cut**.
+  - **Atlas feedback (new coverage):** **FRB/US** dossier (`docs/model-families/economics/frbus.md`, the
+    Fed's macroeconometric model — the empirical energy→inflation reference, genuinely missing) + graph nodes
+    `frbus` (model), `fed` (institution). Nav + index + graph stats updated. **180 nodes / 480 edges,
+    0-dangling.** Ledgers in `failure_modes.py` + `decision_card.py` (and the field-guide / decision-support
+    pages) updated to two keeps / seven cuts.
+  - **Tests:** +3 (`test_inflation_tournament.py`) + ledger-count updates -> **129 pass.** Gates green:
+    `pytest` (129) · `ruff` · `mypy` (63 files) · graph 0-dangling · `mkdocs --strict`. Leaderboard Round 26
+    + convergence (DONE, 2 keeps) + 04-validation + related-work updated.
+  - **Next (Iter 36):** deepen the KEEP (a lead-lag / horizon study of energy→inflation), another
+    plausible-keep domain, or per-candidate honest bands on the decision card.

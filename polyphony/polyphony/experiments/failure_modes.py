@@ -81,6 +81,7 @@ _MODE_KEYS = frozenset(m.key for m in CATALOGUE) | {"kept"}
 
 LEDGER: tuple[CouplingVerdict, ...] = (
     CouplingVerdict("Macro⇄Health", "kept", "survives full red-team round; assimilation + no-lag ⇒ MASE 0.10"),
+    CouplingVerdict("Energy⇄Inflation", "kept", "REAL keep: corr +0.65, beats every baseline + naive across walk-forward folds"),
     CouplingVerdict("Energy⇄climate⇄economy", "level-artifact", "fair-cal Δ ≈ −0.01 (also genuinely cyclic)"),
     CouplingVerdict("Real climate→GDP", "confounded-away", "fails placebo under both CO₂ and temperature"),
     CouplingVerdict("Land⇄Climate⇄Food", "wrong-sign", "corr(temp, real yield) = +0.90 (Green Revolution)"),

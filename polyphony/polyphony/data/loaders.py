@@ -305,6 +305,7 @@ REAL_FINANCE = DATASETS / "real_finance.csv"
 REAL_TRADE = DATASETS / "real_trade.csv"
 REAL_LEAKAGE_PANEL = DATASETS / "real_leakage_panel.csv"
 REAL_PM25_MORTALITY_PANEL = DATASETS / "real_pm25_mortality_panel.csv"
+REAL_INFLATION = DATASETS / "real_inflation.csv"
 
 
 def has_real_gdp_co2() -> bool:
@@ -335,6 +336,29 @@ def has_real_finance() -> bool:
 def has_real_trade() -> bool:
     """Whether the real UK production/consumption-CO₂ + openness CSV has been fetched (``fetch_real.fetch_trade``)."""
     return REAL_TRADE.exists()
+
+
+def has_real_inflation() -> bool:
+    """Whether the real energy-price / CPI CSV has been fetched (``fetch_real.fetch_inflation``)."""
+    return REAL_INFLATION.exists()
+
+
+def load_real_inflation() -> Dataset:
+    """REAL Energy⇄Inflation series: IMF Global Energy price index (FRED PNRGINDEXM) + US CPI (CPIAUCSL).
+
+    The tournament derives energy-price growth and CPI inflation from these levels. Raises if the CSV is
+    absent — call ``data.fetch_real``.
+    """
+    if not REAL_INFLATION.exists():
+        raise FileNotFoundError(f"{REAL_INFLATION} missing; run `python -m polyphony.data.fetch_real`")
+    raw = load_csv(REAL_INFLATION)
+    return Dataset(
+        name="real-inflation",
+        series={"year": raw.column("year"), "energy": raw.column("energy"), "cpi": raw.column("cpi")},
+        synthetic=False,
+        note="REAL IMF Global Energy price index (FRED PNRGINDEXM) + US CPI (FRED CPIAUCSL), annual means.",
+        meta={"source_energy": "FRED PNRGINDEXM", "source_cpi": "FRED CPIAUCSL"},
+    )
 
 
 def _load_panel_csv(path: pathlib.Path, col_a: str, col_b: str) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:

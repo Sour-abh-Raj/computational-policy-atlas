@@ -29,7 +29,10 @@ from ..models import DisequilibriumEconomy, EquilibriumEconomy, ReducedFormClima
 from .welfare_frontier import frontier_and_recommendations
 
 # The ensemble's real-data verdict ledger (leaderboard Rounds 1–22): what survived, what was cut and why.
-KEPT_COUPLINGS: tuple[str, ...] = ("Macro⇄Health (assimilation + no-lag) — survives full red-team round",)
+KEPT_COUPLINGS: tuple[str, ...] = (
+    "Macro⇄Health (assimilation + no-lag) — survives full red-team round",
+    "Energy⇄Inflation (pass-through) — REAL keep: beats every baseline + naive across walk-forward folds",
+)
 CUT_COUPLINGS: tuple[tuple[str, str], ...] = (
     ("Energy⇄climate⇄economy", "level artifact; genuinely cyclic"),
     ("Real climate→GDP", "fails placebo (CO₂ and temperature)"),
@@ -37,6 +40,7 @@ CUT_COUPLINGS: tuple[tuple[str, str], ...] = (
     ("Urban⇄Transport⇄Energy⇄Health", "right sign but no skill above trend (confounded)"),
     ("Water⇄Energy⇄Food (energy→food)", "corr +0.90 but no out-of-sample skill"),
     ("Macro⇄Finance (spread→growth)", "right sign, beats placebo, but regime-dependent skill"),
+    ("Trade⇄Emissions (carbon leakage)", "right sign but confounded-away (panel FE: 92% attenuation)"),
 )
 
 

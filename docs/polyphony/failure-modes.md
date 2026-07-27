@@ -16,6 +16,7 @@ synthesis, generated from the tested catalogue in `experiments/failure_modes.py`
 | Coupling | Verdict | Failure mode | Decisive real number |
 |---|---|---|---|
 | **Macro⇄Health** | ✅ **kept** | — | survives full red-team round; assimilation + no-lag ⇒ MASE 0.10 |
+| **Energy⇄Inflation** | ✅ **kept (real)** | — | corr +0.65; beats every baseline + naive across walk-forward folds |
 | Energy⇄climate⇄economy | ❌ cut | Level artifact | fair-cal Δ ≈ −0.01 (also genuinely cyclic) |
 | Real climate→GDP | ❌ cut | Confounded-away | fails placebo under both CO₂ and temperature |
 | Land⇄Climate⇄Food | ❌ cut | Wrong sign | corr(temp, real yield) = **+0.90** (Green Revolution) |
@@ -68,15 +69,18 @@ and COVID growth collapses but hurt in calm years and overshot the 2022 spread s
 concentrated in rare regimes won't beat a mean on average — say so, don't claim an unconditional edge.
 (Macro⇄Finance, [Round 22](leaderboard.md).)
 
-## What survived, and why it matters that little did
+## What survived, and why it matters that the bar rewards it
 
-**Macro⇄Health** is the one coupling that earns its keep — a health shock genuinely drags output, the
+**Two** couplings earn their keep. **Macro⇄Health** — a health shock genuinely drags output, the
 data-assimilation engine recovers the reproduction number, and the contemporaneous solve sharpens it to
-MASE 0.10, surviving the full red-team round. That **one** success, standing against **six** named
-failures, is the honest yield of paradigm-plural, adversarially-validated simulation. A single-confident-
-number simulator would have reported seven "insights"; Polyphony reports one result and six cautionary
-tales — and the cautionary tales are the more valuable half, because they are the ones you would otherwise
-have believed.
+MASE 0.10, surviving the full red-team round. **Energy⇄Inflation** — energy-price growth beats every
+baseline, persistence, and naive across walk-forward folds on real data (corr +0.65), the first *clean
+real-data* keep. Those two successes, standing against **seven** named failures, are the honest yield of
+paradigm-plural, adversarially-validated simulation. The point is not that the instrument is destructive:
+the same strict bar that cut six plausible couplings **rewarded** the two that were genuinely skillful — a
+*discriminating* instrument. A single-confident-number simulator would have reported nine "insights";
+Polyphony reports two results and seven cautionary tales — and the cautionary tales are the more valuable
+half, because they are the ones you would otherwise have believed.
 
 *Reproduce:* `python -c "from polyphony.experiments.failure_modes import LEDGER; [print(c.mode, c.coupling)
 for c in LEDGER]"`. Each live diagnostic is asserted in `tests/test_failure_modes.py` and the per-domain
