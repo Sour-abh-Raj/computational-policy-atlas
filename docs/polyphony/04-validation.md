@@ -323,6 +323,24 @@ information is still **cut** because it does not robustly beat the honest baseli
 for a good story** — the sixth distinct named failure mode (regime-dependent skill), and the fifth real-data
 cut under a placebo.
 
+## Panel fixed effects confirm the modal cut with far more power (Round 25 / Iter 33)
+
+The most common way a real-data coupling was cut is **confounded-away** — a strong correlation between two
+trending series that vanishes once a trend is removed. On a single time series the placebo control catches
+it; a **cross-country panel** catches it far more powerfully. Iter 33 assembles a **114-country × 32-year**
+panel for carbon leakage and applies **two-way fixed effects** (removing every country's level *and* every
+year's common shock — the shared global trend):
+
+- **pooled** corr(openness, consumption/production ratio) = **+0.30** (the naive leakage story),
+- **two-way-FE within** corr = **+0.025** — essentially zero,
+- **attenuation = 92%**: almost the entire correlation was the shared trend, not a within-country mechanism.
+
+This confirms the Iter-30 UK cut across 114 countries: trade openness has **no within-country effect** on
+the emissions ratio once common year effects are removed. The fixed-effects estimator is itself validated
+on synthetic panels (a pure confound demeans to ≈0; a real within-effect survives), so the method — not
+just the datum — is trustworthy. Panel FE is now a reusable tool for separating **mechanism from shared
+trend**, the sharpest instrument yet against the confounded-away trap.
+
 ## Honesty-debt register (tracked to close)
 
 | Debt | Status | Tracked by |
@@ -347,6 +365,7 @@ cut under a placebo.
 | Real Trade⇄Emissions test | ⏳ **OPEN** — synthetic keep is machinery; needs a real production-vs-consumption CO₂ placebo test. Unusually clean target: OWID publishes the gap (`trade_co2`) directly | issue #12-real |
 | Real Trade⇄Emissions test | ✅ **CUT on real data** — UK (textbook leakage): gap real (corr +0.81, right sign) but openness-leakage **confounded-away** — loses to a production-blind baseline in 0% of walk-forward folds. Openness↔gap is a shared trend, not independent info. `experiments/real_trade_tournament.py` | issue #12-real |
 | Convergence (after #12) | ✅ **DONE (again)** — Trade⇄Emissions resolved on real data. Every kept coupling survives its round; **seven** cuts (six on real data), spanning the failure-mode catalogue; no open improvable gap | — |
+| Panel fixed-effects validation | ✅ **confounded-away confirmed with power** — 114-country × 32-year carbon-leakage panel: pooled corr +0.30 → two-way-FE within corr +0.025 (**92% attenuation**). FE estimator validated on synthetic panels. Reusable tool vs the modal failure. `experiments/panel_validation.py` | Iter 33 |
 | Model calibration (real levels) | affine calibration now beats naive **on synthetic** (MASE 0.61); real-level calibration still pending | (opens when #9 lands) |
 | Welfare/equity engine (values dial) | ✅ **built + integrated** — frontier over policies; recommendation changes with values | issue #4 |
 | Predictive distributions → CRPS/PIT in tournament | ✅ **scored + calibrated** — `calibrate_ensemble` de-bias+widen ⇒ CRPS 7.9→0.44, **PIT 0.0→0.39** (near-uniform, synthetic) | blueprint §6 |

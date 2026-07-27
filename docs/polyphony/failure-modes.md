@@ -49,6 +49,10 @@ fails a placebo, or the fitted partial coefficient → 0, or it loses to a trend
 couplings land here (climate→GDP, the PM2.5 co-benefit, and UK carbon leakage). *Lesson:* a strong
 correlation between two trending series is usually **the trend, not the mechanism** — which is exactly why
 the placebo control is non-negotiable. (Rounds [10](leaderboard.md), [15](leaderboard.md), [24](leaderboard.md).)
+**Confirmed with power by a panel:** across a **114-country × 32-year** carbon-leakage panel, the pooled
+openness↔gap correlation (+0.30) collapses to **+0.025 under two-way fixed effects** (92% attenuation) —
+once every country's level and every year's common shock are removed, the mechanism is gone. Panel fixed
+effects are the sharpest instrument against this trap ([validation](04-validation.md), `experiments/panel_validation.py`).
 
 ### 5. Real signal, no out-of-sample skill
 Genuine, right-signed, **placebo-beating** information that still yields **no forecast skill**.

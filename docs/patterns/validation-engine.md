@@ -59,6 +59,7 @@ graph TD
 | **Walk-forward CV** | Does skill hold across *many* expanding-window splits, not one? | Polyphony (real-data couplings) |
 | **Placebo / naive baselines** | Beat a meaningless regressor *and* a random walk, not just a trend? | Polyphony (keep/cut gate) |
 | **Probabilistic calibration** | Are the predictive *bands* honest (CRPS, PIT uniform) or overconfident? | Polyphony (real couplings), ensemble forecasting |
+| **Panel fixed effects** | Does the mechanism survive *within* units once shared time trends are removed? | Polyphony (leakage panel), econometrics |
 
 ## Interface
 

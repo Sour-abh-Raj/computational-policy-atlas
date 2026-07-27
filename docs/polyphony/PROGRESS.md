@@ -772,3 +772,27 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
     (61 files) · graph 0-dangling · `mkdocs --strict`.
   - **Next (Iter 33):** an eighth domain, attach per-candidate honest predictive bands to the decision
     card, or extend the disagreement study to more quantities/couplings.
+- **Iter 33 — 🌍 Panel fixed effects: confirming the modal cut (confounded-away) with cross-country power.**
+  - **Chose depth over another domain:** the modal failure is *confounded-away* (a shared trend faking a
+    mechanism). A cross-country **panel** with **two-way fixed effects** is the sharpest instrument against
+    it — removing every country's level *and* every year's common shock isolates the within-country
+    mechanism.
+  - **Fetched a real panel** (`fetch_real.fetch_leakage_panel`, one bulk World Bank call + OWID): the
+    consumption/production CO₂ **ratio** + **trade openness** for **114 countries × 32 years** (3,559 obs) →
+    `datasets/real_leakage_panel.csv`. Loader `load_real_leakage_panel`.
+  - **`experiments/panel_validation.py`** (`two_way_within` = iterative unit+time demeaning): pooled
+    corr(openness, ratio) = **+0.30** (the naive leakage story) → **two-way-FE within corr = +0.025**
+    (**92% attenuation**). **Verdict: cut-confirmed (confounded-away).** Openness has essentially no
+    within-country effect on the emissions ratio once the shared global trend is removed — the Iter-30 UK
+    cut, confirmed across 114 countries.
+  - **Method validated, not just the datum:** synthetic-panel tests prove the FE estimator recovers truth
+    (a pure confound demeans to ≈0; a real within-effect survives). Panel FE is now a reusable validation
+    tool.
+  - **Atlas feedback:** deepened the **Validation Engine** page with a **Panel fixed effects** row; failure-
+    modes field guide updated with the panel confirmation. Reuses the Validation engine — no new graph node;
+    graph unchanged (**178 nodes / 475 edges, 0-dangling**).
+  - **Convergence stays DONE** (validation deepening). **+3 tests -> 123 pass.** Gates green: `pytest` (123)
+    · `ruff` · `mypy` (62 files) · graph 0-dangling · `mkdocs --strict`. 04-validation register + Round-25
+    narrative + validation-engine page + failure-modes updated.
+  - **Next (Iter 34):** an eighth domain, apply panel FE to another confounded-away coupling (e.g. PM2.5→
+    mortality across countries), or per-candidate honest bands on the decision card.

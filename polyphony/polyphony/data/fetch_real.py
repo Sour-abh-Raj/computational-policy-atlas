@@ -206,6 +206,51 @@ def fetch_trade(out: pathlib.Path | None = None) -> pathlib.Path:
     return out
 
 
+WB_OPENNESS_ALL = "https://api.worldbank.org/v2/country/all/indicator/NE.TRD.GNFS.ZS?format=json&per_page=20000"
+
+
+def fetch_leakage_panel(out: pathlib.Path | None = None, min_years: int = 15) -> pathlib.Path:
+    """Fetch a multi-country **panel** for the carbon-leakage mechanism (Iter 33 — panel validation).
+
+    For every country with enough data (1990–2021): the consumption/production CO₂ **ratio** (OWID) and
+    **trade openness** (World Bank ``NE.TRD.GNFS.ZS``, one bulk call). A two-way fixed-effects analysis of
+    this panel removes country *and* year effects (the shared global trend), isolating the within-country
+    mechanism the single UK time series could not. Writes ``datasets/real_leakage_panel.csv`` (columns:
+    ``iso``, ``year``, ``cons_prod_ratio``, ``openness``).
+    """
+    with urllib.request.urlopen(WB_OPENNESS_ALL, timeout=90) as r:
+        payload = json.load(r)
+    openness: dict[str, dict[int, float]] = {}
+    for x in payload[1]:
+        if x["value"] is not None:
+            openness.setdefault(x["countryiso3code"], {})[int(x["date"])] = float(x["value"])
+
+    with urllib.request.urlopen(OWID_CO2, timeout=60) as r:
+        text = r.read().decode("utf-8")
+    reader = csv.DictReader(io.StringIO(text))
+    co2: dict[str, dict[int, tuple[float, float]]] = {}
+    for row in reader:
+        iso = row.get("iso_code") or ""
+        if len(iso) == 3 and row.get("co2") and row.get("consumption_co2") and float(row["co2"]) > 0:
+            co2.setdefault(iso, {})[int(row["year"])] = (float(row["co2"]), float(row["consumption_co2"]))
+
+    out = out or (DATASETS / "real_leakage_panel.csv")
+    n = 0
+    with out.open("w", newline="", encoding="utf-8") as fh:
+        w = csv.writer(fh)
+        w.writerow(["iso", "year", "cons_prod_ratio", "openness"])
+        for iso in sorted(set(co2) & set(openness)):
+            years = [y for y in sorted(set(co2[iso]) & set(openness[iso])) if 1990 <= y <= 2021]
+            if len(years) >= min_years:
+                for y in years:
+                    prod, cons = co2[iso][y]
+                    w.writerow([iso, y, cons / prod, openness[iso][y]])
+                    n += 1
+    if n < 500:
+        raise RuntimeError(f"too few panel observations ({n}); refusing to write")
+    return out
+
+
 FRED_SPREAD = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAA10Y"  # Baa − 10Y Treasury credit spread
 FRED_REALGDP = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=GDPC1"  # real GDP (chained 2017 $)
 
@@ -273,3 +318,5 @@ if __name__ == "__main__":
     print(f"wrote {finance} ({sum(1 for _ in finance.open()) - 1} rows)")
     trade = fetch_trade()
     print(f"wrote {trade} ({sum(1 for _ in trade.open()) - 1} rows)")
+    panel = fetch_leakage_panel()
+    print(f"wrote {panel} ({sum(1 for _ in panel.open()) - 1} rows)")
