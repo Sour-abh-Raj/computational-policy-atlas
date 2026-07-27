@@ -118,6 +118,55 @@ def fetch_food(out: pathlib.Path | None = None) -> pathlib.Path:
     return out
 
 
+FRED_FOOD = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=PFOODINDEXM"  # IMF Global Food Price Index
+FRED_ENERGY = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=PNRGINDEXM"  # IMF Global Energy Price Index
+
+
+def _fetch_fred_annual(url: str) -> dict[int, float]:
+    """Fetch a FRED monthly series (CSV, no API key) and average to calendar-year means (full years only)."""
+    last: Exception | None = None
+    for _ in range(3):
+        try:
+            with urllib.request.urlopen(url, timeout=60) as r:
+                text = r.read().decode("utf-8")
+            reader = csv.reader(io.StringIO(text))
+            next(reader, None)  # header: observation_date, <series_id>
+            by_year: dict[int, list[float]] = {}
+            for row in reader:
+                if len(row) >= 2 and row[1] not in (".", ""):
+                    by_year.setdefault(int(row[0][:4]), []).append(float(row[1]))
+            return {y: sum(v) / len(v) for y, v in by_year.items() if len(v) >= 12}
+        except Exception as e:  # transient egress failures; retry
+            last = e
+    raise RuntimeError(f"FRED fetch failed after retries: {url}") from last
+
+
+def fetch_nexus(out: pathlib.Path | None = None) -> pathlib.Path:
+    """Fetch the REAL Water⇄Energy⇄Food nexus series (issue #10-real): IMF Global **Food** and **Energy**
+    price indices (FRED PFOODINDEXM / PNRGINDEXM), annual means.
+
+    A clean global *water-scarcity* driver is not readily available as an annual series, so we test the
+    nexus's most data-rich, best-documented leg — the **energy → food-price** transmission (natural gas →
+    nitrogen fertilizer; diesel → machinery/transport; electricity → irrigation pumping) — which the
+    ``nexusfood`` voice carries as its pumping-energy surcharge. This is a *partial* test of the nexus
+    (the energy pillar, not the water pillar); the water-leg real test remains data-limited.
+
+    Writes ``datasets/real_nexus.csv`` (columns: ``year``, ``food_price``, ``energy_price``).
+    """
+    food = _fetch_fred_annual(FRED_FOOD)
+    energy = _fetch_fred_annual(FRED_ENERGY)
+    years = sorted(set(food) & set(energy))
+    if len(years) < 20:
+        raise RuntimeError(f"too few overlapping years ({len(years)}); refusing to write")
+    out = out or (DATASETS / "real_nexus.csv")
+    with out.open("w", newline="", encoding="utf-8") as fh:
+        w = csv.writer(fh)
+        w.writerow(["year", "food_price", "energy_price"])
+        for y in years:
+            w.writerow([y, food[y], energy[y]])
+    return out
+
+
 def fetch_cobenefit(out: pathlib.Path | None = None) -> pathlib.Path:
     """Fetch the REAL Urban⇄Transport⇄Energy⇄Health series (issue #7-real): World Bank world PM2.5 mean
     annual exposure (``EN.ATM.PM25.MC.M3``, µg/m³) + an **independent** all-cause crude death rate
@@ -152,3 +201,5 @@ if __name__ == "__main__":
     print(f"wrote {food} ({sum(1 for _ in food.open()) - 1} rows)")
     cobenefit = fetch_cobenefit()
     print(f"wrote {cobenefit} ({sum(1 for _ in cobenefit.open()) - 1} rows)")
+    nexus = fetch_nexus()
+    print(f"wrote {nexus} ({sum(1 for _ in nexus.open()) - 1} rows)")

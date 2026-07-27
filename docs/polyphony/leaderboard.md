@@ -360,7 +360,33 @@ The three-way machinery transfers to the fifth domain. **But — as with every d
 machinery, not skill.** No real water/food series has been tested yet, so this opens a *new open,
 improvable gap* (issue #10-real): the real-data placebo test comes next.
 
-## Convergence status (per domain) — REOPENED (scope extended to a fifth domain)
+## Round 17 — the real energy→food nexus leg is CUT (strong correlation, no out-of-sample skill) (issue #10-real)
+
+Iter 21 opened a gap; Iter 22 closes it. A clean global *water-scarcity* driver is not available as an
+annual series, so we test the nexus's most data-rich, best-documented leg — the **energy → food-price**
+transmission (natural gas → fertilizer; diesel → machinery; electricity → pumping), which the `nexusfood`
+voice carries as its pumping-energy surcharge. Real IMF Global Food and Energy price indices (FRED),
+34 years 1992–2025 (`experiments/real_nexus_tournament.py`). This is a *partial* nexus test (energy pillar,
+not the water pillar — a documented data limitation, worked around).
+
+| Check | Result |
+|---|---|
+| corr(energy, food) — contemporaneous, raw sign | **+0.90 — strong, and the RIGHT sign** |
+| trend-only MASE | 3.269 |
+| coupled (energy pass-through) MASE | 3.837 — **worse than the trend** (k=0.05) |
+| placebo (t^1.5) MASE | 3.736 — coupled does not beat it either |
+| beats naive (MASE < 1)? | **no** (all reduced forms ≫ 1: food prices are a volatile near-random-walk) |
+
+**Verdict: CUT — a fourth, distinct failure mode.** Energy and food prices are strongly correlated
+*contemporaneously* (+0.90), but a train-fit energy pass-through does **worse out-of-sample than a plain
+trend, worse than a placebo, and far worse than naive**. The reason is concrete: the pass-through fit on
+1992–2015 does **not** extrapolate to the unprecedented **2022 energy shock**, when energy prices roughly
+doubled but food rose far less (buffered by inventories, substitution, and policy). A strong correlation
+is **not** a usable leading predictor. This joins the catalogue of *named* cuts — level artifact (energy),
+wrong sign (land), confounded-away (co-benefit), and now **real signal without out-of-sample skill**
+(nexus energy→food).
+
+## Convergence status (per domain) — DONE (again, with the fifth domain resolved)
 
 | Domain / coupling | Verdict | Real-data status | Open, improvable gap? |
 |---|---|---|---|
@@ -369,12 +395,14 @@ improvable gap* (issue #10-real): the real-data placebo test comes next.
 | **Land⇄Climate⇄Food** | **CUT on real data** (fails placebo + wrong sign); coupling was real only on synthetic | ✅ tested (57 yrs cereal yield) | **no** |
 | **Real climate→GDP** | **CUT** (fails placebo under both CO₂ and temperature) | ✅ tested (58 yrs) | **no** |
 | **Urban⇄Transport⇄Energy⇄Health** (co-benefit) | **CUT on real data** (right sign, but PM2.5 adds no skill above trend; fails placebo) | ✅ tested (34 yrs PM2.5 + all-cause mortality) | **no** |
-| **Water⇄Energy⇄Food** (nexus) | **KEEP on synthetic** (fair-cal Δ+99, correct sign); negative control cut | ❌ **not yet** — synthetic only | **YES** — needs a real water/food-price placebo test (issue #10-real) |
+| **Water⇄Energy⇄Food** (nexus, energy→food leg) | **CUT on real data** (corr +0.90 but no out-of-sample skill; loses to trend/placebo/naive) — kept only on synthetic | ✅ tested (34 yrs food + energy price); water-leg driver data-limited | **no** (energy leg); water-leg real test data-limited |
 
-**REOPENED.** The five prior couplings stay resolved, but honoring "scope is a floor" added a sixth whose
-synthetic keep is not yet a real-data keep. Per the DONE criterion, the loop continues until this domain
-survives a real placebo or is cut on real data. Standing headline unchanged: **couplings earn their keep
-only against rivals and a placebo on real data; a synthetic keep is a hypothesis, not a result.**
+**DONE (again).** The Iter-21 scope extension is resolved on real data. Every kept coupling survives its
+round (Macro⇄Health); **five** candidate couplings are now cut, each with a recorded, falsifiable
+reason — **four on real data under a placebo**, spanning four *distinct* failure modes. No domain retains
+an open, improvable gap (the water-leg driver is a data limitation, logged, not an improvable modeling
+gap). Standing headline: **one coupling earned its keep; five were cut — and the five *named* failure
+modes are the instrument's real output.**
 
 ## Standing champions
 
@@ -384,7 +412,7 @@ only against rivals and a placebo on real data; a synthetic keep is a hypothesis
 | GDP track, Macro⇄Health slice (**assimilation + contemporaneous**) | **coupled ensemble** | economy-only | synthetic-pandemic, time-blocked 30% | **+8.92 (keep)** | ✅ **survives full round**; no-lag solve ⇒ **MASE 0.10**, sharpest champion | [redteam](04-validation.md) |
 | Food-price track, Land⇄Climate⇄Food slice (**fair calibration**) | **coupled ensemble** | land-only | synthetic-warming, time-blocked 30% | **+15.2 (keep)** | ⚠️ coupling real (survives level-artifact + shift) but **loses to naive** — no skill claim yet | [redteam](04-validation.md) |
 | Health-burden track, Urban⇄Transport⇄Energy⇄Health slice (**fair calibration**) | **coupled ensemble** (synthetic only) | airhealth-only | synthetic-cobenefit, time-blocked 30% | **+13.5 (keep synth)** | ❌ **CUT on real data** — right sign (+0.35) but PM2.5 adds no skill above trend; fails placebo (#7-real) | [redteam](04-validation.md) |
-| Food-price track, Water⇄Energy⇄Food nexus slice (**fair calibration**) | **coupled ensemble** (synthetic only) | nexusfood-only | synthetic-nexus, time-blocked 30% | **+99.3 (keep synth)** | ⚠️ survives level-artifact + correct sign, but **synthetic only** — real placebo pending (#10-real) | [redteam](04-validation.md) |
+| Food-price track, Water⇄Energy⇄Food nexus slice (**fair calibration**) | **coupled ensemble** (synthetic only) | nexusfood-only | synthetic-nexus, time-blocked 30% | **+99.3 (keep synth)** | ❌ **CUT on real data** — energy→food corr +0.90 but no out-of-sample skill (loses to trend/placebo/naive; #10-real) | [redteam](04-validation.md) |
 
 ## Contest log
 

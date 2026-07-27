@@ -504,3 +504,31 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
     index vs a drought/precipitation or renewable-freshwater index; or World Bank agricultural-water data)
     and run a **placebo-controlled real nexus tournament**; report keep/cut honestly with the sign check.
     If the fetch is hard-blocked, log + open an issue + work around.
+- **Iter 22 — 💧 Real energy→food nexus leg is CUT: strong correlation (+0.90), no out-of-sample skill. Convergence DONE again.**
+  - **Data limitation, worked around (per contract):** a clean global *water-scarcity* annual driver is
+    not readily available, so tested the nexus's most data-rich, best-documented leg — the **energy→food
+    price** transmission (fertilizer/fuel/pumping), which the `nexusfood` voice carries as its
+    pumping-energy surcharge. A *partial* nexus test (energy pillar); water-leg real test noted as
+    data-limited.
+  - **Fetched real data** (`fetch_real.fetch_nexus` + `_fetch_fred_annual`, FRED CSV, no API key): IMF
+    Global **Food** (PFOODINDEXM) and **Energy** (PNRGINDEXM) price indices, annual means →
+    `datasets/real_nexus.csv` (34 yrs, 1992–2025). Loader `load_real_nexus`.
+  - **Real tournament** (`experiments/real_nexus_tournament.py`, reuses `_hazard_fit_predict`):
+    corr(energy, food) = **+0.90 (strong, right sign)**, but a train-fit pass-through does **worse than a
+    plain trend** (MASE 3.84 vs 3.27), worse than a placebo (3.74), and far worse than **naive** (all ≫ 1).
+    **Verdict CUT.** The pass-through fit on 1992–2015 does **not** extrapolate to the 2022 energy shock
+    (energy ~doubled; food, buffered by inventories/substitution, rose far less).
+  - **The lesson (fourth distinct failure mode):** a strong *contemporaneous* correlation is **not** a
+    usable leading predictor — different from the co-benefit's "confounded-away" (correlation vanished on
+    detrending; here it stays +0.90 but doesn't forecast). Five couplings now cut, five *named* failure
+    modes (level artifact / cyclic / wrong sign / confounded-away / real-signal-no-skill); one kept.
+  - **Atlas feedback:** reuses Data Pipeline + Validation engines (like Iter 18/20) — no new graph node;
+    graph unchanged (**172 nodes / 465 edges, 0-dangling**). New real dataset committed.
+  - **CONVERGENCE (DONE again):** the Iter-21 scope extension is resolved on real data; no domain retains
+    an open, improvable gap. **+2 tests -> 86 pass.** Gates green: `pytest` (86) · `ruff` · `mypy` (49
+    files) · graph 0-dangling · `mkdocs --strict`. Leaderboard Round 17 + convergence table (DONE) +
+    04-validation register updated.
+  - **Loop continues (dynamic mode):** convergence restored; the standing mandate keeps pushing for more
+    coverage + validation. Next avenues: a **sixth domain** (e.g. Macro⇄Finance systemic risk, or
+    Migration⇄Climate), or **deepening validation** (walk-forward CV instead of a single split; CRPS/PIT
+    on real tournaments; a real water-scarcity driver for the nexus water-leg if a source can be found).

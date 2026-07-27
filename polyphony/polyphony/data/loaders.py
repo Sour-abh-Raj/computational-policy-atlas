@@ -240,6 +240,7 @@ def load(name: str = "synthetic") -> Dataset:
 REAL_GDP_CO2 = DATASETS / "real_gdp_co2.csv"
 REAL_FOOD = DATASETS / "real_food.csv"
 REAL_COBENEFIT = DATASETS / "real_cobenefit.csv"
+REAL_NEXUS = DATASETS / "real_nexus.csv"
 
 
 def has_real_gdp_co2() -> bool:
@@ -255,6 +256,38 @@ def has_real_food() -> bool:
 def has_real_cobenefit() -> bool:
     """Whether the real PM2.5 / death-rate CSV has been fetched (``data.fetch_real.fetch_cobenefit``)."""
     return REAL_COBENEFIT.exists()
+
+
+def has_real_nexus() -> bool:
+    """Whether the real food / energy price-index CSV has been fetched (``data.fetch_real.fetch_nexus``)."""
+    return REAL_NEXUS.exists()
+
+
+def load_real_nexus() -> Dataset:
+    """REAL Water⇄Energy⇄Food nexus series: IMF Global Food and Energy price indices (FRED), annual means.
+
+    Tests the nexus's energy→food leg (fertilizer/fuel/pumping pass-through). A clean global water-scarcity
+    driver is not readily available annually, so this is a *partial* nexus test (energy pillar). Raises if
+    the CSV is absent — call ``data.fetch_real``.
+    """
+    if not REAL_NEXUS.exists():
+        raise FileNotFoundError(f"{REAL_NEXUS} missing; run `python -m polyphony.data.fetch_real`")
+    raw = load_csv(REAL_NEXUS)
+    return Dataset(
+        name="real-nexus",
+        series={
+            "year": raw.column("year"),
+            "food_price": raw.column("food_price"),
+            "energy_price": raw.column("energy_price"),
+        },
+        synthetic=False,
+        note="REAL IMF Global Food Price Index (FRED PFOODINDEXM) + Energy Price Index (PNRGINDEXM), "
+        "annual means, merged by year.",
+        meta={
+            "source_food": "IMF Global Food Price Index (FRED PFOODINDEXM)",
+            "source_energy": "IMF Global Energy Price Index (FRED PNRGINDEXM)",
+        },
+    )
 
 
 def load_real_cobenefit() -> Dataset:

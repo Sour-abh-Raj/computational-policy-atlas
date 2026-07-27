@@ -233,6 +233,27 @@ intuitively-appealing coupling on a synthetic keep. Four couplings cut, each for
 reason (level artifact; genuinely cyclic; wrong sign; confounded-away) — that catalogue of failure modes
 is the instrument's real output.
 
+## The real energy→food nexus leg is CUT — strong correlation, no forecast skill (Round 17)
+
+Iter 22 closes the gap Iter 21 opened. A clean global water-scarcity driver isn't available annually, so
+we test the nexus's data-rich **energy → food-price** leg (the pumping/fertilizer pass-through the
+`nexusfood` voice carries) on real IMF food and energy price indices (34 yrs). The result is the fourth
+*distinct* failure mode:
+
+- **The sign and correlation are strong.** corr(energy, food) = **+0.90** contemporaneously — energy and
+  food prices clearly co-move, and in the assumed direction.
+- **But there is no out-of-sample skill.** A train-fit energy pass-through does **worse than a plain
+  trend** (MASE 3.84 vs 3.27), worse than a placebo (3.74), and far worse than **naive** (all ≫ 1). Food
+  prices are a volatile near-random-walk; a reduced-form pass-through fit on 1992–2015 does **not**
+  extrapolate to the **2022 energy shock** (energy roughly doubled; food, buffered by inventories and
+  substitution, rose far less).
+
+The lesson, stated plainly: **a strong contemporaneous correlation is not a usable leading predictor.**
+This is different from the co-benefit's "confounded-away" (there the correlation *vanished* on detrending;
+here it stays strong but doesn't forecast). Honesty means reporting the +0.90 correlation **and** the CUT
+in the same breath — the co-movement is real, the forecast skill is not. Five couplings cut, five *named*
+failure modes (level artifact, cyclic, wrong sign, confounded-away, real-signal-no-skill); one kept.
+
 ## Honesty-debt register (tracked to close)
 
 | Debt | Status | Tracked by |
@@ -245,8 +266,8 @@ is the instrument's real output.
 | Real Urban⇄Transport⇄Energy⇄Health test | ✅ **CUT on real data** — real PM2.5 vs independent all-cause death rate (34 yrs): **right sign** (+0.35) but PM2.5 adds no skill above trend (hazard k→0), fails placebo (1.781 vs 1.768). Ecological confounding, not a wrong mechanism; GBD outcome excluded as circular | issue #7-real |
 | Convergence | ✅ **DONE (again)** — the Iter-19 scope extension is resolved: the fourth coupling is cut on real data (confounding). Every kept coupling survives its round; all four cuts have recorded, falsifiable reasons; no open improvable gap | — |
 | Fifth synergy loop (breadth, #10) | ✅ **KEEP on synthetic** — Water⇄Energy⇄Food nexus survives fair calibration (Δ +99) + correct sign; negative control cut. New voices `water`+`nexusfood`, CLEWs dossier | issue #10 |
-| Real Water⇄Energy⇄Food test | ⏳ **OPEN** — synthetic keep is machinery, not skill; needs a real water/food-price placebo test before any keep is banked | issue #10-real |
-| Convergence (after #10) | 🔄 **REOPENED** — the five prior couplings stay resolved, but the nexus real-data placebo test is an open, improvable gap; loop continues until it resolves | — |
+| Real Water⇄Energy⇄Food test | ✅ **CUT on real data** — energy→food leg (IMF indices, 34 yrs): corr +0.90 (right sign) but **no out-of-sample skill** (loses to trend/placebo/naive; 2022 energy shock doesn't pass through). Water-leg driver data-limited | issue #10-real |
+| Convergence (after #10) | ✅ **DONE (again)** — nexus resolved on real data (fourth distinct failure mode). Every kept coupling survives its round; five cuts, five named failure modes; no open improvable gap | — |
 | Model calibration (real levels) | affine calibration now beats naive **on synthetic** (MASE 0.61); real-level calibration still pending | (opens when #9 lands) |
 | Welfare/equity engine (values dial) | ✅ **built + integrated** — frontier over policies; recommendation changes with values | issue #4 |
 | Predictive distributions → CRPS/PIT in tournament | ✅ **scored + calibrated** — `calibrate_ensemble` de-bias+widen ⇒ CRPS 7.9→0.44, **PIT 0.0→0.39** (near-uniform, synthetic) | blueprint §6 |
