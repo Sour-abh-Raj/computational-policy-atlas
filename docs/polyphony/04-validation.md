@@ -341,6 +341,16 @@ on synthetic panels (a pure confound demeans to ≈0; a real within-effect survi
 just the datum — is trustworthy. Panel FE is now a reusable tool for separating **mechanism from shared
 trend**, the sharpest instrument yet against the confounded-away trap.
 
+**A contrasting case shows FE's own limits (Iter 34).** Applied to the co-benefit (PM2.5 → all-cause
+mortality across **243 countries**), panel FE **cannot recover** the effect: the within-country correlation
+is weak and even **wrong-signed** (−0.14). This is not because PM2.5 is harmless — it is because
+**all-cause mortality is itself dominated by a confounded within-country trajectory** (the development and
+aging transition), which fixed effects on the *driver* cannot remove. The honest lesson: panel FE isolates
+a mechanism only when the **outcome** is not itself a confounded trend — a limit worth stating as plainly as
+the leakage success, and a re-confirmation of Iter 20's point that aggregate all-cause mortality is the
+wrong instrument for a real but small air-pollution effect (the properly-attributable outcome, GBD, is
+circular).
+
 ## Honesty-debt register (tracked to close)
 
 | Debt | Status | Tracked by |
@@ -366,6 +376,7 @@ trend**, the sharpest instrument yet against the confounded-away trap.
 | Real Trade⇄Emissions test | ✅ **CUT on real data** — UK (textbook leakage): gap real (corr +0.81, right sign) but openness-leakage **confounded-away** — loses to a production-blind baseline in 0% of walk-forward folds. Openness↔gap is a shared trend, not independent info. `experiments/real_trade_tournament.py` | issue #12-real |
 | Convergence (after #12) | ✅ **DONE (again)** — Trade⇄Emissions resolved on real data. Every kept coupling survives its round; **seven** cuts (six on real data), spanning the failure-mode catalogue; no open improvable gap | — |
 | Panel fixed-effects validation | ✅ **confounded-away confirmed with power** — 114-country × 32-year carbon-leakage panel: pooled corr +0.30 → two-way-FE within corr +0.025 (**92% attenuation**). FE estimator validated on synthetic panels. Reusable tool vs the modal failure. `experiments/panel_validation.py` | Iter 33 |
+| Panel FE — the method's own limit | ✅ **stated honestly** — on PM2.5 → all-cause mortality (243 countries) panel FE **cannot** recover the effect (within corr −0.14, wrong-signed): the *outcome* is dominated by a confounded within-country trajectory (development/aging). FE isolates a mechanism only when the outcome is clean | Iter 34 |
 | Model calibration (real levels) | affine calibration now beats naive **on synthetic** (MASE 0.61); real-level calibration still pending | (opens when #9 lands) |
 | Welfare/equity engine (values dial) | ✅ **built + integrated** — frontier over policies; recommendation changes with values | issue #4 |
 | Predictive distributions → CRPS/PIT in tournament | ✅ **scored + calibrated** — `calibrate_ensemble` de-bias+widen ⇒ CRPS 7.9→0.44, **PIT 0.0→0.39** (near-uniform, synthetic) | blueprint §6 |

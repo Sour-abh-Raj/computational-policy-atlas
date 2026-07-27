@@ -796,3 +796,26 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
     narrative + validation-engine page + failure-modes updated.
   - **Next (Iter 34):** an eighth domain, apply panel FE to another confounded-away coupling (e.g. PM2.5→
     mortality across countries), or per-candidate honest bands on the decision card.
+- **Iter 34 — 🌐 Panel FE, a contrasting case: it cannot recover the co-benefit (and that's the lesson).**
+  - **Generalized the panel-FE tool** (`experiments/panel_validation.py` → sign-aware `PanelFEResult` +
+    generic `_panel_fe`) and applied it to a **second** coupling: PM2.5 → all-cause mortality across
+    **243 countries × 34 years** (8,262 obs; `fetch_pm25_mortality_panel`, two bulk World Bank calls;
+    loader `load_real_pm25_mortality_panel`).
+  - **Deliberate contrast:** leakage FE **cleanly confirms** the cut (pooled +0.30 → within +0.025, 92%
+    attenuation). PM2.5→mortality FE **cannot recover** the effect — within corr is weak and even
+    **wrong-signed (−0.14)**. Not because PM2.5 is harmless, but because **all-cause mortality is itself
+    dominated by a confounded within-country trajectory** (development + aging) that fixing effects on the
+    *driver* can't remove.
+  - **The lesson (a limit of the method, stated as plainly as its success):** panel FE isolates a mechanism
+    only when the **outcome** is not itself a confounded trend — re-confirming Iter 20's point that
+    aggregate all-cause mortality is the wrong instrument for a real-but-small air-pollution effect (the
+    properly-attributable GBD outcome is circular).
+  - **Method still trustworthy:** the synthetic-panel tests (pure confound → 0; real within-effect survives)
+    plus a new **contrast test** (FE confirms leakage, cannot recover the co-benefit) pin the behaviour.
+  - **Atlas feedback:** reuses the Validation engine — no new graph node; graph unchanged (**178 nodes /
+    475 edges, 0-dangling**). Two panel datasets committed.
+  - **Convergence stays DONE.** **+3 tests -> 126 pass.** Gates green: `pytest` (126) · `ruff` · `mypy`
+    (62 files) · graph 0-dangling · `mkdocs --strict`. 04-validation panel narrative + register updated.
+  - **Next (Iter 35):** an eighth domain, per-candidate honest bands on the decision card, or a
+    country-fixed-effects rescue attempt with a *clean* outcome (e.g. age-standardized mortality) if a
+    non-circular source exists.

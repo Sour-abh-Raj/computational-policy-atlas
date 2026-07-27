@@ -251,6 +251,55 @@ def fetch_leakage_panel(out: pathlib.Path | None = None, min_years: int = 15) ->
     return out
 
 
+WB_PM25_ALL = "https://api.worldbank.org/v2/country/all/indicator/EN.ATM.PM25.MC.M3?format=json&per_page=25000"
+WB_DEATH_ALL = "https://api.worldbank.org/v2/country/all/indicator/SP.DYN.CDRT.IN?format=json&per_page=25000"
+
+
+def _fetch_worldbank_all(url: str) -> dict[str, dict[int, float]]:
+    """{iso3: {year: value}} for a World Bank indicator across all countries (one bulk call, retried)."""
+    last: Exception | None = None
+    for _ in range(4):
+        try:
+            with urllib.request.urlopen(url, timeout=120) as r:
+                payload = json.load(r)
+            out: dict[str, dict[int, float]] = {}
+            for x in payload[1]:
+                iso = x["countryiso3code"]
+                if x["value"] is not None and len(iso) == 3:
+                    out.setdefault(iso, {})[int(x["date"])] = float(x["value"])
+            return out
+        except Exception as e:
+            last = e
+    raise RuntimeError(f"World Bank bulk fetch failed after retries: {url}") from last
+
+
+def fetch_pm25_mortality_panel(out: pathlib.Path | None = None, min_years: int = 8) -> pathlib.Path:
+    """Fetch a multi-country panel for the co-benefit mechanism (Iter 34 — panel validation, 2nd case).
+
+    Per country (1990–2023): PM2.5 exposure (World Bank ``EN.ATM.PM25.MC.M3``) and the all-cause crude
+    death rate (``SP.DYN.CDRT.IN``). Unlike the leakage panel, all-cause mortality carries strong
+    within-country development/aging trends, so this panel tests whether panel fixed effects can recover
+    the (real, micro-level) PM2.5 → mortality effect from aggregate data. Writes
+    ``datasets/real_pm25_mortality_panel.csv`` (columns: ``iso``, ``year``, ``pm25``, ``death_rate``).
+    """
+    pm25 = _fetch_worldbank_all(WB_PM25_ALL)
+    death = _fetch_worldbank_all(WB_DEATH_ALL)
+    out = out or (DATASETS / "real_pm25_mortality_panel.csv")
+    n = 0
+    with out.open("w", newline="", encoding="utf-8") as fh:
+        w = csv.writer(fh)
+        w.writerow(["iso", "year", "pm25", "death_rate"])
+        for iso in sorted(set(pm25) & set(death)):
+            years = [y for y in sorted(set(pm25[iso]) & set(death[iso])) if 1990 <= y <= 2023]
+            if len(years) >= min_years:
+                for y in years:
+                    w.writerow([iso, y, pm25[iso][y], death[iso][y]])
+                    n += 1
+    if n < 500:
+        raise RuntimeError(f"too few panel observations ({n}); refusing to write")
+    return out
+
+
 FRED_SPREAD = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAA10Y"  # Baa − 10Y Treasury credit spread
 FRED_REALGDP = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=GDPC1"  # real GDP (chained 2017 $)
 
@@ -320,3 +369,5 @@ if __name__ == "__main__":
     print(f"wrote {trade} ({sum(1 for _ in trade.open()) - 1} rows)")
     panel = fetch_leakage_panel()
     print(f"wrote {panel} ({sum(1 for _ in panel.open()) - 1} rows)")
+    pm_panel = fetch_pm25_mortality_panel()
+    print(f"wrote {pm_panel} ({sum(1 for _ in pm_panel.open()) - 1} rows)")

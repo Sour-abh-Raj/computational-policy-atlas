@@ -11,8 +11,12 @@ from __future__ import annotations
 import numpy as np
 import pytest
 
-from polyphony.data.loaders import has_real_leakage_panel
-from polyphony.experiments.panel_validation import run_leakage_panel, two_way_within
+from polyphony.data.loaders import has_real_leakage_panel, has_real_pm25_mortality_panel
+from polyphony.experiments.panel_validation import (
+    run_leakage_panel,
+    run_pm25_mortality_panel,
+    two_way_within,
+)
 
 
 def _make_panel(units: int, years: int):
@@ -56,3 +60,27 @@ def test_real_leakage_panel_confirms_confounded_away():
     assert abs(r.within_corr) < 0.1  # …vanishes under two-way fixed effects
     assert r.attenuation > 0.7  # most of the correlation was the shared trend
     assert r.verdict() == "cut-confirmed (confounded-away)"
+
+
+@pytest.mark.skipif(not has_real_pm25_mortality_panel(), reason="real PM2.5/mortality panel not fetched")
+def test_pm25_mortality_panel_cannot_recover_the_effect():
+    # The PM2.5 → mortality mechanism is real at the cohort level, but all-cause mortality is dominated by
+    # within-country development/aging trends, so panel FE cannot recover a positive within-country effect.
+    r = run_pm25_mortality_panel()
+    assert r.n_countries >= 100  # a large panel
+    assert not r.within_has_assumed_sign  # no positive within signal (it is weak / wrong-signed)
+    assert r.verdict() == "no within-country mechanism (outcome confounded)"
+
+
+@pytest.mark.skipif(
+    not (has_real_leakage_panel() and has_real_pm25_mortality_panel()),
+    reason="real panels not fetched",
+)
+def test_panel_fe_works_only_when_the_outcome_is_clean():
+    # The contrast is the lesson: FE isolates a mechanism only when the OUTCOME is not itself dominated by
+    # a confounded within-country trajectory. Leakage's ratio is clean (FE confirms the cut); all-cause
+    # mortality is not (FE cannot recover the real effect).
+    leak = run_leakage_panel()
+    pm = run_pm25_mortality_panel()
+    assert leak.verdict() == "cut-confirmed (confounded-away)"
+    assert pm.verdict() == "no within-country mechanism (outcome confounded)"

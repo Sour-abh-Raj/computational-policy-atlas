@@ -304,6 +304,7 @@ REAL_NEXUS = DATASETS / "real_nexus.csv"
 REAL_FINANCE = DATASETS / "real_finance.csv"
 REAL_TRADE = DATASETS / "real_trade.csv"
 REAL_LEAKAGE_PANEL = DATASETS / "real_leakage_panel.csv"
+REAL_PM25_MORTALITY_PANEL = DATASETS / "real_pm25_mortality_panel.csv"
 
 
 def has_real_gdp_co2() -> bool:
@@ -336,36 +337,46 @@ def has_real_trade() -> bool:
     return REAL_TRADE.exists()
 
 
+def _load_panel_csv(path: pathlib.Path, col_a: str, col_b: str) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+    """Load a panel CSV with an ``iso`` (str), ``year`` (int), and two float columns → four arrays."""
+    if not path.exists():
+        raise FileNotFoundError(f"{path} missing; run `python -m polyphony.data.fetch_real`")
+    iso: list[str] = []
+    year: list[int] = []
+    a: list[float] = []
+    b: list[float] = []
+    with path.open(newline="", encoding="utf-8") as fh:
+        for row in csv.DictReader(fh):
+            iso.append(row["iso"])
+            year.append(int(row["year"]))
+            a.append(float(row[col_a]))
+            b.append(float(row[col_b]))
+    return (
+        np.asarray(iso, dtype=object),
+        np.asarray(year, dtype=int),
+        np.asarray(a, dtype=float),
+        np.asarray(b, dtype=float),
+    )
+
+
 def has_real_leakage_panel() -> bool:
     """Whether the multi-country carbon-leakage panel has been fetched (``fetch_real.fetch_leakage_panel``)."""
     return REAL_LEAKAGE_PANEL.exists()
 
 
 def load_real_leakage_panel() -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
-    """REAL multi-country carbon-leakage panel: ``(iso, year, cons_prod_ratio, openness)`` arrays.
+    """REAL multi-country carbon-leakage panel: ``(iso, year, cons_prod_ratio, openness)`` arrays."""
+    return _load_panel_csv(REAL_LEAKAGE_PANEL, "cons_prod_ratio", "openness")
 
-    ``iso`` and ``year`` are the panel indices (country, time) for a two-way fixed-effects analysis;
-    ``cons_prod_ratio`` (consumption/production CO₂) is the leakage-gap target and ``openness`` the driver.
-    Raises if the CSV is absent — call ``data.fetch_real``.
-    """
-    if not REAL_LEAKAGE_PANEL.exists():
-        raise FileNotFoundError(f"{REAL_LEAKAGE_PANEL} missing; run `python -m polyphony.data.fetch_real`")
-    iso: list[str] = []
-    year: list[int] = []
-    ratio: list[float] = []
-    openness: list[float] = []
-    with REAL_LEAKAGE_PANEL.open(newline="", encoding="utf-8") as fh:
-        for row in csv.DictReader(fh):
-            iso.append(row["iso"])
-            year.append(int(row["year"]))
-            ratio.append(float(row["cons_prod_ratio"]))
-            openness.append(float(row["openness"]))
-    return (
-        np.asarray(iso, dtype=object),
-        np.asarray(year, dtype=int),
-        np.asarray(ratio, dtype=float),
-        np.asarray(openness, dtype=float),
-    )
+
+def has_real_pm25_mortality_panel() -> bool:
+    """Whether the PM2.5 / mortality panel has been fetched (``fetch_real.fetch_pm25_mortality_panel``)."""
+    return REAL_PM25_MORTALITY_PANEL.exists()
+
+
+def load_real_pm25_mortality_panel() -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+    """REAL multi-country PM2.5 / all-cause-mortality panel: ``(iso, year, pm25, death_rate)`` arrays."""
+    return _load_panel_csv(REAL_PM25_MORTALITY_PANEL, "pm25", "death_rate")
 
 
 def load_real_trade() -> Dataset:
