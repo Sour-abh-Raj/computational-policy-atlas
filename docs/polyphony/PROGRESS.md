@@ -861,3 +861,24 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
   - **Next (Iter 37):** another plausible-keep domain (e.g. interest rate → housing), per-candidate honest
     bands on the decision card, or a cross-coupling meta-analysis of what distinguishes the two keeps from
     the seven cuts.
+- **Iter 37 — 🔬 Meta-analysis: only "beats the honest baseline" separates keeps from cuts.**
+  - **The synthesis question:** with two keeps and seven cuts, *which property* actually decides? Scored
+    every coupling on four plausible discriminators (`experiments/meta_analysis.py`): right sign, beats
+    placebo, beats naive, beats baseline.
+  - **Finding (sharp, slightly surprising):** **only `beats_baseline` perfectly separates** keep from cut.
+    The right sign is nearly useless (**6 of 7 cuts have it**); beating a placebo and beating naive each
+    admit exactly **one false positive — Macro⇄Finance**, which clears all three yet is cut because its
+    regime-dependent skill doesn't beat the mean-growth baseline. So sign / placebo / naive are each
+    necessary-ish but **not sufficient**; out-predicting the honest baseline is the one decisive test — the
+    project's whole discipline compressed into a single computed fact.
+  - **Validated:** `tests/test_meta_analysis.py` asserts the perfect separator, the sign's poverty as a
+    discriminator, and Macro⇄Finance as the instructive false positive.
+  - **Docs:** added a "What actually separates keeps from cuts" section (the discriminator table + the
+    Macro⇄Finance lesson) to `docs/polyphony/failure-modes.md`.
+  - **Atlas feedback:** a synthesis of existing results — no new graph node; graph unchanged (**180 nodes /
+    480 edges, 0-dangling**).
+  - **Convergence stays DONE.** **+5 tests -> 136 pass.** Gates green: `pytest` (136) · `ruff` · `mypy`
+    (65 files) · graph 0-dangling · `mkdocs --strict`.
+  - **Next (Iter 38):** another plausible-keep domain (interest rate → housing) to further probe the bar,
+    per-candidate honest bands on the decision card, or extend the meta-analysis with a numeric
+    effect-size margin per coupling.

@@ -82,7 +82,27 @@ the same strict bar that cut six plausible couplings **rewarded** the two that w
 Polyphony reports two results and seven cautionary tales — and the cautionary tales are the more valuable
 half, because they are the ones you would otherwise have believed.
 
+## What actually separates keeps from cuts (a computed answer)
+
+Given two keeps and seven cuts, *which property* decides? Scoring every coupling on four plausible
+discriminators (`experiments/meta_analysis.py`) gives a sharp, slightly surprising answer:
+
+| Discriminator | Perfectly separates keep/cut? | False positives (cut couplings that have it) |
+|---|---|---|
+| right sign of the real correlation | ❌ | **6 of 7 cuts** — sign alone tells you almost nothing |
+| beats a placebo | ❌ | Macro⇄Finance |
+| beats naive (random walk) | ❌ | Macro⇄Finance |
+| **beats the honest baseline** (sum-of-parts / climatology) | ✅ | — |
+
+**Only beating the honest baseline perfectly separates the real couplings from the hollow ones.** The
+decisive teaching case is **Macro⇄Finance**: it has the right sign, beats a placebo, *and* beats naive in a
+majority of folds — yet is cut, because its (regime-dependent) skill does not beat the mean-growth
+baseline. So a strong correlation, the right sign, beating a placebo, even beating naive are each
+**necessary-ish but not sufficient**. The one criterion that decides is **out-predicting the honest
+baseline** — the whole project's discipline compressed into a single computed fact.
+
 *Reproduce:* `python -c "from polyphony.experiments.failure_modes import LEDGER; [print(c.mode, c.coupling)
-for c in LEDGER]"`. Each live diagnostic is asserted in `tests/test_failure_modes.py` and the per-domain
-`tests/test_real_*_tournament.py`. See also the [leaderboard](leaderboard.md) and
+for c in LEDGER]"` and `from polyphony.experiments.meta_analysis import perfect_separators; print(perfect_separators())`.
+Each live diagnostic is asserted in `tests/test_failure_modes.py`, `tests/test_meta_analysis.py`, and the
+per-domain `tests/test_real_*_tournament.py`. See also the [leaderboard](leaderboard.md) and
 [validation & honesty](04-validation.md).
