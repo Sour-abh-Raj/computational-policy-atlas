@@ -308,7 +308,34 @@ not real-world skill.** No real PM2.5 + mortality series has been tested yet, so
 improvable gap* (issue #7-real). The co-benefit's intuitive appeal is precisely why it must face a real
 placebo before any keep is believed.
 
-## Convergence status (per domain) — REOPENED (scope extended to a fourth domain)
+## Round 15 — the real air-quality co-benefit is CUT (right sign, but no signal above trend) (issue #7-real)
+
+Iter 19 opened a gap; Iter 20 closes it. The co-benefits voice models **more PM2.5 → higher mortality**.
+Tested on **real** World Bank world PM2.5 exposure (µg/m³) vs an **independent** all-cause crude death
+rate (per 1000), 34 years 1990–2023 (`experiments/real_urbanhealth_tournament.py`).
+
+A subtlety that decides the whole test: the outcome is **all-cause** mortality, *not* the GBD "mortality
+attributed to ambient PM2.5" indicator — the latter is **computed from** PM2.5 by a concentration-response
+function, so testing PM2.5 → GBD-mortality would be **circular** (it confirms the mechanism by
+construction). Only an independent outcome can fail.
+
+| Check | Result |
+|---|---|
+| corr(PM2.5, death rate) — raw sign | **+0.35 — the RIGHT sign** (more PM2.5 ↔ more mortality) |
+| trend-only MASE | 1.781 |
+| coupled (PM2.5 hazard) MASE | 1.781 — **fitted hazard k → 0** (adds nothing above trend) |
+| **placebo (t^1.5) MASE** | **1.768 — as good/better ⇒ fails the placebo** |
+
+**Verdict: CUT — but instructively different from land.** Here the sign is *correct*: PM2.5 and mortality
+are positively associated. Yet once a trend is removed, the exposure's partial contribution **clamps to
+zero** — the positive correlation is a **shared downward trend** (both PM2.5 and the crude death rate
+fell over 1990–2023), not PM2.5 carrying independent information about mortality deviations. A generic
+time trend predicts the held-out death rate as well or better. So the *aggregate reduced-form* co-benefit
+earns no skill, even though the underlying **micro-epidemiology is real** (cohort CRFs) — a textbook case
+of ecological confounding, and a reminder that a coupling being *scientifically true at the individual
+level* does not make it *predictively skillful in an aggregate time series*.
+
+## Convergence status (per domain) — DONE (again, with the fourth domain resolved)
 
 | Domain / coupling | Verdict | Real-data status | Open, improvable gap? |
 |---|---|---|---|
@@ -316,13 +343,14 @@ placebo before any keep is believed.
 | **Energy⇄climate⇄economy** | **CUT** (level artifact; genuinely cyclic) | — | **no** |
 | **Land⇄Climate⇄Food** | **CUT on real data** (fails placebo + wrong sign); coupling was real only on synthetic | ✅ tested (57 yrs cereal yield) | **no** |
 | **Real climate→GDP** | **CUT** (fails placebo under both CO₂ and temperature) | ✅ tested (58 yrs) | **no** |
-| **Urban⇄Transport⇄Energy⇄Health** (co-benefit) | **KEEP on synthetic** (fair-cal Δ+13.5, correct sign); negative control cut | ❌ **not yet** — synthetic only | **YES** — needs a real PM2.5 + mortality placebo test (issue #7-real) |
+| **Urban⇄Transport⇄Energy⇄Health** (co-benefit) | **CUT on real data** (right sign, but PM2.5 adds no skill above trend; fails placebo) — kept only on synthetic | ✅ tested (34 yrs PM2.5 + all-cause mortality) | **no** |
 
-**REOPENED.** The prior four domains remain converged, but honoring "scope is a floor" added a fifth
-coupling whose synthetic keep is not yet a real-data keep. Per the DONE criterion, the loop continues
-until this domain either survives a real placebo or is cut on real data — the same bar every other
-coupling faced. The standing honest headline is unchanged: **couplings earn their keep only against
-rivals and a placebo on real data; a synthetic keep is a hypothesis, not a result.**
+**DONE (again).** The scope extension of Iter 19 is now resolved: the fourth coupling's synthetic keep did
+**not** survive a real placebo, so it is cut — the same fate as land, reached by a *different* mechanism
+(confounding rather than wrong sign). Every kept coupling survives its full round (Macro⇄Health); every
+other candidate — now **four** of them, three on real data under a placebo — is cut with a recorded,
+falsifiable reason. No domain retains an open, improvable gap. Standing headline: **one coupling earned
+its keep; four were cut — and each cut names *why*, which is the product.**
 
 ## Standing champions
 
@@ -331,7 +359,7 @@ rivals and a placebo on real data; a synthetic keep is a hypothesis, not a resul
 | GDP track, energy⇄climate⇄economy slice | **economy-only** (after fair calibration) | — | synthetic-policy, time-blocked 30% | **−0.01 (cut)** | ✅ beats naive (cal) but coupling adds nothing | [json](leaderboard.json) |
 | GDP track, Macro⇄Health slice (**assimilation + contemporaneous**) | **coupled ensemble** | economy-only | synthetic-pandemic, time-blocked 30% | **+8.92 (keep)** | ✅ **survives full round**; no-lag solve ⇒ **MASE 0.10**, sharpest champion | [redteam](04-validation.md) |
 | Food-price track, Land⇄Climate⇄Food slice (**fair calibration**) | **coupled ensemble** | land-only | synthetic-warming, time-blocked 30% | **+15.2 (keep)** | ⚠️ coupling real (survives level-artifact + shift) but **loses to naive** — no skill claim yet | [redteam](04-validation.md) |
-| Health-burden track, Urban⇄Transport⇄Energy⇄Health slice (**fair calibration**) | **coupled ensemble** | airhealth-only | synthetic-cobenefit, time-blocked 30% | **+13.5 (keep)** | ⚠️ survives level-artifact + correct sign, but **synthetic only** — real placebo pending (#7-real) | [redteam](04-validation.md) |
+| Health-burden track, Urban⇄Transport⇄Energy⇄Health slice (**fair calibration**) | **coupled ensemble** (synthetic only) | airhealth-only | synthetic-cobenefit, time-blocked 30% | **+13.5 (keep synth)** | ❌ **CUT on real data** — right sign (+0.35) but PM2.5 adds no skill above trend; fails placebo (#7-real) | [redteam](04-validation.md) |
 
 ## Contest log
 

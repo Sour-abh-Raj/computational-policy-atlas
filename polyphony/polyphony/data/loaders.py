@@ -202,6 +202,7 @@ def load(name: str = "synthetic") -> Dataset:
 
 REAL_GDP_CO2 = DATASETS / "real_gdp_co2.csv"
 REAL_FOOD = DATASETS / "real_food.csv"
+REAL_COBENEFIT = DATASETS / "real_cobenefit.csv"
 
 
 def has_real_gdp_co2() -> bool:
@@ -212,6 +213,34 @@ def has_real_gdp_co2() -> bool:
 def has_real_food() -> bool:
     """Whether the real cereal-yield / temperature CSV has been fetched (``data.fetch_real.fetch_food``)."""
     return REAL_FOOD.exists()
+
+
+def has_real_cobenefit() -> bool:
+    """Whether the real PM2.5 / death-rate CSV has been fetched (``data.fetch_real.fetch_cobenefit``)."""
+    return REAL_COBENEFIT.exists()
+
+
+def load_real_cobenefit() -> Dataset:
+    """REAL Urban⇄Transport⇄Energy⇄Health series: World Bank world PM2.5 exposure + all-cause death rate.
+
+    The co-benefits voice models PM2.5 → higher mortality; this is the real exposure and an **independent**
+    outcome (all-cause crude death rate, NOT GBD air-pollution mortality, which would be circular) to test
+    that mechanism against, with a placebo control. Raises if the CSV is absent — call ``data.fetch_real``.
+    """
+    if not REAL_COBENEFIT.exists():
+        raise FileNotFoundError(f"{REAL_COBENEFIT} missing; run `python -m polyphony.data.fetch_real`")
+    raw = load_csv(REAL_COBENEFIT)
+    return Dataset(
+        name="real-cobenefit",
+        series={"year": raw.column("year"), "pm25": raw.column("pm25"), "death_rate": raw.column("death_rate")},
+        synthetic=False,
+        note="REAL World Bank world PM2.5 mean exposure (EN.ATM.PM25.MC.M3) + all-cause crude death rate "
+        "(SP.DYN.CDRT.IN, independent of PM2.5 to avoid circularity), merged by year.",
+        meta={
+            "source_pm25": "World Bank WLD EN.ATM.PM25.MC.M3",
+            "source_death_rate": "World Bank WLD SP.DYN.CDRT.IN (all-cause, crude, per 1000)",
+        },
+    )
 
 
 def load_real_food() -> Dataset:

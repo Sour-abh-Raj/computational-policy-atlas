@@ -448,3 +448,32 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
     tournament**; report keep/cut honestly (with the sign check). If the fetch is hard-blocked, log +
     open an issue + work around (deepen an existing result or add a further domain). The loop continues
     until this domain resolves on real data.
+- **Iter 20 — 🌬️ Real air-quality co-benefit is CUT: RIGHT sign, but no skill above trend (confounding). Convergence DONE again.**
+  - **Fetched real data** (`fetch_real.fetch_cobenefit` + `_fetch_worldbank` with retries): World Bank
+    world **PM2.5 mean exposure** (`EN.ATM.PM25.MC.M3`, µg/m³) + an **independent all-cause crude death
+    rate** (`SP.DYN.CDRT.IN`, per 1000) → `datasets/real_cobenefit.csv` (34 yrs, 1990–2023). Loader
+    `load_real_cobenefit`.
+  - **Circularity avoided (the key design choice):** used *all-cause* mortality, NOT GBD "mortality
+    attributed to ambient PM2.5" — the latter is *computed from* PM2.5 via a CRF, so testing PM2.5 → it
+    would confirm the mechanism by construction. Only an independent outcome can fail.
+  - **Real tournament** (`experiments/real_urbanhealth_tournament.py`, `_hazard_fit_predict` with the
+    assumed direction k≥0): corr(PM2.5, death rate) = **+0.35 — the RIGHT sign** (unlike land). But the
+    fitted hazard **k → 0**: coupled MASE 1.781 = trend MASE, and a **t^1.5 placebo does better (1.768)**.
+    **Verdict CUT.** The positive correlation is a *shared downward trend* (both fell 1990–2023), not
+    PM2.5 carrying independent mortality information.
+  - **The lesson:** a coupling can be **true micro-epidemiology** (cohort CRFs) yet earn **no aggregate
+    time-series skill** — ecological confounding + a dominant demographic trend swamp it. Four couplings
+    now cut, each for a *different, named* reason (level artifact / genuinely cyclic / wrong sign /
+    confounded-away) — that catalogue of failure modes is the instrument's real output.
+  - **Atlas feedback:** reuses Data Pipeline + Validation engines (like Iter 18) — no new graph node;
+    graph unchanged (**170 nodes / 458 edges, 0-dangling**). New real dataset committed.
+  - **CONVERGENCE (DONE again):** the Iter-19 scope extension is resolved on real data; no domain retains
+    an open, improvable gap. **+2 tests -> 79 pass.** Gates green: `pytest` (79) · `ruff` · `mypy` (45
+    files) · graph 0-dangling · `mkdocs --strict`. Leaderboard Round 15 + convergence table (DONE) +
+    04-validation register updated.
+  - **Loop continues (dynamic mode):** convergence is restored, but the standing mandate is to keep
+    making the ensemble more robust/complete/holistic. Next natural avenues (each needs a cited reason +
+    test + two-regime keep/cut + real-data bar + atlas feedback): a **fifth domain** (e.g.
+    Water⇄Energy⇄Food nexus, or Urban⇄Housing⇄Migration), or **deepening validation** (CRPS/PIT on the
+    real-data tournaments; multi-region rather than world-aggregate to reduce the confounding that cut
+    the co-benefit).

@@ -209,6 +209,30 @@ PM2.5 + mortality series must beat both a no-exposure baseline and a placebo bef
 The convergence status is therefore **reopened** until that real test resolves (keep or cut, both
 publishable).
 
+## The real air-quality co-benefit is CUT — right sign, no signal above trend (Round 15)
+
+Iter 20 closes the gap Iter 19 opened. The co-benefits voice (more PM2.5 → higher mortality) is tested on
+**real** World Bank world PM2.5 exposure vs an **independent** all-cause crude death rate (34 yrs,
+1990–2023). The result is a CUT that is *scientifically the most interesting* of the four:
+
+- **The outcome had to be chosen honestly.** The obvious outcome — GBD "mortality attributed to ambient
+  PM2.5" — is **derived from** PM2.5 via a concentration-response function, so using it would be
+  **circular**. We use all-cause mortality instead, which *can* fail the mechanism.
+- **The sign is right.** corr(PM2.5, death rate) = **+0.35** — more pollution, more mortality, as the
+  mechanism assumes (unlike land, where real yield rose *with* warming).
+- **But there is no skill above a trend.** Fit on the train block, PM2.5's hazard coefficient **clamps to
+  zero**: coupled MASE 1.781 = trend MASE 1.781, and a generic-time-trend **placebo does marginally
+  better (1.768)**. The positive correlation is a **shared downward trend**, not PM2.5 carrying
+  independent information about mortality deviations.
+
+The lesson is precise and worth stating: a coupling can be **true micro-epidemiology** (cohort CRFs
+genuinely identify PM2.5 mortality) and still earn **no predictive skill in an aggregate time series**,
+because ecological confounding and a dominant demographic trend swamp it. Honesty means reporting that
+the co-benefit is *real science* **and** *not a skillful aggregate predictor* — and refusing to bank the
+intuitively-appealing coupling on a synthetic keep. Four couplings cut, each for a *different, named*
+reason (level artifact; genuinely cyclic; wrong sign; confounded-away) — that catalogue of failure modes
+is the instrument's real output.
+
 ## Honesty-debt register (tracked to close)
 
 | Debt | Status | Tracked by |
@@ -218,8 +242,8 @@ publishable).
 | Real-data cut robustness | ✅ **holds with OBSERVED temperature** (Hadley), not just the CO₂ proxy — coupled 1.07 vs placebo 0.87 ⇒ still cut; not a proxy artifact | issue #9 |
 | Real Land⇄Climate⇄Food test | ✅ **CUT on real data** — real cereal yield vs Hadley temp: fails placebo (2.21 vs 2.20) **and wrong sign** (corr +0.90; Green-Revolution tech dominates). Synthetic-kept coupling falsified by real data | issue #6/#9 |
 | Fourth synergy loop (breadth, #7) | ✅ **KEEP on synthetic** — Urban⇄Transport⇄Energy⇄Health co-benefit survives fair calibration (Δ +13.5) + correct sign; negative control cut. New voices `transport`+`airhealth`, BenMAP-CE dossier | issue #7 |
-| Real Urban⇄Transport⇄Energy⇄Health test | ⏳ **OPEN** — synthetic keep is machinery, not skill; needs a real PM2.5 + mortality placebo test before any keep is banked (cf. land, falsified on real data) | issue #7-real |
-| Convergence | 🔄 **REOPENED** — the four prior domains stay converged, but the new fourth coupling's real-data placebo test is an open, improvable gap; loop continues until it resolves | — |
+| Real Urban⇄Transport⇄Energy⇄Health test | ✅ **CUT on real data** — real PM2.5 vs independent all-cause death rate (34 yrs): **right sign** (+0.35) but PM2.5 adds no skill above trend (hazard k→0), fails placebo (1.781 vs 1.768). Ecological confounding, not a wrong mechanism; GBD outcome excluded as circular | issue #7-real |
+| Convergence | ✅ **DONE (again)** — the Iter-19 scope extension is resolved: the fourth coupling is cut on real data (confounding). Every kept coupling survives its round; all four cuts have recorded, falsifiable reasons; no open improvable gap | — |
 | Model calibration (real levels) | affine calibration now beats naive **on synthetic** (MASE 0.61); real-level calibration still pending | (opens when #9 lands) |
 | Welfare/equity engine (values dial) | ✅ **built + integrated** — frontier over policies; recommendation changes with values | issue #4 |
 | Predictive distributions → CRPS/PIT in tournament | ✅ **scored + calibrated** — `calibrate_ensemble` de-bias+widen ⇒ CRPS 7.9→0.44, **PIT 0.0→0.39** (near-uniform, synthetic) | blueprint §6 |

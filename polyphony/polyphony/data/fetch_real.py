@@ -63,6 +63,23 @@ def _fetch_worldbank_cereal_yield() -> dict[int, float]:
     return {int(x["date"]): float(x["value"]) for x in payload[1] if x["value"] is not None}
 
 
+WB_PM25 = "https://api.worldbank.org/v2/country/WLD/indicator/EN.ATM.PM25.MC.M3?format=json&per_page=400"
+WB_DEATH_RATE = "https://api.worldbank.org/v2/country/WLD/indicator/SP.DYN.CDRT.IN?format=json&per_page=400"
+
+
+def _fetch_worldbank(url: str) -> dict[int, float]:
+    """Fetch a World Bank WLD indicator as {year: value}, retrying transient network errors."""
+    last: Exception | None = None
+    for _ in range(3):
+        try:
+            with urllib.request.urlopen(url, timeout=60) as r:
+                payload = json.load(r)
+            return {int(x["date"]): float(x["value"]) for x in payload[1] if x["value"] is not None}
+        except Exception as e:  # transient egress failures are common in the loop; retry
+            last = e
+    raise RuntimeError(f"World Bank fetch failed after retries: {url}") from last
+
+
 def fetch(out: pathlib.Path | None = None) -> pathlib.Path:
     """Fetch, align on common years, and write the merged CSV. Returns the path written."""
     gdp = _fetch_worldbank_gdp()
@@ -101,8 +118,37 @@ def fetch_food(out: pathlib.Path | None = None) -> pathlib.Path:
     return out
 
 
+def fetch_cobenefit(out: pathlib.Path | None = None) -> pathlib.Path:
+    """Fetch the REAL Urban⇄Transport⇄Energy⇄Health series (issue #7-real): World Bank world PM2.5 mean
+    annual exposure (``EN.ATM.PM25.MC.M3``, µg/m³) + an **independent** all-cause crude death rate
+    (``SP.DYN.CDRT.IN``, per 1000).
+
+    The outcome is deliberately **all-cause** mortality, NOT the GBD "mortality attributed to ambient air
+    pollution" indicator: the latter is *derived from* PM2.5 via a concentration-response function, so
+    testing PM2.5 → GBD-mortality would be **circular** (it would confirm the mechanism by construction).
+    An independent outcome makes the placebo test meaningful — at the cost that all-cause mortality is
+    dominated by demographics, which is exactly the confounding the placebo is there to expose.
+
+    Writes ``datasets/real_cobenefit.csv`` (columns: ``year``, ``pm25``, ``death_rate``).
+    """
+    pm25 = _fetch_worldbank(WB_PM25)
+    death = _fetch_worldbank(WB_DEATH_RATE)
+    years = sorted(set(pm25) & set(death))
+    if len(years) < 20:
+        raise RuntimeError(f"too few overlapping years ({len(years)}); refusing to write")
+    out = out or (DATASETS / "real_cobenefit.csv")
+    with out.open("w", newline="", encoding="utf-8") as fh:
+        w = csv.writer(fh)
+        w.writerow(["year", "pm25", "death_rate"])
+        for y in years:
+            w.writerow([y, pm25[y], death[y]])
+    return out
+
+
 if __name__ == "__main__":
     path = fetch()
     print(f"wrote {path} ({sum(1 for _ in path.open()) - 1} rows)")
     food = fetch_food()
     print(f"wrote {food} ({sum(1 for _ in food.open()) - 1} rows)")
+    cobenefit = fetch_cobenefit()
+    print(f"wrote {cobenefit} ({sum(1 for _ in cobenefit.open()) - 1} rows)")
