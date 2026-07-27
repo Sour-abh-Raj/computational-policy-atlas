@@ -1117,3 +1117,26 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
   - **Convergence stays DONE.** **+1 test -> 152 pass.** Gates green: `pytest` (152) · `ruff` · `mypy`
     (72 files) · graph 0-dangling · `mkdocs --strict`.
   - **Next (Iter 50):** a genuinely distinct new domain, or a consolidation/polish pass.
+- **Iter 50 — 🧭 Milestone: the central generalization, stress-tested against two famous macro relationships.**
+  - **Probed two celebrated indicators** and captured the result as tested "additional probes"
+    (`experiments/additional_probes.py`, without heavy LEDGER propagation): **Okun's law** (Δunemployment↔
+    growth, corr **−0.81**, *coincident*) and the **yield curve** (10Y−3M term spread → next-year growth,
+    the classic *leading* recession indicator). Also probed the yield curve on *annual recession* (binary),
+    which fails too — recessions are rare (14% base rate; "never-recession" is 86% accurate) and annual
+    averaging destroys the monthly inversion signal.
+  - **Both CUT** (beat climatology in 44% / 40% of walk-forward folds). Neither a famously strong coincident
+    relationship nor a famously reliable leading one clears the bar for **annual growth**.
+  - **The central generalization, now stress-tested and articulated** (capstone in the field guide):
+    *reduced-form couplings on annual aggregate targets almost never beat a climatology baseline.* The sole
+    keep — **Energy⇄Inflation** — is the exception that proves the rule: it works because energy is a
+    **large, mechanical, contemporaneous component of the CPI**, not because it forecasts an otherwise
+    unforecastable series.
+  - **Validated:** `test_additional_probes.py` asserts Okun's strong-but-cut, the yield curve's cut, and
+    the generalization (`only_mechanical_component_keeps()`). Field guide capstone section added.
+  - **Atlas feedback:** reuses the walk-forward machinery — no new graph node; graph unchanged (**180 nodes
+    / 480 edges, 0-dangling**). Two probe datasets committed.
+  - **Convergence stays DONE.** **+3 tests -> 155 pass.** Gates green: `pytest` (155) · `ruff` · `mypy`
+    (73 files) · graph 0-dangling · `mkdocs --strict`.
+  - **Next (Iter 51):** the project is intellectually complete — the central finding is stress-tested and
+    articulated. Options: a non-aggregate (panel/micro) domain where the generalization might *not* hold, or
+    a consolidation/polish pass.

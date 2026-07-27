@@ -308,6 +308,29 @@ REAL_PM25_MORTALITY_PANEL = DATASETS / "real_pm25_mortality_panel.csv"
 REAL_INFLATION = DATASETS / "real_inflation.csv"
 REAL_INFLATION_Q = DATASETS / "real_inflation_q.csv"
 REAL_HOUSING = DATASETS / "real_housing.csv"
+REAL_OKUN = DATASETS / "real_okun.csv"
+REAL_YIELDCURVE = DATASETS / "real_yieldcurve.csv"
+
+
+def has_additional_probes() -> bool:
+    """Whether the Okun + yield-curve probe CSVs have been fetched (``fetch_real.fetch_additional_probes``)."""
+    return REAL_OKUN.exists() and REAL_YIELDCURVE.exists()
+
+
+def load_real_okun() -> Dataset:
+    """REAL Okun series: unemployment rate + real GDP (FRED), annual — a *coincident* growth relationship."""
+    if not REAL_OKUN.exists():
+        raise FileNotFoundError(f"{REAL_OKUN} missing; run `python -m polyphony.data.fetch_real`")
+    raw = load_csv(REAL_OKUN)
+    return Dataset("real-okun", {"unrate": raw.column("unrate"), "gdp": raw.column("gdp")}, synthetic=False)
+
+
+def load_real_yieldcurve() -> Dataset:
+    """REAL yield-curve series: 10Y−3M term spread + real GDP (FRED), annual — a *leading* indicator."""
+    if not REAL_YIELDCURVE.exists():
+        raise FileNotFoundError(f"{REAL_YIELDCURVE} missing; run `python -m polyphony.data.fetch_real`")
+    raw = load_csv(REAL_YIELDCURVE)
+    return Dataset("real-yieldcurve", {"spread": raw.column("spread"), "gdp": raw.column("gdp")}, synthetic=False)
 
 
 def has_real_gdp_co2() -> bool:

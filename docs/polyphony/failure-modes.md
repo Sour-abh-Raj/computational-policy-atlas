@@ -96,6 +96,26 @@ the same strict bar that cut six plausible couplings **rewarded** the two that w
 Polyphony reports two results and eight cautionary tales — and the cautionary tales are the more valuable
 half, because they are the ones you would otherwise have believed.
 
+## The central generalization (what all of this adds up to)
+
+After ten couplings plus two celebrated extra probes, a single empirical regularity has emerged and held
+every time:
+
+> **Reduced-form couplings on annual aggregate targets almost never beat a climatology baseline.**
+
+The two probes are the sharpest test of it (`experiments/additional_probes.py`): **Okun's law**
+(Δunemployment↔growth, corr **−0.81** — one of the strongest correlations in macro) is *cut*, because
+unemployment is **coincident** with growth, not a forecast of it; and the **yield curve** (the classic
+*leading* recession indicator) is *cut* too, because its ~1-year lead is washed out at annual resolution.
+Neither a famously strong *coincident* relationship nor a famously reliable *leading* one clears the bar.
+
+The **one** exception — **Energy⇄Inflation** — is the exception that proves the rule: it keeps not because
+it forecasts an unforecastable series, but because energy is a **large, mechanical, contemporaneous
+component of the CPI**. So the honest one-line summary of the whole exercise: *aggregate outcomes are hard
+to beat a climatology on; the couplings that look like they should help usually don't; and the rare one
+that does, does so for a boringly mechanical reason.* Reporting that plainly is worth more than a shelf of
+plausible-but-hollow "insights."
+
 ## What actually separates keeps from cuts (a computed answer)
 
 Given two keeps and seven cuts, *which property* decides? Scoring every coupling on four plausible

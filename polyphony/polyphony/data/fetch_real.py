@@ -416,6 +416,41 @@ def fetch_inflation(out: pathlib.Path | None = None) -> pathlib.Path:
     return out
 
 
+FRED_UNRATE = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=UNRATE"  # unemployment rate
+FRED_TERMSPREAD = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=T10Y3M"  # 10Y − 3M term spread
+
+
+def fetch_additional_probes(out_dir: pathlib.Path | None = None) -> tuple[pathlib.Path, pathlib.Path]:
+    """Fetch two 'additional probe' series (Iter 50) that reinforce the central finding — even famous macro
+    relationships don't beat a climatology baseline for **annual GDP growth**:
+
+    - **Okun** (`real_okun.csv`: year, unrate, gdp): Δunemployment vs growth — a *coincident* indicator.
+    - **Yield curve** (`real_yieldcurve.csv`: year, spread, gdp): the 10Y−3M term spread vs *next-year* growth
+      — a *leading* indicator whose signal is nonetheless washed out at annual resolution.
+    """
+    d = out_dir or DATASETS
+    gdp = _fetch_fred_annual(FRED_REALGDP, min_obs=4)
+    unrate = _fetch_fred_annual(FRED_UNRATE, min_obs=12)
+    spread = _fetch_fred_annual(FRED_TERMSPREAD, min_obs=12)
+
+    okun_path = d / "real_okun.csv"
+    yrs = sorted(set(gdp) & set(unrate))
+    with okun_path.open("w", newline="", encoding="utf-8") as fh:
+        w = csv.writer(fh)
+        w.writerow(["year", "unrate", "gdp"])
+        for y in yrs:
+            w.writerow([y, unrate[y], gdp[y]])
+
+    yc_path = d / "real_yieldcurve.csv"
+    yrs2 = sorted(set(gdp) & set(spread))
+    with yc_path.open("w", newline="", encoding="utf-8") as fh:
+        w = csv.writer(fh)
+        w.writerow(["year", "spread", "gdp"])
+        for y in yrs2:
+            w.writerow([y, spread[y], gdp[y]])
+    return okun_path, yc_path
+
+
 def fetch_cobenefit(out: pathlib.Path | None = None) -> pathlib.Path:
     """Fetch the REAL Urban⇄Transport⇄Energy⇄Health series (issue #7-real): World Bank world PM2.5 mean
     annual exposure (``EN.ATM.PM25.MC.M3``, µg/m³) + an **independent** all-cause crude death rate
@@ -466,3 +501,5 @@ if __name__ == "__main__":
     print(f"wrote {housing} ({sum(1 for _ in housing.open()) - 1} rows)")
     inflation_q = fetch_inflation_quarterly()
     print(f"wrote {inflation_q} ({sum(1 for _ in inflation_q.open()) - 1} rows)")
+    okun_p, yc_p = fetch_additional_probes()
+    print(f"wrote {okun_p} and {yc_p}")
