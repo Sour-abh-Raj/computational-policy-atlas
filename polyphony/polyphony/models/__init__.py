@@ -13,6 +13,7 @@ from .econ_cge import EquilibriumEconomy
 from .econ_e3me import DisequilibriumEconomy
 from .energy_lp import ReducedFormEnergy
 from .epidemic_sir import ReducedFormEpidemic
+from .finance_accelerator import ReducedFormFinance
 from .health_airquality import ReducedFormAirHealth
 from .land_crop import ReducedFormLand
 from .nexus_food import ReducedFormNexusFood
@@ -30,4 +31,5 @@ __all__ = [
     "ReducedFormAirHealth",
     "ReducedFormWater",
     "ReducedFormNexusFood",
+    "ReducedFormFinance",
 ]

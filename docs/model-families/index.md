@@ -88,6 +88,12 @@ Legend: ✅ complete · 🟡 in progress · ⬜ planned
 | [**OpenABM-Covid19**](health/openabm.md) — agent-based, contact-tracing focus | Oxford | ✅ Bronze |
 | [**BenMAP-CE**](health/benmap.md) — air-pollution health-impact & benefits (co-benefits) | U.S. EPA | ✅ Bronze |
 
+## Finance / Systemic Risk
+
+| Model | Institution | Status |
+|-------|-------------|--------|
+| [**EIRIN**](finance/eirin.md) — stock-flow-consistent behavioural macro-finance (climate-transition risk) | RFF-CMCC / EIEE | ✅ Bronze |
+
 ## Cross-cutting method families (documented under [Paradigms](../paradigms/index.md))
 
 Agent-Based ([**Mesa** ✅ Bronze](frameworks/mesa.md), [**Repast** ✅ Bronze](frameworks/repast.md),

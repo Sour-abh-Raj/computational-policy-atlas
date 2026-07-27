@@ -1014,6 +1014,21 @@
       "id": "howells",
       "type": "researcher",
       "label": "Mark Howells"
+    },
+    {
+      "id": "d-finance",
+      "type": "domain",
+      "label": "Finance / Systemic Risk"
+    },
+    {
+      "id": "eirin",
+      "type": "model",
+      "label": "EIRIN"
+    },
+    {
+      "id": "monasterolo",
+      "type": "researcher",
+      "label": "Irene Monasterolo"
     }
   ],
   "edges": [
@@ -3341,6 +3356,31 @@
       "s": "osemosys",
       "r": "led_by",
       "t": "howells"
+    },
+    {
+      "s": "eirin",
+      "r": "belongs_to",
+      "t": "d-finance"
+    },
+    {
+      "s": "eirin",
+      "r": "developed_at",
+      "t": "eiee"
+    },
+    {
+      "s": "eirin",
+      "r": "led_by",
+      "t": "monasterolo"
+    },
+    {
+      "s": "eirin",
+      "r": "exhibits_pattern",
+      "t": "p-integration"
+    },
+    {
+      "s": "eirin",
+      "r": "exhibits_pattern",
+      "t": "p-behavior"
     }
   ]
 }

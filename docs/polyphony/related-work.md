@@ -82,6 +82,11 @@ not a claim to have replicated the world.
   effect. Polyphony makes this a **standing requirement for real-data couplings**: a coupling is kept
   only if it beats *both* the sum-of-parts baseline **and** a placebo regressor. On real GDP+CO₂ this
   cut an apparent climate→GDP "synergy" that a meaningless time trend reproduced (leaderboard Round 10).
+- **Macro-finance / financial-accelerator modelling** (Bernanke, Gertler & Gilchrist 1999; Minsky's
+  financial-instability hypothesis; Gilchrist & Zakrajšek 2012; stock-flow-consistent tools like
+  [EIRIN](../model-families/finance/eirin.md)) — the tradition treating finance as an *amplifier* of the
+  business cycle rather than a passive veil. Polyphony adds this as its sixth coupling (Macro⇄Finance) and
+  holds it to the same real-data + placebo + sign discipline (leaderboard Round 21).
 - **Water–Energy–Food nexus modelling** (Hoff 2011, Bonn Nexus Conference; Howells et al. 2013 CLEWs;
   [CLEWs](../model-families/water/clews.md)) — the tradition of modelling water, energy, and food
   *jointly* via shared resource constraints, so a drought propagates across sectors. Polyphony adds this
@@ -122,3 +127,7 @@ not a claim to have replicated the world.
 - Hoff (2011), *Understanding the Nexus* (Bonn2011 Nexus Conference, SEI); Howells et al. (2013),
   *Integrated analysis of climate change, land-use, energy and water strategies* (Nature Climate Change) —
   the Water–Energy–Food nexus basis for the fifth coupling (CLEWs dossier).
+- Bernanke, Gertler & Gilchrist (1999), *The financial accelerator in a quantitative business cycle
+  framework*; Gilchrist & Zakrajšek (2012), *Credit spreads and business cycle fluctuations* (AER);
+  Monasterolo & Raberto (2018), *The EIRIN flow-of-funds behavioural model* (Ecological Economics) — the
+  macro-finance basis for the sixth coupling (EIRIN dossier).

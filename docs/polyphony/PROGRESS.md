@@ -602,3 +602,29 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
   - **Next (Iter 26):** a **sixth domain** for breadth (e.g. Macro⇄Finance systemic risk, Migration⇄Climate),
     or a real water-scarcity driver for the nexus water-leg, or surface the disagreement/uncertainty
     machinery in the docs as a worked decision-support example (north star: help humans choose).
+- **Iter 26 — 🏦 Sixth synergy loop: Macro⇄Finance, the financial accelerator (#11). KEEP on synthetic (beats naive); real gap reopens convergence.**
+  - **Scope is a floor:** extended to **Macro⇄Finance** — the financial-accelerator / leverage-cycle
+    channel (Bernanke-Gertler-Gilchrist 1999; Minsky; Gilchrist-Zakrajšek 2012).
+  - **New voice `ReducedFormFinance`:** a credit shock builds through the leverage cycle to a **delayed,
+    slowly-unwinding output drag** (a critically-damped `t·aᵗ` boom-bust hump), feeding the economy voices'
+    existing `output_penalty` channel — structurally the Macro⇄Health template with a *financial*
+    accelerator. Coupled contemporaneously (acyclic; ADR-0005). New DGP
+    `synthetic_financial_crisis_series` (matched) + reuse `synthetic_decoupled_series` as the control.
+  - **`experiments/macrofinance.py`:** crisis regime raw Δ +35.8; under **fair calibration** Δ **+2.74**
+    with the **right sign** (corr(credit spread, GDP) = −0.999) and **beats naive** (coupled MASE 0.82 < 1);
+    decoupled control **cut** (Δ 0). **KEEP on synthetic, CUT on control.** Genuinely skillful on synthetic.
+  - **Honest caveat:** synthetic keep = machinery, not skill. Opens a **new real-data gap** (#11-real) — and
+    unusually a real KEEP is *plausible* (financial conditions lead output; Gilchrist-Zakrajšek), making the
+    real test especially worth running. Convergence **REOPENED**.
+  - **Atlas feedback (new coverage):** new **Finance / Systemic Risk** domain (`d-finance`) + **EIRIN**
+    dossier (`docs/model-families/finance/eirin.md`, a stock-flow-consistent behavioural macro-finance
+    model — genuinely missing) + graph nodes `eirin` (model), `monasterolo` (researcher), linked to the
+    existing `eiee` institution. Nav + model-families index + graph stats updated. **175 nodes / 470 edges,
+    0-dangling.**
+  - **Tests:** +5 (`test_macrofinance.py`) -> **98 pass.** Gates green: `pytest` (98) · `ruff` · `mypy`
+    (54 files) · graph 0-dangling · `mkdocs --strict`. Leaderboard Round 21 + reopened convergence table +
+    standing champion + 04-validation + related-work updated.
+  - **Next (Iter 27):** close the new gap — fetch a **real credit-spread → output series** (e.g. FRED
+    BAA-10Y or the excess bond premium vs GDP growth) and run a **placebo-controlled real Macro⇄Finance
+    tournament** (with walk-forward + CRPS/PIT); report keep/cut honestly. A real KEEP would be the second
+    surviving coupling — worth testing carefully and honestly.

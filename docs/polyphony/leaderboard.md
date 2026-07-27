@@ -456,23 +456,46 @@ is not a failure to hide but the lesson: **honest uncertainty from history is st
 breaks**, and a system that claimed otherwise would be dishonest in exactly the way this project exists to
 avoid.
 
-## Convergence status (per domain) — DONE (again, with the fifth domain resolved)
+## Round 21 — sixth synergy loop: Macro⇄Finance, the financial accelerator (issue #11)
+
+**Scope is a floor** once more: the ensemble extends to **Macro⇄Finance** — the financial-accelerator /
+leverage-cycle channel (Bernanke-Gertler-Gilchrist 1999; Minsky; Gilchrist-Zakrajšek 2012). A new `finance`
+voice turns a credit shock into a **delayed, slowly-unwinding output drag** (a critically-damped
+boom-bust hump), feeding the economy voices' existing `output_penalty` channel — structurally the
+Macro⇄Health template with a *financial* rather than epidemiological accelerator. Coupled
+**contemporaneously** (acyclic; ADR-0005). Atlas fed back: a new **Finance / Systemic Risk** domain +
+**EIRIN** dossier + graph nodes (`d-finance`, `eirin`, `monasterolo`).
+
+| Check (`experiments/macrofinance.py`) | Crisis regime | Decoupled negative control |
+|---|---|---|
+| raw synergy Δ (uncalibrated) | +35.8 | 0.00 |
+| **fair-calibrated** coupled MASE | **0.82** | 0.80 |
+| **fair-calibrated** econ-only MASE | 15.74 | 0.80 |
+| **fair-calibrated Δ** | **+2.74 ⇒ keep** | **0.00 ⇒ cut** |
+| corr(credit spread, GDP) — sign check | **−0.999 (as assumed)** | 0.00 |
+
+**Verdict: KEEP on synthetic (survives fair calibration + correct sign, and beats naive), CUT on the
+control.** Notably this coupling is genuinely *skillful* on synthetic (coupled MASE 0.82 < 1). **But — as
+always — a synthetic keep is machinery, not skill.** No real credit-spread → output series is tested yet,
+so this opens a *new open, improvable gap* (issue #11-real) — and unusually, a real KEEP is plausible here
+(financial conditions genuinely lead output; Gilchrist-Zakrajšek), which makes the real test especially
+worth running.
+
+## Convergence status (per domain) — REOPENED (scope extended to a sixth domain)
 
 | Domain / coupling | Verdict | Real-data status | Open, improvable gap? |
 |---|---|---|---|
 | **Macro⇄Health** | **KEEP** (survives full red-team round; assimilation + no-lag, MASE 0.10) | underpowered (≈1 pandemic event in annual data) | **no** — no more real events to fetch |
 | **Energy⇄climate⇄economy** | **CUT** (level artifact; genuinely cyclic) | — | **no** |
-| **Land⇄Climate⇄Food** | **CUT on real data** (fails placebo + wrong sign); coupling was real only on synthetic | ✅ tested (57 yrs cereal yield) | **no** |
+| **Land⇄Climate⇄Food** | **CUT on real data** (fails placebo + wrong sign) | ✅ tested (57 yrs cereal yield) | **no** |
 | **Real climate→GDP** | **CUT** (fails placebo under both CO₂ and temperature) | ✅ tested (58 yrs) | **no** |
-| **Urban⇄Transport⇄Energy⇄Health** (co-benefit) | **CUT on real data** (right sign, but PM2.5 adds no skill above trend; fails placebo) | ✅ tested (34 yrs PM2.5 + all-cause mortality) | **no** |
-| **Water⇄Energy⇄Food** (nexus, energy→food leg) | **CUT on real data** (corr +0.90 but no out-of-sample skill; loses to trend/placebo/naive) — kept only on synthetic | ✅ tested (34 yrs food + energy price); water-leg driver data-limited | **no** (energy leg); water-leg real test data-limited |
+| **Urban⇄Transport⇄Energy⇄Health** (co-benefit) | **CUT on real data** (right sign, no skill above trend; fails placebo) | ✅ tested (34 yrs) | **no** |
+| **Water⇄Energy⇄Food** (nexus, energy→food leg) | **CUT on real data** (corr +0.90 but no out-of-sample skill) | ✅ tested (34 yrs); water-leg data-limited | **no** |
+| **Macro⇄Finance** (financial accelerator) | **KEEP on synthetic** (fair-cal Δ+2.74, correct sign, beats naive); control cut | ❌ **not yet** — synthetic only | **YES** — needs a real credit-spread → output placebo test (issue #11-real) |
 
-**DONE (again).** The Iter-21 scope extension is resolved on real data. Every kept coupling survives its
-round (Macro⇄Health); **five** candidate couplings are now cut, each with a recorded, falsifiable
-reason — **four on real data under a placebo**, spanning four *distinct* failure modes. No domain retains
-an open, improvable gap (the water-leg driver is a data limitation, logged, not an improvable modeling
-gap). Standing headline: **one coupling earned its keep; five were cut — and the five *named* failure
-modes are the instrument's real output.**
+**REOPENED.** The six prior couplings stay resolved, but honoring "scope is a floor" added a seventh whose
+synthetic keep is not yet a real-data keep. The loop continues until this domain survives a real placebo
+or is cut. Standing headline unchanged: **a synthetic keep is a hypothesis, not a result.**
 
 ## Standing champions
 
@@ -483,6 +506,7 @@ modes are the instrument's real output.**
 | Food-price track, Land⇄Climate⇄Food slice (**fair calibration**) | **coupled ensemble** | land-only | synthetic-warming, time-blocked 30% | **+15.2 (keep)** | ⚠️ coupling real (survives level-artifact + shift) but **loses to naive** — no skill claim yet | [redteam](04-validation.md) |
 | Health-burden track, Urban⇄Transport⇄Energy⇄Health slice (**fair calibration**) | **coupled ensemble** (synthetic only) | airhealth-only | synthetic-cobenefit, time-blocked 30% | **+13.5 (keep synth)** | ❌ **CUT on real data** — right sign (+0.35) but PM2.5 adds no skill above trend; fails placebo (#7-real) | [redteam](04-validation.md) |
 | Food-price track, Water⇄Energy⇄Food nexus slice (**fair calibration**) | **coupled ensemble** (synthetic only) | nexusfood-only | synthetic-nexus, time-blocked 30% | **+99.3 (keep synth)** | ❌ **CUT on real data** — energy→food corr +0.90 but no out-of-sample skill (loses to trend/placebo/naive; #10-real) | [redteam](04-validation.md) |
+| GDP track, Macro⇄Finance slice (**fair calibration**) | **coupled ensemble** (synthetic only) | economy-only | synthetic-financial-crisis, time-blocked 30% | **+2.74 (keep synth)** | ⚠️ survives level-artifact + correct sign + beats naive, but **synthetic only** — real placebo pending (#11-real) | [redteam](04-validation.md) |
 
 ## Contest log
 

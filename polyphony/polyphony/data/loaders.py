@@ -192,6 +192,30 @@ def synthetic_flat_health_series(n: int = 40, seed: int = 0) -> Dataset:
     )
 
 
+def synthetic_financial_crisis_series(n: int = 40, seed: int = 0, credit_shock: float = 0.3) -> Dataset:
+    """Synthetic Macro⇄Finance target: GDP dips during a financial-accelerator crisis wave, then recovers.
+
+    Generated with the same leverage-cycle the finance voice uses (a credit shock is amplified into a
+    boom-bust hump of ``output_penalty``), so a matching finance-coupled predictor *can* track the dip
+    while an economy-only baseline (flat GDP) cannot. Negative control: :func:`synthetic_decoupled_series`
+    (GDP independent of finance). SYNTHETIC — proves the coupling machinery, not real macro-finance skill.
+    """
+    rng = np.random.default_rng(seed)
+    a = 0.95  # matches ReducedFormFinance.DECAY: stress ∝ t·aᵗ, a smooth delayed crisis hump
+    xpeak = (1.0 / (-np.log(a))) * np.exp(-1.0)
+    t = np.arange(n, dtype=float)
+    x = t * a**t  # t·aᵗ
+    spread = np.clip(credit_shock * x / xpeak, 0.0, 0.5)
+    gdp = 100.0 * (1.0 - spread) + rng.normal(0, 0.6, n)
+    return Dataset(
+        name="synthetic-financial-crisis",
+        series={"gdp": gdp, "credit_spread": spread},
+        synthetic=True,
+        note="SYNTHETIC Macro⇄Finance target (financial-accelerator crisis drags GDP).",
+        meta={"credit_shock": credit_shock, "seed": seed, "coupling": True},
+    )
+
+
 def synthetic_nexus_series(n: int = 40, seed: int = 0, precipitation: float = 0.7) -> Dataset:
     """Synthetic Water⇄Energy⇄Food nexus target: a sustained drought raises food price over time.
 
