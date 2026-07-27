@@ -984,6 +984,26 @@
       "type": "pattern",
       "label": "Data-Assimilation Engine",
       "page": "patterns/data-assimilation-engine.md"
+    },
+    {
+      "id": "benmap",
+      "type": "model",
+      "label": "BenMAP-CE"
+    },
+    {
+      "id": "crf",
+      "type": "algorithm",
+      "label": "Concentration-Response Function"
+    },
+    {
+      "id": "dockery",
+      "type": "researcher",
+      "label": "Douglas Dockery"
+    },
+    {
+      "id": "epa",
+      "type": "institution",
+      "label": "US EPA"
     }
   ],
   "edges": [
@@ -3246,6 +3266,36 @@
       "s": "dsge",
       "r": "exhibits_pattern",
       "t": "p-assimilation"
+    },
+    {
+      "s": "benmap",
+      "r": "belongs_to",
+      "t": "d-health"
+    },
+    {
+      "s": "benmap",
+      "r": "developed_at",
+      "t": "epa"
+    },
+    {
+      "s": "benmap",
+      "r": "solves_with",
+      "t": "crf"
+    },
+    {
+      "s": "benmap",
+      "r": "exhibits_pattern",
+      "t": "p-welfare"
+    },
+    {
+      "s": "benmap",
+      "r": "exhibits_pattern",
+      "t": "p-data"
+    },
+    {
+      "s": "crf",
+      "r": "led_by",
+      "t": "dockery"
     }
   ]
 }

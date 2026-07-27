@@ -85,6 +85,7 @@ Legend: ✅ complete · 🟡 in progress · ⬜ planned
 | [**Covasim**](health/covasim.md) — COVID-19 Agent-based Simulator | IDM / Gates Foundation | ✅ Gold |
 | [**GLEAM**](health/gleam.md) — metapopulation + mobility epidemic model | Northeastern (MOBS) | ✅ Bronze |
 | [**OpenABM-Covid19**](health/openabm.md) — agent-based, contact-tracing focus | Oxford | ✅ Bronze |
+| [**BenMAP-CE**](health/benmap.md) — air-pollution health-impact & benefits (co-benefits) | U.S. EPA | ✅ Bronze |
 
 ## Cross-cutting method families (documented under [Paradigms](../paradigms/index.md))
 

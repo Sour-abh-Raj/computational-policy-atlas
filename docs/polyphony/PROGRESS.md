@@ -415,3 +415,36 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
     (Macro⇄Health); three were cut — and the cuts, especially the real-data sign reversal in
     Land⇄Climate⇄Food, are the most valuable results, because they are the ones a single-confident-number
     simulator would have hidden. Restartable anytime with /loop (e.g. to add the fourth domain #7).
+- **Iter 19 — 🌬️ Fourth synergy loop: Urban⇄Transport⇄Energy⇄Health, the air-quality co-benefit (#7). New mandate: make the model more robust/complete/holistic + find validation avenues.**
+  - **New mandate** (loop restarted, dynamic mode): act as a scientist-engineer — extend coverage, add
+    validation avenues, make the ensemble more holistic. Honoring "scope is a floor", added the fourth
+    domain: the **health co-benefit of transport decarbonization** (Haines et al. 2009 Lancet; Dockery
+    1993 Harvard Six Cities; Burnett 2018 GEMM) — one of the best-documented cross-domain couplings.
+  - **Two new voices:** `ReducedFormTransport` (carbon price → vehicle-km via mode-shift with behavioural
+    inertia → ambient PM2.5) and `ReducedFormAirHealth` (log-linear concentration–response function turns
+    PM2.5 into an excess-mortality `health_burden`). Coupled **contemporaneously** — the chain
+    transport→airhealth is acyclic (ADR-0005). New DGPs: `synthetic_cobenefit_series` (matched, coupling
+    present) + `synthetic_flat_health_series` (negative control).
+  - **`experiments/urbanhealth.py`** — three-way honesty machinery transfers cleanly: raw synergy is a
+    huge **level artifact** (blind baseline has no level) in BOTH regimes, but under a **fair calibration**
+    the co-benefit keeps **Δ +13.5** (coupled MASE 0.87 vs blind 14.35) while the negative control is
+    **cut** (Δ 0.00); the exposure **sign is as assumed** (corr +0.997). **KEEP on synthetic, CUT on
+    control.**
+  - **Honest caveat:** synthetic keep = machinery, not skill — identical in status to Land⇄Climate⇄Food
+    at Round 8, which real data later *falsified* (Round 13). So the co-benefit is **not banked**; it
+    opens a **new real-data gap** (real PM2.5 + mortality + placebo). Convergence status **REOPENED**.
+  - **Atlas feedback (new coverage):** **BenMAP-CE** dossier (`docs/model-families/health/benmap.md`, EPA
+    air-pollution health-impact model — genuinely missing atlas coverage) + graph nodes `benmap` (model),
+    `crf` (algorithm, Concentration–Response Function), `dockery` (researcher), `epa` (institution) with
+    convention-matching edges. Nav + model-families index + graph stats updated. **170 nodes / 458 edges,
+    0-dangling.**
+  - **Tests:** +5 (`test_urbanhealth.py`: voices conform; policy lowers exposure over time; raw synergy is
+    a level artifact; co-benefit survives fair calibration + right sign; negative control cut) -> **77
+    pass.** Gates green: `pytest` (77) · `ruff` · `mypy` (44 files) · graph 0-dangling · `mkdocs --strict`.
+    Leaderboard Round 14 + reopened convergence table + standing champion + 04-validation + related-work
+    updated.
+  - **Next (Iter 20):** close the new gap — fetch a **real PM2.5 (e.g. OWID/GBD ambient PM2.5) + mortality
+    (WHO/GBD attributable or all-cause) series** and run a **placebo-controlled real co-benefits
+    tournament**; report keep/cut honestly (with the sign check). If the fetch is hard-blocked, log +
+    open an issue + work around (deepen an existing result or add a further domain). The loop continues
+    until this domain resolves on real data.

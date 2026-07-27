@@ -152,6 +152,46 @@ def synthetic_flat_food_series(n: int = 40, seed: int = 0) -> Dataset:
     )
 
 
+def synthetic_cobenefit_series(n: int = 40, seed: int = 0, carbon_price: float = 100.0) -> Dataset:
+    """Synthetic Urban⇄Transport⇄Energy⇄Health target: a carbon price cuts traffic PM2.5 and thus mortality.
+
+    Matched to the reduced-form transport + air-quality voices — carbon price → lower vehicle-km → lower
+    ambient ``pm25`` → lower ``health_burden`` (excess mortality) via a log-linear concentration-response
+    (Dockery 1993; Burnett 2018 GEMM). A policy-blind baseline (constant reference exposure) predicts a
+    flat burden and cannot track the co-benefit. Negative control: :func:`synthetic_flat_health_series`.
+    SYNTHETIC — proves the coupling machinery, not real air-quality-health skill.
+    """
+    rng = np.random.default_rng(seed)
+    target = 100.0 * np.exp(-0.4 * carbon_price / 100.0)  # price-implied long-run vehicle-km
+    vkt = np.empty(n)
+    v = 100.0  # start at the pre-policy baseline; travel behaviour adjusts gradually (inertia)
+    for k in range(n):
+        v = v + 0.15 * (target - v)
+        vkt[k] = v
+    pm25 = 8.0 + 0.20 * vkt
+    burden = 100.0 * (np.exp(0.02 * np.clip(pm25 - 5.0, 0.0, None)) - 1.0) + rng.normal(0, 0.4, n)
+    return Dataset(
+        name="synthetic-cobenefit",
+        series={"health_burden": burden, "pm25": pm25},
+        synthetic=True,
+        note="SYNTHETIC Urban⇄Transport⇄Energy⇄Health target (carbon price cuts PM2.5 and mortality).",
+        meta={"carbon_price": carbon_price, "seed": seed, "coupling": True},
+    )
+
+
+def synthetic_flat_health_series(n: int = 40, seed: int = 0) -> Dataset:
+    """Negative control for the co-benefits loop: mortality burden independent of policy (flat + noise)."""
+    rng = np.random.default_rng(seed)
+    burden = 55.0 + rng.normal(0, 0.4, n)
+    return Dataset(
+        name="synthetic-flat-health",
+        series={"health_burden": burden, "pm25": 30.0 + rng.normal(0, 0.4, n)},
+        synthetic=True,
+        note="SYNTHETIC negative control — mortality burden independent of transport policy.",
+        meta={"carbon_price": 0.0, "seed": seed, "coupling": False},
+    )
+
+
 def load(name: str = "synthetic") -> Dataset:
     """Load dataset ``name`` from datasets/ if a CSV exists, else the synthetic fallback."""
     path = DATASETS / f"{name}.csv"

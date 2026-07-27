@@ -190,6 +190,25 @@ synergy**. That is not a claim that climate doesn't affect the economy — only 
 CO₂→GDP damage regression adds no short-horizon skill over trend, and any claim it does must clear a
 placebo. The placebo control is now a **standing requirement** for real-data couplings.
 
+## Fourth coupling: the air-quality co-benefit passes the *synthetic* bar, not yet the real one (Round 14)
+
+Honoring "scope is a floor", the ensemble extends into **Urban⇄Transport⇄Energy⇄Health** — the health
+co-benefit of transport decarbonization (carbon price → less traffic → less PM2.5 → fewer premature
+deaths). This is the most *intuitively compelling* coupling in the whole ensemble, which is exactly why
+it gets no free pass. On a matched synthetic DGP the coupled ensemble survives the **same three-way
+discrimination** every other domain faced: fair-calibrated Δ **+13.5** (so it is not the energy-style
+level artifact that a calibrated baseline erases), correctly **cut** (Δ 0.00) on a flat negative control,
+and the exposure **sign is as assumed** (corr(PM2.5, burden) +0.997 — more pollution, more mortality,
+per the concentration–response literature). Two new voices (`transport`, `airhealth`) coupled
+contemporaneously (acyclic chain; ADR-0005); atlas fed back with a **BenMAP-CE** dossier and graph nodes.
+
+**The honest caveat, stated as plainly as the result:** this is a *synthetic* keep — machinery, not skill
+— identical in status to Land⇄Climate⇄Food at Round 8, which a real-data placebo later **falsified**
+(wrong sign, Round 13). So the co-benefit is **not** banked. It opens a **new honesty debt**: a real
+PM2.5 + mortality series must beat both a no-exposure baseline and a placebo before any keep is believed.
+The convergence status is therefore **reopened** until that real test resolves (keep or cut, both
+publishable).
+
 ## Honesty-debt register (tracked to close)
 
 | Debt | Status | Tracked by |
@@ -198,7 +217,9 @@ placebo. The placebo control is now a **standing requirement** for real-data cou
 | Real-data climate→GDP synergy | ✅ **CUT** — beats trend (Δ+1.70) but **fails a placebo control** (t^1.5 does better); no genuine signal, loses to naive | issue #9 |
 | Real-data cut robustness | ✅ **holds with OBSERVED temperature** (Hadley), not just the CO₂ proxy — coupled 1.07 vs placebo 0.87 ⇒ still cut; not a proxy artifact | issue #9 |
 | Real Land⇄Climate⇄Food test | ✅ **CUT on real data** — real cereal yield vs Hadley temp: fails placebo (2.21 vs 2.20) **and wrong sign** (corr +0.90; Green-Revolution tech dominates). Synthetic-kept coupling falsified by real data | issue #6/#9 |
-| Convergence | ✅ **DONE** — every kept coupling survives its round (Macro⇄Health; real test unimprovable) and every cut has a recorded reason; no open improvable gap | — |
+| Fourth synergy loop (breadth, #7) | ✅ **KEEP on synthetic** — Urban⇄Transport⇄Energy⇄Health co-benefit survives fair calibration (Δ +13.5) + correct sign; negative control cut. New voices `transport`+`airhealth`, BenMAP-CE dossier | issue #7 |
+| Real Urban⇄Transport⇄Energy⇄Health test | ⏳ **OPEN** — synthetic keep is machinery, not skill; needs a real PM2.5 + mortality placebo test before any keep is banked (cf. land, falsified on real data) | issue #7-real |
+| Convergence | 🔄 **REOPENED** — the four prior domains stay converged, but the new fourth coupling's real-data placebo test is an open, improvable gap; loop continues until it resolves | — |
 | Model calibration (real levels) | affine calibration now beats naive **on synthetic** (MASE 0.61); real-level calibration still pending | (opens when #9 lands) |
 | Welfare/equity engine (values dial) | ✅ **built + integrated** — frontier over policies; recommendation changes with values | issue #4 |
 | Predictive distributions → CRPS/PIT in tournament | ✅ **scored + calibrated** — `calibrate_ensemble` de-bias+widen ⇒ CRPS 7.9→0.44, **PIT 0.0→0.39** (near-uniform, synthetic) | blueprint §6 |

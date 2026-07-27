@@ -279,7 +279,36 @@ coupling that was confidently *kept* on synthetic data is **falsified by real da
 sharpest demonstration of why synthetic validation is never enough, and why real data + a placebo +
 a sign check are the gates that matter.
 
-## Convergence status (per domain) — DONE
+## Round 14 — fourth synergy loop: Urban⇄Transport⇄Energy⇄Health, the air-quality co-benefit (issue #7)
+
+**Scope is a floor** (ADR-0001): the ensemble extends into a new domain with a cited reason and a test.
+The **health co-benefit of transport decarbonization** — a carbon price cuts traffic, cuts ambient PM2.5,
+and thereby cuts premature mortality — is one of the best-documented cross-domain couplings in policy
+science (Haines et al. 2009, *Lancet*; the Lancet Countdown), resting on concentration–response functions
+that are among the most robust dose–response relationships in environmental epidemiology (Dockery et al.
+1993 Harvard Six Cities; Burnett et al. 2018 GEMM). Two new voices — a `transport` mode-shift voice
+(carbon price → vehicle-km → PM2.5, with behavioural inertia) and an `airhealth` voice (a log-linear CRF
+turning PM2.5 into an excess-mortality burden) — coupled **contemporaneously** (the chain is acyclic;
+ADR-0005). Atlas fed back: new **BenMAP-CE** dossier + graph nodes (`benmap`, `crf`, `dockery`, `epa`).
+
+| Check (`experiments/urbanhealth.py`) | Co-benefit regime | Flat negative control |
+|---|---|---|
+| raw synergy Δ (uncalibrated) | +153.5 | +200.6 — *both huge: a level artifact, not skill* |
+| **fair-calibrated** coupled MASE | **0.87** | 0.81 |
+| **fair-calibrated** blind MASE | 14.35 | 0.81 |
+| **fair-calibrated Δ** | **+13.5 ⇒ keep** | **0.00 ⇒ cut** |
+| corr(PM2.5, burden) — sign check | **+0.997 (as assumed)** | −0.06 |
+
+**Verdict: KEEP on synthetic (survives fair calibration + correct sign), CUT on the negative control.**
+The three-way honesty machinery transfers cleanly to the fourth domain: the coupling beats its
+sum-of-parts even after the baseline gets its own affine fit (so it is *not* the energy-style level
+artifact), it is correctly *cut* where the DGP has no coupling, and the exposure sign is the one the
+mechanism assumes. **But — exactly as with Land⇄Climate⇄Food at Round 8 — a synthetic keep is machinery,
+not real-world skill.** No real PM2.5 + mortality series has been tested yet, so this is a *new open,
+improvable gap* (issue #7-real). The co-benefit's intuitive appeal is precisely why it must face a real
+placebo before any keep is believed.
+
+## Convergence status (per domain) — REOPENED (scope extended to a fourth domain)
 
 | Domain / coupling | Verdict | Real-data status | Open, improvable gap? |
 |---|---|---|---|
@@ -287,14 +316,13 @@ a sign check are the gates that matter.
 | **Energy⇄climate⇄economy** | **CUT** (level artifact; genuinely cyclic) | — | **no** |
 | **Land⇄Climate⇄Food** | **CUT on real data** (fails placebo + wrong sign); coupling was real only on synthetic | ✅ tested (57 yrs cereal yield) | **no** |
 | **Real climate→GDP** | **CUT** (fails placebo under both CO₂ and temperature) | ✅ tested (58 yrs) | **no** |
+| **Urban⇄Transport⇄Energy⇄Health** (co-benefit) | **KEEP on synthetic** (fair-cal Δ+13.5, correct sign); negative control cut | ❌ **not yet** — synthetic only | **YES** — needs a real PM2.5 + mortality placebo test (issue #7-real) |
 
-**DONE.** Every kept coupling has a champion that survives its full tournament round (Macro⇄Health, with
-its real-data test shown *unimprovable* on available annual data), and every other candidate coupling is
-**cut with a recorded, falsifiable reason** — three of them on *real* data under a placebo control. No
-domain retains an open, improvable gap. The honest headline of the whole exercise: **one coupling
-earned its keep and survives sustained attack; three were cut — and the cuts, especially the real-data
-sign reversal in Land⇄Climate⇄Food, are the most valuable results, because they are the ones a
-single-confident-number simulator would have hidden.**
+**REOPENED.** The prior four domains remain converged, but honoring "scope is a floor" added a fifth
+coupling whose synthetic keep is not yet a real-data keep. Per the DONE criterion, the loop continues
+until this domain either survives a real placebo or is cut on real data — the same bar every other
+coupling faced. The standing honest headline is unchanged: **couplings earn their keep only against
+rivals and a placebo on real data; a synthetic keep is a hypothesis, not a result.**
 
 ## Standing champions
 
@@ -303,6 +331,7 @@ single-confident-number simulator would have hidden.**
 | GDP track, energy⇄climate⇄economy slice | **economy-only** (after fair calibration) | — | synthetic-policy, time-blocked 30% | **−0.01 (cut)** | ✅ beats naive (cal) but coupling adds nothing | [json](leaderboard.json) |
 | GDP track, Macro⇄Health slice (**assimilation + contemporaneous**) | **coupled ensemble** | economy-only | synthetic-pandemic, time-blocked 30% | **+8.92 (keep)** | ✅ **survives full round**; no-lag solve ⇒ **MASE 0.10**, sharpest champion | [redteam](04-validation.md) |
 | Food-price track, Land⇄Climate⇄Food slice (**fair calibration**) | **coupled ensemble** | land-only | synthetic-warming, time-blocked 30% | **+15.2 (keep)** | ⚠️ coupling real (survives level-artifact + shift) but **loses to naive** — no skill claim yet | [redteam](04-validation.md) |
+| Health-burden track, Urban⇄Transport⇄Energy⇄Health slice (**fair calibration**) | **coupled ensemble** | airhealth-only | synthetic-cobenefit, time-blocked 30% | **+13.5 (keep)** | ⚠️ survives level-artifact + correct sign, but **synthetic only** — real placebo pending (#7-real) | [redteam](04-validation.md) |
 
 ## Contest log
 

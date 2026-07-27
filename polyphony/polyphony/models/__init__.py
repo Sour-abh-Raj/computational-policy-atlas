@@ -13,7 +13,9 @@ from .econ_cge import EquilibriumEconomy
 from .econ_e3me import DisequilibriumEconomy
 from .energy_lp import ReducedFormEnergy
 from .epidemic_sir import ReducedFormEpidemic
+from .health_airquality import ReducedFormAirHealth
 from .land_crop import ReducedFormLand
+from .transport_mode import ReducedFormTransport
 
 __all__ = [
     "ReducedFormEnergy",
@@ -22,4 +24,6 @@ __all__ = [
     "ReducedFormClimate",
     "ReducedFormEpidemic",
     "ReducedFormLand",
+    "ReducedFormTransport",
+    "ReducedFormAirHealth",
 ]

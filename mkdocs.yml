@@ -123,6 +123,7 @@ nav:
           - Covasim: model-families/health/covasim.md
           - GLEAM: model-families/health/gleam.md
           - OpenABM-Covid19: model-families/health/openabm.md
+          - BenMAP-CE: model-families/health/benmap.md
       - Frameworks & Environments:
           - Mesa: model-families/frameworks/mesa.md
           - Repast: model-families/frameworks/repast.md
