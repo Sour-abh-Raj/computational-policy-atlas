@@ -23,6 +23,7 @@ from polyphony.experiments.panel_validation import (
     run_leakage_panel,
     run_pm25_mortality_panel,
     run_preston_panel,
+    run_survivor_oos,
     two_way_within,
 )
 
@@ -91,6 +92,20 @@ def test_preston_curve_survives_panel_fe_a_boundary_case():
     assert r.within_corr > 0.1  # a real within-country effect survives (leakage's was ≈ 0.02)
     assert r.within_has_assumed_sign
     assert r.verdict() == "within-signal survives"
+
+
+@pytest.mark.skipif(
+    not (has_real_preston_panel() and has_real_demographic_panel()),
+    reason="real panels not fetched",
+)
+def test_panel_survivors_forecast_out_of_sample():
+    # Consistency with the aggregate bar: the survivors are held to an OUT-OF-SAMPLE test too. Fit the
+    # within-country slope on early years, predict held-out later years — both give a positive prediction
+    # correlation, so the within-unit mechanisms genuinely forecast, not merely describe in-sample.
+    oos = run_survivor_oos()
+    assert len(oos) == 2
+    for name, corr in oos.items():
+        assert corr > 0.05, f"{name}: within mechanism does not forecast out-of-sample"
 
 
 @pytest.mark.skipif(not has_real_demographic_panel(), reason="real demographic panel not fetched")

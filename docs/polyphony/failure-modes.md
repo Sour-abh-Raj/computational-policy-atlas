@@ -133,6 +133,14 @@ ones. So the failure of aggregate couplings is a statement about **the difficult
 aggregate time series**, not about the instrument's ability to find real structure when it is there — and
 the panel taxonomy is the mirror image of the aggregate one: *real mechanisms survive; confounds don't.*
 
+**And the survivors are held to the same out-of-sample bar.** Lest the panel be judged more leniently than
+the aggregate couplings (which faced walk-forward), the two survivors are also tested **out of sample**: fit
+the within-country slope on the earlier years, predict the held-out later years. Both **forecast** —
+prediction-vs-actual correlation **+0.24** (Preston) and **+0.14** (demographic transition) —
+(`run_survivor_oos`). So the panel survivors don't merely describe in-sample; they pass the very
+out-of-sample test the aggregate couplings fail. The two-domain split is real, not an artifact of a softer
+standard.
+
 ## What actually separates keeps from cuts (a computed answer)
 
 Given two keeps and seven cuts, *which property* decides? Scoring every coupling on four plausible

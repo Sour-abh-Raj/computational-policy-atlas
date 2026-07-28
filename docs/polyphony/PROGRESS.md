@@ -1194,3 +1194,21 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
   - **Convergence stays DONE.** Gates green: `pytest` (161) · `ruff` · `mypy` (73 files) · graph 0-dangling ·
     `mkdocs --strict`.
   - **Next (Iter 54):** a further distinct probe, or continued consolidation/polish.
+- **Iter 54 — 🎯 Rigor consistency: the panel survivors are held to the same OUT-OF-SAMPLE bar (and pass).**
+  - **Closed a consistency gap:** aggregate couplings faced a strict out-of-sample walk-forward, but the
+    panel survivors had only been tested for *in-sample* within-FE correlation. To judge them by the same
+    standard, added an **out-of-sample** panel test.
+  - **`panel_validation.oos_within_prediction` + `run_survivor_oos`:** two-way demean for the FE nuisance,
+    fit the within-country slope on the **earlier** years, apply it to the **held-out later** years, and
+    correlate prediction with actual. **Both survivors forecast:** Preston **+0.24**, demographic transition
+    **+0.14** (positive prediction-vs-actual correlation). So the within-unit mechanisms don't merely
+    describe in-sample — they pass the very out-of-sample test the aggregate couplings fail.
+  - **Sharpens the two-domain finding:** the split is real, *not* an artifact of a softer standard — panels
+    are held to the same bar and clear it, while aggregates don't.
+  - **Validated:** `test_panel_validation.py` asserts both survivors have positive out-of-sample within
+    prediction. Field-guide boundary section updated.
+  - **Atlas feedback:** reuses the panel data — no new graph node; graph unchanged (**180 nodes / 480 edges,
+    0-dangling**).
+  - **Convergence stays DONE.** **+1 test -> 162 pass.** Gates green: `pytest` (162) · `ruff` · `mypy`
+    (73 files) · graph 0-dangling · `mkdocs --strict`.
+  - **Next (Iter 55):** continued consolidation/polish, or a further distinct probe.

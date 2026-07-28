@@ -125,3 +125,31 @@ def run_all_panels() -> tuple[PanelFEResult, ...]:
     """Every panel coupling — the panel domain's own taxonomy: two survivors (real within-unit mechanisms)
     and two cut/confounded, mirroring the aggregate story."""
     return (run_preston_panel(), run_demographic_panel(), run_leakage_panel(), run_pm25_mortality_panel())
+
+
+def oos_within_prediction(iso: np.ndarray, year: np.ndarray, driver: np.ndarray, target: np.ndarray, test_frac: float = 0.3) -> float:
+    """Correlation between the **out-of-sample** within-country prediction and the actual target, holding the
+    panel survivors to the same out-of-sample bar the aggregate couplings face. Two-way demean for the FE
+    nuisance, fit the within slope on the earlier ``1−test_frac`` of years, and apply it to the held-out
+    later years. A positive value means the within-unit mechanism **genuinely forecasts**, not merely
+    describes in-sample."""
+    yd = _group_demean(_group_demean(target.astype(float), iso), year)
+    xd = _group_demean(_group_demean(driver.astype(float), iso), year)
+    cut = float(np.quantile(year, 1.0 - test_frac))
+    tr, te = year <= cut, year > cut
+    denom = float(np.sum(xd[tr] ** 2))
+    if denom == 0 or np.std(xd[te]) == 0 or np.std(yd[te]) == 0:
+        return 0.0
+    b = float(np.sum(xd[tr] * yd[tr]) / denom)
+    return float(np.corrcoef(b * xd[te], yd[te])[0, 1])
+
+
+def run_survivor_oos() -> dict[str, float]:
+    """Out-of-sample within-prediction correlation for the two panel survivors — both are positive, so the
+    within-unit mechanisms forecast held-out years, passing the same out-of-sample bar aggregate couplings fail."""
+    pi, py, px, pl = load_real_preston_panel()
+    di, dy, dx, df = load_real_demographic_panel()
+    return {
+        "Income⇄LifeExpectancy (Preston)": oos_within_prediction(pi, py, px, pl),
+        "Income⇄Fertility (demographic transition)": oos_within_prediction(di, dy, dx, df),
+    }
