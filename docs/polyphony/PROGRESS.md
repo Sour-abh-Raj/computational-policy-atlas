@@ -1178,3 +1178,19 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
   - **Convergence stays DONE.** **+3 tests -> 161 pass.** Gates green: `pytest` (161) · `ruff` · `mypy`
     (73 files) · graph 0-dangling · `mkdocs --strict`.
   - **Next (Iter 53):** consolidation/polish, or a further distinct probe if genuinely warranted.
+- **Iter 53 — 🪟 Consolidation: surface the two-domain epistemology on the front door.**
+  - **The project's deepest finding** (aggregate forecasting climatology-dominated vs cross-country panels
+    revealing real mechanisms) emerged over Iters 50–52 but wasn't reflected in the landing page. Made it
+    legible from the start.
+  - **`index.md` — new "The deepest finding — a two-domain epistemology" section:** the central
+    generalization (aggregate couplings rarely beat climatology; Okun/yield-curve confirm; Energy⇄Inflation
+    is the mechanical exception) **and** its boundary (the Preston curve +0.13 and the demographic transition
+    −0.11 survive panel FE across 252 countries where leakage collapses to ≈0). One-line epistemology:
+    *aggregate time-series forecasting is climatology-dominated and honest couplings are rare; cross-sectional
+    structure is real and findable — and one validated fixed-effects instrument tells the two apart.* Test
+    count refreshed (140+ → 160+).
+  - **Atlas feedback:** docs consolidation — no code/graph change; graph unchanged (**180 nodes / 480 edges,
+    0-dangling**).
+  - **Convergence stays DONE.** Gates green: `pytest` (161) · `ruff` · `mypy` (73 files) · graph 0-dangling ·
+    `mkdocs --strict`.
+  - **Next (Iter 54):** a further distinct probe, or continued consolidation/polish.

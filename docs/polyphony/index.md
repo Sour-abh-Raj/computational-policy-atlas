@@ -58,6 +58,28 @@ cuts — the right sign, beating a placebo, even beating naive are each *necessa
 "insights"; Polyphony reports **two results and eight cautionary tales** — and the cautionary tales are the
 more valuable half, because they are the ones you would otherwise have believed.
 
+## The deepest finding — a two-domain epistemology
+
+Testing enough couplings surfaced a single robust regularity, and then its boundary:
+
+> **Reduced-form couplings on annual *aggregate* targets almost never beat a climatology baseline** — even
+> famously strong relationships (Okun's law, corr −0.81; the yield curve) are cut. The one keep,
+> **Energy⇄Inflation**, is the exception that proves the rule: it works because energy is a *large,
+> mechanical, contemporaneous component* of the CPI, not because it forecasts an otherwise-unforecastable
+> series.
+
+But the same instrument is **not a "nothing works" machine.** Move to a **cross-country panel** with a
+genuine *within-unit* mechanism and couplings *survive*: across 252 countries, the **Preston curve**
+(income → life expectancy, within-FE +0.13) and the **demographic transition** (income → fertility, −0.11)
+both keep their signal under two-way fixed effects, where confounded carbon leakage collapses to ≈0. So the
+panel domain has its own honest **two-survivor / two-cut** taxonomy, the mirror image of the aggregate one.
+
+**The epistemology, in one line:** *aggregate time-series forecasting is climatology-dominated and honest
+couplings are rare; cross-sectional/panel structure is real and findable — and one validated fixed-effects
+instrument tells the two apart.* (See the
+[central generalization](failure-modes.md#the-central-generalization-what-all-of-this-adds-up-to) and
+`experiments/panel_validation.run_all_panels`.)
+
 ## How a coupling earns its keep (the bar)
 
 A coupling is kept only if, on **real** data, it: has the **assumed sign**; beats a **placebo** (a
@@ -94,7 +116,7 @@ under deep uncertainty, *not* a forecast.
 
 Ten atlas domains (climate · energy · economics · health · transport · agriculture · water · urban ·
 **finance** · **trade**), a typed [knowledge graph](../graph/index.md) of 180 nodes / 480 edges (0-dangling),
-and a Python package (`polyphony/`) with 140+ tests, all green under `ruff` · `mypy` · `mkdocs --strict`.
+and a Python package (`polyphony/`) with 160+ tests, all green under `ruff` · `mypy` · `mkdocs --strict`.
 
 The headline counts above (ten couplings — two kept, eight cut — across seven failure modes and six
 validation methods) are not hand-typed: they are computed from the tested ledger by
