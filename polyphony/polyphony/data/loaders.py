@@ -316,6 +316,19 @@ def has_real_preston_panel() -> bool:
 def load_real_preston_panel() -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
     """REAL Preston-curve panel: ``(iso, year, log_gdppc, life_exp)`` — income vs life expectancy."""
     return _load_panel_csv(REAL_PRESTON_PANEL, "log_gdppc", "life_exp")
+
+
+REAL_DEMOGRAPHIC_PANEL = DATASETS / "real_demographic_panel.csv"
+
+
+def has_real_demographic_panel() -> bool:
+    """Whether the demographic-transition panel has been fetched (``fetch_real.fetch_demographic_panel``)."""
+    return REAL_DEMOGRAPHIC_PANEL.exists()
+
+
+def load_real_demographic_panel() -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+    """REAL demographic-transition panel: ``(iso, year, log_gdppc, fertility)`` — income vs fertility."""
+    return _load_panel_csv(REAL_DEMOGRAPHIC_PANEL, "log_gdppc", "fertility")
 REAL_INFLATION = DATASETS / "real_inflation.csv"
 REAL_INFLATION_Q = DATASETS / "real_inflation_q.csv"
 REAL_HOUSING = DATASETS / "real_housing.csv"

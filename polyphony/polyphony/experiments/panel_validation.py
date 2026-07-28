@@ -25,6 +25,7 @@ from dataclasses import dataclass
 import numpy as np
 
 from ..data.loaders import (
+    load_real_demographic_panel,
     load_real_leakage_panel,
     load_real_pm25_mortality_panel,
     load_real_preston_panel,
@@ -111,3 +112,16 @@ def run_preston_panel() -> PanelFEResult:
     """
     iso, year, log_gdppc, life_exp = load_real_preston_panel()
     return _panel_fe("Income⇄LifeExpectancy (Preston)", +1, iso, year, log_gdppc, life_exp)
+
+
+def run_demographic_panel() -> PanelFEResult:
+    """The demographic transition: does income lower fertility *within* countries? A **second surviving**
+    panel coupling (assumed sign −1), confirming that the panel domain finds real within-unit mechanisms."""
+    iso, year, log_gdppc, fertility = load_real_demographic_panel()
+    return _panel_fe("Income⇄Fertility (demographic transition)", -1, iso, year, log_gdppc, fertility)
+
+
+def run_all_panels() -> tuple[PanelFEResult, ...]:
+    """Every panel coupling — the panel domain's own taxonomy: two survivors (real within-unit mechanisms)
+    and two cut/confounded, mirroring the aggregate story."""
+    return (run_preston_panel(), run_demographic_panel(), run_leakage_panel(), run_pm25_mortality_panel())

@@ -12,11 +12,14 @@ import numpy as np
 import pytest
 
 from polyphony.data.loaders import (
+    has_real_demographic_panel,
     has_real_leakage_panel,
     has_real_pm25_mortality_panel,
     has_real_preston_panel,
 )
 from polyphony.experiments.panel_validation import (
+    run_all_panels,
+    run_demographic_panel,
     run_leakage_panel,
     run_pm25_mortality_panel,
     run_preston_panel,
@@ -90,6 +93,17 @@ def test_preston_curve_survives_panel_fe_a_boundary_case():
     assert r.verdict() == "within-signal survives"
 
 
+@pytest.mark.skipif(not has_real_demographic_panel(), reason="real demographic panel not fetched")
+def test_demographic_transition_survives_a_second_survivor():
+    # A second surviving panel coupling (income → fertility, assumed negative): richer countries have fewer
+    # children even after two-way fixed effects — a robust within-country mechanism.
+    r = run_demographic_panel()
+    assert r.pooled_corr < -0.5
+    assert r.within_corr < -0.05  # negative within effect survives
+    assert r.within_has_assumed_sign
+    assert r.verdict() == "within-signal survives"
+
+
 @pytest.mark.skipif(
     not (has_real_leakage_panel() and has_real_preston_panel()),
     reason="real panels not fetched",
@@ -98,6 +112,22 @@ def test_panel_fe_discriminates_survivor_from_confounded():
     # Same tool, opposite verdicts: a genuine within-unit mechanism survives; a confounded one is cut.
     assert run_preston_panel().verdict() == "within-signal survives"
     assert run_leakage_panel().verdict() == "cut-confirmed (confounded-away)"
+
+
+@pytest.mark.skipif(
+    not (
+        has_real_preston_panel()
+        and has_real_demographic_panel()
+        and has_real_leakage_panel()
+        and has_real_pm25_mortality_panel()
+    ),
+    reason="real panels not fetched",
+)
+def test_panel_taxonomy_two_survivors_two_cut():
+    # The panel domain's own honest taxonomy, mirroring the aggregate 2-keep/8-cut story: two couplings with
+    # a genuine within-unit mechanism survive; two confounded ones do not.
+    survive = [r for r in run_all_panels() if r.verdict() == "within-signal survives"]
+    assert len(survive) == 2  # Preston + demographic transition
 
 
 @pytest.mark.skipif(

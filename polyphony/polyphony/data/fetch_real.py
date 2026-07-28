@@ -331,6 +331,36 @@ def fetch_preston_panel(out: pathlib.Path | None = None, min_years: int = 15) ->
     return out
 
 
+WB_FERTILITY = "https://api.worldbank.org/v2/country/all/indicator/SP.DYN.TFRT.IN?format=json&per_page=27000"
+
+
+def fetch_demographic_panel(out: pathlib.Path | None = None, min_years: int = 15) -> pathlib.Path:
+    """Fetch a multi-country panel for the **demographic transition** (Iter 52 — a second panel survivor):
+    log GDP per capita (World Bank ``NY.GDP.PCAP.KD``) + total fertility rate (``SP.DYN.TFRT.IN``). Rising
+    income → falling fertility is a robust *within-country* mechanism, so its two-way-FE within correlation
+    survives (negative). Writes ``datasets/real_demographic_panel.csv`` (columns: ``iso``, ``year``,
+    ``log_gdppc``, ``fertility``).
+    """
+    import math
+
+    gdp = _fetch_worldbank_all(WB_GDP_PCAP)
+    fert = _fetch_worldbank_all(WB_FERTILITY)
+    out = out or (DATASETS / "real_demographic_panel.csv")
+    n = 0
+    with out.open("w", newline="", encoding="utf-8") as fh:
+        w = csv.writer(fh)
+        w.writerow(["iso", "year", "log_gdppc", "fertility"])
+        for iso in sorted(set(gdp) & set(fert)):
+            years = [y for y in sorted(set(gdp[iso]) & set(fert[iso])) if gdp[iso][y] > 0]
+            if len(years) >= min_years:
+                for y in years:
+                    w.writerow([iso, y, math.log(gdp[iso][y]), fert[iso][y]])
+                    n += 1
+    if n < 1000:
+        raise RuntimeError(f"too few panel observations ({n}); refusing to write")
+    return out
+
+
 FRED_SPREAD = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAA10Y"  # Baa − 10Y Treasury credit spread
 FRED_REALGDP = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=GDPC1"  # real GDP (chained 2017 $)
 
@@ -536,3 +566,5 @@ if __name__ == "__main__":
     print(f"wrote {okun_p} and {yc_p}")
     preston = fetch_preston_panel()
     print(f"wrote {preston} ({sum(1 for _ in preston.open()) - 1} rows)")
+    demo = fetch_demographic_panel()
+    print(f"wrote {demo} ({sum(1 for _ in demo.open()) - 1} rows)")

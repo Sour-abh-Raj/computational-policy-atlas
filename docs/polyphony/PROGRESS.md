@@ -1160,3 +1160,21 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
   - **Convergence stays DONE.** **+3 tests -> 158 pass.** Gates green: `pytest` (158) · `ruff` · `mypy`
     (73 files) · graph 0-dangling · `mkdocs --strict`.
   - **Next (Iter 52):** consolidation, or a further boundary/coverage probe if genuinely distinct.
+- **Iter 52 — 👥 A second panel survivor: the panel domain gets its own taxonomy (2 survivors, 2 cut).**
+  - **Confirmed the boundary is general, not a one-off.** Added a **second** panel coupling with a robust
+    within-unit mechanism: the **demographic transition** (rising income → falling fertility).
+  - **Fetched the demographic panel** (`fetch_demographic_panel`: World Bank log GDP per capita + total
+    fertility rate, 252 countries × 13,985 obs). Loader `load_real_demographic_panel`;
+    `panel_validation.run_demographic_panel` + a `run_all_panels` aggregator.
+  - **Result — it SURVIVES:** pooled corr **−0.71** → two-way-FE within corr **−0.11** (right sign) →
+    "within-signal survives". So the panel domain now has its **own honest taxonomy, mirroring the aggregate
+    story: two survivors** (Preston +0.13, demographic −0.11 — real within-unit mechanisms) and **two cut**
+    (leakage +0.02, PM2.5→mortality confounded outcome). The *same* fixed-effects tool passes the real
+    mechanisms and cuts the confounded ones — *real mechanisms survive; confounds don't.*
+  - **Validated:** `test_panel_validation.py` asserts the second survivor and the 2-survivor/2-cut taxonomy.
+    Field-guide boundary section now carries the full panel table.
+  - **Atlas feedback:** reuses the panel-FE tool — no new graph node; graph unchanged (**180 nodes / 480
+    edges, 0-dangling**). New demographic panel dataset committed.
+  - **Convergence stays DONE.** **+3 tests -> 161 pass.** Gates green: `pytest` (161) · `ruff` · `mypy`
+    (73 files) · graph 0-dangling · `mkdocs --strict`.
+  - **Next (Iter 53):** consolidation/polish, or a further distinct probe if genuinely warranted.

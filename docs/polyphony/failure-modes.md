@@ -118,12 +118,20 @@ plausible-but-hollow "insights."
 
 **The generalization has a boundary — and it is about *aggregate forecasting*, not "nothing works".** The
 instrument is not a nihilism machine. Move from forecasting an aggregate time series to a **cross-country
-panel** with a genuine within-unit mechanism, and couplings *do* survive: the **Preston curve** (income →
-life expectancy) keeps a **positive within-country correlation (+0.13)** under two-way fixed effects across
-252 countries, where confounded carbon leakage collapsed to ≈0 (`experiments/panel_validation.run_preston_panel`).
-The *same* fixed-effects tool passes one and cuts the other — so the failure of aggregate couplings is a
-statement about **the difficulty of beating climatology on aggregate time series**, not about the
-instrument's ability to find real structure when it is there.
+panel** with a genuine within-unit mechanism, and couplings *do* survive. The panel domain has its own
+honest taxonomy — **two survivors and two cut**, mirroring the aggregate story (`run_all_panels`):
+
+| Panel coupling (252 countries) | pooled | two-way-FE within | verdict |
+|---|---:|---:|---|
+| **Income → life expectancy** (Preston) | +0.79 | **+0.13** | survives |
+| **Income → fertility** (demographic transition) | −0.71 | **−0.11** | survives |
+| Trade openness → leakage gap | +0.30 | +0.02 | cut (confounded-away) |
+| PM2.5 → all-cause mortality | −0.00 | −0.14 | cut (outcome confounded) |
+
+The *same* fixed-effects tool passes the two real within-country mechanisms and cuts the two confounded
+ones. So the failure of aggregate couplings is a statement about **the difficulty of beating climatology on
+aggregate time series**, not about the instrument's ability to find real structure when it is there — and
+the panel taxonomy is the mirror image of the aggregate one: *real mechanisms survive; confounds don't.*
 
 ## What actually separates keeps from cuts (a computed answer)
 
