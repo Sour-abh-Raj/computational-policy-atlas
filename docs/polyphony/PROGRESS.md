@@ -1226,3 +1226,21 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
   - **Convergence stays DONE.** Gates green: `pytest` (162) · `ruff` · `mypy` (73 files) · graph 0-dangling ·
     `mkdocs --strict`.
   - **Next (Iter 56):** continued polish, or a further distinct probe if genuinely warranted.
+- **Iter 56 — ✅ The honest POSITIVE output: what a decision-maker can actually rely on (3 findings).**
+  - **Complemented the failure-mode catalogue** (what was cut) with its positive mirror: of everything
+    tested, the short list of relationships that **survived real validation** and are usable to inform a
+    policy choice.
+  - **`experiments/reliable_findings.py`:** exactly **three** — **energy → inflation** (the aggregate
+    forecast keep), **income → life expectancy** (Preston panel mechanism), **income → fertility**
+    (demographic panel mechanism). Each has a stated evidence basis and policy relevance. **Macro⇄Health is
+    deliberately excluded** (synthetic keep, underpowered real — not reliable enough to act on).
+  - **Tied to the validation, not asserted:** `test_reliable_findings.py` checks the aggregate finding
+    matches the ledger's one real-data keep, and the two panel findings match the survivors that forecast
+    out of sample.
+  - **Decision-support hygiene:** a policymaker should know not only that most plausible couplings don't
+    hold, but *exactly which few do* — surfaced on the front door (`index.md`).
+  - **Atlas feedback:** synthesis of existing results — no new graph node; graph unchanged (**180 nodes /
+    480 edges, 0-dangling**).
+  - **Convergence stays DONE.** **+3 tests -> 165 pass.** Gates green: `pytest` (165) · `ruff` · `mypy`
+    (74 files) · graph 0-dangling · `mkdocs --strict`.
+  - **Next (Iter 57):** continued polish, or a further distinct probe if genuinely warranted.

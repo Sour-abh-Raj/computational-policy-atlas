@@ -80,6 +80,13 @@ instrument tells the two apart.* (See the
 [central generalization](failure-modes.md#the-central-generalization-what-all-of-this-adds-up-to) and
 `experiments/panel_validation.run_all_panels`.)
 
+**For a decision-maker, the honest positive output is short and usable** (`experiments/reliable_findings.py`).
+Of everything tested, **three** relationships survived real validation and can inform a choice: **energy
+prices → inflation** (an aggregate forecast, ~1 year ahead), **income → life expectancy** and **income →
+fertility** (two panel mechanisms that survive fixed effects and forecast held-out years). Everything else
+was cut, for a named reason. Knowing *exactly which few couplings hold* — and using only those — is the
+decision-support hygiene a single-confident-number tool never offers.
+
 ## How a coupling earns its keep (the bar)
 
 A coupling is kept only if, on **real** data, it: has the **assumed sign**; beats a **placebo** (a
