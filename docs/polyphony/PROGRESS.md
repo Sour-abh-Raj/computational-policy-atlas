@@ -1212,3 +1212,17 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
   - **Convergence stays DONE.** **+1 test -> 162 pass.** Gates green: `pytest` (162) · `ruff` · `mypy`
     (73 files) · graph 0-dangling · `mkdocs --strict`.
   - **Next (Iter 55):** continued consolidation/polish, or a further distinct probe.
+- **Iter 55 — 📇 Reproducibility consolidation: documented every real dataset's provenance.**
+  - **Every real result is now traceable to a public source in one place.** The datasets `README.md` was a
+    stale "sources to add" wishlist while **15 real CSVs** had accumulated across iterations, undocumented.
+  - **Rewrote `polyphony/data/datasets/README.md`** as a complete provenance table — for each CSV: its
+    columns, exact source indicators (WB WDI codes · OWID · FRED IDs), and the finding it backs — split into
+    the **aggregate time-series** couplings (11 files) and the **cross-country panels** (4 files).
+  - **Verified the reproduce claim:** `python -m polyphony.data.fetch_real` rebuilds **all 15** from source
+    (confirmed the `__main__` calls every fetch function); the suite `skipif`s real-data tests when a CSV is
+    absent, so it never depends on the network.
+  - **Atlas feedback:** docs/provenance consolidation — no code/graph change; graph unchanged (**180 nodes /
+    480 edges, 0-dangling**).
+  - **Convergence stays DONE.** Gates green: `pytest` (162) · `ruff` · `mypy` (73 files) · graph 0-dangling ·
+    `mkdocs --strict`.
+  - **Next (Iter 56):** continued polish, or a further distinct probe if genuinely warranted.
