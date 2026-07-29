@@ -1322,3 +1322,27 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
   - **Next (Iter 60):** energy-inflation regressivity (may hit a data blocker — fall back to consolidation if
     the incidence fetch is empty), or a consolidation/count-consistency pass; the equity dimension is now
     well-characterised (one survivor, two relative cuts).
+- **Iter 60 — ✅ Honest boundary + consolidation: the regressivity probe is data-blocked (logged), the stale validation page reconciled to the equity work.**
+  - **Probe #1 (energy-inflation regressivity) — correctly NOT forced.** Validating that energy-driven
+    inflation hits the poor harder needs **household-incidence-by-income** microdata (budget shares by
+    decile), which is *not* on the free WB/FRED bulk endpoints this project uses. Per the honesty discipline
+    (a synthetic keep is a hypothesis, not a result), this is **logged as a documented boundary**, not
+    fabricated: added a ⛔ row to the honesty-debt register stating the regressivity result is established in
+    the incidence literature (IMF fuel-subsidy studies; US CBO) but is **not a Polyphony claim** — it would
+    need household-budget-survey microdata (e.g. WB Global Consumption Database).
+  - **Consolidation (candidate #2) — a real drift fixed.** `04-validation.md` still asserted "Welfare/equity
+    is **not yet an engine** … not distributional incidence" — stale since Iters 57–59. Rewrote that point to
+    the current truth (values dial built + integrated *and* distributional incidence validated on real data:
+    absolute poverty survives, both relative measures cut) and added a register row recording the equity
+    validation. Bumped the stale "160+ tests" coverage line to 165+.
+  - **Audit result:** the rest of the doc set is **consistent** — reliable findings = "four" everywhere
+    (index ↔ `reliable_findings.n_reliable()==4`), and the failure-modes "two survivors / two cut" correctly
+    refers to `run_all_panels` (the equity panels are tracked separately). No count drift to fix beyond the
+    validation page. This is the endorsed "polish/consolidation rather than force a weak finding" path.
+  - **Atlas feedback:** graph unchanged (**180 nodes / 480 edges, 0-dangling**); docs-only iteration.
+  - **Convergence stays DONE.** No code change → **167 tests pass.** Gates green: `pytest` (167) · `ruff` ·
+    `mypy` (75 files) · graph 0-dangling · `mkdocs --strict`.
+  - **Next (Iter 61):** the welfare/equity dimension and the two-domain epistemology are now both
+    well-characterised and internally consistent; genuinely distinct probes are scarce. Options: a clean,
+    cited within-unit welfare mechanism if fetchable (education→income); otherwise further consolidation or
+    an honest pause — do not manufacture busywork.

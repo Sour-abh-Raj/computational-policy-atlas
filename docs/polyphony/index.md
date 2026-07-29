@@ -135,7 +135,7 @@ under deep uncertainty, *not* a forecast.
 
 Ten atlas domains (climate · energy · economics · health · transport · agriculture · water · urban ·
 **finance** · **trade**), a typed [knowledge graph](../graph/index.md) of 180 nodes / 480 edges (0-dangling),
-and a Python package (`polyphony/`) with 160+ tests, all green under `ruff` · `mypy` · `mkdocs --strict`.
+and a Python package (`polyphony/`) with 165+ tests, all green under `ruff` · `mypy` · `mkdocs --strict`.
 
 The headline counts above (ten couplings — two kept, eight cut — across seven failure modes and six
 validation methods) are not hand-typed: they are computed from the tested ledger by

@@ -32,9 +32,13 @@ step, **time-blocked** splits (no leakage), and an **append-only leaderboard**.
 3. **A coupled DGP makes positive synergy "expected."** That is *why* the **negative control** is
    essential and reported alongside: it shows the method is not merely confirming its own generator —
    it **cuts** the coupling when the generator lacks it.
-4. **Welfare/equity is not yet an engine.** The values dial (issue #4) is specified in the
-   [blueprint §5](01-blueprint.md) but not yet computing Pareto frontiers/VoI; Round 1 reports GDP and
-   emissions only, not distributional incidence.
+4. **Welfare/equity is now both a dial *and* validated on real data.** The values dial (issue #4) is built
+   and integrated (frontier over policies; the recommendation changes with values). And as of Iters 57–59
+   the *distributional* half is no longer just normative: three welfare couplings were put through the same
+   real-data panel FE + out-of-sample bar as everything else — **absolute poverty survives** (growth is a
+   within-country lever) while **both relative measures are cut** (Gini inequality and the bottom-40%
+   shared-prosperity share are confounded-away). See `experiments/equity_validation.py` and the
+   [failure-mode field guide](failure-modes.md).
 
 ## Calibration & disagreement (current state)
 
@@ -385,6 +389,8 @@ circular).
 | Energy⇄Inflation keep — accurate AND **calibrated** | ✅ the mirror image of the cuts: the keep's predictive distribution **beats naive on CRPS** (0.89 vs 1.21) and its **PIT is centred** (mean 0.55, ~50% central coverage) — skill and honest uncertainty travel together, whereas the cuts were inaccurate *and* overconfident (Round 19). `experiments/inflation_probabilistic.py` | Iter 49 |
 | Model calibration (real levels) | affine calibration now beats naive **on synthetic** (MASE 0.61); real-level calibration still pending | (opens when #9 lands) |
 | Welfare/equity engine (values dial) | ✅ **built + integrated** — frontier over policies; recommendation changes with values | issue #4 |
+| Welfare/equity — **validated on real distributional data** | ✅ the distributional half is no longer just a dial: three welfare couplings faced the same panel FE + OOS bar (Iters 57–59). **Absolute poverty survives** ($2.15/day headcount, within −0.48, OOS +0.58 — growth *is* a within-country lever), while **both relative measures are cut** — Gini inequality (within +0.07) and the bottom-40% shared-prosperity share (within −0.06) are confounded-away. Growth lifts people out of *absolute* poverty but does not compress the *relative* distribution. `experiments/equity_validation.py` | Iters 57–59 |
+| Energy⇄Inflation keep — welfare **regressivity** is a documented boundary | ⛔ **not validated (data-limited, stated honestly)** — energy is a larger budget share for low-income households, so energy-driven inflation is regressive in the incidence literature (IMF fuel-subsidy reform studies; US CBO). But cross-country **household-incidence-by-income** series are not on the free WB/FRED bulk endpoints, so Polyphony **cannot** validate the household-incidence step — it is a boundary we mark, **not** a claim we make. Would need household-budget-survey microdata (e.g. WB Global Consumption Database). | Iter 60 |
 | Predictive distributions → CRPS/PIT in tournament | ✅ **scored + calibrated** — `calibrate_ensemble` de-bias+widen ⇒ CRPS 7.9→0.44, **PIT 0.0→0.39** (near-uniform, synthetic) | blueprint §6 |
 | Second synergy loop (breadth) | ✅ **Macro⇄Health (#8)**: keep in pandemic (coupled MASE 0.95 beats naive), cut on control | blueprint §7 |
 | Third synergy loop (breadth) | ✅ **Land⇄Climate⇄Food (#6)**: keep under warming (+23.9), cut on flat control | blueprint §7 |
