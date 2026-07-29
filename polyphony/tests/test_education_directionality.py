@@ -1,50 +1,69 @@
-"""The panel instrument's second boundary (Iter 61) — direction-blindness under simultaneity.
+"""Directional attribution + the lead-lag test's low power (Iters 61–62, a self-correction).
 
-Education⇄income survives the within-FE + out-of-sample bar, but the within-country lead-lag is symmetric
-(schooling→income ≈ income→schooling), so the survival cannot be assigned a direction. The test pins that
-honest reading: it survives, it is directionally ambiguous, and it is therefore NOT a reliable finding.
+Iter 61 read education⇄income's symmetric lead-lag as distinguishing evidence of bidirectionality. Iter 62
+runs the *same* lead-lag on the three income→X survivors and finds they are ALSO near-symmetric — so the test
+does not discriminate direction for these persistent series (it is low-powered). The tests pin the corrected
+reading: the lead-lag is near-symmetric for everything, so directional attribution rests on an external
+manipulability argument, not on a data lead-lag.
 """
 
 from __future__ import annotations
 
 import pytest
 
-from polyphony.data.loaders import has_real_education_panel
+from polyphony.data.loaders import (
+    has_real_demographic_panel,
+    has_real_education_panel,
+    has_real_poverty_panel,
+    has_real_preston_panel,
+)
 from polyphony.experiments.education_directionality import (
     DirectionalityResult,
-    boundary_summary,
+    directional_attribution_summary,
+    leadlag_test_is_low_power,
     run_education_directionality,
+    survivor_directionality,
+)
+
+_HAVE_ALL = (
+    has_real_education_panel()
+    and has_real_preston_panel()
+    and has_real_demographic_panel()
+    and has_real_poverty_panel()
 )
 
 
-def test_directionality_logic_is_consistent():
-    # Structural (no network): symmetric lead-lag => ambiguous => not a reliable finding, even though it survives.
-    ambiguous = DirectionalityResult(within_corr=0.22, oos_within_corr=0.38, lead_school_to_income=0.37, lead_income_to_school=0.38)
-    assert ambiguous.within_survives
-    assert ambiguous.directionally_ambiguous
-    assert not ambiguous.is_reliable_finding
-    # A resolved direction (one lead-lag clearly dominant) would instead be a usable finding.
-    resolved = DirectionalityResult(within_corr=0.30, oos_within_corr=0.40, lead_school_to_income=0.40, lead_income_to_school=0.10)
-    assert resolved.is_reliable_finding and not resolved.directionally_ambiguous
+def test_symmetry_logic():
+    # Structural: near-equal absolute lead-lags => symmetric.
+    r = DirectionalityResult(within_corr=0.22, oos_within_corr=0.38, lead_forward=0.37, lead_reverse=0.38)
+    assert r.within_survives and r.leadlag_symmetric
 
 
 @pytest.mark.skipif(not has_real_education_panel(), reason="real education panel not fetched")
-def test_education_survives_but_is_directionally_ambiguous_on_real_data():
+def test_education_survives_but_leadlag_is_symmetric():
     r = run_education_directionality()
-    assert r.within_survives  # a real within-country co-movement that forecasts
-    assert r.directionally_ambiguous  # ...but neither direction dominates the lead-lag
-    assert not r.is_reliable_finding  # so it is NOT promoted to a reliable finding (necessary != sufficient)
-    assert "ambiguous" in r.verdict().lower()
+    assert r.within_survives
+    assert r.leadlag_symmetric
 
 
-@pytest.mark.skipif(not has_real_education_panel(), reason="real education panel not fetched")
-def test_reverse_channel_is_not_weaker_than_the_assumed_one():
-    # The optimistic "schooling drives income" channel is not stronger than the reverse (income funds schooling).
-    r = run_education_directionality()
-    assert r.lead_income_to_school >= r.lead_school_to_income - 0.1
+@pytest.mark.skipif(
+    not (has_real_preston_panel() and has_real_demographic_panel() and has_real_poverty_panel()),
+    reason="real survivor panels not fetched",
+)
+def test_the_survivors_are_also_leadlag_symmetric_the_correction():
+    # The Iter-62 correction: the reliable-finding survivors show the SAME near-symmetric lead-lag as education,
+    # so the lead-lag does NOT single out education — it is low-powered for these persistent series.
+    for name, r in survivor_directionality().items():
+        assert r.within_survives, name
+        assert r.leadlag_symmetric, name  # reverse ≈ forward, just like education
 
 
-@pytest.mark.skipif(not has_real_education_panel(), reason="real education panel not fetched")
-def test_boundary_summary_states_necessary_not_sufficient():
-    s = boundary_summary().lower()
-    assert "not sufficient" in s and "directional" in s
+@pytest.mark.skipif(not _HAVE_ALL, reason="real panels not fetched")
+def test_leadlag_test_is_demonstrably_low_power():
+    assert leadlag_test_is_low_power()  # near-symmetric for all four pairs (survivors + education)
+
+
+def test_summary_states_direction_rests_on_manipulability_not_leadlag():
+    s = directional_attribution_summary().lower()
+    assert "manipulability" in s
+    assert "low-power" in s or "cannot certify" in s

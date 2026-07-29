@@ -1,95 +1,131 @@
-"""The panel instrument's **second boundary**: direction-blindness under simultaneity (Iter 61).
+"""Directional attribution and the **low power of the lead-lag test** (Iters 61–62 — a self-correction).
 
-The panel survivors — income → life expectancy, → fertility, → absolute poverty — all share a feature that
-made their within-FE correlation *interpretable*: income is the clear **driver**, the outcome does not push
-back on income within the horizons that matter. Education ⇄ income breaks that assumption. Human capital
-raises income (Mincer returns) **and** richer countries school more (income funds education) — the pair is
-**bidirectionally causal**. So it is the perfect stress test of what a surviving two-way-FE within-correlation
-does and does *not* license.
+Iter 61 asked whether education⇄income should join the reliable findings. It **survives** the panel bar
+(within-FE +0.22, OOS +0.38) but its within-country lead-lag is symmetric (schooling→income +0.37 vs
+income→schooling +0.38), and Iter 61 read that symmetry as the *distinguishing* evidence that the pair is
+bidirectional and therefore not directionally interpretable.
 
-On real World Bank data (secondary-school gross enrolment vs log GDP per capita, 236 countries, 1970–2025):
+**Iter 62 tested that claim against the reliable findings themselves — and corrected it.** Running the same
+within-country lead-lag on the three income→X survivors shows they are *also* near-symmetric:
 
-- The within-FE correlation **survives** — +0.22, and it forecasts held-out years (OOS ≈ +0.38). By the bar
-  that admitted the other panel survivors, this "passes".
-- **But the lead-lag is symmetric.** Schooling(t) → income(t+1) correlates +0.37; income(t) → schooling(t+1)
-  correlates +0.38 — if anything income leads schooling *slightly more*. Neither direction dominates.
+| Pair | income→outcome (t→t+1) | outcome→income (t→t+1) |
+|---|---:|---:|
+| income → life expectancy | +0.217 | +0.233 |
+| income → fertility | −0.191 | −0.202 |
+| income → absolute poverty | −0.483 | −0.493 |
+| education ⇄ income | +0.367 | +0.383 |
 
-**The boundary:** a surviving within-correlation is **necessary but not sufficient** for a *directional*
-(let alone causal) claim. For income→poverty the direction is defensible from outside the data (income is the
-policy lever, poverty the mechanical consequence); for education⇄income it is **not** — calling this "returns
-to schooling" would overclaim, because the reverse channel is at least as strong here. So education⇄income is
-**deliberately not promoted to a reliable finding**; it is documented as the instrument's second limit.
+In **every** case the reverse lead-lag is marginally *stronger* than the forward. The lead-lag test does **not**
+single out education — it is near-symmetric for all four. The reason is statistical, not causal: these series
+(income, life expectancy, fertility, poverty, enrolment) are **highly persistent**, so each variable at *t* is
+almost itself at *t+1*, and lag-1 cross-correlations are near-symmetric **regardless of the true causal
+direction**. The lead-lag test is simply **low-powered** for smooth macro series.
 
-This complements the first boundary (PM2.5 → all-cause mortality, Iter 34): there, FE fails because the
-*outcome* is dominated by a confounded within-country trend. Here, FE *succeeds* at detecting covariation but
-is **direction-blind** when causation runs both ways. Two distinct ways a panel within-correlation can fail to
-mean what a hasty reader wants it to mean — both stated, neither hidden.
+**The corrected lesson (the honest one):** a data-driven lead-lag *cannot* certify the direction of a surviving
+within-correlation for persistent series. Direction has to come from **outside the data** — from
+*manipulability*: which variable is an actionable policy lever, and is it the *only* one?
+
+- income → {life expectancy, fertility, poverty}: income is a manipulable lever and the reverse is **not** a
+  policy channel (you cannot legislate longevity, fertility, or a poverty rate directly), so treating income as
+  the actionable driver is defensible — **as a manipulability argument, explicitly not a data-proven direction.**
+- education ⇄ income: **both** are independently manipulable levers (invest in schooling; grow income), so
+  neither is "the" driver — which is why it stays out of the reliable findings.
+
+This refines, rather than repeals, Iter 61's core point: a surviving within-correlation is **necessary but not
+sufficient** for a directional claim. What Iter 62 corrects is *how* the sufficiency is established — by an
+external manipulability argument, not by a (here uninformative) lead-lag asymmetry. Catching and fixing that
+overreach is the same discipline the whole project runs on.
 """
 
 from __future__ import annotations
 
 from dataclasses import dataclass
 
+import numpy as np
+
 from .panel_validation import (
     oos_within_prediction,
     run_education_panel,
     within_leadlag,
 )
-from ..data.loaders import load_real_education_panel
+from ..data.loaders import (
+    load_real_demographic_panel,
+    load_real_education_panel,
+    load_real_poverty_panel,
+    load_real_preston_panel,
+)
 
 
 @dataclass(frozen=True)
 class DirectionalityResult:
     within_corr: float
     oos_within_corr: float
-    lead_school_to_income: float  # schooling(t) → income(t+1), within-country, FE-removed
-    lead_income_to_school: float  # income(t) → schooling(t+1), within-country, FE-removed
+    lead_forward: float  # driver(t) → outcome(t+1), within-country, FE-removed
+    lead_reverse: float  # outcome(t) → driver(t+1), within-country, FE-removed
 
     @property
     def within_survives(self) -> bool:
-        """The contemporaneous within-FE correlation is non-trivial (would 'pass' the survivor bar)."""
+        """The contemporaneous within-FE correlation is non-trivial and forecasts (would 'pass' the bar)."""
         return abs(self.within_corr) > 0.1 and abs(self.oos_within_corr) > 0.1
 
     @property
-    def directionally_ambiguous(self) -> bool:
-        """Neither lead-lag direction dominates — the survival cannot be assigned a direction. True when the
-        two lead-lag correlations are close (within 0.1) and the reverse channel is not weaker than assumed."""
-        return abs(self.lead_school_to_income - self.lead_income_to_school) < 0.1
+    def leadlag_symmetric(self) -> bool:
+        """The two lead-lag correlations are close — near-symmetric. NOTE (Iter 62): this is true for *all*
+        the persistent panel pairs (survivors included), so it does **not** by itself distinguish a
+        bidirectional pair from a one-way one — the lead-lag test is low-powered for smooth series."""
+        return abs(abs(self.lead_forward) - abs(self.lead_reverse)) < 0.1
 
-    @property
-    def is_reliable_finding(self) -> bool:
-        """A surviving *and* directionally-resolved coupling would be usable. Education⇄income survives but is
-        directionally ambiguous, so it is **not** a reliable finding — necessary-but-not-sufficient made concrete."""
-        return self.within_survives and not self.directionally_ambiguous
 
-    def verdict(self) -> str:
-        if not self.within_survives:
-            return "no within covariation"
-        if self.directionally_ambiguous:
-            return "survives but DIRECTIONALLY AMBIGUOUS (not a reliable finding — the instrument's 2nd limit)"
-        return "survives with a resolved direction"
+def _pair(iso: np.ndarray, year: np.ndarray, driver: np.ndarray, outcome: np.ndarray) -> DirectionalityResult:
+    from .panel_validation import two_way_within
+
+    return DirectionalityResult(
+        within_corr=two_way_within(outcome, driver, iso, year),
+        oos_within_corr=oos_within_prediction(iso, year, driver, outcome),
+        lead_forward=within_leadlag(driver, outcome, iso, year, k=1),
+        lead_reverse=within_leadlag(outcome, driver, iso, year, k=1),
+    )
 
 
 def run_education_directionality() -> DirectionalityResult:
-    """Run the education⇄income directional stress test: contemporaneous within-FE correlation, out-of-sample
-    within-prediction, and the two within-country lead-lag correlations. Demonstrates that a surviving
-    within-correlation does not by itself establish a direction when causation is bidirectional."""
+    """Education⇄income directional stress test (the motivating case): within-FE correlation, out-of-sample
+    within-prediction, and the two within-country lead-lag correlations."""
     fe = run_education_panel()
     iso, year, log_gdppc, sec = load_real_education_panel()
     return DirectionalityResult(
         within_corr=fe.within_corr,
         oos_within_corr=oos_within_prediction(iso, year, log_gdppc, sec),
-        lead_school_to_income=within_leadlag(sec, log_gdppc, iso, year, k=1),
-        lead_income_to_school=within_leadlag(log_gdppc, sec, iso, year, k=1),
+        lead_forward=within_leadlag(sec, log_gdppc, iso, year, k=1),
+        lead_reverse=within_leadlag(log_gdppc, sec, iso, year, k=1),
     )
 
 
-def boundary_summary() -> str:
-    """One honest line on the instrument's second limit — a surviving correlation is not a directional claim."""
-    r = run_education_directionality()
+def survivor_directionality() -> dict[str, DirectionalityResult]:
+    """The three income→X reliable-finding survivors, run through the *same* lead-lag test as education — the
+    control that reveals the test's low power (all near-symmetric)."""
+    out: dict[str, DirectionalityResult] = {}
+    for name, load in (
+        ("income → life expectancy", load_real_preston_panel),
+        ("income → fertility", load_real_demographic_panel),
+        ("income → absolute poverty", load_real_poverty_panel),
+    ):
+        iso, year, inc, outcome = load()
+        out[name] = _pair(iso, year, inc, outcome)
+    return out
+
+
+def leadlag_test_is_low_power() -> bool:
+    """True iff the lead-lag is near-symmetric for **all** the survivors *and* education — i.e. the test does
+    not discriminate direction for these persistent series (the empirical basis for the Iter-62 correction)."""
+    results = list(survivor_directionality().values()) + [run_education_directionality()]
+    return all(r.leadlag_symmetric for r in results)
+
+
+def directional_attribution_summary() -> str:
+    """One honest line: the lead-lag test is low-power for smooth series, so direction rests on manipulability."""
     return (
-        f"Education⇄income: within {r.within_corr:+.2f} survives and forecasts (OOS {r.oos_within_corr:+.2f}), "
-        f"but lead-lag is symmetric — schooling→income {r.lead_school_to_income:+.2f} vs income→schooling "
-        f"{r.lead_income_to_school:+.2f}. A surviving within-correlation is necessary but NOT sufficient for a "
-        f"directional claim; not promoted to a reliable finding."
+        "Lead-lag is near-symmetric for ALL persistent panel pairs (survivors AND education), so it cannot "
+        "certify direction — the test is low-powered for smooth series. Directional attribution therefore rests "
+        "on an EXTERNAL manipulability argument (income is the actionable lever; the reverse is not a policy "
+        "channel), NOT on a data lead-lag. Education stays out because BOTH its directions are manipulable."
     )

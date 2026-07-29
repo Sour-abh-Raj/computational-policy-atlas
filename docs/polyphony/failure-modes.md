@@ -186,15 +186,33 @@ it is not a blank cheque. Two distinct failures are documented — both stated, 
 | Limit | Case | What happens | Lesson |
 |---|---|---|---|
 | **Outcome confounded** | PM2.5 → all-cause mortality (Iter 34) | FE *fails to recover* a real micro effect: within corr −0.14, wrong-signed | FE isolates a mechanism only when the **outcome** is not itself a confounded within-country trend (here, development/aging) |
-| **Direction-blind under simultaneity** | Education ⇄ income (Iter 61) | FE *succeeds* — within +0.22, forecasts OOS +0.38 — but the lead-lag is **symmetric**: schooling→income +0.37 vs income→schooling +0.38 | A surviving within-correlation is **necessary but not sufficient** for a *directional* claim; when causation runs both ways the instrument cannot assign it |
+| **Direction cannot be read from the data** | Education ⇄ income (Iters 61–62) | FE *succeeds* — within +0.22, forecasts OOS +0.38 — but nothing in the data fixes the direction | A surviving within-correlation is **necessary but not sufficient** for a *directional* claim; direction must come from **outside** the data |
 
-The education case is the sharper of the two because it *passes* the survivor bar. Human capital raises income
-*and* richer countries school more, so calling the +0.22 co-movement "returns to schooling" would overclaim —
-the reverse channel is, if anything, slightly stronger here. It is therefore **deliberately not** promoted to a
-[reliable finding](index.md): the income→{life expectancy, fertility, poverty} survivors keep their directional
-reading because income is the defensible driver *from outside the data*; education⇄income does not
-(`experiments/education_directionality.py`). Knowing where the instrument stops speaking is part of using it
-honestly.
+The education case is the sharper of the two because it *passes* the survivor bar. And it forced an honest
+**self-correction** (Iter 62). The tempting move is to read direction from a within-country **lead-lag** — does
+schooling(*t*) predict income(*t+1*) more than the reverse? For education the lead-lag is symmetric (schooling→
+income +0.37 vs income→schooling +0.38), which *looked* like clean evidence of bidirectionality. But running the
+identical test on the three income→X **survivors** shows they are *also* near-symmetric:
+
+| Pair | income→outcome (*t*→*t+1*) | outcome→income (*t*→*t+1*) |
+|---|---:|---:|
+| income → life expectancy | +0.217 | +0.233 |
+| income → fertility | −0.191 | −0.202 |
+| income → absolute poverty | −0.483 | −0.493 |
+| education ⇄ income | +0.367 | +0.383 |
+
+In **every** case the reverse is marginally *stronger*. The reason is statistical, not causal: these series are
+highly **persistent**, so each variable at *t* is nearly itself at *t+1* and lag-1 cross-correlations are
+near-symmetric whatever the true direction. **The lead-lag test is low-powered for smooth macro series** — it
+cannot certify direction for *any* of them (`education_directionality.leadlag_test_is_low_power`).
+
+So direction rests not on the data but on **manipulability** — which variable is an actionable policy lever, and
+is it the only one? Income → {life expectancy, fertility, poverty} keep their directional reading because income
+is a lever and the reverse is **not a policy channel** (you cannot legislate longevity, fertility, or a poverty
+rate directly) — *a manipulability argument, explicitly not a data-proven direction.* Education ⇄ income has
+**two** independently manipulable channels (invest in schooling; grow income), so neither is "the" driver — which
+is why it stays out of the [reliable findings](index.md). Knowing where the instrument stops speaking — and
+correcting a first answer that claimed too much — is part of using it honestly.
 
 ## What actually separates keeps from cuts (a computed answer)
 

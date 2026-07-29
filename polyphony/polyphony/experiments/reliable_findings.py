@@ -17,6 +17,14 @@ Everything else tested was **cut**, honestly, for a named reason. The point of l
 separately is decision-support hygiene: a policymaker should know not only that most plausible couplings
 don't hold, but *exactly which few do* — and use only those. (Macro⇄Health is a keep on *synthetic* data
 with an underpowered real test, so it is deliberately **excluded** here: not reliable enough to act on.)
+
+**One honest caveat on the three income→X panel findings (Iter 62):** their *direction* — income as the driver
+— rests on a **manipulability** argument (income is an actionable policy lever; the reverse, legislating
+longevity/fertility/poverty directly, is not a policy channel), **not** on a data-proven lead-lag. The
+within-country lead-lag test is low-powered for these persistent series (near-symmetric for all of them; see
+`experiments/education_directionality`), so it cannot certify direction. The *co-movement* is validated on real
+data; the *causal direction* is a defensible external assumption, stated as such — and it is exactly why the
+bidirectionally-manipulable education⇄income pair is **not** on this list.
 """
 
 from __future__ import annotations

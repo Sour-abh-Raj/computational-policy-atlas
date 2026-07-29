@@ -1374,3 +1374,31 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
     catalogue (7 failure modes), and **two** documented limits. This is a genuinely complete decision-support
     story. Further probes are marginal — favour an honest pause over manufactured iterations unless a clean,
     distinct, cited, fetchable question appears.
+- **Iter 62 — ✅ A SELF-CORRECTION: the lead-lag directional test is low-powered; direction rests on manipulability, not data.**
+  - **Discharged the consistency obligation from Iter 61 — and it bit back, honestly.** Iter 61 read
+    education⇄income's *symmetric* within-country lead-lag as the evidence that the pair is bidirectional (and
+    so not directionally interpretable). Iter 62 applied the **same** `within_leadlag` test to the three
+    income→X reliable-finding survivors — and they are **also** near-symmetric (reverse marginally *stronger*
+    for all three): life-exp +0.217/+0.233, fertility −0.191/−0.202, poverty −0.483/−0.493 (vs education
+    +0.367/+0.383).
+  - **The correction:** the lead-lag does **not** distinguish education from the survivors — it is
+    **low-powered for persistent series** (each variable at *t* ≈ itself at *t+1*, so lag-1 cross-correlations
+    are near-symmetric whatever the true direction). Iter 61's implication that the symmetric lead-lag was the
+    discriminator **overreached**; caught and fixed rather than buried.
+  - **Refined (not repealed) lesson:** Iter 61's core point stands — a surviving within-correlation is
+    *necessary but not sufficient* for a directional claim. What changed is *how* sufficiency is established:
+    by an **external manipulability argument** (income is an actionable policy lever; the reverse is not a
+    policy channel), **not** by a data lead-lag. The 4 reliable findings stand; their directional attribution
+    is now honestly **labelled** as a manipulability assumption (reliable_findings docstring). Education stays
+    out because it has **two** independently manipulable channels.
+  - **Code:** rewrote `experiments/education_directionality.py` (corrected docstring; `survivor_directionality`,
+    `leadlag_test_is_low_power`, `directional_attribution_summary`, generalised `DirectionalityResult`);
+    `test_education_directionality.py` rewritten to pin the correction (survivors also symmetric; low-power
+    True). Docs: failure-modes "two limits" subsection rewritten with the survivor lead-lag table + correction;
+    04-validation register row updated to "stated honestly, then self-corrected".
+  - **Atlas feedback:** graph unchanged (**180 nodes / 480 edges, 0-dangling**).
+  - **Convergence stays DONE.** Gates green: `pytest` · `ruff` · `mypy` · graph 0-dangling · `mkdocs --strict`.
+  - **Next (Iter 63):** the story is now genuinely complete AND internally self-consistent (4 findings with
+    honestly-labelled directional basis, 7 failure modes, 2 instrument limits, a self-correction). This is the
+    honest place to **PAUSE** — do not manufacture further iterations unless a clean, distinct, cited,
+    fetchable NEW question appears.
