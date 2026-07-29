@@ -1270,3 +1270,32 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
   - **Convergence stays DONE.** **+4 tests -> 166 pass.** Gates green: `pytest` (166) · `ruff` · `mypy`
     (75 files) · graph 0-dangling · `mkdocs --strict`.
   - **Next (Iter 58):** continued polish, or a further distinct equity/welfare probe if genuinely warranted.
+- **Iter 58 — ✅ The equity dimension's first SURVIVOR: growth → absolute poverty (complement to the Iter 57 cut).**
+  - **Completed the honest welfare picture.** Put the second optimistic welfare claim — *growth reduces
+    absolute poverty* — through the same panel-survivor instrument on real data: new
+    `real_poverty_panel.csv` (World Bank `SI.POV.DDAY` $2.15/day headcount × `NY.GDP.PCAP.KD`, **2,642
+    country-years, 121 countries**; `fetch_poverty_panel`, `load_real_poverty_panel`).
+  - **Verdict — SURVIVES (the strongest panel survivor):** pooled **−0.72**, two-way-FE within **−0.48**
+    (only ~34% attenuation, vs 81% for inequality), out-of-sample within-prediction **+0.58** (stronger than
+    Preston +0.24 / demographic +0.14). Growth *is* a validated within-country lever on **absolute** poverty
+    (Dollar–Kraay 2002).
+  - **The nuanced welfare message (Iters 57–58 together):** *growth reliably lifts people out of **absolute**
+    poverty but does **not** compress the **relative** distribution* (inequality was cut). Conflating the two
+    — the "rising tide lifts all boats" slide from poverty to inequality — is exactly the error the
+    instrument catches. Absolute poverty → the growth dial; relative equity → its own instrument
+    (transfers, tax).
+  - **Positive output grows 3 → 4:** `reliable_findings.py` adds **income → absolute poverty** as a 4th usable
+    finding (`n_reliable()==4`, panels 2→3). `equity_validation.py` generalized to carry both results
+    (`run_poverty_equity_test`, `EquityFinding.is_survivor`, `equity_dimension`, updated
+    `equity_dimension_summary`); `panel_validation.run_poverty_panel`.
+  - **Tests:** `test_equity_validation.py` (cut + survivor structural logic, 4 real-data assertions),
+    `test_reliable_findings.py` updated (4 findings, 3 panel mechanisms, poverty OOS backing). Docs:
+    failure-modes equity subsection rewritten (one cut, one survivor), index two-domain note + reliable
+    callout (3→4), datasets README row.
+  - **Atlas feedback:** graph unchanged (**180 nodes / 480 edges, 0-dangling**) — a new validated finding on
+    existing domains.
+  - **Convergence stays DONE.** Equity + reliable tests rewritten to cover the survivor (no net new
+    functions) → **166 pass.** Gates green: `pytest` (166) · `ruff` · `mypy` (75 files) · graph 0-dangling ·
+    `mkdocs --strict`.
+  - **Next (Iter 59):** shared-prosperity (bottom-40% income share) or energy-inflation regressivity — or
+    polish; the welfare/equity dimension now has a validated cut *and* survivor.

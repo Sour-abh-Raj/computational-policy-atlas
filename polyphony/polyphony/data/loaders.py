@@ -343,6 +343,20 @@ def load_real_inequality_panel() -> tuple[np.ndarray, np.ndarray, np.ndarray, np
     """REAL inequality panel: ``(iso, year, log_gdppc, gini)`` — income vs the Gini index (the first
     *distributional* target, for the Kuznets/equity test)."""
     return _load_panel_csv(REAL_INEQUALITY_PANEL, "log_gdppc", "gini")
+
+
+REAL_POVERTY_PANEL = DATASETS / "real_poverty_panel.csv"
+
+
+def has_real_poverty_panel() -> bool:
+    """Whether the absolute-poverty panel has been fetched (``fetch_real.fetch_poverty_panel``)."""
+    return REAL_POVERTY_PANEL.exists()
+
+
+def load_real_poverty_panel() -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+    """REAL poverty panel: ``(iso, year, log_gdppc, poverty)`` — income vs the $2.15/day headcount ratio
+    (the *absolute*-welfare counterpart to the inequality panel)."""
+    return _load_panel_csv(REAL_POVERTY_PANEL, "log_gdppc", "poverty")
 REAL_INFLATION = DATASETS / "real_inflation.csv"
 REAL_INFLATION_Q = DATASETS / "real_inflation_q.csv"
 REAL_HOUSING = DATASETS / "real_housing.csv"

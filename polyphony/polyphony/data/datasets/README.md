@@ -30,7 +30,8 @@ real-world skill).
 | `real_pm25_mortality_panel.csv` | iso, year, pm25, death_rate | WB `EN.ATM.PM25.MC.M3` · `SP.DYN.CDRT.IN` | Co-benefit panel (cut: confounded outcome) |
 | `real_preston_panel.csv` | iso, year, log_gdppc, life_exp | WB `NY.GDP.PCAP.KD` · `SP.DYN.LE00.IN` | **Preston curve (SURVIVES)** |
 | `real_demographic_panel.csv` | iso, year, log_gdppc, fertility | WB `NY.GDP.PCAP.KD` · `SP.DYN.TFRT.IN` | **Demographic transition (SURVIVES)** |
-| `real_inequality_panel.csv` | iso, year, log_gdppc, gini | WB `NY.GDP.PCAP.KD` · `SI.POV.GINI` | Kuznets / equity — income→inequality (cut: confounded-away) |
+| `real_inequality_panel.csv` | iso, year, log_gdppc, gini | WB `NY.GDP.PCAP.KD` · `SI.POV.GINI` | Kuznets / equity — income→*relative* inequality (cut: confounded-away) |
+| `real_poverty_panel.csv` | iso, year, log_gdppc, poverty | WB `NY.GDP.PCAP.KD` · `SI.POV.DDAY` | Equity — income→*absolute* poverty (**SURVIVES**) |
 
 ## Reproduce
 

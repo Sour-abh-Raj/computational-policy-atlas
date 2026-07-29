@@ -1,47 +1,50 @@
-"""The first *equity* (distributional) outcome to face the bar (Iter 57) — income → inequality (Kuznets).
+"""The welfare/**equity** dimension, held to the same bar (Iters 57–58) — the honest, nuanced answer.
 
-Every validated finding before this one concerns a **mean** outcome — life expectancy, fertility, inflation,
+Every validated finding before this concerned a **mean** outcome — life expectancy, fertility, inflation,
 GDP. Yet the north star is about *altruistic* policy and *welfare/equity* effects, i.e. **who gets what**, not
 just the average. That half of the mission had been *exposed as a dial* (see ``welfare_frontier``) but never
-**validated on real distributional data**. This module closes that gap by putting the classic optimistic
-development claim — *growth reduces inequality* — through the identical instrument that separated the panel
-survivors from the confounded couplings: two-way (country + year) fixed effects plus an out-of-sample
-within-country test.
+**validated on real distributional data**. This module closes that gap by putting the two classic optimistic
+claims about growth and welfare through the identical instrument that separated the panel survivors from the
+confounded couplings — two-way (country + year) fixed effects plus an out-of-sample within-country test.
 
-The honest result is a **cut**, and an instructive one:
+The result is a **nuanced pair**, not a slogan:
 
-- **Pooled (cross-country):** income and the Gini index correlate *negatively* — richer countries are more
-  equal. Taken at face value this looks like the optimistic story confirmed.
-- **Within (two-way FE):** the correlation **collapses to ≈0** (even turns slightly positive) — ~80% of the
-  pooled association is a between-country level artifact. As a given country grows, its inequality does **not**
-  reliably fall.
-- **Out-of-sample:** the within-country prediction has ≈0 correlation with held-out Gini — no forecasting skill.
+- **Income → *relative* inequality (Kuznets):** a **cut**. Pooled cross-country correlation is optimistic
+  (−0.35, richer countries more equal), but ~80% is a between-country level artifact — within a country the
+  effect collapses to ≈0 and forecasts nothing. Growth is **not** a within-country lever on the *distribution*
+  (Deininger–Squire 1998; Piketty 2014; Milanovic 2016 — inequality often *rises* through growth).
+- **Income → *absolute* poverty (the $2.15/day headcount):** a **survivor**, and the strongest of any panel.
+  Pooled −0.72, two-way-FE within **−0.48** (only ~34% attenuation), out-of-sample within-prediction **+0.58**.
+  Growth **is** a strong, validated within-country lever on *absolute* poverty (Dollar–Kraay 2002).
 
-So the belief "grow the economy and inequality takes care of itself" is an inference from comparing *different
-countries*, not from what happens *within* one over time — consistent with the modern inequality literature
-(Deininger–Squire 1998 on the fragility of the within-country Kuznets curve; Piketty 2014 and Milanovic 2016 on
-within-country inequality often *rising* through growth episodes). For a decision-maker this is decision-support
-hygiene on the equity dimension: **growth is not a reliable within-country lever on inequality**, so a distinct
-distributional instrument (transfers, tax design) is needed — the growth dial alone will not deliver it.
+**The honest welfare message for a decision-maker:** growth reliably lifts people out of *absolute* poverty but
+does **not** compress the *relative* distribution. Both facts matter for altruistic policy, and conflating them
+(the common "a rising tide lifts all boats" elision of poverty with inequality) is exactly the error this
+instrument catches. Absolute-poverty reduction can lean on the growth dial; relative equity needs its own
+instrument (transfers, tax design).
 
-It also **sharpens the two-domain epistemology**: the panel domain is not uniformly signal-rich. Genuine *mean*
-mechanisms (Preston, demographic transition) survive fixed effects, but the *distributional* outcome is
-confounded-away just like the aggregate couplings — the survivability of a panel coupling depends on the
-**outcome**, not merely on being cross-sectional.
+It also **sharpens the two-domain epistemology**: the panel domain is not uniformly signal-rich. Survivability
+depends on the **outcome** — a genuine *within-unit mechanism* (poverty tracks income almost mechanically)
+survives; a *confounded distributional* outcome (inequality) does not, exactly like the aggregate couplings.
 """
 
 from __future__ import annotations
 
 from dataclasses import dataclass
 
-from .panel_validation import oos_within_prediction, run_inequality_panel
-from ..data.loaders import load_real_inequality_panel
+from .panel_validation import (
+    oos_within_prediction,
+    run_inequality_panel,
+    run_poverty_panel,
+)
+from ..data.loaders import load_real_inequality_panel, load_real_poverty_panel
 
 
 @dataclass(frozen=True)
 class EquityFinding:
     question: str
     optimistic_claim: str
+    assumed_sign: int  # +1 or −1 (the sign the optimistic claim predicts for the within effect)
     pooled_corr: float
     within_corr: float
     oos_within_corr: float
@@ -50,41 +53,76 @@ class EquityFinding:
 
     @property
     def is_cut(self) -> bool:
-        """A cut: the within-country distributional effect neither survives FE nor forecasts."""
+        """A cut: the within-country effect neither survives FE nor forecasts."""
         return abs(self.within_corr) < 0.1 and abs(self.oos_within_corr) < 0.1
 
     @property
+    def is_survivor(self) -> bool:
+        """A survivor: the within effect has the assumed sign, is non-trivial, and forecasts out of sample."""
+        within_right = (self.within_corr > 0) == (self.assumed_sign > 0) and abs(self.within_corr) > 0.1
+        return within_right and abs(self.oos_within_corr) > 0.1
+
+    @property
     def pooled_is_optimistic(self) -> bool:
-        """The pooled (cross-country) correlation has the hopeful sign (income up → inequality down)."""
-        return self.pooled_corr < 0
+        """The pooled (cross-country) correlation has the hopeful sign the optimistic claim predicts."""
+        return (self.pooled_corr > 0) == (self.assumed_sign > 0)
 
 
 def run_inequality_equity_test() -> EquityFinding:
-    """Run the income→inequality (Kuznets) coupling through the panel-survivor instrument and report the
-    honest equity verdict. The first *distributional* outcome to face the real-data / FE / out-of-sample bar."""
+    """Income → *relative* inequality (Kuznets): the distributional claim that growth compresses the
+    distribution. On real data this is a **cut** — confounded-away within countries."""
     fe = run_inequality_panel()
     iso, year, log_gdppc, gini = load_real_inequality_panel()
     oos = oos_within_prediction(iso, year, log_gdppc, gini)
     return EquityFinding(
-        question="Does income growth reduce inequality *within* a country?",
+        question="Does income growth reduce *relative* inequality *within* a country?",
         optimistic_claim="growth reduces inequality (income↑ → Gini↓)",
+        assumed_sign=-1,
         pooled_corr=fe.pooled_corr,
         within_corr=fe.within_corr,
         oos_within_corr=oos,
         verdict=fe.verdict(),
         lesson=(
             "The optimistic 'growth fixes inequality' story is a between-country level artifact: rich "
-            "countries are more equal, but a country growing does not reliably become more equal. Growth is "
-            "not a within-country lever on distribution — a separate instrument (transfers, tax) is needed."
+            "countries are more equal, but a country growing does not reliably become more equal. Relative "
+            "equity is not a within-country function of growth — it needs its own instrument (transfers, tax)."
         ),
     )
 
 
+def run_poverty_equity_test() -> EquityFinding:
+    """Income → *absolute* poverty (the $2.15/day headcount): the claim that growth lifts people out of
+    absolute poverty. On real data this is a **survivor** — the strongest within-FE effect of any panel."""
+    fe = run_poverty_panel()
+    iso, year, log_gdppc, poverty = load_real_poverty_panel()
+    oos = oos_within_prediction(iso, year, log_gdppc, poverty)
+    return EquityFinding(
+        question="Does income growth reduce *absolute* poverty *within* a country?",
+        optimistic_claim="growth reduces absolute poverty (income↑ → $2.15/day headcount↓)",
+        assumed_sign=-1,
+        pooled_corr=fe.pooled_corr,
+        within_corr=fe.within_corr,
+        oos_within_corr=oos,
+        verdict=fe.verdict(),
+        lesson=(
+            "Absolute poverty falls strongly within countries as income grows, and the effect forecasts "
+            "held-out years — growth IS a validated within-country lever on absolute poverty (Dollar–Kraay). "
+            "The complement to the inequality cut: the tide lifts boats OUT of poverty, without levelling them."
+        ),
+    )
+
+
+def equity_dimension() -> tuple[EquityFinding, EquityFinding]:
+    """Both equity results: the *relative-inequality* cut and the *absolute-poverty* survivor."""
+    return run_inequality_equity_test(), run_poverty_equity_test()
+
+
 def equity_dimension_summary() -> str:
-    """One honest line on the state of the welfare/equity dimension — its first validated result is a cut."""
-    f = run_inequality_equity_test()
+    """One honest line on the welfare/equity dimension — growth cuts absolute poverty but not relative inequality."""
+    ineq, pov = equity_dimension()
     return (
-        f"Equity dimension — first distributional outcome tested (income→inequality): "
-        f"pooled {f.pooled_corr:+.2f} (optimistic), within {f.within_corr:+.2f}, OOS {f.oos_within_corr:+.2f} "
-        f"⇒ {f.verdict}. Growth is not a within-country lever on inequality."
+        f"Equity dimension: absolute poverty SURVIVES (within {pov.within_corr:+.2f}, OOS "
+        f"{pov.oos_within_corr:+.2f}) — growth is a within-country lever on absolute poverty; but relative "
+        f"inequality is CUT (within {ineq.within_corr:+.2f}, OOS {ineq.oos_within_corr:+.2f}) — growth does "
+        f"not compress the distribution. Both matter; do not conflate them."
     )

@@ -74,12 +74,13 @@ genuine *within-unit* mechanism and couplings *survive*: across 252 countries, t
 both keep their signal under two-way fixed effects, where confounded carbon leakage collapses to ≈0. So the
 panel domain has its own honest **two-survivor / two-cut** taxonomy, the mirror image of the aggregate one.
 
-And the survivability has a further, **equity-relevant** boundary: the survivors above are *mean* outcomes,
-but the first *distributional* coupling — **income → inequality** (the optimistic "growth reduces inequality"
-claim) — is **cut**. Its cross-country correlation is optimistic (−0.35) yet ~80% is a between-country level
-artifact: within a country, growth is *not* a reliable lever on inequality (within-FE +0.07, no out-of-sample
-skill). So the welfare/equity half of the north star gets its first **validated** answer, and it is a
-cautionary one — equity needs its own instrument, not the growth dial
+And the survivors above are *mean* outcomes, so the **welfare/equity** half of the north star — *who gets
+what* — was put through the same bar too, with a nuanced, decision-relevant split: **income → *absolute*
+poverty** ($2.15/day headcount) **survives** and forecasts (within-FE −0.48, OOS +0.58 — the strongest panel
+survivor), but **income → *relative* inequality** (Kuznets) is **cut** (within +0.07, no out-of-sample skill;
+~80% of its −0.35 cross-country correlation is a between-country level artifact). The honest message is
+neither optimism nor nihilism: *growth reliably lifts people out of absolute poverty but does not compress the
+relative distribution* — conflating the two is exactly the error the instrument catches
 (`experiments/equity_validation.py`).
 
 **The epistemology, in one line:** *aggregate time-series forecasting is climatology-dominated and honest
@@ -89,11 +90,13 @@ instrument tells the two apart.* (See the
 `experiments/panel_validation.run_all_panels`.)
 
 **For a decision-maker, the honest positive output is short and usable** (`experiments/reliable_findings.py`).
-Of everything tested, **three** relationships survived real validation and can inform a choice: **energy
-prices → inflation** (an aggregate forecast, ~1 year ahead), **income → life expectancy** and **income →
-fertility** (two panel mechanisms that survive fixed effects and forecast held-out years). Everything else
-was cut, for a named reason. Knowing *exactly which few couplings hold* — and using only those — is the
-decision-support hygiene a single-confident-number tool never offers.
+Of everything tested, **four** relationships survived real validation and can inform a choice: **energy
+prices → inflation** (an aggregate forecast, ~1 year ahead), and three panel mechanisms that survive fixed
+effects and forecast held-out years — **income → life expectancy**, **income → fertility**, and **income →
+absolute poverty** (the strongest survivor; growth is a validated lever on *absolute* poverty, though *not* on
+*relative* inequality, which is cut). Everything else was cut, for a named reason. Knowing *exactly which few
+couplings hold* — and using only those — is the decision-support hygiene a single-confident-number tool never
+offers.
 
 ## How a coupling earns its keep (the bar)
 

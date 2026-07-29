@@ -394,6 +394,39 @@ def fetch_inequality_panel(out: pathlib.Path | None = None, min_years: int = 6) 
     return out
 
 
+WB_POVERTY = "https://api.worldbank.org/v2/country/all/indicator/SI.POV.DDAY?format=json&per_page=27000"
+
+
+def fetch_poverty_panel(out: pathlib.Path | None = None, min_years: int = 6) -> pathlib.Path:
+    """Fetch a multi-country panel for the **growth → absolute poverty** question (Iter 58 — the equity
+    dimension's likely first *survivor*): log GDP per capita (World Bank ``NY.GDP.PCAP.KD``) + the poverty
+    **headcount ratio at $2.15/day, 2017 PPP** (``SI.POV.DDAY``, % of population). Unlike *relative*
+    inequality (Iter 57, cut), *absolute* poverty reduction is one of development's most robust responses to
+    growth (Dollar–Kraay 2002), so the optimistic claim income↑ → poverty↓ (assumed sign −1) is expected to
+    **survive** two-way FE and forecast out of sample — the positive complement to the inequality cut. Poverty
+    is survey-based and sparse, so ``min_years`` is low. Writes ``datasets/real_poverty_panel.csv`` (columns:
+    ``iso``, ``year``, ``log_gdppc``, ``poverty``).
+    """
+    import math
+
+    gdp = _fetch_worldbank_all(WB_GDP_PCAP)
+    pov = _fetch_worldbank_all(WB_POVERTY)
+    out = out or (DATASETS / "real_poverty_panel.csv")
+    n = 0
+    with out.open("w", newline="", encoding="utf-8") as fh:
+        w = csv.writer(fh)
+        w.writerow(["iso", "year", "log_gdppc", "poverty"])
+        for iso in sorted(set(gdp) & set(pov)):
+            years = [y for y in sorted(set(gdp[iso]) & set(pov[iso])) if gdp[iso][y] > 0]
+            if len(years) >= min_years:
+                for y in years:
+                    w.writerow([iso, y, math.log(gdp[iso][y]), pov[iso][y]])
+                    n += 1
+    if n < 300:
+        raise RuntimeError(f"too few panel observations ({n}); refusing to write")
+    return out
+
+
 FRED_SPREAD = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAA10Y"  # Baa − 10Y Treasury credit spread
 FRED_REALGDP = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=GDPC1"  # real GDP (chained 2017 $)
 
@@ -603,3 +636,5 @@ if __name__ == "__main__":
     print(f"wrote {demo} ({sum(1 for _ in demo.open()) - 1} rows)")
     inequality = fetch_inequality_panel()
     print(f"wrote {inequality} ({sum(1 for _ in inequality.open()) - 1} rows)")
+    poverty = fetch_poverty_panel()
+    print(f"wrote {poverty} ({sum(1 for _ in poverty.open()) - 1} rows)")

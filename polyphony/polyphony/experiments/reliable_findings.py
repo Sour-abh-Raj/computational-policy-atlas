@@ -2,13 +2,16 @@
 
 The failure-mode field guide catalogues what Polyphony **cut**. This is its complement: of everything
 tested, the short list of relationships that **survived real validation** and are therefore usable to inform
-a policy choice. Three, and only three — each backed by a validated experiment, not asserted:
+a policy choice. Four — each backed by a validated experiment, not asserted:
 
 - **Energy prices → inflation** (aggregate forecast): the sole aggregate coupling that beats every baseline
   and naive out of sample, robust to a red team and confirmed at quarterly frequency. Central-bank-relevant.
 - **Income → life expectancy** (the Preston curve, cross-country panel): a within-country mechanism that
   survives two-way fixed effects *and* forecasts held-out years. Development-policy-relevant.
 - **Income → fertility** (the demographic transition, panel): likewise survives FE and forecasts.
+- **Income → absolute poverty** (the $2.15/day headcount, panel): the strongest within-country survivor —
+  growth is a validated lever on *absolute* poverty (but *not* on *relative* inequality, which is cut; the
+  two must not be conflated). Development- and welfare-policy-relevant.
 
 Everything else tested was **cut**, honestly, for a named reason. The point of listing the survivors
 separately is decision-support hygiene: a policymaker should know not only that most plausible couplings
@@ -47,6 +50,12 @@ RELIABLE_FINDINGS: tuple[ReliableFinding, ...] = (
         "panel mechanism",
         "negative within-country correlation under two-way fixed effects (−0.11, 252 countries) that forecasts held-out years",
         "income growth genuinely lowers fertility — population and development policy",
+    ),
+    ReliableFinding(
+        "Income → absolute poverty ($2.15/day headcount)",
+        "panel mechanism",
+        "strong negative within-country correlation under two-way fixed effects (−0.48, 121 countries) that forecasts held-out years (OOS +0.58)",
+        "growth is a validated lever on absolute poverty (but NOT on relative inequality, which is cut) — development and welfare policy",
     ),
 )
 

@@ -29,6 +29,7 @@ from ..data.loaders import (
     load_real_inequality_panel,
     load_real_leakage_panel,
     load_real_pm25_mortality_panel,
+    load_real_poverty_panel,
     load_real_preston_panel,
 )
 
@@ -131,6 +132,15 @@ def run_inequality_panel() -> PanelFEResult:
     between-country level artifact, not a within-country mechanism."""
     iso, year, log_gdppc, gini = load_real_inequality_panel()
     return _panel_fe("Income⇄Inequality (Kuznets)", -1, iso, year, log_gdppc, gini)
+
+
+def run_poverty_panel() -> PanelFEResult:
+    """The **growth → absolute poverty** panel: does income lower the $2.15/day headcount *within* countries?
+    The equity dimension's *survivor* and the complement to the inequality cut — unlike *relative* inequality,
+    *absolute* poverty falls strongly within countries as income grows (assumed sign −1), the within-FE
+    correlation survives with little attenuation, and it forecasts out of sample (Dollar–Kraay 2002)."""
+    iso, year, log_gdppc, poverty = load_real_poverty_panel()
+    return _panel_fe("Income⇄Poverty (absolute)", -1, iso, year, log_gdppc, poverty)
 
 
 def run_all_panels() -> tuple[PanelFEResult, ...]:
