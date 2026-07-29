@@ -178,6 +178,24 @@ the **outcome** — a genuine *within-unit mechanism* (poverty tracks income alm
 *confounded distributional* outcome (inequality) is confounded-away just like the aggregate couplings. Being
 cross-sectional is not enough; the mechanism must live *within* units in the outcome you actually care about.
 
+### The instrument's two limits — when a surviving within-correlation still misleads
+
+A panel within-correlation that survives two-way FE is *stronger* evidence than an aggregate correlation, but
+it is not a blank cheque. Two distinct failures are documented — both stated, neither hidden:
+
+| Limit | Case | What happens | Lesson |
+|---|---|---|---|
+| **Outcome confounded** | PM2.5 → all-cause mortality (Iter 34) | FE *fails to recover* a real micro effect: within corr −0.14, wrong-signed | FE isolates a mechanism only when the **outcome** is not itself a confounded within-country trend (here, development/aging) |
+| **Direction-blind under simultaneity** | Education ⇄ income (Iter 61) | FE *succeeds* — within +0.22, forecasts OOS +0.38 — but the lead-lag is **symmetric**: schooling→income +0.37 vs income→schooling +0.38 | A surviving within-correlation is **necessary but not sufficient** for a *directional* claim; when causation runs both ways the instrument cannot assign it |
+
+The education case is the sharper of the two because it *passes* the survivor bar. Human capital raises income
+*and* richer countries school more, so calling the +0.22 co-movement "returns to schooling" would overclaim —
+the reverse channel is, if anything, slightly stronger here. It is therefore **deliberately not** promoted to a
+[reliable finding](index.md): the income→{life expectancy, fertility, poverty} survivors keep their directional
+reading because income is the defensible driver *from outside the data*; education⇄income does not
+(`experiments/education_directionality.py`). Knowing where the instrument stops speaking is part of using it
+honestly.
+
 ## What actually separates keeps from cuts (a computed answer)
 
 Given two keeps and seven cuts, *which property* decides? Scoring every coupling on four plausible

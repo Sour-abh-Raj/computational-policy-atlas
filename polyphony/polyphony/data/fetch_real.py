@@ -394,6 +394,39 @@ def fetch_inequality_panel(out: pathlib.Path | None = None, min_years: int = 6) 
     return out
 
 
+WB_SEC_ENROLL = "https://api.worldbank.org/v2/country/all/indicator/SE.SEC.ENRR?format=json&per_page=27000"
+
+
+def fetch_education_panel(out: pathlib.Path | None = None, min_years: int = 8) -> pathlib.Path:
+    """Fetch a multi-country panel for **education ⇄ income** (Iter 61 — a directional-ambiguity boundary
+    probe): log GDP per capita (``NY.GDP.PCAP.KD``) + **secondary-school gross enrolment** (``SE.SEC.ENRR``,
+    % ). Unlike income→{life expectancy, fertility, poverty} — where income is the clear driver — schooling
+    and income are **bidirectionally causal** (human capital raises income *and* richer countries school
+    more), so the two-way-FE within-correlation, though it survives, **cannot be assigned a direction**. Used
+    by ``experiments/education_directionality.py`` to demonstrate the instrument's second limit; it is
+    deliberately **not** promoted to a reliable finding. Writes ``datasets/real_education_panel.csv``
+    (columns: ``iso``, ``year``, ``log_gdppc``, ``sec_enroll``).
+    """
+    import math
+
+    gdp = _fetch_worldbank_all(WB_GDP_PCAP)
+    sec = _fetch_worldbank_all(WB_SEC_ENROLL)
+    out = out or (DATASETS / "real_education_panel.csv")
+    n = 0
+    with out.open("w", newline="", encoding="utf-8") as fh:
+        w = csv.writer(fh)
+        w.writerow(["iso", "year", "log_gdppc", "sec_enroll"])
+        for iso in sorted(set(gdp) & set(sec)):
+            years = [y for y in sorted(set(gdp[iso]) & set(sec[iso])) if gdp[iso][y] > 0]
+            if len(years) >= min_years:
+                for y in years:
+                    w.writerow([iso, y, math.log(gdp[iso][y]), sec[iso][y]])
+                    n += 1
+    if n < 1000:
+        raise RuntimeError(f"too few panel observations ({n}); refusing to write")
+    return out
+
+
 WB_Q1 = "https://api.worldbank.org/v2/country/all/indicator/SI.DST.FRST.20?format=json&per_page=27000"
 WB_Q2 = "https://api.worldbank.org/v2/country/all/indicator/SI.DST.02ND.20?format=json&per_page=27000"
 
@@ -675,3 +708,5 @@ if __name__ == "__main__":
     print(f"wrote {poverty} ({sum(1 for _ in poverty.open()) - 1} rows)")
     shared = fetch_shared_prosperity_panel()
     print(f"wrote {shared} ({sum(1 for _ in shared.open()) - 1} rows)")
+    education = fetch_education_panel()
+    print(f"wrote {education} ({sum(1 for _ in education.open()) - 1} rows)")

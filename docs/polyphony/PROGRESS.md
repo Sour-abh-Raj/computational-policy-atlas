@@ -1346,3 +1346,31 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
     well-characterised and internally consistent; genuinely distinct probes are scarce. Options: a clean,
     cited within-unit welfare mechanism if fetchable (education→income); otherwise further consolidation or
     an honest pause — do not manufacture busywork.
+- **Iter 61 — ✅ The panel instrument's SECOND boundary: direction-blindness under simultaneity (education⇄income).**
+  - **A probe that turned into a boundary — the honest, valuable outcome.** Tested education→income (human
+    capital / Mincer returns) as a candidate 5th reliable finding on real data (new `real_education_panel.csv`:
+    World Bank `SE.SEC.ENRR` secondary enrolment × `NY.GDP.PCAP.KD`, **7,740 country-years, 236 countries,
+    1970–2025**; `fetch_education_panel`, `load_real_education_panel`, `run_education_panel`).
+  - **Result — SURVIVES the bar but is DIRECTIONALLY AMBIGUOUS.** Within-FE **+0.22**, forecasts OOS **+0.38**
+    — by the survivor bar it "passes". *But* the within-country **lead-lag is symmetric**: schooling(t)→
+    income(t+1) **+0.37** vs income(t)→schooling(t+1) **+0.38** (income leading, if anything, *slightly*
+    stronger). Because human capital raises income **and** rich countries school more (bidirectional
+    causation), the surviving co-movement **cannot be assigned a direction** — calling it "returns to
+    schooling" would overclaim.
+  - **So: NOT promoted to a reliable finding (stays 4).** Instead documented as the instrument's **second
+    limit**: a surviving within-correlation is **necessary but not sufficient** for a *directional* claim. This
+    complements the **first** limit (PM2.5→mortality, Iter 34: FE fails when the *outcome* is confounded). The
+    income→{life expectancy, fertility, poverty} survivors keep their directional reading only because income
+    is the defensible driver *from outside the data*; education⇄income is not.
+  - **New reusable tool:** `panel_validation.within_leadlag` (two-way-FE lead-lag correlation, a directional
+    probe). Module `experiments/education_directionality.py` (`DirectionalityResult`,
+    `run_education_directionality`, `boundary_summary`). Tests: `test_education_directionality.py` (structural
+    logic + 3 real-data assertions). Docs: failure-modes "two limits" subsection, 04-validation register row,
+    datasets README row.
+  - **Atlas feedback:** graph unchanged (**180 nodes / 480 edges, 0-dangling**).
+  - **Convergence stays DONE.** **+4 tests.** Gates green: `pytest` · `ruff` · `mypy` · graph 0-dangling ·
+    `mkdocs --strict`.
+  - **Next (Iter 62):** the instrument now has a characterised positive output (4 findings), a negative
+    catalogue (7 failure modes), and **two** documented limits. This is a genuinely complete decision-support
+    story. Further probes are marginal — favour an honest pause over manufactured iterations unless a clean,
+    distinct, cited, fetchable question appears.

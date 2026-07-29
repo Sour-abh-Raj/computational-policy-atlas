@@ -29,6 +29,7 @@ from ..data.loaders import (
     load_real_inequality_panel,
     load_real_leakage_panel,
     load_real_pm25_mortality_panel,
+    load_real_education_panel,
     load_real_poverty_panel,
     load_real_preston_panel,
     load_real_shared_prosperity_panel,
@@ -175,6 +176,41 @@ def oos_within_prediction(iso: np.ndarray, year: np.ndarray, driver: np.ndarray,
         return 0.0
     b = float(np.sum(xd[tr] * yd[tr]) / denom)
     return float(np.corrcoef(b * xd[te], yd[te])[0, 1])
+
+
+def within_leadlag(lead: np.ndarray, lag: np.ndarray, unit: np.ndarray, time: np.ndarray, k: int = 1) -> float:
+    """Within-country lag-``k`` correlation between two-way-FE-demeaned ``lead`` at ``t`` and ``lag`` at
+    ``t+k``. Removes unit + time fixed effects first, then pairs each country's demeaned ``lead`` with its own
+    ``lag`` ``k`` years later. A directional probe: comparing ``within_leadlag(A, B)`` with
+    ``within_leadlag(B, A)`` reveals whether A leads B more than B leads A — or whether the relationship is
+    symmetric (bidirectional), in which case a contemporaneous within-correlation cannot be assigned a
+    direction."""
+    ld = _group_demean(_group_demean(lead.astype(float), unit), time)
+    gd = _group_demean(_group_demean(lag.astype(float), unit), time)
+    a: list[float] = []
+    b: list[float] = []
+    for u in np.unique(unit):
+        m = unit == u
+        order = np.argsort(time[m])
+        li = ld[m][order]
+        gi = gd[m][order]
+        if len(li) > k:
+            a.extend(li[:-k].tolist())
+            b.extend(gi[k:].tolist())
+    av = np.asarray(a)
+    bv = np.asarray(b)
+    if len(av) < 3 or np.std(av) == 0 or np.std(bv) == 0:
+        return 0.0
+    return float(np.corrcoef(av, bv)[0, 1])
+
+
+def run_education_panel() -> PanelFEResult:
+    """Education ⇄ income: does secondary-school enrolment co-move with income *within* countries? The
+    two-way-FE within-correlation **survives** (positive) — but because schooling and income are
+    *bidirectionally causal*, this survival is **not** evidence of a *direction* (see
+    ``experiments/education_directionality``). Assumed sign +1 for the (either-way) positive co-movement."""
+    iso, year, log_gdppc, sec = load_real_education_panel()
+    return _panel_fe("Education⇄Income (bidirectional)", +1, iso, year, log_gdppc, sec)
 
 
 def run_survivor_oos() -> dict[str, float]:
