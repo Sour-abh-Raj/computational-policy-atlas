@@ -1,0 +1,28 @@
+[
+  {
+    "question": "GDP track \u2014 synthetic COUPLED regime (DGP has energy\u21c4climate\u21c4economy feedback)",
+    "champion": "coupled ensemble (energy+climate+CGE+E3ME)",
+    "beat": [
+      "economy-only (feedback off)"
+    ],
+    "metric": "MASE, held-out (time-blocked 30%)",
+    "value": 8.015894671812912,
+    "synergy_delta": 2.2157645986950456,
+    "data": "synthetic-policy n=40 seed=0",
+    "why": "coupled tracks the damage-driven decline economy-only misses; \u0394>0 \u21d2 keep",
+    "ts": "2026-07-25T04:57:47+00:00"
+  },
+  {
+    "question": "GDP track \u2014 synthetic DECOUPLED regime (negative control: GDP \u27c2 emissions)",
+    "champion": "economy-only (feedback off)",
+    "beat": [
+      "coupled ensemble"
+    ],
+    "metric": "MASE, held-out (time-blocked 30%)",
+    "value": 0.5989175622815035,
+    "synergy_delta": -1.727314677462833,
+    "data": "synthetic-decoupled n=40 seed=0",
+    "why": "coupled wrongly imposes damages; economy-only wins \u21d2 \u0394\u22640 \u21d2 coupling correctly CUT",
+    "ts": "2026-07-25T04:57:47+00:00"
+  }
+]

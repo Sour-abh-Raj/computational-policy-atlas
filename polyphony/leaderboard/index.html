@@ -1,0 +1,7311 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A comprehensive, textbook-quality reconnaissance of policy simulation models across every scientific discipline — climate, energy, economics, transport, urban, agriculture, water, health, and the paradigms and algorithms beneath them.">
+      
+      
+        <meta name="author" content="International Computational Policy Research Institute (working title)">
+      
+      
+      
+        <link rel="prev" href="../related-work/">
+      
+      
+        <link rel="next" href="../PROGRESS/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Leaderboard - The Atlas of Computational Policy Simulation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#leaderboard-every-competition-recorded" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="The Atlas of Computational Policy Simulation" class="md-header__button md-logo" aria-label="The Atlas of Computational Policy Simulation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            The Atlas of Computational Policy Simulation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Leaderboard
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../foundations/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Foundations
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../model-families/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Model Families
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../paradigms/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Paradigms
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../comparative/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Comparative Analyses
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../patterns/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Architecture Patterns
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../graph/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Knowledge Graph
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Polyphony
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../decisions/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Decisions (ADRs)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../bibliography/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Bibliography
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="The Atlas of Computational Policy Simulation" class="md-nav__button md-logo" aria-label="The Atlas of Computational Policy Simulation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    The Atlas of Computational Policy Simulation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../foundations/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Foundations
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Foundations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/taxonomy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Taxonomy of Policy Models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/three-track-method/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The Three-Track Method
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../foundations/dossier-template/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How to Read a Dossier
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../model-families/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model Families
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Model Families
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Climate — Integrated Assessment
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Climate — Integrated Assessment
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/climate-iam/dice/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DICE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/climate-iam/fund/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FUND
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/climate-iam/page/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PAGE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/climate-iam/gcam/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GCAM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/climate-iam/messageix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MESSAGEix
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/climate-iam/image/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IMAGE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/climate-iam/remind/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REMIND
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/climate-iam/witch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WITCH
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/climate-iam/aim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AIM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Energy Systems
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Energy Systems
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/energy/times/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TIMES
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/energy/osemosys/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OSeMOSYS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/energy/pypsa/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PyPSA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/energy/calliope/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Calliope
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/energy/energyplan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EnergyPLAN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Economics — Equilibrium & Macro
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Economics — Equilibrium & Macro
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/economics/cge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CGE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/economics/dsge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DSGE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/economics/input-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Input–Output (Leontief)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/economics/gtap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GTAP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/economics/gem-e3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GEM-E3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/economics/envisage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ENVISAGE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/economics/e3me/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    E3ME
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/economics/frbus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FRB/US
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transportation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Transportation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/transport/matsim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MATSim
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/transport/sumo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SUMO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/transport/transims/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TRANSIMS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/transport/activitysim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ActivitySim
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Urban
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Urban
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/urban/urbansim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UrbanSim
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/urban/cityscope/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CityScope
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/urban/silo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SILO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agriculture & Land
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Agriculture & Land
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/agriculture/globiom/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GLOBIOM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/agriculture/magpie/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MAgPIE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/agriculture/dssat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DSSAT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/agriculture/epic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EPIC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_8" id="__nav_3_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Water
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Water
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/water/weap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WEAP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/water/swat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SWAT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/water/modflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MODFLOW
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/water/clews/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLEWs (nexus)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_9" id="__nav_3_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Health / Epidemiology
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Health / Epidemiology
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/health/covasim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Covasim
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/health/gleam/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GLEAM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/health/openabm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenABM-Covid19
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/health/benmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BenMAP-CE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_10" id="__nav_3_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Finance / Systemic Risk
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Finance / Systemic Risk
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/finance/eirin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EIRIN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_11" id="__nav_3_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trade / Carbon Leakage
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Trade / Carbon Leakage
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/trade/mrio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MRIO (EXIOBASE/Eora)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_12" id="__nav_3_12_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frameworks & Environments
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Frameworks & Environments
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/frameworks/mesa/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mesa
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/frameworks/repast/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repast
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/frameworks/netlogo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NetLogo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/frameworks/gama/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GAMA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/frameworks/vensim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vensim
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/frameworks/stella/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stella
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model-families/frameworks/anylogic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AnyLogic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../paradigms/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Paradigms
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Paradigms
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Methods & Algorithms
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Methods & Algorithms
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../paradigms/algorithms/lp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linear Programming (LP)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../paradigms/algorithms/milp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mixed-Integer LP (MILP)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../paradigms/algorithms/dp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dynamic Programming (DP)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../paradigms/algorithms/optimal-control/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Optimal Control
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../paradigms/algorithms/multiobjective/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-Objective Optimization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../paradigms/algorithms/reinforcement-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reinforcement Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../paradigms/algorithms/bayesian-decision/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bayesian Decision Models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../paradigms/algorithms/digital-twins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Digital Twins
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../comparative/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comparative Analyses
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Comparative Analyses
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../comparative/optimization-vs-simulation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Optimization vs Simulation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../comparative/top-down-vs-bottom-up/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Top-Down vs Bottom-Up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../comparative/equilibrium-vs-disequilibrium/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Equilibrium vs Disequilibrium
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../comparative/abm-vs-cge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ABM vs CGE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../comparative/system-dynamics-vs-abm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Dynamics vs Agent-Based
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../comparative/iam-vs-energy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IAM vs Energy-System Models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../comparative/lp-vs-milp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LP vs MILP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../comparative/recursive-vs-perfect-foresight/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recursive-Dynamic vs Perfect Foresight
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../comparative/deterministic-vs-stochastic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deterministic vs Stochastic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../comparative/continuous-vs-discrete/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Continuous vs Discrete
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../patterns/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Patterns
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture Patterns
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../patterns/scenario-engine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scenario Engine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../patterns/optimization-engine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Optimization Engine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../patterns/market-engine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Market Engine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../patterns/behavior-engine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Behavior Engine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../patterns/integration-engine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integration Engine (Stock-Flow)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../patterns/climate-engine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Climate Engine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../patterns/energy-dispatch-engine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Energy Dispatch Engine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../patterns/spatial-engine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spatial Engine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../patterns/land-engine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Land Engine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../patterns/technology-adoption-engine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Technology-Adoption Engine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../patterns/sensitivity-engine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sensitivity Engine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../patterns/calibration-engine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Calibration Engine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../patterns/policy-engine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Policy Engine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../patterns/validation-engine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Validation Engine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../patterns/visualization-engine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visualization Engine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../patterns/data-pipeline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../patterns/welfare-equity-engine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welfare/Equity Engine (Polyphony)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../patterns/data-assimilation-engine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data-Assimilation Engine (Polyphony)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../graph/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Knowledge Graph
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Knowledge Graph
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Polyphony
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Polyphony
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-inventory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    00 — Inventory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-blueprint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 — Blueprint & Wireframes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-scaffold/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 — Scaffold (core + slice)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-research/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 — Research (couplings raced)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 — Validation (honest accounting)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../failure-modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Failure modes — a field guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decision-support/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decision support — a worked example
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../related-work/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Related Work & Positioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Leaderboard
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Leaderboard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#round-1-first-synergy-tournament-method-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 1 — first synergy tournament (method validation)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-2-red-team-does-the-champion-survive-attack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 2 — Red Team (does the champion survive attack?)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-3-probabilistic-scoring-crpspit-calibration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 3 — probabilistic scoring (CRPS/PIT) + calibration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-4-second-synergy-loop-macro-health-issue-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 4 — second synergy loop: Macro ⇄ Health (issue #8)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-5-third-synergy-loop-landclimatefood-macrohealth-red-team" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 5 — third synergy loop (Land⇄Climate⇄Food) + Macro⇄Health red team
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-6-assimilation-closes-the-r0-shift-break-issue-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 6 — assimilation closes the r0-shift break (issue #1)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-7-the-energy-naive-break-and-a-fair-calibration-cuts-the-energy-synergy-issue-9-direction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 7 — the energy naive break, and a fair calibration cuts the energy synergy (issue #9 direction)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-8-the-landclimatefood-coupling-is-real-survives-fair-calibration-the-energy-killer-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 8 — the Land⇄Climate⇄Food coupling is REAL (survives fair calibration; the energy-killer test)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-9-why-the-land-champion-loses-to-naive-not-parameter-not-lag-but-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 9 — why the land champion loses to naive: not parameter, not lag, but structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-10-real-data-at-last-issue-9-the-climategdp-coupling-fails-a-placebo-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 10 — REAL data at last (issue #9): the climate→GDP coupling fails a placebo control
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-11-contemporaneous-resolution-sharpens-macrohealth-10-correctly-refused-for-cyclic-energy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 11 — contemporaneous resolution: sharpens Macro⇄Health 10×, correctly refused for cyclic energy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-12-real-data-cut-is-robust-to-the-honest-driver-observed-temperature-not-just-co2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 12 — real-data cut is robust to the honest driver (observed temperature, not just CO₂)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-13-the-landclimatefood-coupling-is-cut-on-real-data-fails-placebo-and-has-the-wrong-sign" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 13 — the Land⇄Climate⇄Food coupling is CUT on real data (fails placebo AND has the wrong sign)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-14-fourth-synergy-loop-urbantransportenergyhealth-the-air-quality-co-benefit-issue-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 14 — fourth synergy loop: Urban⇄Transport⇄Energy⇄Health, the air-quality co-benefit (issue #7)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-15-the-real-air-quality-co-benefit-is-cut-right-sign-but-no-signal-above-trend-issue-7-real" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 15 — the real air-quality co-benefit is CUT (right sign, but no signal above trend) (issue #7-real)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-16-fifth-synergy-loop-the-waterenergyfood-nexus-issue-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 16 — fifth synergy loop: the Water⇄Energy⇄Food nexus (issue #10)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-17-the-real-energyfood-nexus-leg-is-cut-strong-correlation-no-out-of-sample-skill-issue-10-real" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 17 — the real energy→food nexus leg is CUT (strong correlation, no out-of-sample skill) (issue #10-real)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-18-walk-forward-cv-hardens-the-verdicts-the-robust-reason-is-no-skill-vs-naive-iter-23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 18 — walk-forward CV hardens the verdicts: the robust reason is "no skill vs naive" (Iter 23)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-19-probabilistic-scoring-the-real-couplings-are-inaccurate-and-overconfident-iter-24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 19 — probabilistic scoring: the real couplings are inaccurate AND overconfident (Iter 24)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-20-honest-uncertainty-calibration-is-achievable-but-not-against-regime-breaks-iter-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 20 — honest uncertainty: calibration is achievable, but not against regime breaks (Iter 25)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-21-sixth-synergy-loop-macrofinance-the-financial-accelerator-issue-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 21 — sixth synergy loop: Macro⇄Finance, the financial accelerator (issue #11)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-22-real-macrofinance-the-closest-call-yet-a-narrow-cut-with-regime-dependent-skill-issue-11-real" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 22 — real Macro⇄Finance: the closest call yet, a narrow CUT with regime-dependent skill (issue #11-real)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-23-seventh-synergy-loop-tradeemissions-carbon-leakage-issue-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 23 — seventh synergy loop: Trade⇄Emissions, carbon leakage (issue #12)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-24-real-tradeemissions-carbon-leakage-is-real-but-cut-confounded-away-issue-12-real" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 24 — real Trade⇄Emissions: carbon leakage is real but CUT (confounded-away) (issue #12-real)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-26-energyinflation-the-first-clean-real-data-keep-issue-13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 26 — Energy⇄Inflation: the FIRST clean real-data KEEP (issue #13)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-27-interest-ratehousing-cut-via-reverse-causation-momentum-issue-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 27 — Interest-Rate⇄Housing: CUT via reverse causation + momentum (issue #14)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#convergence-status-per-domain-done-again-ninth-domain-resolved-two-keeps-seven-plus-cuts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Convergence status (per domain) — DONE (again, ninth domain resolved; two keeps, seven-plus cuts)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#standing-champions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standing champions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contest-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contest log
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Contest log">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#round-0-phase-0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 0 — (Phase 0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#convergence-criterion-the-done-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Convergence criterion (the DONE state)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../PROGRESS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PROGRESS (iteration log)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../decisions/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decisions (ADRs)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_9" id="__nav_9_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Decisions (ADRs)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/adr-template/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR template
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0001-positioning-paradigm-plural-not-world-model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0001 — Positioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0002-repo-layout-and-trunk-based-flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0002 — Repo layout & flow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0003-tech-stack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0003 — Tech stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0004-disagreement-preservation-vs-bma/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0004 — Disagreement vs BMA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0005-contemporaneous-resolution-of-acyclic-couplings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0005 — Contemporaneous coupling resolution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bibliography/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bibliography
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#round-1-first-synergy-tournament-method-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 1 — first synergy tournament (method validation)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-2-red-team-does-the-champion-survive-attack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 2 — Red Team (does the champion survive attack?)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-3-probabilistic-scoring-crpspit-calibration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 3 — probabilistic scoring (CRPS/PIT) + calibration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-4-second-synergy-loop-macro-health-issue-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 4 — second synergy loop: Macro ⇄ Health (issue #8)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-5-third-synergy-loop-landclimatefood-macrohealth-red-team" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 5 — third synergy loop (Land⇄Climate⇄Food) + Macro⇄Health red team
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-6-assimilation-closes-the-r0-shift-break-issue-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 6 — assimilation closes the r0-shift break (issue #1)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-7-the-energy-naive-break-and-a-fair-calibration-cuts-the-energy-synergy-issue-9-direction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 7 — the energy naive break, and a fair calibration cuts the energy synergy (issue #9 direction)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-8-the-landclimatefood-coupling-is-real-survives-fair-calibration-the-energy-killer-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 8 — the Land⇄Climate⇄Food coupling is REAL (survives fair calibration; the energy-killer test)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-9-why-the-land-champion-loses-to-naive-not-parameter-not-lag-but-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 9 — why the land champion loses to naive: not parameter, not lag, but structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-10-real-data-at-last-issue-9-the-climategdp-coupling-fails-a-placebo-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 10 — REAL data at last (issue #9): the climate→GDP coupling fails a placebo control
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-11-contemporaneous-resolution-sharpens-macrohealth-10-correctly-refused-for-cyclic-energy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 11 — contemporaneous resolution: sharpens Macro⇄Health 10×, correctly refused for cyclic energy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-12-real-data-cut-is-robust-to-the-honest-driver-observed-temperature-not-just-co2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 12 — real-data cut is robust to the honest driver (observed temperature, not just CO₂)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-13-the-landclimatefood-coupling-is-cut-on-real-data-fails-placebo-and-has-the-wrong-sign" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 13 — the Land⇄Climate⇄Food coupling is CUT on real data (fails placebo AND has the wrong sign)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-14-fourth-synergy-loop-urbantransportenergyhealth-the-air-quality-co-benefit-issue-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 14 — fourth synergy loop: Urban⇄Transport⇄Energy⇄Health, the air-quality co-benefit (issue #7)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-15-the-real-air-quality-co-benefit-is-cut-right-sign-but-no-signal-above-trend-issue-7-real" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 15 — the real air-quality co-benefit is CUT (right sign, but no signal above trend) (issue #7-real)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-16-fifth-synergy-loop-the-waterenergyfood-nexus-issue-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 16 — fifth synergy loop: the Water⇄Energy⇄Food nexus (issue #10)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-17-the-real-energyfood-nexus-leg-is-cut-strong-correlation-no-out-of-sample-skill-issue-10-real" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 17 — the real energy→food nexus leg is CUT (strong correlation, no out-of-sample skill) (issue #10-real)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-18-walk-forward-cv-hardens-the-verdicts-the-robust-reason-is-no-skill-vs-naive-iter-23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 18 — walk-forward CV hardens the verdicts: the robust reason is "no skill vs naive" (Iter 23)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-19-probabilistic-scoring-the-real-couplings-are-inaccurate-and-overconfident-iter-24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 19 — probabilistic scoring: the real couplings are inaccurate AND overconfident (Iter 24)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-20-honest-uncertainty-calibration-is-achievable-but-not-against-regime-breaks-iter-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 20 — honest uncertainty: calibration is achievable, but not against regime breaks (Iter 25)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-21-sixth-synergy-loop-macrofinance-the-financial-accelerator-issue-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 21 — sixth synergy loop: Macro⇄Finance, the financial accelerator (issue #11)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-22-real-macrofinance-the-closest-call-yet-a-narrow-cut-with-regime-dependent-skill-issue-11-real" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 22 — real Macro⇄Finance: the closest call yet, a narrow CUT with regime-dependent skill (issue #11-real)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-23-seventh-synergy-loop-tradeemissions-carbon-leakage-issue-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 23 — seventh synergy loop: Trade⇄Emissions, carbon leakage (issue #12)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-24-real-tradeemissions-carbon-leakage-is-real-but-cut-confounded-away-issue-12-real" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 24 — real Trade⇄Emissions: carbon leakage is real but CUT (confounded-away) (issue #12-real)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-26-energyinflation-the-first-clean-real-data-keep-issue-13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 26 — Energy⇄Inflation: the FIRST clean real-data KEEP (issue #13)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#round-27-interest-ratehousing-cut-via-reverse-causation-momentum-issue-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 27 — Interest-Rate⇄Housing: CUT via reverse causation + momentum (issue #14)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#convergence-status-per-domain-done-again-ninth-domain-resolved-two-keeps-seven-plus-cuts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Convergence status (per domain) — DONE (again, ninth domain resolved; two keeps, seven-plus cuts)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#standing-champions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standing champions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contest-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contest log
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Contest log">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#round-0-phase-0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Round 0 — (Phase 0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#convergence-criterion-the-done-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Convergence criterion (the DONE state)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="leaderboard-every-competition-recorded">Leaderboard — every competition, recorded<a class="headerlink" href="#leaderboard-every-competition-recorded" title="Permanent link">&para;</a></h1>
+<p>Polyphony selects by <strong>adversarial competition against real data</strong>, never by clearing a fixed
+threshold. This page is the running record of <strong>every tournament</strong>: the contenders, the metric,
+the out-of-sample / holdout / distribution-shift result, and <strong>why the winner won</strong>. A feature,
+coupling, model, or method is only "in" if it appears here as a <strong>winner over named rivals</strong> — and
+it can be <strong>dethroned</strong> by a later challenger or a red-team break.</p>
+<div class="admonition info">
+<p class="admonition-title">Reading a row</p>
+<p>Each contest records: <strong>question</strong> (what is being predicted/decided), <strong>contenders</strong>,
+<strong>data &amp; split</strong> (dataset, train/test window, shift test), <strong>metric(s)</strong>, <strong>winner</strong>,
+<strong>margin</strong>, <strong>why</strong>, <strong>red-team status</strong>, and a link to the eval script + ADR.</p>
+</div>
+<p>Machine-readable results live in <strong><a href="../leaderboard.json"><code>leaderboard.json</code></a></strong>, regenerated by
+<code>python -m polyphony.experiments.run_leaderboard</code>.</p>
+<h2 id="round-1-first-synergy-tournament-method-validation">Round 1 — first synergy tournament (method validation)<a class="headerlink" href="#round-1-first-synergy-tournament-method-validation" title="Permanent link">&para;</a></h2>
+<p>The first real contest asks: <strong>does coupling energy⇄climate⇄economy earn its keep?</strong> A <strong>coupled</strong>
+4-voice ensemble (energy + climate + CGE + E3ME) is scored against an <strong>economy-only</strong> baseline
+(the same economics voices with the feedback switched off — the "sum-of-parts") on a <strong>held-out,
+time-blocked</strong> GDP track. Run on <strong>two synthetic regimes</strong>: one whose data-generating process <em>has</em>
+the coupling, and a <strong>negative control</strong> where GDP is independent of emissions.</p>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Champion</th>
+<th>Beat</th>
+<th>Metric</th>
+<th style="text-align: right;">Value</th>
+<th style="text-align: right;">Synergy Δ</th>
+<th>Data</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GDP — <strong>coupled</strong> regime (DGP has energy⇄climate⇄economy feedback)</td>
+<td>coupled ensemble</td>
+<td>economy-only</td>
+<td>MASE, held-out 30%</td>
+<td style="text-align: right;">8.016</td>
+<td style="text-align: right;"><strong>+2.216</strong></td>
+<td>synthetic-policy n=40</td>
+<td>coupled tracks the damage-driven decline; Δ&gt;0 ⇒ <strong>keep</strong></td>
+</tr>
+<tr>
+<td>GDP — <strong>decoupled</strong> regime (negative control: GDP ⟂ emissions)</td>
+<td>economy-only</td>
+<td>coupled ensemble</td>
+<td>MASE, held-out 30%</td>
+<td style="text-align: right;">0.599</td>
+<td style="text-align: right;"><strong>−1.727</strong></td>
+<td>synthetic-decoupled n=40</td>
+<td>coupled wrongly imposes damages; economy-only wins ⇒ <strong>cut</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>What this establishes — and what it does not.</strong> The method <strong>detects synergy when the coupling is
+real (Δ&gt;0, keep) and correctly cuts it when spurious (Δ≤0)</strong>. That validates Polyphony's core
+<em>mechanism</em> — the falsifiable synergy test — on data where the truth is known. It is <strong>not</strong> a claim
+of real-world predictive skill: both MASE values are &gt;1 (the toys are uncalibrated to the synthetic
+levels), and the target is <strong>synthetic</strong> (real data is <a href="https://github.com/Sour-abh-Raj/computational-policy-atlas/issues/9">issue #9</a>;
+network fetch is currently blocked). See <a href="../04-validation/">04-validation</a> for the full honesty
+accounting.</p>
+<h2 id="round-2-red-team-does-the-champion-survive-attack">Round 2 — Red Team (does the champion survive attack?)<a class="headerlink" href="#round-2-red-team-does-the-champion-survive-attack" title="Permanent link">&para;</a></h2>
+<p>The Round-1 champion (the coupled ensemble) was attacked with five stress tests
+(<code>polyphony/tournament/redteam.py</code>): distribution shift, a <strong>Lucas-critique</strong> policy-regime change,
+extreme dials, noise-seed instability, and a <strong>naive-baseline</strong> skill test.</p>
+<table>
+<thead>
+<tr>
+<th>Attack</th>
+<th>Result</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>distribution_shift</td>
+<td>survived</td>
+<td>coupling advantage persists under a mis-assumed carbon price</td>
+</tr>
+<tr>
+<td>lucas_regime_change</td>
+<td>survived</td>
+<td>advantage persists across a mid-series policy shift</td>
+</tr>
+<tr>
+<td>edge_dials</td>
+<td>survived</td>
+<td>predictions stay finite at extreme carbon_price/tcre</td>
+</tr>
+<tr>
+<td>noise_stability</td>
+<td>survived</td>
+<td>synergy sign holds across all noise seeds (flip fraction 0)</td>
+</tr>
+<tr>
+<td><strong>naive_baseline</strong></td>
+<td><strong>BROKE</strong></td>
+<td>coupled <strong>MASE ≈ 8 &gt; 1</strong> — the champion loses to a naive random-walk forecast</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Verdict: the champion does NOT survive.</strong> The decisive finding — surfaced by the Red Team, not
+hidden — is that the coupling's "synergy" is only relative to an <strong>artificially weak</strong> economy-only
+baseline; on absolute skill the reduced-form champion is <strong>worse than naive</strong>. So there is <strong>no skill
+claim</strong> yet: the synergy <em>method</em> is validated, the <em>champion</em> is not. This break feeds back as a
+hard gate — calibration + real data (issue #9) are prerequisites before any champion can be trusted.</p>
+<h2 id="round-3-probabilistic-scoring-crpspit-calibration">Round 3 — probabilistic scoring (CRPS/PIT) + calibration<a class="headerlink" href="#round-3-probabilistic-scoring-crpspit-calibration" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Metric</th>
+<th style="text-align: right;">coupled</th>
+<th style="text-align: right;">economy-only</th>
+<th style="text-align: center;">Synergy</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GDP distribution, synthetic-policy</td>
+<td><strong>CRPS</strong> (held-out)</td>
+<td style="text-align: right;"><strong>7.9</strong></td>
+<td style="text-align: right;">10.2</td>
+<td style="text-align: center;"><strong>+2.3 keep</strong></td>
+<td>coupling helps on the <em>proper</em> score, not just MASE</td>
+</tr>
+<tr>
+<td>GDP mean track, after affine calibration</td>
+<td><strong>MASE</strong> (held-out)</td>
+<td style="text-align: right;"><strong>0.61</strong></td>
+<td style="text-align: right;">—</td>
+<td style="text-align: center;">—</td>
+<td><strong>beats naive</strong> (&lt;1) <em>on synthetic</em>; PIT≈0 ⇒ distribution still mis-calibrated</td>
+</tr>
+</tbody>
+</table>
+<p>The naive-baseline break (Round 2) is <strong>partly addressed</strong>: after train-block calibration the coupled
+mean beats naive on the synthetic target — but this is synthetic, and PIT shows the <em>distribution</em> is
+biased low. Not a general skill claim; real data (#9) remains the gate. See
+<a href="../04-validation/">04-validation</a>.</p>
+<h2 id="round-4-second-synergy-loop-macro-health-issue-8">Round 4 — second synergy loop: Macro ⇄ Health (issue #8)<a class="headerlink" href="#round-4-second-synergy-loop-macro-health-issue-8" title="Permanent link">&para;</a></h2>
+<p>A <strong>health-coupled</strong> ensemble (reduced-form SIR epidemic + economics voices, so an outbreak drags
+output) vs an <strong>economy-only</strong> baseline, on a two-regime synthetic test (<code>experiments/macrohealth.py</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Metric</th>
+<th style="text-align: right;">coupled</th>
+<th style="text-align: right;">economy-only</th>
+<th style="text-align: right;">Synergy</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GDP — <strong>pandemic</strong> DGP (SIR-driven dip)</td>
+<td>MASE (held-out)</td>
+<td style="text-align: right;"><strong>0.95</strong></td>
+<td style="text-align: right;">9.01</td>
+<td style="text-align: right;"><strong>+8.06</strong></td>
+<td><strong>keep</strong></td>
+</tr>
+<tr>
+<td>GDP — <strong>no-pandemic</strong> control (GDP ⟂ epidemic)</td>
+<td>MASE (held-out)</td>
+<td style="text-align: right;">32.11</td>
+<td style="text-align: right;">0.60</td>
+<td style="text-align: right;"><strong>−31.51</strong></td>
+<td><strong>cut</strong></td>
+</tr>
+</tbody>
+</table>
+<p>The synergy method <strong>replicates in a new domain</strong>: keep when the coupling is real, cut on the control.
+Notably the health-coupled champion <strong>beats naive</strong> (MASE 0.95 &lt; 1) in the pandemic regime — because the
+SIR structure matches the DGP — a sharper result than the energy champion (which lost to naive). Still
+<strong>synthetic</strong> with matched structure; real pandemic-economics data remains out of scope (network-blocked).</p>
+<p><strong>Ensemble calibration fixed:</strong> the energy-slice ensemble was biased low (PIT ≈ 0); after de-biasing +
+widening (<code>engines.calibrate_ensemble</code>), <strong>CRPS 7.9 → 0.44</strong> and <strong>PIT 0.0 → 0.39</strong> (near-uniform).</p>
+<h2 id="round-5-third-synergy-loop-landclimatefood-macrohealth-red-team">Round 5 — third synergy loop (Land⇄Climate⇄Food) + Macro⇄Health red team<a class="headerlink" href="#round-5-third-synergy-loop-landclimatefood-macrohealth-red-team" title="Permanent link">&para;</a></h2>
+<p><strong>Land⇄Climate⇄Food (issue #6):</strong> a climate-coupled ensemble (energy + climate + land, so warming
+raises food price) vs a climate-blind land baseline:</p>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Metric</th>
+<th style="text-align: right;">coupled</th>
+<th style="text-align: right;">land-only</th>
+<th style="text-align: right;">Synergy</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Food price — <strong>warming</strong> DGP</td>
+<td>MASE (held-out)</td>
+<td style="text-align: right;"><strong>6.68</strong></td>
+<td style="text-align: right;">30.56</td>
+<td style="text-align: right;"><strong>+23.9</strong></td>
+<td><strong>keep</strong></td>
+</tr>
+<tr>
+<td>Food price — <strong>flat</strong> control</td>
+<td>MASE (held-out)</td>
+<td style="text-align: right;">112.9</td>
+<td style="text-align: right;">0.81</td>
+<td style="text-align: right;"><strong>−112.1</strong></td>
+<td><strong>cut</strong></td>
+</tr>
+</tbody>
+</table>
+<p>The synergy method now replicates across <strong>three</strong> independent domains (energy, health, land) — keep
+when the coupling is real, cut on the control.</p>
+<p><strong>Macro⇄Health Red Team — champion BROKEN by <code>r0_shift</code>.</strong> When the world's reproduction number differs
+from the champion's assumption (r0 4.0 vs assumed 2.5), the health coupling does far <em>worse</em> than
+economy-only (coupled MASE 30.3 vs 4.1, Δ −26). It survives a variant Lucas-critique, extreme dials, and
+the naive baseline — but the r0 break is a real finding: <strong>the coupling helps only when the epidemic
+driver is well-estimated</strong>; under distribution shift in r0 it hurts. Feeds back a concrete need — <strong>r0
+assimilation/estimation</strong> before the health coupling can be trusted under shift.</p>
+<h2 id="round-6-assimilation-closes-the-r0-shift-break-issue-1">Round 6 — assimilation closes the r0-shift break (issue #1)<a class="headerlink" href="#round-6-assimilation-closes-the-r0-shift-break-issue-1" title="Permanent link">&para;</a></h2>
+<p>The Round-5 break was that the Macro⇄Health champion <em>assumed</em> r0 = 2.5 while the world ran at 4.0.
+Round 6 adds the <strong><a href="../../patterns/data-assimilation-engine/">Data-Assimilation engine</a></strong>: before
+forecasting, <code>estimate_r0</code> fits r0 from the <strong>early observed dip on the train block</strong> (grid
+least-squares over the SIR), then feeds the estimate into the coupled predictor. The <em>same</em> r0-shift
+attack is re-run <strong>with</strong> assimilation:</p>
+<table>
+<thead>
+<tr>
+<th>Attack</th>
+<th>Before (assume r0)</th>
+<th>After (assimilate r0)</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>r0_shift</td>
+<td><strong>BROKE</strong> — coupled MASE 30.3, Δ −26.2</td>
+<td><strong>survives</strong> — r0 recovered = 4.0, coupled MASE <strong>1.03</strong>, Δ <strong>+3.09</strong></td>
+<td>reading r0 off the early data repairs the coupling</td>
+</tr>
+<tr>
+<td>variant_lucas / edge_dials / naive_baseline</td>
+<td>survived</td>
+<td>survived</td>
+<td>unchanged</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Verdict: the r0-shift break is CLOSED by assimilation</strong> (<code>run_red_team(assimilate=True).survived</code>).
+The estimator is validated independently — it recovers a known r0 (2.0/3.0/4.5) to within 0.5 on
+synthetic data (<code>tests/test_assimilation.py</code>). Honest caveat: still <strong>synthetic</strong>, and assimilation
+fixes the <em>parameter</em>, not the coupling <em>structure</em> — but the champion now survives a full red-team
+round in the Macro⇄Health domain. The engine feeds back to the atlas as
+<a href="../../patterns/data-assimilation-engine/">engine #18</a> (graph node <code>p-assimilation</code>, 0-dangling).</p>
+<h2 id="round-7-the-energy-naive-break-and-a-fair-calibration-cuts-the-energy-synergy-issue-9-direction">Round 7 — the energy naive break, and a fair calibration cuts the energy synergy (issue #9 direction)<a class="headerlink" href="#round-7-the-energy-naive-break-and-a-fair-calibration-cuts-the-energy-synergy-issue-9-direction" title="Permanent link">&para;</a></h2>
+<p>Two facts about the energy⇄climate⇄economy champion, reported together because together they are the
+honest story:</p>
+<p><strong>(a) Calibration closes the naive break.</strong> The raw champion lost to naive (MASE ≈ 8). After an affine
+<strong>train-block</strong> calibration (atlas <a href="../../patterns/calibration-engine/">Calibration Engine</a>), it <strong>beats
+naive</strong> — <code>run_red_team(calibrate=True).survived == True</code>, coupled <strong>MASE 8.0 → 0.60 &lt; 1</strong> — and clears
+distribution-shift, Lucas, edge-dials and noise-stability too.</p>
+<p><strong>(b) …but a <em>fair</em> calibration also cuts the energy synergy.</strong> The Round-1 synergy (+2.22) was measured
+on <strong>raw</strong> tracks. Give the <strong>economy-only</strong> baseline its <em>own</em> train-block affine fit — its strongest
+form — and re-score (<code>experiments.calibrated_synergy</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Slice</th>
+<th style="text-align: right;">coupled (cal)</th>
+<th style="text-align: right;">economy-only (cal)</th>
+<th style="text-align: right;">Δ</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GDP — coupled regime, cp=50, held-out 30%</td>
+<td style="text-align: right;"><strong>0.600</strong></td>
+<td style="text-align: right;">0.591</td>
+<td style="text-align: right;"><strong>−0.009</strong></td>
+<td><strong>cut</strong></td>
+</tr>
+<tr>
+<td>across 8 seeds</td>
+<td style="text-align: right;">0.60–0.93 (beats naive 8/8)</td>
+<td style="text-align: right;">≈ equal</td>
+<td style="text-align: right;">mean <strong>+0.001</strong> (sign flips)</td>
+<td><strong>cut</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Verdict: the energy coupling earns no keep once the baseline is fairly calibrated.</strong> Its apparent
+Round-1 advantage was a <strong>level artifact</strong> that a calibrated sum-of-parts absorbs — a <strong>falsifiable
+"no synergy" result</strong>, exactly the kind Polyphony is built to publish rather than bury. This <em>contrasts</em>
+with <strong>Macro⇄Health</strong>, whose coupling survives calibration <strong>and</strong> assimilation with a real Δ&gt;0
+(<a href="#round-6-assimilation-closes-the-r0-shift-break-issue-1">Round 6</a>): the method distinguishes a <strong>real</strong>
+coupling from a <strong>spurious/level</strong> one. The remaining route to genuine energy synergy is real data +
+richer structure (issue #9), not a level fit.</p>
+<h2 id="round-8-the-landclimatefood-coupling-is-real-survives-fair-calibration-the-energy-killer-test">Round 8 — the Land⇄Climate⇄Food coupling is REAL (survives fair calibration; the energy-killer test)<a class="headerlink" href="#round-8-the-landclimatefood-coupling-is-real-survives-fair-calibration-the-energy-killer-test" title="Permanent link">&para;</a></h2>
+<p>Iter 12 cut the <em>energy</em> synergy: a fair calibration of the baseline erased it (level artifact). Round 8
+runs the <strong>same adversarial test</strong> on the land coupling (<code>experiments/redteam_landfood.py</code>,
+<code>experiments/landfood.calibrated_synergy</code>) — give the climate-blind <strong>land-only</strong> baseline its own
+train-block affine fit, then ask whether the coupling still helps:</p>
+<table>
+<thead>
+<tr>
+<th>Attack</th>
+<th>Result</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>level_artifact</strong> (fair calibration of the baseline — the energy-killer)</td>
+<td>✅ <strong>survives</strong></td>
+<td>calibrated coupled MASE <strong>2.87</strong> vs land-only <strong>18.1</strong> ⇒ <strong>Δ +15.2</strong> (mean +15.5 across 8 seeds) — <strong>not</strong> a level artifact</td>
+</tr>
+<tr>
+<td><strong>policy_shift</strong> (world mitigates at cp=100, champion assumed cp=0)</td>
+<td>✅ survives</td>
+<td>after calibration the coupling still beats land-only, <strong>Δ +4.1</strong></td>
+</tr>
+<tr>
+<td>edge_dials</td>
+<td>✅ survives</td>
+<td>predictions finite at extreme carbon_price/tcre</td>
+</tr>
+<tr>
+<td><strong>naive_baseline</strong> (calibrated)</td>
+<td>❌ <strong>BROKE</strong></td>
+<td>calibrated coupled <strong>MASE 2.87 &gt; 1</strong> — the champion still loses to a naive forecast</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Verdict: KEEP the coupling — but no absolute skill claim yet.</strong> Unlike energy, the land coupling's
+Δ is a <strong>real structural advantage</strong> that a fairly-calibrated baseline cannot absorb (the warming→food
+-price shape is genuinely informative). Yet the calibrated champion is still worse than naive, so there
+is <strong>no skill claim</strong> — only a validated coupling awaiting real data + richer structure (issue #9).</p>
+<p><strong>The three-way contrast is now the headline</strong> — the tournament discriminates <em>why</em> each coupling does
+or doesn't earn its keep:</p>
+<table>
+<thead>
+<tr>
+<th>Domain</th>
+<th>Coupling after fair calibration</th>
+<th style="text-align: center;">Beats naive?</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Energy⇄Climate⇄Economy</td>
+<td>Δ ≈ <strong>−0.01</strong> (collapses)</td>
+<td style="text-align: center;">✅ (by absorbing level)</td>
+<td><strong>cut</strong> — level artifact</td>
+</tr>
+<tr>
+<td>Land⇄Climate⇄Food</td>
+<td>Δ ≈ <strong>+15</strong> (robust)</td>
+<td style="text-align: center;">❌</td>
+<td><strong>keep</strong>, but not yet skillful</td>
+</tr>
+<tr>
+<td>Macro⇄Health (+ assimilation)</td>
+<td>Δ ≈ <strong>+3.1</strong> (robust)</td>
+<td style="text-align: center;">✅ (MASE 1.03)</td>
+<td><strong>keep</strong> — real <strong>and</strong> skillful</td>
+</tr>
+</tbody>
+</table>
+<h2 id="round-9-why-the-land-champion-loses-to-naive-not-parameter-not-lag-but-structure">Round 9 — why the land champion loses to naive: not parameter, not lag, but structure<a class="headerlink" href="#round-9-why-the-land-champion-loses-to-naive-not-parameter-not-lag-but-structure" title="Permanent link">&para;</a></h2>
+<p>Iter 13 left the land coupling <strong>kept but not skillful</strong> (calibrated MASE 2.87 &gt; 1). Round 9 rules out
+the two easy explanations, honestly, one at a time:</p>
+<table>
+<thead>
+<tr>
+<th>Candidate cause</th>
+<th>Test</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Wrong driver</strong> (mis-estimated parameter)</td>
+<td>assimilate it: <code>estimate_yield_sensitivity</code> grid-fits the yield sensitivity from the early food-price rise</td>
+<td><strong>ruled out</strong> — recovers the true <strong>0.1</strong> across seeds; the parameter was already right</td>
+</tr>
+<tr>
+<td><strong>Coupling lag</strong> (Gauss–Seidel one-step delay per hop)</td>
+<td>resolve the acyclic energy→climate→land chain <strong>contemporaneously</strong> (topological order within the step; <a href="../../decisions/0005-contemporaneous-resolution-of-acyclic-couplings/">ADR-0005</a>)</td>
+<td><strong>ruled out as the fix</strong> — the early track now moves with warming (no lag), but calibrated <strong>MASE stays ≈ 2.87</strong></td>
+</tr>
+<tr>
+<td><strong>Structural voice/DGP mismatch</strong> (reduced-form tail dynamics)</td>
+<td>(remaining)</td>
+<td><strong>the actual cause</strong> — the toy energy/climate voices' tail slope differs from the target; closable only with <strong>real data / richer voices</strong> (issue #9)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Verdict: the land coupling stays KEPT; the champion stays honestly <em>not</em> naive-beating.</strong> We refuse
+the one move that <em>would</em> force MASE &lt; 1 — tuning the reduced-form voices to their own synthetic
+generator — because that manufactures skill that would not survive real data. The <strong>contemporaneous
+solver is retained</strong> as a correct, general improvement (ADR-0005), and the residual is now <strong>precisely
+attributed</strong>. This is the difference from Macro⇄Health, where the driver genuinely <em>was</em> mis-estimated
+(r0 shift) and assimilation therefore <em>did</em> close the gap.</p>
+<h2 id="round-10-real-data-at-last-issue-9-the-climategdp-coupling-fails-a-placebo-control">Round 10 — REAL data at last (issue #9): the climate→GDP coupling fails a placebo control<a class="headerlink" href="#round-10-real-data-at-last-issue-9-the-climategdp-coupling-fails-a-placebo-control" title="Permanent link">&para;</a></h2>
+<p>Network egress returned, so the loop fetched <strong>real historical data</strong> (<code>polyphony/data/fetch_real.py</code>):
+<strong>World Bank</strong> world GDP (<code>NY.GDP.MKTP.KD</code>, constant 2015 US$) + <strong>OWID</strong> global CO₂, merged by year
+(65 years, 1960–2024). The first tournament on non-synthetic data (<code>experiments/real_tournament.py</code>)
+predicts real GDP two ways, fit on the train block only:</p>
+<table>
+<thead>
+<tr>
+<th>Predictor</th>
+<th style="text-align: right;">Held-out MASE</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>economy-only (log-linear growth trend)</td>
+<td style="text-align: right;"><strong>3.20</strong></td>
+<td>the sum-of-parts baseline</td>
+</tr>
+<tr>
+<td><strong>coupled</strong> (trend × damage from <strong>observed cumulative CO₂</strong>)</td>
+<td style="text-align: right;"><strong>1.49</strong></td>
+<td>Δ = <strong>+1.70</strong> vs baseline — <em>looks like</em> synergy</td>
+</tr>
+<tr>
+<td><strong>placebo</strong> (same damage form, generic <strong>t^1.5</strong> trend, no CO₂)</td>
+<td style="text-align: right;"><strong>1.34</strong></td>
+<td>a meaningless regressor does <strong>as well or better</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Verdict: CUT.</strong> The CO₂ term beats the plain trend, but it <strong>fails the placebo control</strong> — a generic
+monotone time-trend regressor improves the fit <em>more</em>. So the apparent gain is <strong>not climate signal</strong>;
+cumulative CO₂ is merely proxying the post-2008 <strong>growth slowdown</strong>. Neither predictor beats naive
+(coupled MASE 1.49 &gt; 1). This is the honest headline of the real-data phase: <strong>on real world GDP, this
+reduced-form climate→GDP coupling shows no genuine predictive synergy</strong> — precisely the self-deception a
+placebo control exists to catch, and exactly what Polyphony is built to report rather than trumpet.</p>
+<p>This does <strong>not</strong> say climate has no effect on the economy — only that a <em>reduced-form CO₂→GDP damage
+channel does not add short-horizon predictive skill over trend on 65 years of aggregate data</em>, and that
+any claim it does must clear a placebo. Genuine climate-economy signal needs richer structure, regional
+/ sectoral resolution, and damage identification — not a single global regression (future work).</p>
+<h2 id="round-11-contemporaneous-resolution-sharpens-macrohealth-10-correctly-refused-for-cyclic-energy">Round 11 — contemporaneous resolution: sharpens Macro⇄Health 10×, correctly refused for cyclic energy<a class="headerlink" href="#round-11-contemporaneous-resolution-sharpens-macrohealth-10-correctly-refused-for-cyclic-energy" title="Permanent link">&para;</a></h2>
+<p>Iter 14 added an opt-in no-lag solver for <strong>acyclic</strong> couplings (<a href="../../decisions/0005-contemporaneous-resolution-of-acyclic-couplings/">ADR-0005</a>).
+Round 11 offers it to the two remaining slices and reports what happens:</p>
+<table>
+<thead>
+<tr>
+<th>Slice</th>
+<th>Coupling shape</th>
+<th><code>resolve="contemporaneous"</code></th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Macro⇄Health</strong> (epidemic→economy)</td>
+<td><strong>acyclic</strong></td>
+<td>allowed</td>
+<td><strong>coupled MASE 0.95 → 0.10</strong> (10× sharper), synergy Δ <strong>+8.06 → +8.92</strong>; the sharpest champion yet</td>
+</tr>
+<tr>
+<td><strong>Energy⇄climate⇄economy</strong></td>
+<td><strong>cyclic</strong> (energy⇄economy feedback)</td>
+<td><strong>refused</strong> (raises)</td>
+<td>the guard correctly forbids no-lag resolution of a genuine feedback loop — it stays lagged</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Two honest wins at once.</strong> Where the coupling is a genuine feed-forward chain (Macro⇄Health),
+removing the artificial Gauss–Seidel lag is <em>correct</em> and makes the champion decisively naive-beating
+(MASE 0.10). Where the coupling is a true cycle (energy⇄economy), the same mode <strong>refuses to run</strong> — you
+cannot resolve a feedback loop in one pass, and the guard enforces it. The land champion's earlier
+diagnosis (Iter 14) is consistent: there the lag was removable but a <em>voice/DGP structural</em> mismatch
+remained; here the epidemic voice matches its DGP, so no-lag resolution alone yields the sharpening.</p>
+<h2 id="round-12-real-data-cut-is-robust-to-the-honest-driver-observed-temperature-not-just-co2">Round 12 — real-data cut is robust to the honest driver (observed temperature, not just CO₂)<a class="headerlink" href="#round-12-real-data-cut-is-robust-to-the-honest-driver-observed-temperature-not-just-co2" title="Permanent link">&para;</a></h2>
+<p>A fair objection to Round 10: cumulative CO₂ is a crude warming proxy; maybe <strong>observed temperature</strong>
+would carry real signal. Round 12 fetches the <strong>Hadley Centre global temperature anomaly</strong> (OWID) and
+re-runs the real tournament with temperature as the damage driver (58 overlapping years, 1960–2017):</p>
+<table>
+<thead>
+<tr>
+<th>Driver</th>
+<th style="text-align: right;">econ-only MASE</th>
+<th style="text-align: right;">coupled MASE</th>
+<th style="text-align: right;">placebo (t^1.5) MASE</th>
+<th style="text-align: center;">beats placebo?</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cumulative CO₂</td>
+<td style="text-align: right;">2.94</td>
+<td style="text-align: right;">1.18</td>
+<td style="text-align: right;"><strong>0.87</strong></td>
+<td style="text-align: center;">❌</td>
+<td><strong>cut</strong></td>
+</tr>
+<tr>
+<td><strong>observed temperature</strong></td>
+<td style="text-align: right;">2.94</td>
+<td style="text-align: right;">1.07</td>
+<td style="text-align: right;"><strong>0.87</strong></td>
+<td style="text-align: center;">❌</td>
+<td><strong>cut</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>The cut is robust.</strong> Even with the <em>direct, observed</em> warming signal, the climate→GDP damage coupling
+beats the plain trend but <strong>still fails the placebo</strong> — a meaningless time trend predicts held-out GDP
+better than either climate driver, and neither beats naive. So the earlier verdict was <strong>not</strong> an
+artifact of the CO₂ proxy: on aggregate historical data, this reduced-form climate→GDP channel carries
+<strong>no placebo-surviving predictive signal</strong>. (Again: not a claim climate doesn't affect the economy — a
+statement about <em>this reduced-form channel on this aggregate series</em>.)</p>
+<h2 id="round-13-the-landclimatefood-coupling-is-cut-on-real-data-fails-placebo-and-has-the-wrong-sign">Round 13 — the Land⇄Climate⇄Food coupling is CUT on real data (fails placebo AND has the wrong sign)<a class="headerlink" href="#round-13-the-landclimatefood-coupling-is-cut-on-real-data-fails-placebo-and-has-the-wrong-sign" title="Permanent link">&para;</a></h2>
+<p>The last open gap: the coupling <em>kept</em> on synthetic data (Δ+15) tested on <strong>real</strong> World Bank world
+cereal yield (kg/ha) vs the observed Hadley temperature anomaly (57 years, 1961–2017;
+<code>experiments/real_land_tournament.py</code>). The land voice assumes <strong>warming → lower yield → higher price</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>econ-only trend MASE</td>
+<td>4.94</td>
+</tr>
+<tr>
+<td>coupled (warming-damage) MASE</td>
+<td>2.21 — beats the trend (Δ +2.73)</td>
+</tr>
+<tr>
+<td><strong>placebo (t^1.5) MASE</strong></td>
+<td><strong>2.20 — as good ⇒ fails the placebo</strong></td>
+</tr>
+<tr>
+<td><strong>corr(temp, real yield)</strong></td>
+<td><strong>+0.90 — the WRONG sign</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Verdict: CUT, on two independent grounds.</strong> The warming term beats the plain trend but <strong>ties a
+meaningless placebo</strong>, and — more tellingly — real cereal yield rose <strong>with</strong> warming (corr +0.90),
+because the <strong>Green Revolution</strong> (fertilizer, irrigation, genetics) dominated historical yield. The
+reduced-form warming→lower-yield mechanism therefore has the <strong>wrong sign</strong> on aggregate data. A
+coupling that was confidently <em>kept</em> on synthetic data is <strong>falsified by real data</strong> — the single
+sharpest demonstration of why synthetic validation is never enough, and why real data + a placebo +
+a sign check are the gates that matter.</p>
+<h2 id="round-14-fourth-synergy-loop-urbantransportenergyhealth-the-air-quality-co-benefit-issue-7">Round 14 — fourth synergy loop: Urban⇄Transport⇄Energy⇄Health, the air-quality co-benefit (issue #7)<a class="headerlink" href="#round-14-fourth-synergy-loop-urbantransportenergyhealth-the-air-quality-co-benefit-issue-7" title="Permanent link">&para;</a></h2>
+<p><strong>Scope is a floor</strong> (ADR-0001): the ensemble extends into a new domain with a cited reason and a test.
+The <strong>health co-benefit of transport decarbonization</strong> — a carbon price cuts traffic, cuts ambient PM2.5,
+and thereby cuts premature mortality — is one of the best-documented cross-domain couplings in policy
+science (Haines et al. 2009, <em>Lancet</em>; the Lancet Countdown), resting on concentration–response functions
+that are among the most robust dose–response relationships in environmental epidemiology (Dockery et al.
+1993 Harvard Six Cities; Burnett et al. 2018 GEMM). Two new voices — a <code>transport</code> mode-shift voice
+(carbon price → vehicle-km → PM2.5, with behavioural inertia) and an <code>airhealth</code> voice (a log-linear CRF
+turning PM2.5 into an excess-mortality burden) — coupled <strong>contemporaneously</strong> (the chain is acyclic;
+ADR-0005). Atlas fed back: new <strong>BenMAP-CE</strong> dossier + graph nodes (<code>benmap</code>, <code>crf</code>, <code>dockery</code>, <code>epa</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Check (<code>experiments/urbanhealth.py</code>)</th>
+<th>Co-benefit regime</th>
+<th>Flat negative control</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>raw synergy Δ (uncalibrated)</td>
+<td>+153.5</td>
+<td>+200.6 — <em>both huge: a level artifact, not skill</em></td>
+</tr>
+<tr>
+<td><strong>fair-calibrated</strong> coupled MASE</td>
+<td><strong>0.87</strong></td>
+<td>0.81</td>
+</tr>
+<tr>
+<td><strong>fair-calibrated</strong> blind MASE</td>
+<td>14.35</td>
+<td>0.81</td>
+</tr>
+<tr>
+<td><strong>fair-calibrated Δ</strong></td>
+<td><strong>+13.5 ⇒ keep</strong></td>
+<td><strong>0.00 ⇒ cut</strong></td>
+</tr>
+<tr>
+<td>corr(PM2.5, burden) — sign check</td>
+<td><strong>+0.997 (as assumed)</strong></td>
+<td>−0.06</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Verdict: KEEP on synthetic (survives fair calibration + correct sign), CUT on the negative control.</strong>
+The three-way honesty machinery transfers cleanly to the fourth domain: the coupling beats its
+sum-of-parts even after the baseline gets its own affine fit (so it is <em>not</em> the energy-style level
+artifact), it is correctly <em>cut</em> where the DGP has no coupling, and the exposure sign is the one the
+mechanism assumes. <strong>But — exactly as with Land⇄Climate⇄Food at Round 8 — a synthetic keep is machinery,
+not real-world skill.</strong> No real PM2.5 + mortality series has been tested yet, so this is a <em>new open,
+improvable gap</em> (issue #7-real). The co-benefit's intuitive appeal is precisely why it must face a real
+placebo before any keep is believed.</p>
+<h2 id="round-15-the-real-air-quality-co-benefit-is-cut-right-sign-but-no-signal-above-trend-issue-7-real">Round 15 — the real air-quality co-benefit is CUT (right sign, but no signal above trend) (issue #7-real)<a class="headerlink" href="#round-15-the-real-air-quality-co-benefit-is-cut-right-sign-but-no-signal-above-trend-issue-7-real" title="Permanent link">&para;</a></h2>
+<p>Iter 19 opened a gap; Iter 20 closes it. The co-benefits voice models <strong>more PM2.5 → higher mortality</strong>.
+Tested on <strong>real</strong> World Bank world PM2.5 exposure (µg/m³) vs an <strong>independent</strong> all-cause crude death
+rate (per 1000), 34 years 1990–2023 (<code>experiments/real_urbanhealth_tournament.py</code>).</p>
+<p>A subtlety that decides the whole test: the outcome is <strong>all-cause</strong> mortality, <em>not</em> the GBD "mortality
+attributed to ambient PM2.5" indicator — the latter is <strong>computed from</strong> PM2.5 by a concentration-response
+function, so testing PM2.5 → GBD-mortality would be <strong>circular</strong> (it confirms the mechanism by
+construction). Only an independent outcome can fail.</p>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>corr(PM2.5, death rate) — raw sign</td>
+<td><strong>+0.35 — the RIGHT sign</strong> (more PM2.5 ↔ more mortality)</td>
+</tr>
+<tr>
+<td>trend-only MASE</td>
+<td>1.781</td>
+</tr>
+<tr>
+<td>coupled (PM2.5 hazard) MASE</td>
+<td>1.781 — <strong>fitted hazard k → 0</strong> (adds nothing above trend)</td>
+</tr>
+<tr>
+<td><strong>placebo (t^1.5) MASE</strong></td>
+<td><strong>1.768 — as good/better ⇒ fails the placebo</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Verdict: CUT — but instructively different from land.</strong> Here the sign is <em>correct</em>: PM2.5 and mortality
+are positively associated. Yet once a trend is removed, the exposure's partial contribution <strong>clamps to
+zero</strong> — the positive correlation is a <strong>shared downward trend</strong> (both PM2.5 and the crude death rate
+fell over 1990–2023), not PM2.5 carrying independent information about mortality deviations. A generic
+time trend predicts the held-out death rate as well or better. So the <em>aggregate reduced-form</em> co-benefit
+earns no skill, even though the underlying <strong>micro-epidemiology is real</strong> (cohort CRFs) — a textbook case
+of ecological confounding, and a reminder that a coupling being <em>scientifically true at the individual
+level</em> does not make it <em>predictively skillful in an aggregate time series</em>.</p>
+<h2 id="round-16-fifth-synergy-loop-the-waterenergyfood-nexus-issue-10">Round 16 — fifth synergy loop: the Water⇄Energy⇄Food nexus (issue #10)<a class="headerlink" href="#round-16-fifth-synergy-loop-the-waterenergyfood-nexus-issue-10" title="Permanent link">&para;</a></h2>
+<p><strong>Scope is a floor</strong> once more: the ensemble extends to the <strong>Water⇄Energy⇄Food nexus</strong> — the thesis
+(Hoff 2011, Bonn Nexus Conference; integrated tools like <a href="../../model-families/water/clews/">CLEWs</a>) that
+water, energy, and food are so interdependent a drought propagates into food <em>and</em> energy prices. Two new
+voices — a <code>water</code> reservoir/storage voice (a <code>precipitation</code> dial drives inflow against demand; a
+sustained deficit draws down the store so <strong>water stress</strong> rises and saturates) and a <code>nexusfood</code> voice
+(irrigation-dependent yield loss + a pumping-energy surcharge turn stress into food price) — coupled
+<strong>contemporaneously</strong> (acyclic chain; ADR-0005). The driver is <strong>water</strong>, distinct from the climate-driven
+land voice. Atlas fed back: new <strong>CLEWs</strong> dossier + graph nodes (<code>clews</code>, <code>howells</code>; also linking
+<code>osemosys</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Check (<code>experiments/waternexus.py</code>)</th>
+<th>Drought regime</th>
+<th>Flat negative control</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>raw synergy Δ (uncalibrated)</td>
+<td>+727</td>
+<td>0.00 — <em>the blind baseline has no level</em></td>
+</tr>
+<tr>
+<td><strong>fair-calibrated</strong> coupled MASE</td>
+<td><strong>0.82</strong></td>
+<td>0.81</td>
+</tr>
+<tr>
+<td><strong>fair-calibrated</strong> blind MASE</td>
+<td>100.1</td>
+<td>0.81</td>
+</tr>
+<tr>
+<td><strong>fair-calibrated Δ</strong></td>
+<td><strong>+99.3 ⇒ keep</strong></td>
+<td><strong>0.00 ⇒ cut</strong></td>
+</tr>
+<tr>
+<td>corr(water stress, food price) — sign check</td>
+<td><strong>+0.99 (as assumed)</strong></td>
+<td>−0.06</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Verdict: KEEP on synthetic (survives fair calibration + correct sign), CUT on the negative control.</strong>
+The three-way machinery transfers to the fifth domain. <strong>But — as with every domain — a synthetic keep is
+machinery, not skill.</strong> No real water/food series has been tested yet, so this opens a <em>new open,
+improvable gap</em> (issue #10-real): the real-data placebo test comes next.</p>
+<h2 id="round-17-the-real-energyfood-nexus-leg-is-cut-strong-correlation-no-out-of-sample-skill-issue-10-real">Round 17 — the real energy→food nexus leg is CUT (strong correlation, no out-of-sample skill) (issue #10-real)<a class="headerlink" href="#round-17-the-real-energyfood-nexus-leg-is-cut-strong-correlation-no-out-of-sample-skill-issue-10-real" title="Permanent link">&para;</a></h2>
+<p>Iter 21 opened a gap; Iter 22 closes it. A clean global <em>water-scarcity</em> driver is not available as an
+annual series, so we test the nexus's most data-rich, best-documented leg — the <strong>energy → food-price</strong>
+transmission (natural gas → fertilizer; diesel → machinery; electricity → pumping), which the <code>nexusfood</code>
+voice carries as its pumping-energy surcharge. Real IMF Global Food and Energy price indices (FRED),
+34 years 1992–2025 (<code>experiments/real_nexus_tournament.py</code>). This is a <em>partial</em> nexus test (energy pillar,
+not the water pillar — a documented data limitation, worked around).</p>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>corr(energy, food) — contemporaneous, raw sign</td>
+<td><strong>+0.90 — strong, and the RIGHT sign</strong></td>
+</tr>
+<tr>
+<td>trend-only MASE</td>
+<td>3.269</td>
+</tr>
+<tr>
+<td>coupled (energy pass-through) MASE</td>
+<td>3.837 — <strong>worse than the trend</strong> (k=0.05)</td>
+</tr>
+<tr>
+<td>placebo (t^1.5) MASE</td>
+<td>3.736 — coupled does not beat it either</td>
+</tr>
+<tr>
+<td>beats naive (MASE &lt; 1)?</td>
+<td><strong>no</strong> (all reduced forms ≫ 1: food prices are a volatile near-random-walk)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Verdict: CUT — a fourth, distinct failure mode.</strong> Energy and food prices are strongly correlated
+<em>contemporaneously</em> (+0.90), but a train-fit energy pass-through does <strong>worse out-of-sample than a plain
+trend, worse than a placebo, and far worse than naive</strong>. The reason is concrete: the pass-through fit on
+1992–2015 does <strong>not</strong> extrapolate to the unprecedented <strong>2022 energy shock</strong>, when energy prices roughly
+doubled but food rose far less (buffered by inventories, substitution, and policy). A strong correlation
+is <strong>not</strong> a usable leading predictor. This joins the catalogue of <em>named</em> cuts — level artifact (energy),
+wrong sign (land), confounded-away (co-benefit), and now <strong>real signal without out-of-sample skill</strong>
+(nexus energy→food).</p>
+<h2 id="round-18-walk-forward-cv-hardens-the-verdicts-the-robust-reason-is-no-skill-vs-naive-iter-23">Round 18 — walk-forward CV hardens the verdicts: the robust reason is "no skill vs naive" (Iter 23)<a class="headerlink" href="#round-18-walk-forward-cv-hardens-the-verdicts-the-robust-reason-is-no-skill-vs-naive-iter-23" title="Permanent link">&para;</a></h2>
+<p>The single-split real tournaments (Rounds 10, 13, 15, 17) each decide on <strong>one</strong> time-blocked split — and
+the nexus placebo comparison flipped between two reasonable split choices. So every real coupling is
+re-run over an <strong>expanding-window walk-forward</strong> (<code>experiments/walkforward.py</code>), on a unified sign-aware
+reduced form, reporting how often the coupling beats its <strong>baseline</strong>, a <strong>placebo</strong>, and <strong>naive</strong> across
+folds.</p>
+<table>
+<thead>
+<tr>
+<th>Coupling (real)</th>
+<th style="text-align: right;">folds</th>
+<th style="text-align: right;">beats baseline</th>
+<th style="text-align: right;">beats placebo</th>
+<th style="text-align: right;"><strong>beats naive</strong></th>
+<th>robust verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>climate→GDP</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">100%</td>
+<td style="text-align: right;">100%</td>
+<td style="text-align: right;"><strong>14%</strong></td>
+<td><strong>cut</strong></td>
+</tr>
+<tr>
+<td>warming→yield</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">100%</td>
+<td style="text-align: right;">100%</td>
+<td style="text-align: right;"><strong>14%</strong></td>
+<td><strong>cut</strong></td>
+</tr>
+<tr>
+<td>PM2.5→mortality</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0%</td>
+<td style="text-align: right;">0%</td>
+<td style="text-align: right;"><strong>50%</strong></td>
+<td><strong>cut</strong></td>
+</tr>
+<tr>
+<td>energy→food</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">50%</td>
+<td style="text-align: right;">75%</td>
+<td style="text-align: right;"><strong>25%</strong></td>
+<td><strong>cut</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>All four cuts are robust across folds — but the honest reason is now unified and <em>more</em> honest than the
+single-split story.</strong> Two couplings (climate→GDP, energy→food) actually <strong>beat the placebo in most folds</strong>
+— so the single-split "fails placebo" attributions were partly <em>split artifacts</em>. What holds across every
+fold and every coupling is that <strong>none beats a naive random-walk forecast</strong> (14%, 14%, 50%, 25%). That —
+not the fragile placebo comparison — is the robust, split-independent reason all four aggregate reduced-form
+couplings are cut: on these smooth aggregate series a random walk is simply hard to beat. Walk-forward CV
+thus both <strong>confirms the cuts</strong> and <strong>corrects their stated reasons</strong>, which is exactly what a validation
+upgrade should do.</p>
+<h2 id="round-19-probabilistic-scoring-the-real-couplings-are-inaccurate-and-overconfident-iter-24">Round 19 — probabilistic scoring: the real couplings are inaccurate AND overconfident (Iter 24)<a class="headerlink" href="#round-19-probabilistic-scoring-the-real-couplings-are-inaccurate-and-overconfident-iter-24" title="Permanent link">&para;</a></h2>
+<p>Point accuracy (MASE) can't see whether a model's <em>bands</em> are honest. So each real coupling's point
+forecast is turned into a <strong>predictive distribution</strong> (point ± resampled train residuals) and scored with
+<strong>CRPS</strong> and the <strong>PIT</strong> against a probabilistic naive (persistence ± train first-difference spread);
+<code>experiments/real_probabilistic.py</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Coupling (real)</th>
+<th style="text-align: right;">CRPS coupled</th>
+<th style="text-align: right;">CRPS naive</th>
+<th style="text-align: right;">PIT mean</th>
+<th style="text-align: right;">PIT in central half</th>
+<th>calibrated?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>climate→GDP</td>
+<td style="text-align: right;">36.5</td>
+<td style="text-align: right;">8.7</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0%</td>
+<td>❌ overconfident</td>
+</tr>
+<tr>
+<td>warming→yield</td>
+<td style="text-align: right;">226</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0%</td>
+<td>❌ overconfident</td>
+</tr>
+<tr>
+<td>PM2.5→mortality</td>
+<td style="text-align: right;">0.47</td>
+<td style="text-align: right;">0.25</td>
+<td style="text-align: right;">0.99</td>
+<td style="text-align: right;">0%</td>
+<td>❌ overconfident</td>
+</tr>
+<tr>
+<td>energy→food</td>
+<td style="text-align: right;">27.5</td>
+<td style="text-align: right;">6.5</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0%</td>
+<td>❌ overconfident</td>
+</tr>
+</tbody>
+</table>
+<p><strong>A second, distinct verdict on top of the point cuts.</strong> Every coupling not only loses to naive on CRPS
+(mirroring the MASE result) but is <strong>grossly overconfident</strong>: the PIT piles entirely at the tails (0% of
+values in the central half), meaning the predictive interval <strong>almost never contains the realised value</strong>.
+The cause is concrete — out-of-sample error is dominated by <strong>trend-extrapolation bias</strong> that the
+in-sample residual spread never saw, so bands calibrated on train are far too narrow out of sample.
+Inaccurate <em>and</em> overconfident is precisely the failure a single-confident-number simulator hides; here it
+is measured and named. (The honest remedy — predictive distributions that carry parameter and structural
+uncertainty, not just in-sample residuals — is future work, now motivated by a number.)</p>
+<h2 id="round-20-honest-uncertainty-calibration-is-achievable-but-not-against-regime-breaks-iter-25">Round 20 — honest uncertainty: calibration is achievable, but not against regime breaks (Iter 25)<a class="headerlink" href="#round-20-honest-uncertainty-calibration-is-achievable-but-not-against-regime-breaks-iter-25" title="Permanent link">&para;</a></h2>
+<p>Round 19 diagnosed overconfidence; Round 20 tries to <em>fix</em> it, using only training information —
+<strong>out-of-sample bias correction</strong> (from a walk-forward backtest on the train block) + <strong>horizon-fanning
+bands</strong> (spread grown as √h with the forecast lead). <code>experiments/honest_uncertainty.py</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Coupling (real)</th>
+<th style="text-align: right;">central coverage: in-sample</th>
+<th style="text-align: right;">central coverage: honest</th>
+<th style="text-align: right;">honest PIT mean</th>
+<th>calibrated?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>climate→GDP</td>
+<td style="text-align: right;">0%</td>
+<td style="text-align: right;"><strong>47%</strong></td>
+<td style="text-align: right;">0.22</td>
+<td>improved (near)</td>
+</tr>
+<tr>
+<td>warming→yield</td>
+<td style="text-align: right;">0%</td>
+<td style="text-align: right;"><strong>100%</strong></td>
+<td style="text-align: right;">0.35</td>
+<td>✅ (mildly over-dispersed)</td>
+</tr>
+<tr>
+<td>PM2.5→mortality</td>
+<td style="text-align: right;">0%</td>
+<td style="text-align: right;">0%</td>
+<td style="text-align: right;">0.99</td>
+<td>❌ regime break (aging upturn)</td>
+</tr>
+<tr>
+<td>energy→food</td>
+<td style="text-align: right;">0%</td>
+<td style="text-align: right;">0%</td>
+<td style="text-align: right;">0.08</td>
+<td>❌ regime break (2022 shock)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Two honest halves.</strong> (1) Where the future resembles the past, the honest bands <strong>earn calibration</strong> —
+climate→GDP and warming→yield go from <em>zero</em> central coverage to 47% / 100%, showing a calibrated
+predictive distribution is achievable <strong>even for a coupling with no point skill</strong> (the north star: report
+<em>earned</em> confidence, not none and not false). (2) Where the test block contains a genuine <strong>regime break</strong>
+the train backtest never saw — mortality turning up with population aging; the unprecedented 2022 energy
+shock — historical residuals <strong>cannot</strong> insure against it, and calibration stays broken. That second half
+is not a failure to hide but the lesson: <strong>honest uncertainty from history is still blind to structural
+breaks</strong>, and a system that claimed otherwise would be dishonest in exactly the way this project exists to
+avoid.</p>
+<h2 id="round-21-sixth-synergy-loop-macrofinance-the-financial-accelerator-issue-11">Round 21 — sixth synergy loop: Macro⇄Finance, the financial accelerator (issue #11)<a class="headerlink" href="#round-21-sixth-synergy-loop-macrofinance-the-financial-accelerator-issue-11" title="Permanent link">&para;</a></h2>
+<p><strong>Scope is a floor</strong> once more: the ensemble extends to <strong>Macro⇄Finance</strong> — the financial-accelerator /
+leverage-cycle channel (Bernanke-Gertler-Gilchrist 1999; Minsky; Gilchrist-Zakrajšek 2012). A new <code>finance</code>
+voice turns a credit shock into a <strong>delayed, slowly-unwinding output drag</strong> (a critically-damped
+boom-bust hump), feeding the economy voices' existing <code>output_penalty</code> channel — structurally the
+Macro⇄Health template with a <em>financial</em> rather than epidemiological accelerator. Coupled
+<strong>contemporaneously</strong> (acyclic; ADR-0005). Atlas fed back: a new <strong>Finance / Systemic Risk</strong> domain +
+<strong>EIRIN</strong> dossier + graph nodes (<code>d-finance</code>, <code>eirin</code>, <code>monasterolo</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Check (<code>experiments/macrofinance.py</code>)</th>
+<th>Crisis regime</th>
+<th>Decoupled negative control</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>raw synergy Δ (uncalibrated)</td>
+<td>+35.8</td>
+<td>0.00</td>
+</tr>
+<tr>
+<td><strong>fair-calibrated</strong> coupled MASE</td>
+<td><strong>0.82</strong></td>
+<td>0.80</td>
+</tr>
+<tr>
+<td><strong>fair-calibrated</strong> econ-only MASE</td>
+<td>15.74</td>
+<td>0.80</td>
+</tr>
+<tr>
+<td><strong>fair-calibrated Δ</strong></td>
+<td><strong>+2.74 ⇒ keep</strong></td>
+<td><strong>0.00 ⇒ cut</strong></td>
+</tr>
+<tr>
+<td>corr(credit spread, GDP) — sign check</td>
+<td><strong>−0.999 (as assumed)</strong></td>
+<td>0.00</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Verdict: KEEP on synthetic (survives fair calibration + correct sign, and beats naive), CUT on the
+control.</strong> Notably this coupling is genuinely <em>skillful</em> on synthetic (coupled MASE 0.82 &lt; 1). <strong>But — as
+always — a synthetic keep is machinery, not skill.</strong> No real credit-spread → output series is tested yet,
+so this opens a <em>new open, improvable gap</em> (issue #11-real) — and unusually, a real KEEP is plausible here
+(financial conditions genuinely lead output; Gilchrist-Zakrajšek), which makes the real test especially
+worth running.</p>
+<h2 id="round-22-real-macrofinance-the-closest-call-yet-a-narrow-cut-with-regime-dependent-skill-issue-11-real">Round 22 — real Macro⇄Finance: the closest call yet, a narrow CUT with regime-dependent skill (issue #11-real)<a class="headerlink" href="#round-22-real-macrofinance-the-closest-call-yet-a-narrow-cut-with-regime-dependent-skill-issue-11-real" title="Permanent link">&para;</a></h2>
+<p>Iter 26 opened the gap; Iter 27 closes it — on the coupling most likely to survive. Tested on <strong>real</strong> FRED
+data: the Baa−10Y <strong>credit spread</strong> vs annual real-GDP <strong>growth</strong> (the natural target; financial conditions
+predict activity, not the smooth level — Gilchrist-Zakrajšek 2012). As a real-time <strong>nowcast</strong> (spreads are
+observed before GDP is released), it matches the finance voice's contemporaneous drag.
+<code>experiments/real_finance_tournament.py</code>, decided by walk-forward (Round 18).</p>
+<table>
+<thead>
+<tr>
+<th>Check (walk-forward, 5 folds)</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>corr(spread, growth) — sign</td>
+<td><strong>−0.61 — strong, and the RIGHT sign</strong></td>
+</tr>
+<tr>
+<td>beats a <strong>placebo</strong></td>
+<td><strong>80% of folds</strong> (genuine, non-spurious information)</td>
+</tr>
+<tr>
+<td>beats <strong>naive</strong></td>
+<td>60% of folds</td>
+</tr>
+<tr>
+<td>beats a <strong>mean-growth climatology</strong></td>
+<td><strong>40% of folds — a minority</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Verdict: CUT — but the strongest real signal of any coupling, and a <em>sixth distinct</em> failure mode.</strong> The
+spread carries real, right-signed, placebo-beating information and beats naive in a majority — yet it does
+<strong>not</strong> robustly beat an unconditional mean-growth baseline. The per-fold detail says why: it <strong>caught the
+2008 and COVID growth collapses</strong> (beating the baseline there) but <em>hurt</em> in calm years and <strong>overshot the
+2022 spread-widening that brought no recession</strong>. So its skill is <strong>regime-dependent</strong> — real near crises,
+noise otherwise — which an annual reduced-form linear coupling cannot exploit for a keep. That a channel
+<em>this</em> well-motivated is still cut on the strict bar is exactly the point: <strong>the bar does not bend for a
+good story.</strong></p>
+<h2 id="round-23-seventh-synergy-loop-tradeemissions-carbon-leakage-issue-12">Round 23 — seventh synergy loop: Trade⇄Emissions, carbon leakage (issue #12)<a class="headerlink" href="#round-23-seventh-synergy-loop-tradeemissions-carbon-leakage-issue-12" title="Permanent link">&para;</a></h2>
+<p><strong>Scope is a floor</strong> once more: the ensemble extends to <strong>Trade⇄Emissions</strong> — the carbon-leakage /
+pollution-haven channel (Copeland-Taylor), central to border-carbon-adjustment policy. A new <code>trade</code> voice
+adds embodied carbon from imports as globalisation builds, so <strong>consumption-based</strong> emissions rise above
+<strong>production-based</strong> emissions — the gap is embodied carbon in trade (measured by MRIO databases like
+EXIOBASE/Eora). Coupled contemporaneously to the energy voice (acyclic; ADR-0005). Atlas fed back: a new
+<strong>Trade / Carbon Leakage</strong> domain + <strong>MRIO</strong> dossier + graph nodes (<code>d-trade</code>, <code>mrio</code>, <code>lenzen</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Check (<code>experiments/tradeemissions.py</code>)</th>
+<th>Leakage regime</th>
+<th>No-leakage control</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>raw synergy Δ (uncalibrated)</td>
+<td>+3.3</td>
+<td>0.00</td>
+</tr>
+<tr>
+<td><strong>fair-calibrated Δ</strong></td>
+<td><strong>+17.3 ⇒ keep</strong></td>
+<td><strong>0.00 ⇒ cut</strong></td>
+</tr>
+<tr>
+<td>corr(leakage frac, consumption) — sign</td>
+<td><strong>+0.998 (as assumed)</strong></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Verdict: KEEP on synthetic (survives fair calibration + correct sign), CUT on the control.</strong> A synthetic
+keep is machinery, not skill — the real-data test is especially clean here because OWID publishes the
+production–consumption gap directly (<code>trade_co2</code>), so issue <strong>#12-real</strong> has an unusually well-measured
+target.</p>
+<h2 id="round-24-real-tradeemissions-carbon-leakage-is-real-but-cut-confounded-away-issue-12-real">Round 24 — real Trade⇄Emissions: carbon leakage is real but CUT (confounded-away) (issue #12-real)<a class="headerlink" href="#round-24-real-tradeemissions-carbon-leakage-is-real-but-cut-confounded-away-issue-12-real" title="Permanent link">&para;</a></h2>
+<p>Iter 29 opened the gap; Iter 30 closes it on the textbook case — the <strong>United Kingdom</strong>, whose production
+CO₂ ~halved since 1990 while consumption CO₂ fell far less. Target: real consumption CO₂; the leakage
+driver is <strong>trade openness</strong> (World Bank), an <em>independent</em> regressor (using the observed gap would be
+circular). <code>experiments/real_trade_tournament.py</code>, decided by walk-forward. <em>(The World aggregate is not
+usable — global trade nets to zero, so consumption = production.)</em></p>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>corr(openness, consumption/production ratio) — sign</td>
+<td><strong>+0.81 — strong, and the RIGHT sign</strong></td>
+</tr>
+<tr>
+<td>leakage-coupled vs <strong>production-blind</strong> baseline</td>
+<td><strong>beats it in 0% of folds</strong></td>
+</tr>
+<tr>
+<td>leakage-coupled vs <strong>placebo</strong> / <strong>naive</strong></td>
+<td>0% / 0% of folds</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Verdict: CUT — the "confounded-away" mode again.</strong> The UK's carbon-leakage gap is unmistakably real (the
+ratio rose 1.11→1.58 as it opened, corr +0.81), but out of sample the openness-driven leakage term does
+<strong>not</strong> beat a baseline that simply scales production — the openness↔gap correlation is a <strong>shared trend</strong>
+(both rose over 1990–2023), not independent predictive information. The <em>average</em> leakage level is real and
+trivially captured by production; its <em>openness-driven dynamics</em> are not predictable beyond a trend. A
+genuine, policy-important phenomenon whose reduced-form mechanism still fails the strict skill bar.</p>
+<h2 id="round-26-energyinflation-the-first-clean-real-data-keep-issue-13">Round 26 — Energy⇄Inflation: the FIRST clean real-data KEEP (issue #13)<a class="headerlink" href="#round-26-energyinflation-the-first-clean-real-data-keep-issue-13" title="Permanent link">&para;</a></h2>
+<p>Seven couplings had been cut on real data; the eighth <strong>survives</strong>. Energy is a large, direct component of
+consumer prices and passes through to core costs, so <strong>energy-price growth should predict inflation</strong> — the
+mechanism behind the 1970s, 2008, and 2022 episodes. Tested on real FRED data (IMF Global Energy price index
++ US CPI, 32 years), decided by walk-forward. <code>experiments/inflation_tournament.py</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Check (walk-forward, 4 folds)</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>corr(energy-price growth, inflation) — sign</td>
+<td><strong>+0.65 — strong, RIGHT sign</strong></td>
+</tr>
+<tr>
+<td>beats a <strong>mean baseline</strong></td>
+<td><strong>100% of folds</strong></td>
+</tr>
+<tr>
+<td>beats a <strong>placebo</strong></td>
+<td>75% of folds</td>
+</tr>
+<tr>
+<td>beats <strong>persistence</strong> (last year's inflation)</td>
+<td><strong>100% of folds</strong></td>
+</tr>
+<tr>
+<td>beats <strong>naive</strong> (MASE &lt; 1)</td>
+<td><strong>100% of folds</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Verdict: KEEP — robustly, on real data.</strong> Energy-price growth beats every baseline, persistence, and naive
+in a majority (mostly all) of walk-forward folds with the right sign — a genuinely skillful coupling. The
+method is validated synthetically too (a matched pass-through is kept; an independent control is cut). This
+is the instrument's <strong>first clean real-data keep</strong> (Macro⇄Health is kept but its real test was underpowered),
+and it matters: the strict bar that cut six plausible couplings <strong>rewards</strong> this one, so the bar is
+discriminating, not merely destructive. Atlas fed back: <strong>FRB/US</strong> dossier (the Fed's macroeconometric model,
+the reference for empirical energy→inflation pass-through).</p>
+<p><strong>Lead-lag deepening (Iter 36) — it forecasts, not just nowcasts.</strong> A horizon study
+(<code>experiments/inflation_leadlag.py</code>) lags energy-price growth by 0–3 years:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Lead</th>
+<th style="text-align: right;">corr</th>
+<th style="text-align: right;">beats baseline</th>
+<th>verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">h=0 (nowcast)</td>
+<td style="text-align: right;">+0.65</td>
+<td style="text-align: right;">100%</td>
+<td><strong>keep</strong></td>
+</tr>
+<tr>
+<td style="text-align: right;">h=1 (one year ahead)</td>
+<td style="text-align: right;">+0.41</td>
+<td style="text-align: right;">100%</td>
+<td><strong>keep</strong></td>
+</tr>
+<tr>
+<td style="text-align: right;">h=2</td>
+<td style="text-align: right;">−0.20</td>
+<td style="text-align: right;">0%</td>
+<td>cut (sign flips)</td>
+</tr>
+<tr>
+<td style="text-align: right;">h=3</td>
+<td style="text-align: right;">−0.11</td>
+<td style="text-align: right;">0%</td>
+<td>cut</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Forecast horizon = 1 year</strong>, then skill decays and the correlation <strong>flips negative</strong> — the classic
+<strong>base effect</strong> (a spike raises inflation now and <em>lowers</em> it a couple of years later as the level drops
+out). So the keep is a genuine <em>short-horizon forecaster</em>, not a long-horizon one — matching central banks'
+doctrine of "looking through" transitory energy shocks. Reporting <em>how far ahead</em> the skill reaches, and
+where it reverses, is more honest than a bare "it predicts inflation".</p>
+<p><strong>Red-team (Iter 43) — the keep survives its attacks.</strong> The obvious objection is that it rides on the 2022
+spike; the decisive attack <strong>removes the most extreme energy-move year</strong> and re-runs the walk-forward — the
+pass-through <strong>still beats the baseline and naive in every fold</strong> (<code>experiments/redteam_inflation.py</code>). So
+it is <em>not</em> a single-episode artifact. It is stable in the <strong>recent</strong> half; the <strong>early</strong> half is weaker
+(50% of folds) — a disclosed small-sample fragility (few folds, lower 1990s energy volatility), reported
+rather than hidden. A keep with its fragilities named, still standing.</p>
+<p><strong>Higher-power confirmation (Iter 48) — it holds at quarterly frequency.</strong> A fair worry is that a 4-fold
+annual walk-forward is low-powered. Re-run at <strong>quarterly</strong> frequency (136 quarters ⇒ <strong>8 folds</strong>,
+<code>experiments/inflation_quarterly.py</code>), the keep holds with a <strong>stronger</strong> contemporaneous correlation
+(<strong>0.72</strong>) and still beats the baseline (88%), placebo (75%), persistence (75%), and naive (75%) in a
+majority of folds. The keep is <strong>not</strong> an artifact of low-power annual data — it is the project's most
+solidly established real-data result.</p>
+<h2 id="round-27-interest-ratehousing-cut-via-reverse-causation-momentum-issue-14">Round 27 — Interest-Rate⇄Housing: CUT via reverse causation + momentum (issue #14)<a class="headerlink" href="#round-27-interest-ratehousing-cut-via-reverse-causation-momentum-issue-14" title="Permanent link">&para;</a></h2>
+<p>A ninth coupling, and a <em>new</em> failure mode. Higher rates should slow house-price growth — but rates and
+growth <strong>co-move contemporaneously with the wrong (positive) sign</strong> because the Fed <strong>hikes into booms</strong>
+(reverse causation; the policy reacts to the outcome). Tested on real FRED data (30-yr mortgage rate +
+Case-Shiller HPI), decided by walk-forward. <code>experiments/real_housing_tournament.py</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>contemporaneous corr(Δrate, house-price growth)</td>
+<td><strong>+0.38 — WRONG sign (reverse causation)</strong></td>
+</tr>
+<tr>
+<td>lead corr(rate_{t−1}, growth_t)</td>
+<td>−0.27 — right sign, but weak</td>
+</tr>
+<tr>
+<td>lagged rate beats a <strong>persistence (momentum)</strong> baseline</td>
+<td><strong>0% of folds</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Verdict: CUT — a seventh, distinct failure mode: reverse causation / policy endogeneity.</strong> The naive
+contemporaneous correlation would tell you <em>higher rates raise house prices</em> — the opposite of the
+mechanism — because the central bank moves in response to the boom. Using the correctly-signed <strong>lagged</strong>
+rate fixes the sign but not the skill: house-price growth is dominated by <strong>momentum</strong>, and last year's
+growth forecasts this year's far better than the rate does. Failing to beat that honest baseline is
+decisive (the Iter-37 rule). A policy-central coupling, cut for a principled, teachable reason.</p>
+<h2 id="convergence-status-per-domain-done-again-ninth-domain-resolved-two-keeps-seven-plus-cuts">Convergence status (per domain) — DONE (again, ninth domain resolved; two keeps, seven-plus cuts)<a class="headerlink" href="#convergence-status-per-domain-done-again-ninth-domain-resolved-two-keeps-seven-plus-cuts" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Domain / coupling</th>
+<th>Verdict</th>
+<th>Real-data status</th>
+<th>Open, improvable gap?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Macro⇄Health</strong></td>
+<td><strong>KEEP</strong> (survives full red-team round; assimilation + no-lag, MASE 0.10)</td>
+<td>underpowered (≈1 pandemic event in annual data)</td>
+<td><strong>no</strong> — no more real events to fetch</td>
+</tr>
+<tr>
+<td><strong>Energy⇄climate⇄economy</strong></td>
+<td><strong>CUT</strong> (level artifact; genuinely cyclic)</td>
+<td>—</td>
+<td><strong>no</strong></td>
+</tr>
+<tr>
+<td><strong>Land⇄Climate⇄Food</strong></td>
+<td><strong>CUT on real data</strong> (fails placebo + wrong sign)</td>
+<td>✅ tested (57 yrs cereal yield)</td>
+<td><strong>no</strong></td>
+</tr>
+<tr>
+<td><strong>Real climate→GDP</strong></td>
+<td><strong>CUT</strong> (fails placebo under both CO₂ and temperature)</td>
+<td>✅ tested (58 yrs)</td>
+<td><strong>no</strong></td>
+</tr>
+<tr>
+<td><strong>Urban⇄Transport⇄Energy⇄Health</strong> (co-benefit)</td>
+<td><strong>CUT on real data</strong> (right sign, no skill above trend; fails placebo)</td>
+<td>✅ tested (34 yrs)</td>
+<td><strong>no</strong></td>
+</tr>
+<tr>
+<td><strong>Water⇄Energy⇄Food</strong> (nexus, energy→food leg)</td>
+<td><strong>CUT on real data</strong> (corr +0.90 but no out-of-sample skill)</td>
+<td>✅ tested (34 yrs); water-leg data-limited</td>
+<td><strong>no</strong></td>
+</tr>
+<tr>
+<td><strong>Macro⇄Finance</strong> (spread→growth nowcast)</td>
+<td><strong>CUT on real data</strong> (narrowest call: right sign −0.61, beats placebo 80% + naive 60%, but not a mean-growth climatology; regime-dependent skill)</td>
+<td>✅ tested (39 yrs credit spread + GDP growth)</td>
+<td><strong>no</strong></td>
+</tr>
+<tr>
+<td><strong>Trade⇄Emissions</strong> (carbon leakage)</td>
+<td><strong>CUT on real data</strong> (UK: gap real, corr +0.81 right sign, but openness-leakage confounded-away — loses to a production-blind baseline; panel FE across 114 countries confirms, 92% attenuation)</td>
+<td>✅ tested (34 yrs + 114-country panel)</td>
+<td><strong>no</strong></td>
+</tr>
+<tr>
+<td><strong>Energy⇄Inflation</strong> (pass-through)</td>
+<td>✅ <strong>KEEP on real data</strong> (corr +0.65; beats mean baseline/placebo/persistence/naive across walk-forward folds) — the first clean real-data keep</td>
+<td>✅ tested (32 yrs energy price + CPI)</td>
+<td><strong>no</strong></td>
+</tr>
+<tr>
+<td><strong>Interest-Rate⇄Housing</strong></td>
+<td><strong>CUT on real data</strong> (reverse causation: contemp +0.38 wrong sign; lagged rate right-signed but loses to housing momentum)</td>
+<td>✅ tested (37 yrs mortgage rate + Case-Shiller)</td>
+<td><strong>no</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>DONE (again).</strong> The eighth domain survives (Energy⇄Inflation, the first clean real-data keep); the ninth
+(Interest-Rate⇄Housing) is cut for a new, teachable reason (reverse causation + momentum). <strong>Two</strong> couplings
+now earn their keep (Macro⇄Health; Energy⇄Inflation); <strong>eight</strong> are cut,
+each with a recorded, falsifiable reason — <strong>seven on real data under a placebo/robust walk-forward</strong> —
+spanning the failure-mode catalogue (level artifact · genuinely cyclic · wrong sign · <strong>confounded-away</strong> ×2
+· real-signal-no-skill · regime-dependent skill · <strong>reverse causation</strong>). No domain retains an open,
+improvable gap. Standing headline, now with its complement: <strong>two couplings earned their keep; eight were
+cut — the bar never bent for a hollow story, and it rewarded the two that were real. A discriminating
+instrument, not a destructive one.</strong></p>
+<h2 id="standing-champions">Standing champions<a class="headerlink" href="#standing-champions" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Question / slice</th>
+<th>Champion</th>
+<th>Beat</th>
+<th>On (data, split)</th>
+<th>Synergy vs sum-of-parts</th>
+<th>Red-team</th>
+<th>Ref</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GDP track, energy⇄climate⇄economy slice</td>
+<td><strong>economy-only</strong> (after fair calibration)</td>
+<td>—</td>
+<td>synthetic-policy, time-blocked 30%</td>
+<td><strong>−0.01 (cut)</strong></td>
+<td>✅ beats naive (cal) but coupling adds nothing</td>
+<td><a href="../leaderboard.json">json</a></td>
+</tr>
+<tr>
+<td>GDP track, Macro⇄Health slice (<strong>assimilation + contemporaneous</strong>)</td>
+<td><strong>coupled ensemble</strong></td>
+<td>economy-only</td>
+<td>synthetic-pandemic, time-blocked 30%</td>
+<td><strong>+8.92 (keep)</strong></td>
+<td>✅ <strong>survives full round</strong>; no-lag solve ⇒ <strong>MASE 0.10</strong>, sharpest champion</td>
+<td><a href="../04-validation/">redteam</a></td>
+</tr>
+<tr>
+<td>Food-price track, Land⇄Climate⇄Food slice (<strong>fair calibration</strong>)</td>
+<td><strong>coupled ensemble</strong></td>
+<td>land-only</td>
+<td>synthetic-warming, time-blocked 30%</td>
+<td><strong>+15.2 (keep)</strong></td>
+<td>⚠️ coupling real (survives level-artifact + shift) but <strong>loses to naive</strong> — no skill claim yet</td>
+<td><a href="../04-validation/">redteam</a></td>
+</tr>
+<tr>
+<td>Health-burden track, Urban⇄Transport⇄Energy⇄Health slice (<strong>fair calibration</strong>)</td>
+<td><strong>coupled ensemble</strong> (synthetic only)</td>
+<td>airhealth-only</td>
+<td>synthetic-cobenefit, time-blocked 30%</td>
+<td><strong>+13.5 (keep synth)</strong></td>
+<td>❌ <strong>CUT on real data</strong> — right sign (+0.35) but PM2.5 adds no skill above trend; fails placebo (#7-real)</td>
+<td><a href="../04-validation/">redteam</a></td>
+</tr>
+<tr>
+<td>Food-price track, Water⇄Energy⇄Food nexus slice (<strong>fair calibration</strong>)</td>
+<td><strong>coupled ensemble</strong> (synthetic only)</td>
+<td>nexusfood-only</td>
+<td>synthetic-nexus, time-blocked 30%</td>
+<td><strong>+99.3 (keep synth)</strong></td>
+<td>❌ <strong>CUT on real data</strong> — energy→food corr +0.90 but no out-of-sample skill (loses to trend/placebo/naive; #10-real)</td>
+<td><a href="../04-validation/">redteam</a></td>
+</tr>
+<tr>
+<td>GDP track, Macro⇄Finance slice (<strong>fair calibration</strong>)</td>
+<td><strong>coupled ensemble</strong> (synthetic only)</td>
+<td>economy-only</td>
+<td>synthetic-financial-crisis, time-blocked 30%</td>
+<td><strong>+2.74 (keep synth)</strong></td>
+<td>❌ <strong>CUT on real data</strong> — spread→growth right sign (−0.61), beats placebo 80%/naive 60% but not climatology; regime-dependent skill (#11-real)</td>
+<td><a href="../04-validation/">redteam</a></td>
+</tr>
+<tr>
+<td>Consumption-emissions track, Trade⇄Emissions slice (<strong>fair calibration</strong>)</td>
+<td><strong>coupled ensemble</strong> (synthetic only)</td>
+<td>leakage-blind</td>
+<td>synthetic-leakage, time-blocked 30%</td>
+<td><strong>+17.3 (keep synth)</strong></td>
+<td>❌ <strong>CUT on real data</strong> — UK gap real (corr +0.81) but openness-leakage confounded-away; loses to production-blind (#12-real)</td>
+<td><a href="../04-validation/">redteam</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="contest-log">Contest log<a class="headerlink" href="#contest-log" title="Permanent link">&para;</a></h2>
+<h3 id="round-0-phase-0">Round 0 — (Phase 0)<a class="headerlink" href="#round-0-phase-0" title="Permanent link">&para;</a></h3>
+<p>Inventory &amp; positioning; no tournaments. The contests race:</p>
+<ol>
+<li><strong>Feature competition</strong> — candidate features/transformations for the DICE⇄energy⇄CGE slice,
+   scored on out-of-sample backtests with overfitting/leakage/redundancy penalties.</li>
+<li><strong>Coupling/synergy competition</strong> — coupled configurations vs decoupled baselines vs rival
+   couplings; a coupling advances only if it adds <strong>demonstrable synergy</strong> on real data.</li>
+<li><strong>Model/method competition</strong> — rival paradigm voices head-to-head on the same question; route
+   to winners; where winners disagree, <strong>keep both and report the disagreement</strong>.</li>
+<li><strong>Ensembling competition</strong> — Bayesian model averaging <strong>vs</strong> deliberate disagreement-preservation.</li>
+</ol>
+<p>Each will be logged here with full provenance so any collaborator can reproduce and challenge it.</p>
+<h2 id="convergence-criterion-the-done-state">Convergence criterion (the DONE state)<a class="headerlink" href="#convergence-criterion-the-done-state" title="Permanent link">&para;</a></h2>
+<p>A <strong>stable champion</strong> that no challenger feature, coupling, method, or red-team attack can beat
+within a full tournament round — competition <strong>converged</strong> — <strong>and</strong> net positive synergy over
+isolated baselines on real data, across all covered domains. Until then, the loop continues.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../related-work/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Related Work &amp; Positioning">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Related Work & Positioning
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../PROGRESS/" class="md-footer__link md-footer__link--next" aria-label="Next: PROGRESS (iteration log)">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                PROGRESS (iteration log)
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Knowledge base assembled as design foundation for a next-generation integrated policy simulator. Cite primary sources, not this atlas.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
