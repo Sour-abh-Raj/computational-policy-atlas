@@ -357,6 +357,20 @@ def load_real_poverty_panel() -> tuple[np.ndarray, np.ndarray, np.ndarray, np.nd
     """REAL poverty panel: ``(iso, year, log_gdppc, poverty)`` — income vs the $2.15/day headcount ratio
     (the *absolute*-welfare counterpart to the inequality panel)."""
     return _load_panel_csv(REAL_POVERTY_PANEL, "log_gdppc", "poverty")
+
+
+REAL_SHARED_PROSPERITY_PANEL = DATASETS / "real_shared_prosperity_panel.csv"
+
+
+def has_real_shared_prosperity_panel() -> bool:
+    """Whether the shared-prosperity panel has been fetched (``fetch_real.fetch_shared_prosperity_panel``)."""
+    return REAL_SHARED_PROSPERITY_PANEL.exists()
+
+
+def load_real_shared_prosperity_panel() -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+    """REAL shared-prosperity panel: ``(iso, year, log_gdppc, bottom40_share)`` — income vs the income share
+    of the bottom 40% (a second *relative* distributional measure, a robustness check on the inequality cut)."""
+    return _load_panel_csv(REAL_SHARED_PROSPERITY_PANEL, "log_gdppc", "bottom40_share")
 REAL_INFLATION = DATASETS / "real_inflation.csv"
 REAL_INFLATION_Q = DATASETS / "real_inflation_q.csv"
 REAL_HOUSING = DATASETS / "real_housing.csv"

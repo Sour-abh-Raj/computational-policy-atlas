@@ -77,11 +77,12 @@ panel domain has its own honest **two-survivor / two-cut** taxonomy, the mirror 
 And the survivors above are *mean* outcomes, so the **welfare/equity** half of the north star — *who gets
 what* — was put through the same bar too, with a nuanced, decision-relevant split: **income → *absolute*
 poverty** ($2.15/day headcount) **survives** and forecasts (within-FE −0.48, OOS +0.58 — the strongest panel
-survivor), but **income → *relative* inequality** (Kuznets) is **cut** (within +0.07, no out-of-sample skill;
-~80% of its −0.35 cross-country correlation is a between-country level artifact). The honest message is
-neither optimism nor nihilism: *growth reliably lifts people out of absolute poverty but does not compress the
-relative distribution* — conflating the two is exactly the error the instrument catches
-(`experiments/equity_validation.py`).
+survivor), but ***relative* distribution is cut by two independent measures** — the **Gini** (Kuznets: within
++0.07) *and* the World Bank's **bottom-40% income share** (shared prosperity: within −0.06) — each an
+optimistic cross-country correlation that is ~80% a between-country level artifact with no out-of-sample
+skill. The honest message is neither optimism nor nihilism: *growth reliably lifts people out of absolute
+poverty but does not compress the relative distribution* (however it is measured) — conflating the two is
+exactly the error the instrument catches (`experiments/equity_validation.py`).
 
 **The epistemology, in one line:** *aggregate time-series forecasting is climatology-dominated and honest
 couplings are rare; cross-sectional/panel structure is real and findable — and one validated fixed-effects

@@ -32,6 +32,7 @@ real-world skill).
 | `real_demographic_panel.csv` | iso, year, log_gdppc, fertility | WB `NY.GDP.PCAP.KD` · `SP.DYN.TFRT.IN` | **Demographic transition (SURVIVES)** |
 | `real_inequality_panel.csv` | iso, year, log_gdppc, gini | WB `NY.GDP.PCAP.KD` · `SI.POV.GINI` | Kuznets / equity — income→*relative* inequality (cut: confounded-away) |
 | `real_poverty_panel.csv` | iso, year, log_gdppc, poverty | WB `NY.GDP.PCAP.KD` · `SI.POV.DDAY` | Equity — income→*absolute* poverty (**SURVIVES**) |
+| `real_shared_prosperity_panel.csv` | iso, year, log_gdppc, bottom40_share | WB `NY.GDP.PCAP.KD` · `SI.DST.FRST.20`+`SI.DST.02ND.20` | Equity — income→bottom-40% *share* (cut: 2nd relative measure) |
 
 ## Reproduce
 

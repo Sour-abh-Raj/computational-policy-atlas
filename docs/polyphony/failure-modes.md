@@ -150,13 +150,18 @@ identical instrument (`experiments/equity_validation.py`), and they split — in
 | Panel coupling (welfare / distributional) | pooled | two-way-FE within | OOS | verdict |
 |---|---:|---:|---:|---|
 | Income → *relative* inequality (Kuznets, 111 ctry) | −0.35 | **+0.07** | −0.02 | **cut** (confounded-away) |
+| Income → *shared prosperity* (bottom-40% share, 111 ctry) | +0.32 | **−0.06** | −0.04 | **cut** (confounded-away) |
 | Income → *absolute* poverty ($2.15/day, 121 ctry) | −0.72 | **−0.48** | **+0.58** | **survives** |
 
-**Relative inequality is a cut.** The pooled correlation is *optimistic* (−0.35: richer countries are more
-equal), but ~80% is a **between-country level artifact** — within a country the effect collapses to ≈0 (even
-flips sign) and forecasts nothing. "Grow the economy and inequality takes care of itself" is an inference from
-comparing *different countries*, not from what happens *within* one (Deininger–Squire 1998 on the fragile
-within-country Kuznets curve; Piketty 2014, Milanovic 2016 on inequality often *rising* through growth).
+**Both relative measures are cut.** For inequality the pooled correlation is *optimistic* (−0.35: richer
+countries are more equal), but ~80% is a **between-country level artifact** — within a country the effect
+collapses to ≈0 (even flips sign) and forecasts nothing. "Grow the economy and inequality takes care of
+itself" is an inference from comparing *different countries*, not from what happens *within* one
+(Deininger–Squire 1998 on the fragile within-country Kuznets curve; Piketty 2014, Milanovic 2016 on inequality
+often *rising* through growth). A **second, independent** relative measure — the World Bank's official
+shared-prosperity population, the **bottom-40% income share** — is *also* confounded-away (pooled +0.32 →
+within −0.06), so the result is **not an artifact of the Gini metric**: measured either way, the *relative*
+distribution is not a within-country function of growth.
 
 **Absolute poverty is a survivor — the strongest of any panel.** The within-FE correlation is −0.48 (only
 ~34% attenuation) and it forecasts held-out years at +0.58: growth *is* a validated within-country lever on

@@ -394,6 +394,41 @@ def fetch_inequality_panel(out: pathlib.Path | None = None, min_years: int = 6) 
     return out
 
 
+WB_Q1 = "https://api.worldbank.org/v2/country/all/indicator/SI.DST.FRST.20?format=json&per_page=27000"
+WB_Q2 = "https://api.worldbank.org/v2/country/all/indicator/SI.DST.02ND.20?format=json&per_page=27000"
+
+
+def fetch_shared_prosperity_panel(out: pathlib.Path | None = None, min_years: int = 6) -> pathlib.Path:
+    """Fetch a multi-country panel for **shared prosperity** (Iter 59 — a *relative* robustness check on the
+    inequality cut): log GDP per capita (``NY.GDP.PCAP.KD``) + the **income share of the bottom 40%** (World
+    Bank's official shared-prosperity population, built as ``SI.DST.FRST.20`` + ``SI.DST.02ND.20``, the two
+    poorest quintiles' shares). Like the Gini index this is a *relative* distributional measure, so the
+    optimistic claim income↑ → bottom-40 share↑ (assumed sign +1) is expected to be **confounded-away** within
+    countries — a second, independent relative measure confirming that growth is not a within-country lever on
+    *relative* distribution (whereas *absolute* poverty survives, Iter 58). Writes
+    ``datasets/real_shared_prosperity_panel.csv`` (columns: ``iso``, ``year``, ``log_gdppc``, ``bottom40_share``).
+    """
+    import math
+
+    gdp = _fetch_worldbank_all(WB_GDP_PCAP)
+    q1 = _fetch_worldbank_all(WB_Q1)
+    q2 = _fetch_worldbank_all(WB_Q2)
+    out = out or (DATASETS / "real_shared_prosperity_panel.csv")
+    n = 0
+    with out.open("w", newline="", encoding="utf-8") as fh:
+        w = csv.writer(fh)
+        w.writerow(["iso", "year", "log_gdppc", "bottom40_share"])
+        for iso in sorted(set(gdp) & set(q1) & set(q2)):
+            years = [y for y in sorted(set(gdp[iso]) & set(q1[iso]) & set(q2[iso])) if gdp[iso][y] > 0]
+            if len(years) >= min_years:
+                for y in years:
+                    w.writerow([iso, y, math.log(gdp[iso][y]), q1[iso][y] + q2[iso][y]])
+                    n += 1
+    if n < 300:
+        raise RuntimeError(f"too few panel observations ({n}); refusing to write")
+    return out
+
+
 WB_POVERTY = "https://api.worldbank.org/v2/country/all/indicator/SI.POV.DDAY?format=json&per_page=27000"
 
 
@@ -638,3 +673,5 @@ if __name__ == "__main__":
     print(f"wrote {inequality} ({sum(1 for _ in inequality.open()) - 1} rows)")
     poverty = fetch_poverty_panel()
     print(f"wrote {poverty} ({sum(1 for _ in poverty.open()) - 1} rows)")
+    shared = fetch_shared_prosperity_panel()
+    print(f"wrote {shared} ({sum(1 for _ in shared.open()) - 1} rows)")

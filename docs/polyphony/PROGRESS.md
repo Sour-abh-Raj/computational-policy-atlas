@@ -1299,3 +1299,26 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
     `mkdocs --strict`.
   - **Next (Iter 59):** shared-prosperity (bottom-40% income share) or energy-inflation regressivity — or
     polish; the welfare/equity dimension now has a validated cut *and* survivor.
+- **Iter 59 — ✅ Shared prosperity: a 2nd *relative* measure confirms the relative/absolute split is not a Gini artifact.**
+  - **Robustness, not a new claim.** Put the World Bank's official **shared-prosperity** measure — the
+    **bottom-40% income share** (`SI.DST.FRST.20`+`SI.DST.02ND.20`) — through the same panel FE + OOS
+    instrument on real data (new `real_shared_prosperity_panel.csv`, **2,240 country-years, 111 countries**;
+    `fetch_shared_prosperity_panel`, `load_real_shared_prosperity_panel`, `run_shared_prosperity_panel`).
+  - **Verdict — CUT (confounded-away), like the Gini:** pooled **+0.32** (optimistic — richer countries give
+    the poorest 40% a larger share), two-way-FE within **−0.06** (sign flips), ~80% attenuation, OOS **−0.04**.
+    A *second, independent* relative measure is confounded-away exactly like inequality — so "growth is not a
+    within-country lever on *relative* distribution" is **not an artifact of the Gini metric**; it holds
+    however relative equity is measured.
+  - **Sharpens the welfare message** (Iters 57–59): growth reliably lifts people out of **absolute** poverty
+    (survives) but does **not** compress the **relative** distribution *by either of two measures* (both cut).
+    `equity_validation.equity_dimension()` now returns all three; `equity_dimension_summary` reports both cuts
+    vs the poverty survivor. **`reliable_findings` unchanged at 4** — a cut is not a usable finding, reported
+    honestly.
+  - **Tests:** `test_equity_validation.py` +1 (shared-prosperity share is a cut; summary names both relative
+    measures). Docs: failure-modes equity table (3 rows, "both relative measures cut"), index note, datasets
+    README row.
+  - **Atlas feedback:** graph unchanged (**180 nodes / 480 edges, 0-dangling**).
+  - **Convergence stays DONE.** Gates green: `pytest` · `ruff` · `mypy` · graph 0-dangling · `mkdocs --strict`.
+  - **Next (Iter 60):** energy-inflation regressivity (may hit a data blocker — fall back to consolidation if
+    the incidence fetch is empty), or a consolidation/count-consistency pass; the equity dimension is now
+    well-characterised (one survivor, two relative cuts).

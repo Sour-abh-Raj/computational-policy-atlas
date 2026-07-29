@@ -7,25 +7,31 @@ just the average. That half of the mission had been *exposed as a dial* (see ``w
 claims about growth and welfare through the identical instrument that separated the panel survivors from the
 confounded couplings — two-way (country + year) fixed effects plus an out-of-sample within-country test.
 
-The result is a **nuanced pair**, not a slogan:
+The result is a sharp **relative-vs-absolute split**, not a slogan:
 
 - **Income → *relative* inequality (Kuznets):** a **cut**. Pooled cross-country correlation is optimistic
   (−0.35, richer countries more equal), but ~80% is a between-country level artifact — within a country the
   effect collapses to ≈0 and forecasts nothing. Growth is **not** a within-country lever on the *distribution*
   (Deininger–Squire 1998; Piketty 2014; Milanovic 2016 — inequality often *rises* through growth).
+- **Income → *shared prosperity* (bottom-40% income share):** also a **cut**, and the point of testing it — a
+  *second, independent* relative measure (the World Bank's official shared-prosperity population). Pooled
+  +0.32 (optimistic), within −0.06, ~80% attenuation, no out-of-sample skill. The relative/absolute split is
+  therefore **not an artifact of the Gini metric**: measured either way, the *relative* distribution is
+  confounded-away within countries.
 - **Income → *absolute* poverty (the $2.15/day headcount):** a **survivor**, and the strongest of any panel.
   Pooled −0.72, two-way-FE within **−0.48** (only ~34% attenuation), out-of-sample within-prediction **+0.58**.
   Growth **is** a strong, validated within-country lever on *absolute* poverty (Dollar–Kraay 2002).
 
 **The honest welfare message for a decision-maker:** growth reliably lifts people out of *absolute* poverty but
-does **not** compress the *relative* distribution. Both facts matter for altruistic policy, and conflating them
-(the common "a rising tide lifts all boats" elision of poverty with inequality) is exactly the error this
-instrument catches. Absolute-poverty reduction can lean on the growth dial; relative equity needs its own
-instrument (transfers, tax design).
+does **not** compress the *relative* distribution (by either of two measures). Both facts matter for altruistic
+policy, and conflating them (the common "a rising tide lifts all boats" elision of poverty with inequality) is
+exactly the error this instrument catches. Absolute-poverty reduction can lean on the growth dial; relative
+equity needs its own instrument (transfers, tax design).
 
 It also **sharpens the two-domain epistemology**: the panel domain is not uniformly signal-rich. Survivability
 depends on the **outcome** — a genuine *within-unit mechanism* (poverty tracks income almost mechanically)
-survives; a *confounded distributional* outcome (inequality) does not, exactly like the aggregate couplings.
+survives; a *confounded distributional* outcome (inequality, shared-prosperity share) does not, exactly like
+the aggregate couplings.
 """
 
 from __future__ import annotations
@@ -36,8 +42,13 @@ from .panel_validation import (
     oos_within_prediction,
     run_inequality_panel,
     run_poverty_panel,
+    run_shared_prosperity_panel,
 )
-from ..data.loaders import load_real_inequality_panel, load_real_poverty_panel
+from ..data.loaders import (
+    load_real_inequality_panel,
+    load_real_poverty_panel,
+    load_real_shared_prosperity_panel,
+)
 
 
 @dataclass(frozen=True)
@@ -112,17 +123,40 @@ def run_poverty_equity_test() -> EquityFinding:
     )
 
 
-def equity_dimension() -> tuple[EquityFinding, EquityFinding]:
-    """Both equity results: the *relative-inequality* cut and the *absolute-poverty* survivor."""
-    return run_inequality_equity_test(), run_poverty_equity_test()
+def run_shared_prosperity_equity_test() -> EquityFinding:
+    """Income → *shared prosperity* (bottom-40% income share): a second *relative* distributional measure. On
+    real data this is a **cut**, like inequality — confirming the relative/absolute split is not a Gini artifact."""
+    fe = run_shared_prosperity_panel()
+    iso, year, log_gdppc, share = load_real_shared_prosperity_panel()
+    oos = oos_within_prediction(iso, year, log_gdppc, share)
+    return EquityFinding(
+        question="Does income growth raise the bottom-40% income *share* *within* a country?",
+        optimistic_claim="growth raises the poorest 40%'s share (income↑ → bottom-40 share↑)",
+        assumed_sign=+1,
+        pooled_corr=fe.pooled_corr,
+        within_corr=fe.within_corr,
+        oos_within_corr=oos,
+        verdict=fe.verdict(),
+        lesson=(
+            "A second, independent relative measure (the World Bank's shared-prosperity population) is also "
+            "confounded-away within countries — so 'growth is not a within-country lever on relative "
+            "distribution' is not an artifact of the Gini metric; it holds however relative equity is measured."
+        ),
+    )
+
+
+def equity_dimension() -> tuple[EquityFinding, EquityFinding, EquityFinding]:
+    """All three equity results: the *relative-inequality* cut, the *shared-prosperity-share* cut (a second
+    relative measure), and the *absolute-poverty* survivor."""
+    return run_inequality_equity_test(), run_shared_prosperity_equity_test(), run_poverty_equity_test()
 
 
 def equity_dimension_summary() -> str:
     """One honest line on the welfare/equity dimension — growth cuts absolute poverty but not relative inequality."""
-    ineq, pov = equity_dimension()
+    ineq, share, pov = equity_dimension()
     return (
         f"Equity dimension: absolute poverty SURVIVES (within {pov.within_corr:+.2f}, OOS "
-        f"{pov.oos_within_corr:+.2f}) — growth is a within-country lever on absolute poverty; but relative "
-        f"inequality is CUT (within {ineq.within_corr:+.2f}, OOS {ineq.oos_within_corr:+.2f}) — growth does "
-        f"not compress the distribution. Both matter; do not conflate them."
+        f"{pov.oos_within_corr:+.2f}) — growth is a within-country lever on absolute poverty; but BOTH relative "
+        f"measures are CUT — inequality (within {ineq.within_corr:+.2f}) and shared-prosperity share (within "
+        f"{share.within_corr:+.2f}) — growth does not compress the distribution. Both matter; do not conflate them."
     )

@@ -31,6 +31,7 @@ from ..data.loaders import (
     load_real_pm25_mortality_panel,
     load_real_poverty_panel,
     load_real_preston_panel,
+    load_real_shared_prosperity_panel,
 )
 
 
@@ -141,6 +142,16 @@ def run_poverty_panel() -> PanelFEResult:
     correlation survives with little attenuation, and it forecasts out of sample (Dollar–Kraay 2002)."""
     iso, year, log_gdppc, poverty = load_real_poverty_panel()
     return _panel_fe("Income⇄Poverty (absolute)", -1, iso, year, log_gdppc, poverty)
+
+
+def run_shared_prosperity_panel() -> PanelFEResult:
+    """The **shared-prosperity** panel: does income raise the **bottom-40% income share** *within* countries?
+    A second *relative* distributional measure (assumed sign +1) and a robustness check on the inequality cut
+    — like the Gini it is **confounded-away** within countries (the optimistic pooled correlation is a
+    between-country level artifact), confirming that growth is not a within-country lever on *relative*
+    distribution however it is measured."""
+    iso, year, log_gdppc, share = load_real_shared_prosperity_panel()
+    return _panel_fe("Income⇄SharedProsperity (bottom-40 share)", +1, iso, year, log_gdppc, share)
 
 
 def run_all_panels() -> tuple[PanelFEResult, ...]:

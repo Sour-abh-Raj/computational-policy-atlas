@@ -13,12 +13,17 @@ from __future__ import annotations
 
 import pytest
 
-from polyphony.data.loaders import has_real_inequality_panel, has_real_poverty_panel
+from polyphony.data.loaders import (
+    has_real_inequality_panel,
+    has_real_poverty_panel,
+    has_real_shared_prosperity_panel,
+)
 from polyphony.experiments.equity_validation import (
     EquityFinding,
     equity_dimension_summary,
     run_inequality_equity_test,
     run_poverty_equity_test,
+    run_shared_prosperity_equity_test,
 )
 
 
@@ -50,11 +55,21 @@ def test_absolute_poverty_survives_and_forecasts_on_real_data():
     assert f.oos_within_corr > 0.2  # genuinely forecasts held-out years
 
 
+@pytest.mark.skipif(not has_real_shared_prosperity_panel(), reason="real shared-prosperity panel not fetched")
+def test_shared_prosperity_share_is_also_a_cut_a_second_relative_measure():
+    # A second, independent RELATIVE measure (bottom-40 income share) behaves like the Gini cut, not poverty.
+    f = run_shared_prosperity_equity_test()
+    assert f.pooled_is_optimistic  # richer countries give the bottom 40% a larger share (cross-sectionally)
+    assert f.is_cut and not f.is_survivor  # ...but confounded-away within countries
+    assert "cut" in f.verdict.lower()
+
+
 @pytest.mark.skipif(
-    not (has_real_inequality_panel() and has_real_poverty_panel()),
+    not (has_real_inequality_panel() and has_real_shared_prosperity_panel() and has_real_poverty_panel()),
     reason="real equity panels not fetched",
 )
 def test_summary_states_the_nuanced_welfare_message():
     s = equity_dimension_summary().lower()
     assert "poverty" in s and "survives" in s
     assert "inequality" in s and "cut" in s
+    assert "shared-prosperity share" in s  # both relative measures reported as cut
