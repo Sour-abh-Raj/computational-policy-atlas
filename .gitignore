@@ -9,3 +9,9 @@ __pycache__/
 # Never commit credentials of any kind
 *.token
 secrets.*
+
+# Python build artifacts
+*.egg-info/
+__pycache__/
+*.pyc
+.pytest_cache/
