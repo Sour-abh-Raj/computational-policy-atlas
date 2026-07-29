@@ -8,10 +8,11 @@ license = { text = "MIT" }
 authors = [{ name = "Polyphony contributors" }]
 keywords = ["policy", "simulation", "ensemble", "integrated-assessment", "validation"]
 
-# Runtime dependencies are intentionally minimal in Phase 0/1. The vertical-slice
-# scaffold (Phase 2) will pin numpy/pandas/scipy and any solver/adapter deps behind
-# extras, chosen by ADR. Kept lean so `pip install -e .` stays fast and reproducible.
-dependencies = []
+# numpy is a hard runtime dependency: the core loaders, engines, eval metrics, and every
+# experiment import it. (It was omitted while the Phase-0/1 scaffold was numpy-free; the
+# package has since grown to depend on it, so it must be declared or a clean install — e.g.
+# CI — fails at import with ModuleNotFoundError even though a dev box has numpy globally.)
+dependencies = ["numpy>=1.26"]
 
 [project.optional-dependencies]
 dev = ["pytest>=8", "ruff>=0.6", "mypy>=1.11"]
