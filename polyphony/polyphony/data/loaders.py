@@ -329,6 +329,20 @@ def has_real_demographic_panel() -> bool:
 def load_real_demographic_panel() -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
     """REAL demographic-transition panel: ``(iso, year, log_gdppc, fertility)`` — income vs fertility."""
     return _load_panel_csv(REAL_DEMOGRAPHIC_PANEL, "log_gdppc", "fertility")
+
+
+REAL_INEQUALITY_PANEL = DATASETS / "real_inequality_panel.csv"
+
+
+def has_real_inequality_panel() -> bool:
+    """Whether the Gini inequality panel has been fetched (``fetch_real.fetch_inequality_panel``)."""
+    return REAL_INEQUALITY_PANEL.exists()
+
+
+def load_real_inequality_panel() -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+    """REAL inequality panel: ``(iso, year, log_gdppc, gini)`` — income vs the Gini index (the first
+    *distributional* target, for the Kuznets/equity test)."""
+    return _load_panel_csv(REAL_INEQUALITY_PANEL, "log_gdppc", "gini")
 REAL_INFLATION = DATASETS / "real_inflation.csv"
 REAL_INFLATION_Q = DATASETS / "real_inflation_q.csv"
 REAL_HOUSING = DATASETS / "real_housing.csv"

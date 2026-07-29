@@ -74,6 +74,14 @@ genuine *within-unit* mechanism and couplings *survive*: across 252 countries, t
 both keep their signal under two-way fixed effects, where confounded carbon leakage collapses to ≈0. So the
 panel domain has its own honest **two-survivor / two-cut** taxonomy, the mirror image of the aggregate one.
 
+And the survivability has a further, **equity-relevant** boundary: the survivors above are *mean* outcomes,
+but the first *distributional* coupling — **income → inequality** (the optimistic "growth reduces inequality"
+claim) — is **cut**. Its cross-country correlation is optimistic (−0.35) yet ~80% is a between-country level
+artifact: within a country, growth is *not* a reliable lever on inequality (within-FE +0.07, no out-of-sample
+skill). So the welfare/equity half of the north star gets its first **validated** answer, and it is a
+cautionary one — equity needs its own instrument, not the growth dial
+(`experiments/equity_validation.py`).
+
 **The epistemology, in one line:** *aggregate time-series forecasting is climatology-dominated and honest
 couplings are rare; cross-sectional/panel structure is real and findable — and one validated fixed-effects
 instrument tells the two apart.* (See the

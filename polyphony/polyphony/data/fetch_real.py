@@ -361,6 +361,39 @@ def fetch_demographic_panel(out: pathlib.Path | None = None, min_years: int = 15
     return out
 
 
+WB_GINI = "https://api.worldbank.org/v2/country/all/indicator/SI.POV.GINI?format=json&per_page=27000"
+
+
+def fetch_inequality_panel(out: pathlib.Path | None = None, min_years: int = 6) -> pathlib.Path:
+    """Fetch a multi-country panel for the **Kuznets / distributional** question (Iter 57 — the first *equity*
+    outcome to face the bar): log GDP per capita (World Bank ``NY.GDP.PCAP.KD``) + the **Gini index**
+    (``SI.POV.GINI``). Every earlier validated finding concerns a *mean* outcome (life expectancy, fertility,
+    inflation); this is the first coupling whose target is *distributional* — who gets what — so it brings the
+    welfare/equity half of the north star to the same real-data, fixed-effects, out-of-sample test. The
+    optimistic development claim is income↑ → inequality↓ (assumed sign −1); the verdict is reported honestly,
+    keep or cut. Gini is survey-based and sparse, so ``min_years`` is lower than the mean-outcome panels.
+    Writes ``datasets/real_inequality_panel.csv`` (columns: ``iso``, ``year``, ``log_gdppc``, ``gini``).
+    """
+    import math
+
+    gdp = _fetch_worldbank_all(WB_GDP_PCAP)
+    gini = _fetch_worldbank_all(WB_GINI)
+    out = out or (DATASETS / "real_inequality_panel.csv")
+    n = 0
+    with out.open("w", newline="", encoding="utf-8") as fh:
+        w = csv.writer(fh)
+        w.writerow(["iso", "year", "log_gdppc", "gini"])
+        for iso in sorted(set(gdp) & set(gini)):
+            years = [y for y in sorted(set(gdp[iso]) & set(gini[iso])) if gdp[iso][y] > 0]
+            if len(years) >= min_years:
+                for y in years:
+                    w.writerow([iso, y, math.log(gdp[iso][y]), gini[iso][y]])
+                    n += 1
+    if n < 300:
+        raise RuntimeError(f"too few panel observations ({n}); refusing to write")
+    return out
+
+
 FRED_SPREAD = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAA10Y"  # Baa − 10Y Treasury credit spread
 FRED_REALGDP = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=GDPC1"  # real GDP (chained 2017 $)
 
@@ -568,3 +601,5 @@ if __name__ == "__main__":
     print(f"wrote {preston} ({sum(1 for _ in preston.open()) - 1} rows)")
     demo = fetch_demographic_panel()
     print(f"wrote {demo} ({sum(1 for _ in demo.open()) - 1} rows)")
+    inequality = fetch_inequality_panel()
+    print(f"wrote {inequality} ({sum(1 for _ in inequality.open()) - 1} rows)")

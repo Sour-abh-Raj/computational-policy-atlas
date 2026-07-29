@@ -1244,3 +1244,29 @@ Plus the standing invariants (every commit): `mkdocs build --strict` green · `g
   - **Convergence stays DONE.** **+3 tests -> 165 pass.** Gates green: `pytest` (165) · `ruff` · `mypy`
     (74 files) · graph 0-dangling · `mkdocs --strict`.
   - **Next (Iter 57):** continued polish, or a further distinct probe if genuinely warranted.
+- **Iter 57 — ✅ The first *equity* (distributional) outcome faces the bar: income → inequality (Kuznets).**
+  - **Closed the biggest holistic gap.** Every prior validated finding was a *mean* outcome (life expectancy,
+    fertility, inflation); the north star's welfare/**equity** half — *who gets what* — had been exposed as a
+    dial but never **validated on real distributional data**. Put the optimistic development claim (*growth
+    reduces inequality*) through the identical panel-survivor instrument (two-way FE + out-of-sample).
+  - **Real data:** new `real_inequality_panel.csv` — World Bank `SI.POV.GINI` × `NY.GDP.PCAP.KD`, **2,240
+    country-years, 111 countries, 1963–2025** (`fetch_inequality_panel`, loader
+    `load_real_inequality_panel`).
+  - **Honest verdict — a CUT (confounded-away):** pooled **−0.35** (optimistic — richer countries more
+    equal), two-way-FE within **+0.07** (~80% of the pooled association is a between-country level artifact;
+    sign even flips), OOS **−0.02** (no forecasting skill). "Grow the economy and inequality takes care of
+    itself" is a *between-country* inference, not a within-country lever — matching Deininger–Squire 1998 /
+    Piketty 2014 / Milanovic 2016. **Decision-support consequence:** equity needs its own instrument
+    (transfers, tax), not the growth dial.
+  - **Sharpens the two-domain epistemology:** the panel domain is *not* uniformly signal-rich — survivability
+    depends on the **outcome**. Genuine *mean* mechanisms survive FE; the *distributional* outcome is
+    confounded-away like the aggregate couplings. Being cross-sectional is not enough.
+  - **`experiments/equity_validation.py`** (`run_inequality_equity_test`, `equity_dimension_summary`,
+    `EquityFinding`) + `panel_validation.run_inequality_panel`; `test_equity_validation.py` (structural cut
+    logic + 3 real-data assertions, skipped when the CSV is absent). Docs: failure-modes equity subsection,
+    index two-domain note, datasets README row.
+  - **Atlas feedback:** graph unchanged (**180 nodes / 480 edges, 0-dangling**) — a new validated finding on
+    existing domains, no new node warranted.
+  - **Convergence stays DONE.** **+4 tests -> 166 pass.** Gates green: `pytest` (166) · `ruff` · `mypy`
+    (75 files) · graph 0-dangling · `mkdocs --strict`.
+  - **Next (Iter 58):** continued polish, or a further distinct equity/welfare probe if genuinely warranted.

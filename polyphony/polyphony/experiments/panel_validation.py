@@ -26,6 +26,7 @@ import numpy as np
 
 from ..data.loaders import (
     load_real_demographic_panel,
+    load_real_inequality_panel,
     load_real_leakage_panel,
     load_real_pm25_mortality_panel,
     load_real_preston_panel,
@@ -119,6 +120,17 @@ def run_demographic_panel() -> PanelFEResult:
     panel coupling (assumed sign −1), confirming that the panel domain finds real within-unit mechanisms."""
     iso, year, log_gdppc, fertility = load_real_demographic_panel()
     return _panel_fe("Income⇄Fertility (demographic transition)", -1, iso, year, log_gdppc, fertility)
+
+
+def run_inequality_panel() -> PanelFEResult:
+    """The **Kuznets / equity** panel: does income lower the **Gini index** *within* countries? The first
+    coupling whose target is *distributional* (who gets what) rather than a mean outcome — bringing the
+    welfare/equity half of the north star to the same bar. Assumed sign −1 (the optimistic development claim
+    that growth reduces inequality); the pooled correlation *is* negative, but the two-way-FE within
+    correlation collapses to ≈0 (even slightly positive), so the claim is **confounded-away** — a
+    between-country level artifact, not a within-country mechanism."""
+    iso, year, log_gdppc, gini = load_real_inequality_panel()
+    return _panel_fe("Income⇄Inequality (Kuznets)", -1, iso, year, log_gdppc, gini)
 
 
 def run_all_panels() -> tuple[PanelFEResult, ...]:

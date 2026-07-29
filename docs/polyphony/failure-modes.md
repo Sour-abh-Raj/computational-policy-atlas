@@ -141,6 +141,30 @@ prediction-vs-actual correlation **+0.24** (Preston) and **+0.14** (demographic 
 out-of-sample test the aggregate couplings fail. The two-domain split is real, not an artifact of a softer
 standard.
 
+### The equity boundary — a *distributional* outcome does not survive either
+
+The panel survivors so far — life expectancy, fertility — are **mean** outcomes. But the north star is about
+*welfare and equity*: **who gets what**, not just the average. So the first *distributional* coupling was put
+through the identical instrument — **income → the Gini index** (the optimistic development claim that *growth
+reduces inequality*), on a real 111-country World Bank panel (`experiments/equity_validation.py`).
+
+| Panel coupling (111 countries, distributional) | pooled | two-way-FE within | OOS | verdict |
+|---|---:|---:|---:|---|
+| **Income → inequality** (Kuznets) | **−0.35** | **+0.07** | −0.02 | cut (confounded-away) |
+
+The pooled correlation is *optimistic* (−0.35: richer countries are more equal), but ~80% of it is a
+**between-country level artifact** — within a country over time the effect collapses to ≈0 (even flips sign)
+and forecasts nothing. So "grow the economy and inequality takes care of itself" is an inference from
+comparing *different countries*, not from what happens *within* one — matching the inequality literature
+(Deininger–Squire 1998 on the fragile within-country Kuznets curve; Piketty 2014, Milanovic 2016 on inequality
+often *rising* through growth). **Decision-support consequence:** growth is **not** a within-country lever on
+distribution — equity needs its own instrument (transfers, tax design), not the growth dial.
+
+This also **sharpens** the taxonomy: the panel domain is *not* uniformly signal-rich. Survivability depends on
+the **outcome** — genuine *mean* mechanisms (Preston, demographic) survive fixed effects, but the
+*distributional* outcome is confounded-away exactly like the aggregate couplings. Being cross-sectional is not
+enough; the mechanism must live *within* units in the outcome you actually care about.
+
 ## What actually separates keeps from cuts (a computed answer)
 
 Given two keeps and seven cuts, *which property* decides? Scoring every coupling on four plausible
